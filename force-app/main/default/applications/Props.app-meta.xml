@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>standard-home</defaultLandingTab>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>Props</label>
+    <tabs>Production__c</tabs>
+    <tabs>Scene__c</tabs>
+    <tabs>Inventory__c</tabs>
+    <tabs>Scene_Inventory__c</tabs>
+    <tabs>Storage_Location__c</tabs>
+    <tabs>Character__c</tabs>
+    <tabs>Set__c</tabs>
+    <tabs>Scene_Character__c</tabs>
+    <tabs>Scene_Set__c</tabs>
+    <tabs>SHOOT_LOCATION__c</tabs>
+</CustomApplication>
