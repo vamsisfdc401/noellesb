@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_Checked_in_Inventories</fullName>
+    <columns>NAME</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>Checked_In__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>Non-Checked in Inventories</label>
+</ListView>

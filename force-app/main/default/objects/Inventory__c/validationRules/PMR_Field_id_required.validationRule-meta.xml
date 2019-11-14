@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PMR_Field_id_required</fullName>
+    <active>true</active>
+    <description>IF(Inventory desposition = Prop making materials/Dapes) then PMR Field is mandatory</description>
+    <errorConditionFormula>AND( ISPICKVAL( Inventory_disposition__c , &quot;Prop making materials/Drapes&quot;) ,  ISPICKVAL( Prop_Make_Reference__c , &quot;&quot;)  )</errorConditionFormula>
+    <errorDisplayField>Prop_Make_Reference__c</errorDisplayField>
+    <errorMessage>PMR Field is mandatory</errorMessage>
+</ValidationRule>

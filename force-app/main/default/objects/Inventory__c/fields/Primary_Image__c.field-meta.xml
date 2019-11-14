@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Primary_Image__c</fullName>
+    <externalId>false</externalId>
+    <formula>IMAGE(&quot;/sfc/servlet.shepherd/version/download/&quot; + Primary_image_ID__c, &#39;image alternate text&#39;,100,100)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Primary Image</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Source_type_is_Hired_or_Product_Placemen</fullName>
+    <active>true</active>
+    <description>Source_type_is_Hired_or_Product Placemen</description>
+    <errorConditionFormula>AND( OR(ISPICKVAL(  Source_Type__c , &quot;Product Placement&quot;), ISPICKVAL(Source_Type__c , &quot;Hired&quot;)  ), OR(ISNULL( To_Loan_Date__c ),ISNULL(  From_Loan_Date__c ),ISNULL(  RV_Price__c ) )   )</errorConditionFormula>
+    <errorMessage>IF Source type is hired or Product Placement then To loan date,From loan date and RV price is mandatory. Please verify the values</errorMessage>
+</ValidationRule>

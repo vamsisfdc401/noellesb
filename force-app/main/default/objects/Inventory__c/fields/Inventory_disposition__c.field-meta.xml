@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Inventory_disposition__c</fullName>
+    <externalId>false</externalId>
+    <label>Inventory disposition</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Consumable</fullName>
+                <default>false</default>
+                <label>Consumable</label>
+            </value>
+            <value>
+                <fullName>Destroyed</fullName>
+                <default>false</default>
+                <label>Destroyed</label>
+            </value>
+            <value>
+                <fullName>Gifted</fullName>
+                <default>false</default>
+                <label>Gifted</label>
+            </value>
+            <value>
+                <fullName>Prop making materials/Drapes</fullName>
+                <default>false</default>
+                <label>Prop making materials/Drapes</label>
+            </value>
+            <value>
+                <fullName>Returned</fullName>
+                <default>false</default>
+                <label>Returned</label>
+            </value>
+            <value>
+                <fullName>Stored</fullName>
+                <default>false</default>
+                <label>Stored</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

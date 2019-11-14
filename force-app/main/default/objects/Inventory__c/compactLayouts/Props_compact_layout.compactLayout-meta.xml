@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Props_compact_layout</fullName>
+    <fields>Name</fields>
+    <fields>Character__c</fields>
+    <label>Props compact layout</label>
+</CompactLayout>
