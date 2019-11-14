@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
-		<members>Props</members>
-		<members>Props_Lightning</members>
-		<name>CustomApplication</name>
-	</types>
-	<types>
 		<members>Character__c</members>
 		<members>Inventory__c</members>
 		<members>Production__c</members>
@@ -20,23 +15,12 @@
 	</types>
 	<types>
 		<members>*</members>
-		<name>CustomObjectTranslation</name>
-	</types>
-	<types>
-		<members>*</members>
 		<name>CustomTab</name>
 	</types>
 	<types>
 		<members>*</members>
 		<name>FlexiPage</name>
 	</types>
-	<types>
-		<members>*</members>
-		<name>Flow</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>Workflow</name>
-	</types>
+	
 	<version>46.0</version>
 </Package>
