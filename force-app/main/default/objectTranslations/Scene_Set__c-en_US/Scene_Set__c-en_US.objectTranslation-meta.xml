@@ -6,7 +6,7 @@
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value>Scene-Sets</value>
+        <value>Scene-Sets</value> 
     </caseValues>
     <layouts>
         <layout>Scene-Set Layout</layout>

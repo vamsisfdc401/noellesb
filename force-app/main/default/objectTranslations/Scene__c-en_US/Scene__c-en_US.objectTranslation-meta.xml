@@ -4,7 +4,7 @@
         <plural>false</plural>
         <value>Scene</value>
     </caseValues>
-    <caseValues>
+    <caseValues> 
         <plural>true</plural>
         <value>Scenes</value>
     </caseValues>

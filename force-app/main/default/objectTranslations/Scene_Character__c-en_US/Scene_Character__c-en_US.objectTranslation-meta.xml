@@ -3,7 +3,7 @@
     <caseValues>
         <plural>false</plural>
         <value>Scene-Character</value>
-    </caseValues>
+    </caseValues> 
     <caseValues>
         <plural>true</plural>
         <value>Scene-Characters</value>

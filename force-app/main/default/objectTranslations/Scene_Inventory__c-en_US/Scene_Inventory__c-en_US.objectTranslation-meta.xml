@@ -8,5 +8,5 @@
         <plural>true</plural>
         <value>Scene-Inventorys</value>
     </caseValues>
-    <startsWith>Consonant</startsWith>
+    <startsWith>Consonant</startsWith> 
 </CustomObjectTranslation>

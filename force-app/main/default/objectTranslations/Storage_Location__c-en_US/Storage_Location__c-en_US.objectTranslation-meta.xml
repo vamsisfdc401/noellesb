@@ -6,7 +6,7 @@
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value>Storage Locations</value>
+        <value>Storage Locations</value> 
     </caseValues>
     <layouts>
         <layout>Storage Location Layout</layout>

@@ -4,7 +4,7 @@
         <plural>false</plural>
         <value>Production</value>
     </caseValues>
-    <caseValues>
+    <caseValues> 
         <plural>true</plural>
         <value>Production</value>
     </caseValues>
