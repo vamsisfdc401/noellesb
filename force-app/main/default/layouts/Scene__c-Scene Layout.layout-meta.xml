@@ -24,6 +24,18 @@
                 <behavior>Required</behavior>
                 <field>Production__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Script_Location__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Interior_Exterior__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Time_of_Day__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -66,7 +78,6 @@
     </platformActionList>
     <relatedLists>
         <fields>Set__c.Set__c</fields>
-        <fields>Set__c.E_I__c</fields>
         <fields>Set__c.NAME</fields>
         <fields>SHOOT_LOCATION__c</fields>
         <relatedList>Scene_Set__c.Scene__c</relatedList>

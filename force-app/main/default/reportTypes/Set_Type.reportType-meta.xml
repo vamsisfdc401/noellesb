@@ -55,11 +55,6 @@
             <field>PG_s__c</field>
             <table>Set__c</table>
         </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>E_I__c</field>
-            <table>Set__c</table>
-        </columns>
         <masterLabel>Sets</masterLabel>
     </sections>
     <sections>

@@ -19,10 +19,6 @@
                 <behavior>Edit</behavior>
                 <field>PG_s__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>E_I__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns/>
         <style>TwoColumnsTopToBottom</style>

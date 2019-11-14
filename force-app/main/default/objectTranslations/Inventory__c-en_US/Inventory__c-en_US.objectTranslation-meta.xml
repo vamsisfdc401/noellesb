@@ -40,6 +40,10 @@
             <label><!-- SOURCE INFORMATION --></label>
             <section>SOURCE INFORMATION</section>
         </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
     </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>
