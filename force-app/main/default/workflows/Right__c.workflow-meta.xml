@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>DGF_Update_Rights_Name</fullName>
+        <description>DFOR-20</description>
+        <field>Name</field>
+        <formula>Title__r.Name &amp; &#39; &#39; &amp;  Territory__c &amp; &#39; &#39; &amp;  Platform__c &amp; &#39; Rights&#39;</formula>
+        <name>DGF Update Rights Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>DGF Rights Name</fullName>
+        <actions>
+            <name>DGF_Update_Rights_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>DFOR-20</description>
+        <formula>Title__c !=null &amp;&amp;  Territory__c !=null &amp;&amp;  Platform__c !=null</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

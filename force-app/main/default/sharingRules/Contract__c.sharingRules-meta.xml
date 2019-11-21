@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>GBS_Local_Criteria_Share</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Share Read/Write Access to Local Contracts</description>
+        <label>GBS Local Criteria Share</label>
+        <sharedTo>
+            <role>Global_Brand_Standards</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Local</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>GBS_RSG_Criteria_Share</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Share Read Access to Integrated RSG Contracts</description>
+        <label>GBS RSG Criteria Share</label>
+        <sharedTo>
+            <role>Global_Brand_Standards</role>
+        </sharedTo>
+        <booleanFilter>(1 OR 3) AND 2</booleanFilter>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>RSG</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Inactive_in_RSG__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Legal</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Legal_Contract_Sharing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Contracts sharing rule for Legal Users</description>
+        <label>Legal Contract Sharing</label>
+        <sharedTo>
+            <role>UBD_Legal_Team</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Legal</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Inactive_in_RSG__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

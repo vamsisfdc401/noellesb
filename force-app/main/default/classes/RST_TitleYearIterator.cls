@@ -1,0 +1,18 @@
+global with sharing class RST_TitleYearIterator implements Iterator<AggregateResult> {
+    AggregateResult [] results {get;set;}
+    // tracks which result item is returned
+    Integer index {get; set;} 
+
+    global RST_TitleYearIterator(String query) {
+        index = 0;
+        results = Database.query(query);
+    } 
+
+    global boolean hasNext(){ 
+        return results != null && !results.isEmpty() && index < results.size(); 
+    }    
+
+    global AggregateResult next(){        
+        return results[index++];            
+    }       
+}

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>CAR__c</entityName>
+    <fieldName>Status__c</fieldName>
+    <masterLabel>CAR STATUS Other</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>Creative_Owner__c</fieldNames>
+        <fieldNames>Working_Link__c</fieldNames>
+        <fieldNames>Vendor_Account__c</fieldNames>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;In order to move to WORKING: please confirm the Creative Owner is correct and add the Working Link and Vendor.&lt;/span&gt;&lt;/p&gt;</info>
+        <picklistValueName>Assigned</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Cancellation_Reason__c</fieldNames>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;In order to CANCEL this request, please fill out a reason in the box to the left and press SAVE.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;If your request is in DRAFT this will DELETE your request.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;The creative team will be notified, stop working on this request, and confirm if any costs have been incurred to date.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</info>
+        <picklistValueName>Cancelled</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Final_Spend__c</fieldNames>
+        <fieldNames>POD__c</fieldNames>
+        <info>&lt;p&gt;This CAR is complete! Give yourself a round of applause.&lt;/p&gt;</info>
+        <picklistValueName>Complete</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;Please be sure to fill out as many details as possible throughout the CAR.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;In order to move from DRAFT make sure to SAVE your work and then click SUBMIT FOR APPROVAL.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;If this is a Customer Marketing Request a notification will be sent to the HQ Customer Marketing Team for review.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</info>
+        <picklistValueName>Draft</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>On_Hold_Reason__c</fieldNames>
+        <info>&lt;p&gt;In order to place something ON HOLD, please provide a reason in the box to the left and press SAVE.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;The creative team will be notified, stop working on this request, and confirm if any costs have been incurred to date.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</info>
+        <picklistValueName>Hold</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;If you are the reviewer, please review the CAR below and confirm all details before clicking APPROVE. If information is missing or unclear, please click REJECT and provide any questions/clarifications.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;An email notification will be sent back to the original requester.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</info>
+        <picklistValueName>Review</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Creative_Owner__c</fieldNames>
+        <fieldNames>Working_Link__c</fieldNames>
+        <fieldNames>Vendor_Account__c</fieldNames>
+        <info>&lt;p&gt;In order to move to ASSIGNED: please assign a Creative Owner to the left.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;In order to move to WORKING: please add a Creative Owner, Working Link and Vendor.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;The Creative Owner will be notified.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</info>
+        <picklistValueName>Submitted</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Final_Spend__c</fieldNames>
+        <fieldNames>POD__c</fieldNames>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;In order to move to COMPLETE: please provide the Final Spend and Proof of Delivery.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;Once added, click SAVE.&lt;/span&gt;&lt;/p&gt;</info>
+        <picklistValueName>Working</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>Other</recordTypeName>
+</PathAssistant>

@@ -1,0 +1,3 @@
+<aura:component implements="force:lightningQuickAction" >
+	<p>Your request has been submitted to SAP.</p>
+</aura:component>

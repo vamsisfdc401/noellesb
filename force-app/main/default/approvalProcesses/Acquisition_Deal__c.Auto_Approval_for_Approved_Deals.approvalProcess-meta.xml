@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>false</allowRecall>
+    <allowedSubmitters>
+        <type>allInternalUsers</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>Owner</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <approvalActions>
+            <action>
+                <name>Update_the_Approval_Notes</name>
+                <type>FieldUpdate</type>
+            </action>
+        </approvalActions>
+        <assignedApprover>
+            <approver>
+                <name>Finance_Review_Team</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <formula>(ISPICKVAL( Acquisition_Deal_Status__c ,&#39;Board Pack&#39;) || ISPICKVAL( Acquisition_Deal_Status__c ,&#39;in Finance Review&#39;) ||
+ISPICKVAL( Acquisition_Deal_Status__c ,&#39;in Film / non-Film Review&#39;) ||
+ISPICKVAL( Acquisition_Deal_Status__c ,&#39;in Board Review I&#39;) ||
+ISPICKVAL( Acquisition_Deal_Status__c ,&#39;in Board Review II&#39;) ||
+ISPICKVAL( Acquisition_Deal_Status__c ,&#39;Rejected&#39;) ) &amp;&amp;
+(
+NOT(ISBLANK( Title_Context__c )) &amp;&amp;
+NOT(ISBLANK( Primary_Term__c )) &amp;&amp;
+NOT(ISBLANK( Financials__c )) &amp;&amp;
+NOT(ISBLANK( Risk_Compliance__c )) &amp;&amp;
+NOT(ISBLANK( Comps__c ))
+)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>ApproveRecord</ifCriteriaNotMet>
+        <label>Approve approved Deal</label>
+        <name>Approve_approved_Deal</name>
+    </approvalStep>
+    <description>This process is here to handle auto approval of already approved deals with a message to create a working board pack.</description>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <formula>NOT(ISPICKVAL( Acquisition_Deal_Stage__c ,&#39;Signed&#39;)) &amp;&amp; 	
+NOT(ISPICKVAL( Acquisition_Deal_Stage__c ,&#39;Amended&#39;)) &amp;&amp; 
+ISBLANK( Title_Context__c ) &amp;&amp; 
+ISBLANK( Primary_Term__c ) &amp;&amp; 
+ISBLANK( Financials__c ) &amp;&amp; 
+ISBLANK( Risk_Compliance__c ) &amp;&amp; 
+ISBLANK( Comps__c ) &amp;&amp;
+ISPICKVAL( Acquisition_Deal_Status__c, &#39;Approved&#39;)</formula>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>Update_the_Approval_Notes</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <label>Auto Approval for Approved Deals</label>
+    <recordEditability>AdminOnly</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

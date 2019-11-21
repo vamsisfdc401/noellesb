@@ -1,0 +1,23 @@
+<apex:page extensions="importDataFromCSVController" standardController="Financials__c">
+    <apex:form >
+        <apex:outputPanel rendered="{!!allowUploadFinancialData}">        
+        <apex:pageMessages ></apex:pageMessages>
+        <apex:commandButton value="Back to Financial Data record" action="{!returnToRecord}" style="margin-left: 20px"/>
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!allowUploadFinancialData}">
+        <apex:pageBlock >
+            <apex:pageBlockSection columns="1"> 
+             
+                  <apex:outputText ><b>1. Select the CSV File</b></apex:outputText>
+                  <apex:outputText >Type the path of the file or click the Browse button to find the file.</apex:outputText>
+                  <apex:inputFile value="{!csvFileBody}"  filename="{!csvFileName}"/>
+                  <apex:outputText ><b>2. Click the "Import Data" button to update the financial summary fields.</b></apex:outputText>     
+                  <apex:commandButton value="Import Data" action="{!importCSVFile}"/>
+                  <apex:pagemessages escape="false"/>
+                  <apex:commandButton value="Back to Financial Data record" action="{!returnToRecord}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock> 
+        </apex:outputPanel>
+               
+   </apex:form>
+</apex:page>

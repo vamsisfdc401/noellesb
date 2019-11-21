@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flexiPageRegions>
+        <name>region1</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>cacheAge</name>
+                <value>1440</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>label</name>
+                <value>All My CIRFs</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>reportName</name>
+                <value>All_CIRFs_Xyw</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>showRefreshButton</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:reportChart</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>decorate</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>richTextValue</name>
+                <value>&lt;span style=&quot;font-size:20px;&quot;&gt;&lt;u&gt;&lt;b&gt;Training&lt;/b&gt;&lt;/u&gt;&lt;/span&gt;&lt;br /&gt;
+&lt;a href=&quot;https://uphe.my.salesforce.com/sfc/p/36000001EIVO/a/0d000000fxhm/vwkqkKXOJDHZlmLPAgwrLwvNwaJQiOLXTfesN1TF8yE&quot;&gt;How to Create a CIRF One Pager&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://uphe.my.salesforce.com/sfc/p/36000001EIVO/a/0d000000fxhl/mEGVysa1R5P0u_AjXi_OSsCtP33RZpo6pHZMOUWZkts&quot;&gt;CIRF Cheat Sheets&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://uphe.my.salesforce.com/sfc/p/36000001EIVO/a/0d000000fxhk/8yCkmCETH.Sj_rqusooqJ_Y.KS6hFM.zYj7tH6nMiHk&quot;&gt;CIRF Requester Training&lt;/a&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;&lt;span style=&quot;font-size:20px;&quot;&gt;&lt;u&gt;Have an Issue?&lt;/u&gt;&lt;/span&gt;&lt;/b&gt;&lt;br /&gt;
+&lt;a href=&quot;https://nbcu.service-now.com/nav_to.do?uri=%2Fcom.glideapp.servicecatalog_cat_item_view.do%3Fsysparm_id%3D03e71f586f269100e904f00dba3ee443%26sysparm_link_parent%3De15706fc0a0a0aa7007fc21e1ab70c2f%26sysparm_groupSYSID%3Db9bce124dba9320408eef9a61d961909&quot; target=&quot;_blank&quot;&gt;Open a Service Request&lt;/a&gt;&lt;br /&gt;
+&amp;nbsp;</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:richText</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>entityNames</name>
+                <value>[&quot;CIRF_Header__c&quot;]</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>maxRecords</name>
+                <value>3</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:recentItems</componentName>
+        </componentInstances>
+        <name>region2</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>enableInlineEdit</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>entityName</name>
+                <value>CIRF_Header__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>filterName</name>
+                <value>My_Draft_CIRFs</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>hideActionBar</name>
+                <value>false</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>hideSearchBar</name>
+                <value>false</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>pageSize</name>
+                <value>6</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:filterListCard</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>cacheAge</name>
+                <value>1440</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>label</name>
+                <value>My Promotions Starting in the Next 60 Days</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>reportName</name>
+                <value>New_CIRF_Headers_Report_fDI</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>showRefreshButton</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:reportChart</componentName>
+        </componentInstances>
+        <name>region3</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>CIRF Homepage</masterLabel>
+    <template>
+        <name>flexipage:appHomeTemplateHeaderTwoColumnsLeftSidebar</name>
+    </template>
+    <type>AppPage</type>
+</FlexiPage>

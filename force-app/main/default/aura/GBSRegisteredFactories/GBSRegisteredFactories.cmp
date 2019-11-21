@@ -1,0 +1,138 @@
+<aura:component controller = "GBSRegisteredFactoriesServerController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+   
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute Name ="acfactlist" Type= "List" />
+    <aura:attribute Name ="infactlist" Type= "List" />
+
+    
+    <article class="slds-box" >
+  		<div class="slds-card__header slds-grid" >
+    		<header class="slds-media slds-media_center slds-has-flexi-truncate">
+      			<div class="slds-media__figure">
+                    <lightning:icon iconName="standard:asset_relationship" size="small"/>
+        			<span class="slds-icon_container slds-icon-standard-contact" title="Registered Factories">
+          			<span class="slds-assistive-text">Registered Factories - Active</span>
+        			</span>
+      	         </div>
+                
+      			<div class="slds-media__body">
+        			<h2 class="slds-card__header-title">
+          				<a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="Factories">
+            				<span class="slds-text-heading_small">Registered Factories - Active</span>
+          				</a>
+        			</h2>
+      			</div>
+    		</header>
+  		</div>
+        
+   <aura:renderif isTrue="{!v.acfactlist[0].Id != null}">  
+  	<div class="slds-card__body" title= "Active Factories" >
+    	<table class="slds-table  slds-table--fixed-layout slds-table_bordered slds-no-row-hover slds-table_cell-buffer">
+      		<thead>
+        		<tr class="slds-text-title_caps">
+          		<th scope="col" class="slds-is-sortable" >
+            		<div class="slds-truncate"  title="Name">Factory Name</div>
+          		</th>
+          		<th scope="col">
+            		<div class="slds-truncate"  title="Code">Factory Code</div>
+          		</th>
+          		<th scope="col" >
+            		<div class="slds-truncate " title="Status">Factory Status</div>
+          		</th>
+          		<th scope="col">
+            		<div class="slds-truncate" title="Expdt">Approval Expiry Date</div>
+          		</th>
+        		</tr>
+      		</thead>
+      <tbody>
+          
+        <aura:iteration items ="{!v.acfactlist}" var = "lms" >  
+        <tr class="slds-hint-parent">
+        
+          <th scope="row"  class="slds-truncate slds-cell-shrink">
+            <div class="slds-col slds-text-align_left"   >
+               <a href="{!'/one/one.app#/sObject/'+ lms.Id + '/view'}" target="_blank">{!lms.Name}</a>
+            </div>
+          </th>
+          <td>
+            <div class="slds-col"  >{!lms.Factory_Code__c} </div>
+          </td>
+          <td  class="slds-truncate slds-cell-shrink">
+            <div class="slds-col" > {!lms.Factory_Status__c}</div>
+          </td>
+          <td>
+            <div class="slds-col slds-align_absolute-center">{!lms.Approval_Expiration_Date__c}</div>
+          </td>
+        </tr>
+        </aura:iteration>
+      </tbody>
+    </table>
+  </div>
+</aura:renderif>
+       
+  		<div class="slds-card__header slds-grid" >
+    		<header class="slds-media slds-media_center slds-has-flexi-truncate">
+      			<div class="slds-media__figure">
+                    <lightning:icon iconName="standard:asset_relationship" size="small"/>
+        			<span class="slds-icon_container slds-icon-standard-contact" title="Registered Factories">
+          			<span class="slds-assistive-text">Registered Factories-Inactive</span>
+        			</span>
+      	         </div>
+                
+      			<div class="slds-media__body">
+        			<h2 class="slds-card__header-title">
+          				<a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="Factories">
+            				<span class="slds-text-heading_small">Registered Factories - Inactive</span>
+          				</a>
+        			</h2>
+      			</div>
+    		</header>
+  		</div>
+<aura:renderif isTrue="{!v.infactlist[0].Id != null}">  
+  	<div class="slds-card__body" >
+    	<table class="slds-table  slds-table--fixed-layout slds-table_bordered slds-no-row-hover slds-table_cell-buffer">
+      		<thead>
+        		<tr class="slds-text-title_caps">
+          		<th scope="col" class="slds-is-sortable" >
+            		<div class="slds-truncate"  title="Name">Factory Name</div>
+          		</th>
+          		<th scope="col">
+            		<div class="slds-truncate"  title="Code">Factory Code</div>
+          		</th>
+          		<th scope="col" >
+            		<div class="slds-truncate " title="Status">Factory Status</div>
+          		</th>
+          		<th scope="col">
+            		<div class="slds-truncate" title="Expdt">Approval Expiry Date</div>
+          		</th>
+        		</tr>
+      		</thead>
+      <tbody>
+          
+        <aura:iteration items ="{!v.infactlist}" var = "lms" >  
+        <tr class="slds-hint-parent">
+        
+          <th scope="row"  class="slds-truncate slds-cell-shrink">
+            <div class="slds-col slds-text-align_left"   >
+                <a href="{!'/one/one.app#/sObject/'+ lms.Id + '/view'}" target="_blank">{!lms.Name}</a>
+            </div>
+          </th>
+          <td>
+            <div class="slds-col"  >{!lms.Factory_Code__c} </div>
+          </td>
+          <td  class="slds-truncate slds-cell-shrink">
+            <div class="slds-col" > {!lms.Factory_Status__c}</div>
+          </td>
+          <td>
+            <div class="slds-col slds-align_absolute-center">{!lms.Approval_Expiration_Date__c}</div>
+          </td>
+        </tr>
+        </aura:iteration>
+      </tbody>
+    </table>
+  </div>
+</aura:renderif>
+    
+</article>
+
+</aura:component>

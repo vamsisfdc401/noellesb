@@ -1,0 +1,3 @@
+<apex:page >
+    <apex:outputLink rendered="{!$UserRole.Name == 'Paramount'}" target="_blank" value="https://app.smartsheet.com/b/publish?EQBCT=d828bf0fb5624953ab048663bc58afac">Paramount Release Force Portal</apex:outputLink>
+</apex:page>

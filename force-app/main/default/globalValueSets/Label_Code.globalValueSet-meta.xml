@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>11 - TVA Films</fullName>
+        <default>false</default>
+        <label>11 - TVA Films</label>
+    </customValue>
+    <customValue>
+        <fullName>12 - Nelvana</fullName>
+        <default>false</default>
+        <label>12 - Nelvana</label>
+    </customValue>
+    <customValue>
+        <fullName>13 - Think Film</fullName>
+        <default>false</default>
+        <label>13 - Think Film</label>
+    </customValue>
+    <customValue>
+        <fullName>14 - Bound</fullName>
+        <default>false</default>
+        <label>14 - Bound</label>
+    </customValue>
+    <customValue>
+        <fullName>15 - Ficel Marketing</fullName>
+        <default>false</default>
+        <label>15 - Ficel Marketing</label>
+    </customValue>
+    <customValue>
+        <fullName>16 - Broadway</fullName>
+        <default>false</default>
+        <label>16 - Broadway</label>
+    </customValue>
+    <customValue>
+        <fullName>17 - Great North Road</fullName>
+        <default>false</default>
+        <label>17 - Great North Road</label>
+    </customValue>
+    <customValue>
+        <fullName>18 - Equinoxe Films</fullName>
+        <default>false</default>
+        <label>18 - Equinoxe Films</label>
+    </customValue>
+    <customValue>
+        <fullName>19 - Canada&#39;s Walk of Fame</fullName>
+        <default>false</default>
+        <label>19 - Canada&#39;s Walk of Fame</label>
+    </customValue>
+    <customValue>
+        <fullName>20 - Alliance Films</fullName>
+        <default>false</default>
+        <label>20 - Alliance Films</label>
+    </customValue>
+    <customValue>
+        <fullName>21 - Artisan</fullName>
+        <default>false</default>
+        <label>21 - Artisan</label>
+    </customValue>
+    <customValue>
+        <fullName>22 - Odeon Films</fullName>
+        <default>false</default>
+        <label>22 - Odeon Films</label>
+    </customValue>
+    <customValue>
+        <fullName>23 - Remstar</fullName>
+        <default>false</default>
+        <label>23 - Remstar</label>
+    </customValue>
+    <customValue>
+        <fullName>24 - PURE FLIX</fullName>
+        <default>false</default>
+        <label>24 - PURE FLIX</label>
+    </customValue>
+    <customValue>
+        <fullName>25 - Amazon Content Services</fullName>
+        <default>false</default>
+        <label>25 - Amazon Content Services</label>
+    </customValue>
+    <customValue>
+        <fullName>26 - WTA</fullName>
+        <default>false</default>
+        <label>26 - WTA</label>
+    </customValue>
+    <customValue>
+        <fullName>30 - Universal/Alliance</fullName>
+        <default>false</default>
+        <label>30 - Universal/Alliance</label>
+    </customValue>
+    <customValue>
+        <fullName>31 - MULTI STUDO DNU</fullName>
+        <default>false</default>
+        <label>31 - MULTI STUDO DNU</label>
+    </customValue>
+    <customValue>
+        <fullName>32 - ELEVATION CANADA</fullName>
+        <default>false</default>
+        <label>32 - ELEVATION CANADA</label>
+    </customValue>
+    <customValue>
+        <fullName>33 - Moonstone Entertainment</fullName>
+        <default>false</default>
+        <label>33 - Moonstone Entertainment</label>
+    </customValue>
+    <customValue>
+        <fullName>34 - Film Arcade</fullName>
+        <default>false</default>
+        <label>34 - Film Arcade</label>
+    </customValue>
+    <customValue>
+        <fullName>35 - ELEVATION US</fullName>
+        <default>false</default>
+        <label>35 - ELEVATION US</label>
+    </customValue>
+    <customValue>
+        <fullName>36 - NEON RATED LLC</fullName>
+        <default>false</default>
+        <label>36 - NEON RATED LLC</label>
+    </customValue>
+    <customValue>
+        <fullName>38 - United Front Entertainment</fullName>
+        <default>false</default>
+        <label>38 - United Front Entertainment</label>
+    </customValue>
+    <customValue>
+        <fullName>41 - GREENWICH ENTERTAINMENT</fullName>
+        <default>false</default>
+        <label>41 - GREENWICH ENTERTAINMENT</label>
+    </customValue>
+    <customValue>
+        <fullName>43 - UPHE ACQ NET DEALS</fullName>
+        <default>false</default>
+        <label>43 - UPHE ACQ NET DEALS</label>
+    </customValue>
+    <customValue>
+        <fullName>44 - GKIDS</fullName>
+        <default>false</default>
+        <label>44 - GKIDS</label>
+    </customValue>
+    <customValue>
+        <fullName>45 - PICTUREHOUSE</fullName>
+        <default>false</default>
+        <label>45 - PICTUREHOUSE</label>
+    </customValue>
+    <customValue>
+        <fullName>46 - DREAMWORKS ANIMATION</fullName>
+        <default>false</default>
+        <label>46 - DREAMWORKS ANIMATION</label>
+    </customValue>
+    <customValue>
+        <fullName>49 - PBS</fullName>
+        <default>false</default>
+        <label>49 - PBS</label>
+    </customValue>
+    <customValue>
+        <fullName>52 - 9 Story Media</fullName>
+        <default>false</default>
+        <label>52 - 9 Story Media</label>
+    </customValue>
+    <customValue>
+        <fullName>55 - Open Road Films</fullName>
+        <default>false</default>
+        <label>55 - Open Road Films</label>
+    </customValue>
+    <customValue>
+        <fullName>56 - UNI/PHE DNU</fullName>
+        <default>false</default>
+        <label>56 - UNI/PHE DNU</label>
+    </customValue>
+    <customValue>
+        <fullName>57 - BLEECKER STREET</fullName>
+        <default>false</default>
+        <label>57 - BLEECKER STREET</label>
+    </customValue>
+    <customValue>
+        <fullName>58 - HiT Entertainment</fullName>
+        <default>false</default>
+        <label>58 - HiT Entertainment</label>
+    </customValue>
+    <customValue>
+        <fullName>59 - Paramount</fullName>
+        <default>false</default>
+        <label>59 - Paramount</label>
+    </customValue>
+    <customValue>
+        <fullName>60 - The Garr Group</fullName>
+        <default>false</default>
+        <label>60 - The Garr Group</label>
+    </customValue>
+    <customValue>
+        <fullName>61 - Universal Pictures</fullName>
+        <default>false</default>
+        <label>61 - Universal Pictures</label>
+    </customValue>
+    <customValue>
+        <fullName>62 - Focus</fullName>
+        <default>false</default>
+        <label>62 - Focus</label>
+    </customValue>
+    <customValue>
+        <fullName>63 - Family Home Entertainment</fullName>
+        <default>false</default>
+        <label>63 - Family Home Entertainment</label>
+    </customValue>
+    <customValue>
+        <fullName>64 - STX FINANCING LLC</fullName>
+        <default>false</default>
+        <label>64 - STX FINANCING LLC</label>
+    </customValue>
+    <customValue>
+        <fullName>65 - Games UIEG</fullName>
+        <default>false</default>
+        <label>65 - Games UIEG</label>
+    </customValue>
+    <customValue>
+        <fullName>66 - Summit Ent</fullName>
+        <default>false</default>
+        <label>66 - Summit Ent</label>
+    </customValue>
+    <customValue>
+        <fullName>67 - USA</fullName>
+        <default>false</default>
+        <label>67 - USA</label>
+    </customValue>
+    <customValue>
+        <fullName>68 - Screen Media</fullName>
+        <default>false</default>
+        <label>68 - Screen Media</label>
+    </customValue>
+    <customValue>
+        <fullName>69 - Dreamworks</fullName>
+        <default>false</default>
+        <label>69 - Dreamworks</label>
+    </customValue>
+    <customValue>
+        <fullName>70 - Lions Gate</fullName>
+        <default>false</default>
+        <label>70 - Lions Gate</label>
+    </customValue>
+    <customValue>
+        <fullName>71 - Dark Harvest</fullName>
+        <default>false</default>
+        <label>71 - Dark Harvest</label>
+    </customValue>
+    <customValue>
+        <fullName>78 - D Films</fullName>
+        <default>false</default>
+        <label>78 - D Films</label>
+    </customValue>
+    <customValue>
+        <fullName>80 - WELL GO</fullName>
+        <default>false</default>
+        <label>80 - WELL GO</label>
+    </customValue>
+    <customValue>
+        <fullName>81 - ENTERTAINMENT ONE</fullName>
+        <default>false</default>
+        <label>81 - ENTERTAINMENT ONE</label>
+    </customValue>
+    <customValue>
+        <fullName>86 – SHOUT! Factory</fullName>
+        <default>false</default>
+        <label>86 – SHOUT! Factory</label>
+    </customValue>
+    <customValue>
+        <fullName>87 - JOINT CORR/MULTI-STUDIO</fullName>
+        <default>false</default>
+        <label>87 - JOINT CORR/MULTI-STUDIO</label>
+    </customValue>
+    <customValue>
+        <fullName>88 - Cinedigm</fullName>
+        <default>false</default>
+        <label>88 - Cinedigm</label>
+    </customValue>
+    <customValue>
+        <fullName>89 - FUNIMATION</fullName>
+        <default>false</default>
+        <label>89 - FUNIMATION</label>
+    </customValue>
+    <customValue>
+        <fullName>91 - AVIRON PICTURES</fullName>
+        <default>false</default>
+        <label>91 - AVIRON PICTURES</label>
+    </customValue>
+    <customValue>
+        <fullName>94 - BROAD GREEN</fullName>
+        <default>false</default>
+        <label>94 - BROAD GREEN</label>
+    </customValue>
+    <customValue>
+        <fullName>95 - SONY PICTURES</fullName>
+        <default>false</default>
+        <label>95 - SONY PICTURES</label>
+    </customValue>
+    <customValue>
+        <fullName>XX - None Identified</fullName>
+        <default>false</default>
+        <label>XX - None Identified</label>
+    </customValue>
+    <masterLabel>Label Code</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

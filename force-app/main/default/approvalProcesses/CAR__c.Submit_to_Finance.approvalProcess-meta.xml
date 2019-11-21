@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>true</allowRecall>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>UPHE_Domestic_Operations</submitter>
+        <type>roleSubordinates</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>Request_Name__c</field>
+        <field>Owner</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>CAR_V_Code_Queue</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <label>Finance Submit</label>
+        <name>Finance_Submit</name>
+    </approvalStep>
+    <description>This process submits the CAR to Finance so they can provide the required V-Codes</description>
+    <emailTemplate>unfiled$public/CAR_HTML_Finance_Details_Needed</emailTemplate>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <criteriaItems>
+            <field>CAR__c.Creative_Owner__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CAR__c.VCodes_Needed__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+    </entryCriteria>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <label>Submit to Finance</label>
+    <recordEditability>AdminOrCurrentApprover</recordEditability>
+    <showApprovalHistory>false</showApprovalHistory>
+</ApprovalProcess>

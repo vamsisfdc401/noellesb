@@ -1,0 +1,243 @@
+<!--*****************************************************************************************
+Page Name: tbomItemsView
+Purpose: This VF Component is built to dynamically show, create, modify and edit T-Bom Items for its parent material.
+******************************************************************************************
+Version         DateModified         ModifiedBy               Change
+1.0             10/05/2017           Suman                    Initial Development
+******************************************************************************************-->
+
+<apex:component controller="TBomItemsViewController">
+    <!-- Attributes available from invoking pages -->
+    <apex:attribute name="parentId" type="Id" required="true" assignTo="{!parentRecordId}" description="This attribute contains the parent id of T-Bom."/>
+    <apex:attribute name="allowCreate" type="Boolean" default="true" description="It defines whether component should allow to create T-BOM Item."/>
+    <apex:attribute name="allowEdit" type="Boolean" default="true" description="It defines whether component should allow to edit T-BOM Item."/>
+    <apex:attribute name="allowDelete" type="Boolean" default="true" description="It defines whether component should allow to delete T-BOM Item."/>
+    <apex:attribute name="displayMode" type="String" default="maindetail" description="It defines in which mode should it display the interface."/>
+    <apex:attribute name="columns" type="String" assignTo="{!columnsToShow}" default="" description="Provide the columns to display in the T-BOM table (Comma-Separated, API Names)."/>
+    
+    <!-- Style class definition -->
+    <style>
+        .popupBackground {
+            background-color:black;
+            opacity: 0.20;
+            filter: alpha(opacity = 20);
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 2;
+        }
+        .custPopup {
+            background-color: white;
+            border-width: 1px;
+            border-style: solid;
+            z-index: 3;
+            left: 50%;
+            padding: 10px;
+            position: fixed;
+            width: 700px;
+            margin-left: -350px;
+            top: 200px;
+        }
+    </style>
+    
+    <apex:form >
+        <apex:pageBlock mode="{!displayMode}" title="{!IF(displayMode=='edit', 'T-BOM Items', '')}">
+            <!-- below section shows the T-BOM Item table for non-edit mode only -->
+            <apex:pageBlockSection columns="1" rendered="{!(displayMode != 'edit')}">
+                <apex:facet name="header">
+                    <apex:outputPanel >
+                        <apex:outputText >T-BOM Items</apex:outputText>
+                        <apex:actionRegion >
+                            <apex:outputPanel styleClass="btn" style="margin-left:60px;" rendered="{!AND(allowCreate, $ObjectType.BOM_Item__c.createable)}" onclick="openAddPanel()">
+                                <apex:outputLabel >New T-BOM Item</apex:outputLabel>
+                            </apex:outputPanel>
+                        </apex:actionRegion>
+                    </apex:outputPanel>
+                </apex:facet>
+                <apex:pageBlockTable value="{!tBomList}" var="bom" id="tBomTable">
+                    <apex:column headerValue="Action" width="120px" rendered="{!OR(AND(allowEdit, $ObjectType.BOM_Item__c.updateable), AND(allowDelete, $ObjectType.BOM_Item__c.deletable))}">
+                        <apex:outputPanel onclick="openEditPanel('{!bom.Id}')" rendered="{!AND(allowEdit, $ObjectType.BOM_Item__c.updateable)}">
+                            <apex:outputLabel style="text-decoration:underline;">Edit</apex:outputLabel>
+                        </apex:outputPanel>
+                        <apex:outputLabel rendered="{!AND(allowEdit, $ObjectType.BOM_Item__c.updateable, allowDelete, $ObjectType.BOM_Item__c.deletable)}" style="padding:0 5px;">|</apex:outputLabel>
+                        <apex:commandLink onclick="alert('delete T-Bom')" rendered="{!AND(allowDelete, $ObjectType.BOM_Item__c.deletable)}" reRender="tBomTable" status="ajaxStatus">Delete</apex:commandLink>
+                    </apex:column>
+                    <apex:column headerValue="BOM Item Text">
+                        <apex:outputLink value="/{!bom.Id}" target="_blank">{!bom.BOM_Item_Text_1__c}</apex:outputLink>
+                    </apex:column>
+                    
+                    <apex:repeat value="{!columnsInTable}" var="col" rendered="{!columnsInTable.size > 0}">
+                        <apex:column value="{!bom[col]}"/>
+                    </apex:repeat>
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+            
+            <!-- below section shows the T-BOM Item table for edit mode only -->
+            <apex:pageBlockButtons location="top" rendered="{!(displayMode == 'edit')}">
+                <apex:actionRegion >
+                    <apex:outputPanel styleClass="btn" style="margin-left:60px;" rendered="{!AND(allowCreate, $ObjectType.BOM_Item__c.createable)}" onclick="openAddPanel()">
+                        <apex:outputLabel >New T-BOM Item</apex:outputLabel>
+                    </apex:outputPanel>
+                </apex:actionRegion>
+            </apex:pageBlockButtons>
+            <apex:outputPanel rendered="{!(displayMode == 'edit')}">
+                <apex:pageBlockTable value="{!tBomList}" var="bom" id="tBomTable" style="margin:0px 5px 6px 5px; width:99.4%;">
+                    <apex:column headerValue="Action" width="120px" rendered="{!OR(AND(allowEdit, $ObjectType.BOM_Item__c.updateable), AND(allowDelete, $ObjectType.BOM_Item__c.deletable))}">
+                        <apex:outputPanel onclick="openEditPanel('{!bom.Id}')" rendered="{!AND(allowEdit, $ObjectType.BOM_Item__c.updateable)}">
+                            <apex:outputLabel style="text-decoration:underline; cursor:pointer;">Edit</apex:outputLabel>
+                        </apex:outputPanel>
+                        <apex:outputLabel rendered="{!AND(allowEdit, $ObjectType.BOM_Item__c.updateable, allowDelete, $ObjectType.BOM_Item__c.deletable)}" style="padding:0 5px;">|</apex:outputLabel>
+                        <apex:outputPanel onclick="deleteBom('{!bom.Id}')" rendered="{!AND(allowDelete, $ObjectType.BOM_Item__c.deletable)}">
+                            <apex:outputLabel style="text-decoration:underline; cursor:pointer;">Delete</apex:outputLabel>
+                        </apex:outputPanel>
+                    </apex:column>
+                    <apex:column headerValue="BOM Item Text">
+                        <apex:outputLink value="/{!bom.Id}" target="_blank">{!bom.BOM_Item_Text_1__c}</apex:outputLink>
+                    </apex:column>
+                    
+                    <apex:repeat value="{!columnsInTable}" var="col" rendered="{!columnsInTable.size > 0}">
+                        <apex:column value="{!bom[col]}"/>
+                    </apex:repeat>
+                </apex:pageBlockTable>
+            </apex:outputPanel>
+            
+        </apex:pageBlock>
+    </apex:form>
+    
+    <!-- T-BOM Item Edit Popup -->
+    <apex:outputPanel id="tbomEditPanel">
+        <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!showEditPanel}" />
+        <apex:outputPanel styleClass="custPopup" layout="block" rendered="{!showEditPanel}" style="{!IF(editBomId != null, 'width:350px; margin-left: -175px;', '')}">
+            <apex:form >
+                <apex:pageMessages id="pgMsg2" />
+                <apex:pageBlock mode="maindetail" title="T-BOM Edit" id="tbomEditBlock">
+                    <apex:pageBlockButtons location="bottom">
+                        <apex:outputPanel styleClass="btn" onclick="saveMethod('{!editBomId}', document.getElementById('{!$Component.tbomEditBlock.tbomEditSection.bomText}').value, '{!$Component.tbomEditBlock.tbomEditSection.bomUnit}', '{!$Component.tbomEditBlock.tbomEditSection.bomProdFlag}', '{!$Component.tbomEditBlock.tbomEditSection.bomQty}', 'save')">Save</apex:outputPanel>
+                        <apex:outputPanel styleClass="btn" onclick="saveMethod('{!editBomId}', document.getElementById('{!$Component.tbomEditBlock.tbomEditSection.bomText}').value, '{!$Component.tbomEditBlock.tbomEditSection.bomUnit}', '{!$Component.tbomEditBlock.tbomEditSection.bomProdFlag}', '{!$Component.tbomEditBlock.tbomEditSection.bomQty}', 'saveNew')">Save &amp; New</apex:outputPanel>
+                        <apex:outputPanel styleClass="btn">
+                            Cancel
+                            <apex:actionSupport event="onclick" action="{!cancel}" reRender="tbomEditPanel, tBomTable" status="ajaxStatus"/>
+                        </apex:outputPanel>
+                    </apex:pageBlockButtons>
+                    <apex:pageBlockSection title="Provide Information" collapsible="false" columns="{!IF(editBomId != null, 1, 2)}" id="tbomEditSection">
+                        <apex:outputField value="{!bomIns.Item_Category__c}" rendered="{!(editBomId == null)}" />
+                        <apex:outputField value="{!bomIns.Material__c}" rendered="{!(editBomId == null)}" />
+                        <apex:inputField value="{!bomIns.BOM_Item_Text_1__c}" id="bomText"/>
+                        <apex:inputField value="{!bomIns.Unit_of_Measure__c}" rendered="{!(editBomId == null)}" id="bomUnit"/>
+                        <apex:inputField value="{!bomIns.Production_Flag__c}" rendered="{!(editBomId == null)}" id="bomProdFlag"/>
+                        <apex:inputField value="{!bomIns.BOM_Quantity__c}" rendered="{!(editBomId == null)}" id="bomQty"/>
+                    </apex:pageBlockSection>
+                </apex:pageBlock>
+            </apex:form>
+        </apex:outputPanel>
+    </apex:outputPanel>
+    
+    <!-- Processing overlay section -->
+    <apex:actionStatus id="ajaxStatus" >
+        <apex:facet name="start" >
+            <div class="popupBackground" style="z-index:1001;" layout="block">&nbsp;</div>
+            <div style="position:fixed;top:40%;left:50%;z-index:1002">
+                <div style="padding:14px 10px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;border:1px solid #1288FF;background-color:#F5F5F5;margin-left:-100px;vertical-align:top;">
+                    <table>
+                        <tr valign="bottom"><td><img src="/img/loading.gif" width="25" height ="25" /> &nbsp;</td>
+                            <td><span style="font-weight:bold;font-color:#1288FF;font-size:14px;">Processing...</span>
+                        </td></tr>
+                    </table>
+                </div> 
+            </div>                   
+        </apex:facet>
+    </apex:actionStatus>
+    
+    <apex:form >
+        <apex:actionFunction name="openAddPanel" action="{!openEditPanel}" reRender="tbomEditPanel" status="ajaxStatus"/>
+        <apex:actionFunction name="openEditPanel" action="{!openEditPanel}" reRender="tbomEditPanel" status="ajaxStatus">
+            <apex:param name="editBomId" id="editBomId" value="" assignTo="{!editBomItemId}"/>
+        </apex:actionFunction>
+        <apex:actionFunction name="handleAfterRemoteAction" action="{!handleAfterRemoteAction}" reRender="tbomEditPanel, tBomTable" status="ajaxStatus">
+            <apex:param name="result" id="result" value="" />
+            <apex:param name="fromEvent" id="fromEvent" value="" />
+        </apex:actionFunction>
+        <apex:actionFunction name="refreshTable" reRender="tBomTable" status="ajaxStatus" />
+    </apex:form>
+    
+    <script>
+        function saveMethod(editBomId, bomText, bomUnitId, bomProdFlagId, bomQtyId, source)
+        {
+            document.getElementById('showOverlay').style.display = 'block';
+            //alert(document.getElementById(bomUnit));
+            var bomUnit = null;
+            var bomProdFlag = null;
+            var bomQty = null;
+            
+            if(document.getElementById(bomUnitId) != null)
+                bomUnit = document.getElementById(bomUnitId).value;
+            if(document.getElementById(bomProdFlagId) != null)
+                bomProdFlag = document.getElementById(bomProdFlagId).checked;
+            if(document.getElementById(bomQtyId) != null)
+                bomQty = document.getElementById(bomQtyId).value;
+            
+            // Call Remote action to save.
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.TBomItemsViewController.saveBomItem}',
+                editBomId, bomText, bomUnit, bomProdFlag, bomQty, '{!parentRecordId}', 
+                function(result, event){
+                    var res = '';
+                    if (event.status) {
+                        res = result;
+                    } else {
+                        res = event.message;
+                    }
+                    document.getElementById('showOverlay').style.display = 'none';
+                    handleAfterRemoteAction(res, source);
+                }, 
+                {escape: true}
+            );
+        }
+        
+        function deleteBom(delbomId)
+        {
+            if(confirm('Are you sure to remove T-BOM Item?'))
+            {
+                document.getElementById('showOverlay').style.display = 'block';
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.TBomItemsViewController.removeBomItem}',
+                    delbomId, 
+                    function(result, event){
+                        var res = '';
+                        if (event.status) {
+                            res = result;
+                        } else {
+                            res = event.message;
+                        }
+                        
+                        if(res == 'success')
+                        {
+                            document.getElementById('showOverlay').style.display = 'none';
+                            refreshTable();
+                        }
+                        else
+                        {
+                            alert(res);
+                            document.getElementById('showOverlay').style.display = 'none';
+                        }
+                    }, 
+                    {escape: true}
+                );
+            }
+        }
+    </script>
+    
+    <div id="showOverlay" style="display:none;">
+        <div class="popupBackground" style="z-index:1001;" layout="block">&nbsp;</div>
+        <div style="position:fixed;top:40%;left:50%;z-index:1002">
+            <div style="padding:14px 10px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;border:1px solid #1288FF;background-color:#F5F5F5;margin-left:-100px;vertical-align:top;">
+                <table>
+                    <tr valign="bottom"><td><img src="/img/loading.gif" width="25" height ="25" /> &nbsp;</td>
+                        <td><span style="font-weight:bold;font-color:#1288FF;font-size:14px;">Processing...</span></td></tr>
+                </table>
+            </div> 
+        </div>
+    </div>
+</apex:component>

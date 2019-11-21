@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Rec2</label>
+    <protected>false</protected>
+    <values>
+        <field>Email_Id__c</field>
+        <value xsi:type="xsd:string">cm@1p9dt9geo94z57whsqb39raq3zy7wlcva79mwm92g87jnac39g.36-1eivoea4.na61.apex.salesforce.com</value>
+    </values>
+    <values>
+        <field>Record_Type__c</field>
+        <value xsi:type="xsd:string">PO Discrepancies</value>
+    </values>
+</CustomMetadata>

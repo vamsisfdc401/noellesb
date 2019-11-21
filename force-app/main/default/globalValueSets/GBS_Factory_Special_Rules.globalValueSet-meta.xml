@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>No Audit Required</fullName>
+        <default>false</default>
+        <label>No Audit Required</label>
+    </customValue>
+    <customValue>
+        <fullName>Not Waiver Eligible</fullName>
+        <default>false</default>
+        <label>Not Waiver Eligible</label>
+    </customValue>
+    <customValue>
+        <fullName>Restricted Country</fullName>
+        <default>false</default>
+        <label>Restricted Country</label>
+    </customValue>
+    <customValue>
+        <fullName>Bangladesh Special Rules</fullName>
+        <default>false</default>
+        <label>Bangladesh Special Rules</label>
+    </customValue>
+    <description>Special rules for GBS</description>
+    <masterLabel>GBS Factory Special Rules</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

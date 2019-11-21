@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>GBS_Audit_Expiration_Date_Update</fullName>
+        <description>Audit Expiration Date update based on Audit Date</description>
+        <field>Audit_Expiration_Date__c</field>
+        <formula>IF(ISBLANK(Audit_Date__c) , null , ADDMONTHS(Audit_Date__c ,VALUE($Label.GBS_12_Months)))</formula>
+        <name>GBS Audit Expiration Date Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>GBS_SetWaiverApplicationExpirationDate</fullName>
+        <description>Set Waiver Application Expiration Date based on Audit Report Date Update</description>
+        <field>Waiver_Application_Expiration_Date__c</field>
+        <formula>IF(ISBLANK(Audit_Report_Date__c) , null , ADDMONTHS(Audit_Report_Date__c ,VALUE($Label.GBS_10_Months)))</formula>
+        <name>GBS SetWaiverApplicationExpirationDate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>GBS_Set_Waiver_Approval_Terms</fullName>
+        <description>Set Waiver Approval Terms based on Action Status</description>
+        <field>Workflow_Name__c</field>
+        <formula>CASE( Action_Status__c ,
+ &quot;Waiver Review – Approved 12 months&quot;, 12,
+ &quot;Waiver Review – Approved 24 months&quot;, 24,
+PRIORVALUE(Workflow_Name__c))</formula>
+        <name>GBS Set Waiver Approval Terms</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>GBS_Update_Approval_Expiration_date</fullName>
+        <description>Update Approval Expiration date to Approval Date + Waiver Approval Terms</description>
+        <field>Due_Date__c</field>
+        <formula>IF(ISBLANK(Approval_Date__c ) , null , ADDMONTHS(Approval_Date__c , Workflow_Name__c))</formula>
+        <name>GBS Update Approval Expiration date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>GBS_Update_Last_Action_Status_Date</fullName>
+        <description>Update Last Action Status Date when Action Status is updated</description>
+        <field>GBS_Last_Action_Status_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>GBS Update Last Action Status Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_15_Day_Expiration_Warning_status</fullName>
+        <description>Set &quot;15 Day Expiration Warning&quot; status</description>
+        <field>Action_Status__c</field>
+        <literalValue>15 Day Expiration Warning</literalValue>
+        <name>Set &quot;15 Day Expiration Warning&quot; status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Waiver_Expired_status</fullName>
+        <description>Set &quot;Waiver Expired&quot; status</description>
+        <field>Action_Status__c</field>
+        <literalValue>Waiver Expired</literalValue>
+        <name>Set &quot;Waiver Expired&quot; status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>set_30_Day_Expiration_status</fullName>
+        <description>updates Action Status to &quot;30 Day Expiration Warning&quot;</description>
+        <field>Action_Status__c</field>
+        <literalValue>30 Day Expiration Warning</literalValue>
+        <name>set 30 Day Expiration status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>GBS Audit Expiration Date Update</fullName>
+        <actions>
+            <name>GBS_Audit_Expiration_Date_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Audit Expiration Date Update based on Audit Date</description>
+        <formula>OR(ISNEW (), ISCHANGED(Audit_Date__c))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>GBS Set Waiver Application Expiration Date</fullName>
+        <actions>
+            <name>GBS_SetWaiverApplicationExpirationDate</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Set Waiver Application Expiration Date</description>
+        <formula>AND( RecordType.DeveloperName = &quot;Waiver&quot;, OR(ISNEW (), ISCHANGED(Audit_Report_Date__c)) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>GBS Set Waiver Approval Terms based on Action Status</fullName>
+        <actions>
+            <name>GBS_Set_Waiver_Approval_Terms</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Set Waiver Approval Terms based on Action Status</description>
+        <formula>OR( ISNEW(), ISCHANGED(Action_Status__c ) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>GBS Update Approval Expiration date</fullName>
+        <actions>
+            <name>GBS_Update_Approval_Expiration_date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Update Approval Expiration date based on Waiver Approval Terms field</description>
+        <formula>OR(ISNEW(),ISCHANGED(Workflow_Name__c), NOT(ISNEW()))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>GBS Update Last Action Status Date</fullName>
+        <actions>
+            <name>GBS_Update_Last_Action_Status_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Update Last Action Status Date</description>
+        <formula>OR(AND(ISNEW(),NOT(ISBLANK(TEXT(Action_Status__c))))  ,ISCHANGED(Action_Status__c))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

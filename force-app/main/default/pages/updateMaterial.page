@@ -1,0 +1,10 @@
+<!--*****************************************************************************************
+Page Name: updateMaterial
+Purpose: For Creating Update Material from Custom Button
+******************************************************************************************
+Version         DateModified         ModifiedBy               Change
+1.0             09/12/2016           Asha Namboodiri          Initial Development
+******************************************************************************************-->
+<apex:page standardController="Material__c" extensions="UpdateMaterial" action="{!cloneRec}">
+    <apex:pageMessages ></apex:pageMessages>
+</apex:page>

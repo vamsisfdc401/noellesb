@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Plant</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Plants</value>
+    </caseValues>
+    <layouts>
+        <layout>Plant Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Forecast Requirements --></label>
+            <section>Forecast Requirements</section>
+        </sections>
+        <sections>
+            <label><!-- Lot Size Data --></label>
+            <section>Lot Size Data</section>
+        </sections>
+        <sections>
+            <label><!-- MRP Procedure --></label>
+            <section>MRP Procedure</section>
+        </sections>
+        <sections>
+            <label><!-- Net Requirements Calculation --></label>
+            <section>Net Requirements Calculation</section>
+        </sections>
+        <sections>
+            <label><!-- Planning --></label>
+            <section>Planning</section>
+        </sections>
+        <sections>
+            <label><!-- Plant Information --></label>
+            <section>Plant Information</section>
+        </sections>
+        <sections>
+            <label><!-- Procurement --></label>
+            <section>Procurement</section>
+        </sections>
+        <sections>
+            <label><!-- Scheduling --></label>
+            <section>Scheduling</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

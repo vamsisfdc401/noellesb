@@ -1,0 +1,272 @@
+<!--*****************************************************************************************
+Component Name: DGF_AddCarriageComponent
+Purpose: Component for adding new Product Accounts
+******************************************************************************************
+Version         DateModified         ModifiedBy               Change
+1.0             28/06/2017           Jata                    Initial Development
+******************************************************************************************-->
+<aura:component controller="DGF_AddCarriageController">
+    
+    <ltng:require scripts="{!join(',',$Resource.jQuery_Plugin,$Resource.jQuery_StickyHeader)}" afterScriptsLoaded="{!c.scriptLoaded}" />
+    <aura:attribute name="AccountId" type="Id" description="record id of promotion"/>
+    <aura:attribute name="ProductTypes" type="String[]" default="All,Bundle,Film,TV" description="product types"/>
+    <aura:attribute name="selectProductType" type="String" default="All" description="for storing product type"/>
+    <aura:attribute name="accountName" type="String" description="for storing account name"/>
+    <aura:attribute name="from" type="Date" description="use for displaying From Date" />
+    <aura:attribute name="until" type="Date" description="use for displaying Until Date"/>
+    <aura:attribute name="searchKeyword" type="String" description="use for store user search input"/>
+    <aura:attribute name="searchResult" type="List" description="use for store and display list return from server"/>    
+    <aura:attribute name="Message" type="boolean" default="false" description="use for display no record found message"/>
+    <aura:attribute name="searchResultMaster" type="List" description="use for store and display list return from server"/>
+    <aura:attribute name="pageSize" type="integer" default="25" description="default number of records to be displayed on a page"/>
+    <aura:attribute name="numberOfRecord" type="integer" default="0" description="use for display Number of records"/>
+    <aura:attribute name="totalNumberOfRecord" type="integer" default="0" description="use for display Number of records"/>
+    <aura:attribute name="isCodeError" type="boolean" default="false" description="use for display no record found message"/>
+    <aura:attribute name="CodeError" type="string"  description="use for display no record found message"/>
+    <aura:attribute name="showSpinner" type="boolean" default="false" description="use for displaying or hiding spinner"/>
+    <aura:attribute name="isNotAccountUser" type="boolean" default="false" description="to check if user is Account user or not"/>
+    <aura:attribute name="isjQueryLoaded" type="Boolean" default="false"/>
+    <aura:attribute name="showMoreButton" type="String" description="use for show more button"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}" />
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}" />
+    
+    <aura:if isTrue="{!v.isCodeError}">
+        <ui:message title="Error" severity="error" closable="true">        
+            {!v.CodeError}   
+        </ui:message>
+    </aura:if>
+    
+    <aura:if isTrue="{!v.isNotAccountUser}">
+        <ui:message title="Info" severity="info" closable="true">        
+            Only Account user can Add Carriage  
+        </ui:message>
+        
+        <aura:set attribute="else">
+            <div class="slds-page-header">
+                <div class="slds-text-heading--medium slds-m-bottom--xx-small slds-p-top_small" style="font-weight:bold;margin-top: -10px">Select products to apply carriage</div>
+                
+                <div class="slds-form--inline slds-m-bottom--small" style="margin-top: 10px">
+                    <div class="slds-form-element ">
+                        <label class="slds-form-element__label slds-text-heading--small" for="search">Search by Product Name or Tag
+                        </label>
+                        <div class="slds-form-element__control">
+                            <ui:inputText aura:id="searchId" class="slds-input" keyup="{!c.onEnterClickSearch}" updateOn="keyup" value="{!v.searchKeyword}" required="true" placeholder="Type here..."/>
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <button id="btnSearch" type="button" onclick="{!c.Search}" class="slds-button slds-button--brand">Search</button>
+                    </div>
+                    <div class="slds-form-element">
+                        <button id="btnSearchAll" type="button" onclick="{!c.Search}"  class="slds-button slds-button--brand">View All</button>
+                    </div>
+                    <div style="float:right" class="slds-p-top_medium ">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-text-heading--small">Account : </label>
+                            <ui:outputText aura:id="Name" class="slds-output" value="{!v.accountName}" />
+                        </div>
+                    </div>
+                </div>
+                
+                <!--horizontal border-->
+                <div class="slds-form--inline slds-m-top_medium slds-border_bottom">
+                </div>
+                
+                <div class="slds-form--inline slds-m-bottom--small slds-m-top_medium">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label slds-text-heading--small" for="prodType">Filter by Product Type</label>
+                    </div>
+                    <div class="slds-form-element__control slds-p-left_xx-large" style="padding-left: 64px;">
+                        <ui:inputSelect aura:id="prodType" change="{!c.onProductTypeChange}" class="slds-form-element__control" multiple="FALSE">
+                            <aura:iteration items="{!v.ProductTypes}" var="ver">
+                                <ui:inputSelectOption text="{!ver}" label="{!ver}"/>                    
+                            </aura:iteration>
+                        </ui:inputSelect>
+                    </div> 
+                    
+                </div>
+                
+                <div class="slds-form--inline slds-m-bottom--small">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label slds-text-heading--small" for="prodType">Filter by Release Date</label>
+                    </div>
+                    <div class="slds-form-element" style="padding-left: 24px;">
+                        <label class="slds-form-element__label slds-text-heading--xx-small" >From</label>
+                        <div class="slds-form-element__control">
+                            <ui:inputDate aura:id="FromDate" 
+                                          class="slds-input" 
+                                          value="{!v.from}"
+                                          displayDatePicker="true"/>
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label slds-text-heading--xx-small" >Until</label>
+                        <div class="slds-form-element__control">
+                            <ui:inputDate aura:id="FromDate" 
+                                          class="slds-input" 
+                                          value="{!v.until}"
+                                          displayDatePicker="true"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slds-m-around--small">                
+                <div class="{!v.showSpinner ? 'slds-spinner_container slds-show' : 'slds-spinner_container slds-hide'}" style="z-index:5">
+                    <div class="slds-spinner--brand slds-spinner slds-spinner--large" role="status">
+                        <span class="slds-assistive-text">Loading</span>
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                    </div>
+                </div> 
+                <div class="slds-grid slds-wrap slds-grid--pull-padded">
+                    <div style="height:515px;" class="slds-theme_default slds-scrollable slds-large-size--12-of-12 slds-border--left slds-border--right slds-border--top slds-border--bottom ">
+                        
+                        <table id="tblAvailableRecords" class="fht-table slds-table slds-table_bordered slds-no-row-hover slds-table_cell-buffer">
+                            <thead>
+                                <tr>
+                                    <th style="z-index:3;" colspan="5">
+                                        <label class="slds-form-element__label slds-text-heading--small slds-m-top--small" for="search">Results</label>                
+                                        <button class="{!v.numberOfRecord > 0   ? 'slds-button slds-button--neutral slds-m-bottom--xx-small' : 'slds-hide' }" onclick="{!c.showMore}" >Show More</button>
+                                        
+                                    </th>
+                                    
+                                    
+                                    <th style="z-index:3;" colspan="6">                                        
+                                        <span class="slds-badge slds-float--right slds-m-top--small">{!v.numberOfRecord}/{!v.totalNumberOfRecord} records are available meeting the search criteria</span>
+                                    </th>
+                                </tr>
+                                
+                                <tr class="slds-text-title--caps" style="height:34px !important;">
+                                    <th style="z-index:4;">
+                                        <div class="slds-truncate" title="Select">Select</div>
+                                    </th>
+                                    <th style="z-index:3;">
+                                        <div class="slds-truncate" title="Product Name">Product Name</div>
+                                    </th>
+                                    <th style="z-index:3;">
+                                        <div class="slds-truncate" title="Product Type">Product Type</div>
+                                    </th>
+                                    <th style="z-index:3;">
+                                        <div class="slds-truncate"  title="EST Date">EST Date</div>
+                                    </th>
+                                    <th style="z-index:3;">
+                                        <div class="slds-truncate"  title="PPV End Date">4K EST Date</div>
+                                    </th>
+                                    <th style="z-index:3;">
+                                        <div class="slds-truncate"  title="VOD Start Date">VOD Start Date</div>
+                                    </th>
+                                    <th style="z-index:3;">
+                                        <div class="slds-truncate"  title="VOD End Date">VOD End Date</div>
+                                    </th>
+                                    <th style="z-index:3;">
+                                        <div class="slds-truncate"  title="PPV Start Date">PPV Start Date</div>
+                                    </th>
+                                    <th style="z-index:3;">
+                                        <div class="slds-truncate"  title="PPV End Date">PPV End Date</div>
+                                    </th>
+                                    <th style="z-index:3;">
+                                        <div class="slds-truncate" title="Push VOD Start Date">Push VOD Start Date</div>
+                                    </th>
+                                    <th style="z-index:3;">
+                                        <div class="slds-truncate" title="Push VOD End Date">Push VOD End Date</div>
+                                    </th>
+                                </tr>
+                            </thead>  
+                            
+                            <tbody>
+                                
+                                <!--### display all records of searchResult attribute by aura:iteration ###-->
+                                
+                                <aura:iteration items="{!v.searchResult}" var="prod" indexVar="resultIndex">
+                                    <tr>
+                                        <td style="z-index:2;">
+                                            <div>
+                                                <div class="slds-truncate" style="" title="{!prod.isSelected}"><ui:inputCheckbox value="{!prod.isSelected}" /></div> 
+                                            </div>
+                                        </td >
+                                        <td style="z-index:2;">
+                                            <div class="slds-truncate"  title="{!prod.productName}"><ui:outputText value="{!prod.productName}" /></div>
+                                        </td>
+                                        <td style="z-index:1;">
+                                            <div class="slds-truncate"  title="{!prod.recordtypeName}"><ui:outputText value="{!prod.recordtypeName}" /></div>
+                                        </td>
+                                        <td style="z-index:1;">
+                                            <div class="slds-truncate" style="width:120px;" title="{!prod.estDate}">
+                                                <ui:inputDate aura:id="estDateInput" 
+                                                              class="slds-input" 
+                                                              value="{!prod.estDate}"
+                                                              displayDatePicker="true" disabled="{!!prod.isSelected}"/>
+                                            </div>
+                                            
+                                        </td>
+                                        <td style="z-index:1;">
+                                            <div class="slds-truncate" style="width:120px;" title="{!prod.x4kEST}"><ui:inputDate aura:id="" 
+                                                                                                                                 class="slds-input" 
+                                                                                                                                 value="{!prod.x4kEST}"
+                                                                                                                                 displayDatePicker="true" disabled="{!(!prod.isSelected || prod.isBundle || prod.isTV)}"/></div>
+                                        </td>
+                                        <td style="z-index:1;">
+                                            <div class="slds-truncate" style="width:120px;" title="{!prod.vodStartDate}"><ui:inputDate aura:id="" 
+                                                                                                                                       class="slds-input" 
+                                                                                                                                       value="{!prod.vodStartDate}"
+                                                                                                                                       displayDatePicker="true" disabled="{!(!prod.isSelected || prod.isBundle || prod.isTV)}"/></div>
+                                        </td>
+                                        <td style="z-index:1;">
+                                            <div class="slds-truncate" style="width:120px;" title="{!prod.vodEndDate}"><ui:inputDate aura:id="" 
+                                                                                                                                     class="slds-input" 
+                                                                                                                                     value="{!prod.vodEndDate}"
+                                                                                                                                     displayDatePicker="true" disabled="{!(!prod.isSelected || prod.isBundle || prod.isTV)}"/></div>
+                                        </td>
+                                        <td style="z-index:1;">
+                                            <div class="slds-truncate" style="width:120px;" title="{!prod.ppvStartDate}"><ui:inputDate aura:id="" 
+                                                                                                                                       class="slds-input" 
+                                                                                                                                       value="{!prod.ppvStartDate}"
+                                                                                                                                       displayDatePicker="true" disabled="{!(!prod.isSelected || prod.isBundle || prod.isTV)}"/></div>
+                                        </td>
+                                        <td style="z-index:1;">
+                                            <div class="slds-truncate" style="width:120px;" title="{!prod.ppvEndDate}"><ui:inputDate aura:id="" 
+                                                                                                                                     class="slds-input" 
+                                                                                                                                     value="{!prod.ppvEndDate}"
+                                                                                                                                     displayDatePicker="true" disabled="{!(!prod.isSelected || prod.isBundle || prod.isTV)}"/></div>
+                                        </td>
+                                        <td style="z-index:1;">
+                                            <div class="slds-truncate" style="width:120px;" title="{!prod.pushStartDate}"><ui:inputDate aura:id="" 
+                                                                                                                                        class="slds-input" 
+                                                                                                                                        value="{!prod.pushStartDate}"
+                                                                                                                                        displayDatePicker="true" disabled="{!(!prod.isSelected || prod.isBundle || prod.isTV)}"/></div>
+                                        </td>
+                                        <td style="z-index:1;">
+                                            <div class="slds-truncate" style="width:120px;" title="{!prod.pushEndDate}"><ui:inputDate aura:id="" 
+                                                                                                                                      class="slds-input" 
+                                                                                                                                      value="{!prod.pushEndDate}"
+                                                                                                                                      displayDatePicker="true"   disabled="{!(!prod.isSelected || prod.isBundle || prod.isTV)}"/></div>
+                                        </td>
+                                    </tr>
+                                </aura:iteration>                        
+                            </tbody>
+                            
+                        </table>
+                    </div>
+                </div>
+                
+                <div id="divBlank" style="height:100px;" class="slds-large-size--12-of-12">
+                </div>
+                
+                <div class="slds-docked-form-footer" style="height:50px;">
+                    <div class="slds-large-size--9-of-12  slds-p-bottom_x-small slds-p-left_small"> <!--USST-3066-->
+                    </div>
+                    
+                    <div class="slds-large-size--3-of-12  slds-p-bottom_x-small slds-p-left_small"> <!--USST-3066-->                        
+                        <button type="button" class="slds-button slds-button--neutral" onclick="{!c.gotoURL}">Cancel</button>
+                        <button type="button" class="{!v.numberOfRecord > 0 ? 'slds-button slds-button--brand' : 'slds-hide' }" onclick="{!c.saveAndContinue}">Save and Continue</button> <!--USST-3066-->
+                        <button type="button" class="{!v.numberOfRecord > 0 ? 'slds-button slds-button--brand' : 'slds-hide' }" onclick="{!c.saveRecordDetails}">Save</button>
+                    </div>
+                </div> 
+            </div>
+            
+        </aura:set>
+    </aura:if>
+    
+</aura:component>

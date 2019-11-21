@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Title_Requested</fullName>
+        <description>Title Requested</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Releaseforce_Email_Templates_Folder/Title_Request_Completed</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Re_assign_title_request</fullName>
+        <description>Assigns the record to the</description>
+        <field>OwnerId</field>
+        <lookupValue>Master_Data</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Re-assign title request</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_New_Recordtype</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>Submitted</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>Set New Recordtype</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>Re-assign title request</fullName>
+        <actions>
+            <name>Re_assign_title_request</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Set_New_Recordtype</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Title_Request__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Requested</value>
+        </criteriaItems>
+        <description>Assigns &quot;Requested&quot; Title requests to the Master Data queue</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

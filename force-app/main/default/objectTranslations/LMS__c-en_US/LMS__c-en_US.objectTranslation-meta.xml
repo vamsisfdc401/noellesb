@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>LMS</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>LMS</value>
+    </caseValues>
+    <layouts>
+        <layout>Distribution Only Factory Layout</layout>
+        <sections>
+            <label><!-- Contract Information --></label>
+            <section>Contract Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Distribution Info --></label>
+            <section>Distribution Info</section>
+        </sections>
+        <sections>
+            <label><!-- Licensee --></label>
+            <section>Licensee</section>
+        </sections>
+        <sections>
+            <label><!-- Licensee Manufacturer Survey --></label>
+            <section>Licensee Manufacturer Survey</section>
+        </sections>
+        <sections>
+            <label><!-- Production Information --></label>
+            <section>Production Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Primary Factory Layout</layout>
+        <sections>
+            <label><!-- Contract Information --></label>
+            <section>Contract Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Customs Registration --></label>
+            <section>Customs Registration</section>
+        </sections>
+        <sections>
+            <label><!-- Factory --></label>
+            <section>Factory</section>
+        </sections>
+        <sections>
+            <label><!-- Licensee --></label>
+            <section>Licensee</section>
+        </sections>
+        <sections>
+            <label><!-- Licensee Manufacturer Survey --></label>
+            <section>Licensee Manufacturer Survey</section>
+        </sections>
+        <sections>
+            <label><!-- Production Information --></label>
+            <section>Production Information</section>
+        </sections>
+        <sections>
+            <label><!-- Trade Office --></label>
+            <section>Trade Office</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Subcontracted Factory Layout</layout>
+        <sections>
+            <label><!-- Contract Information --></label>
+            <section>Contract Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Customs Registration --></label>
+            <section>Customs Registration</section>
+        </sections>
+        <sections>
+            <label><!-- Factory --></label>
+            <section>Factory</section>
+        </sections>
+        <sections>
+            <label><!-- Licensee --></label>
+            <section>Licensee</section>
+        </sections>
+        <sections>
+            <label><!-- Licensee Manufacturer Survey --></label>
+            <section>Licensee Manufacturer Survey</section>
+        </sections>
+        <sections>
+            <label><!-- Production Information --></label>
+            <section>Production Information</section>
+        </sections>
+        <sections>
+            <label><!-- Trade Office --></label>
+            <section>Trade Office</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Create New LMS --></label>
+        <name>BlankLMS</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Email --></label>
+        <name>Email</name>
+    </quickActions>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

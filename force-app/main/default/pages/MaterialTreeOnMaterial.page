@@ -1,0 +1,316 @@
+<!--*****************************************************************************************
+Page Name: MaterialTreeOnMaterial
+Purpose: For displaying BOM structure
+******************************************************************************************
+Version         DateModified         ModifiedBy               Change
+1.0             09/09/2016           Mohit                    Initial Development
+1.1             12/05/2017           Dinakar                  UST-2682 Added Street Date in Material Tree
+******************************************************************************************-->
+<apex:page standardController="Material__c" extensions="MaterialTreeController"  docType="html-5.0" sidebar="false">
+    <style type="text/css"> 
+        body .bPageBlock .pbBody .pbSubheader  {
+        border-style: none;
+        }
+        
+        body .bDetailBlock.bPageBlock .pbBody .pbSubheader, body.FindSimilarOppsSearchUi .bPageBlock .pbBody .pbSubheader {
+        background-color: #F5F5F5;
+        }
+        
+        /*Added and Modified colstyles for USST-2682*/
+        .colstyle {width: 10%}
+        .colstyle:first-child {width:30%}
+        .colstyle:nth-child(2) {width: 8%}
+        .colstyle:nth-child(3) {width: 8%}
+        .colstyle:nth-child(4) {width: 9%}
+        .colstyle:nth-child(5) {width: 5%}
+        .colstyle:nth-child(6) {width: 11%}
+        .colstyle:nth-child(7) {width: 7%}
+        .colstyle:last-child {width: 7%}
+        
+        .textbold{font-weight: bold; padding-left: 10px; background-color:#F5F5F5; }  
+        
+        .btnStyle {    text-decoration:none;    padding:4px;    } 
+        
+        body .bPageBlock .detailList tr td, body .bPageBlock .detailList tr th, body table.list tr td, body table.list tr th, body .hoverDetail .bPageBlock .detailList tr td, body .hoverDetail .bPageBlock .detailList tr th {
+        border-color: #FFFFFF; 
+        border-collapse: collapse;            
+        }
+        
+        .rowStyle{
+        border-top: 2px solid #000000;
+        }                    
+    </style>
+    <apex:stylesheet value="{!URLFOR($Resource.NBCU_StyleClasses, '/css/font-awesome.min.css')}" />
+    
+    <script>
+    function switchMenu(obj,obj1,obj2) 
+    {
+        var el = document.getElementById(obj);    
+        
+        
+        if ( el.style.display != 'none' ) {
+            el.style.display = 'none';
+        }
+        else {
+            el.style.display = '';
+        }
+        
+        var e2 = document.getElementById(obj1);                                       
+        if ( e2.style.display != 'none' ) {
+            e2.style.display = 'none';
+        }
+        else {
+            e2.style.display = '';
+        }
+        
+        var e3 = document.getElementById(obj2);                                       
+        if ( e2.style.display != 'none' ) {
+            e3.style.display = 'none';
+        }
+        else {
+            e3.style.display = '';
+        }        
+    }
+    </script>
+    
+    <apex:pageMessages id="pgMsg"></apex:pageMessages>    
+    <apex:form >
+        <apex:outputPanel id="MasterContainerPanel" rendered="{!renderPage}">
+            <apex:pageBlock id="MasterContainer" mode="MainDetail">
+                <apex:pageBlockButtons location="top">
+                    <apex:commandLink styleClass="btn btnStyle" value="Request Wizard" action="{!redirectToWizard}" target="_blank" rendered="{!NOT(isUpdateRecord )}"/>  
+                    <apex:commandLink value="BOM Wizard" styleClass="btn btnStyle" target="_blank" action="{!redirectToBOMWizard}" rendered="{!NOT(isUpdateRecord )}"/>
+                </apex:pageBlockButtons>     <br/>    
+                
+                <apex:panelGrid frame="border" rules="ALL" columnClasses="colstyle"  columns="8" width="100%" styleClass="textbold" cellpadding="5 px">
+                    <apex:outputText value="Material Description" /> 
+                    <apex:outputText value="Material Number" /> 
+                    <apex:outputText value="UPC" /> 
+                    <apex:outputText value="Material Status" /> 
+                    <apex:outputText value="Item Qty" /> 
+                    <apex:outputText value="Label Code" />
+                    <apex:outputText value="Territory"/>
+                    <apex:outputText value="Street Date"/>
+                </apex:panelGrid>     
+                <hr/>   
+                
+                <!-- BOM Hierarchy Configuration -->
+                <apex:repeat value="{!rootFERTs}" var="material" id="repeatLevel1">
+                    
+                    
+                    <!-- FERT Details -->
+                    <apex:outputPanel style="width:100%; float:left;">
+                        <apex:repeat value="{!material}" var="mat">
+                            <apex:panelGrid columns="8" columnClasses="colstyle" width="100%"  cellspacing="0" cellpadding="5 px" >
+                                <apex:outputPanel >
+                                    <apex:outputpanel id="plusimage" style="display:none;">
+                                        <apex:image url="{!$Resource.Chevron_Right}" onclick="switchMenu('{!$Component.inlinetablesec}','{!$Component.minusimage}','{!$Component.plusimage}')" /> 
+                                    </apex:outputpanel>
+                                    <apex:outputpanel id="minusimage" >
+                                        <apex:image url="{!$Resource.Chevron_Down}" onclick="switchMenu('{!$Component.inlinetablesec}','{!$Component.plusimage}','{!$Component.minusimage}')" />                                            
+                                    </apex:outputpanel> &nbsp;
+                                    <apex:outputLink value="/{!mat.instance.ID}" target="_blank" style="color:blue;">{!mat.instance.Name}</apex:outputLink>
+                                </apex:outputPanel>
+                                
+                                <apex:outputText value="{!mat.instance.Material_Number__c}" style="color:blue;"/>
+                                <apex:outputText value="{!mat.instance.UPC__c}" style="color:blue;"/>
+                                <apex:outputText value="{!mat.instance.Material_Status__c}" style="color:blue;"/>
+                                <apex:outputText value="{!mat.componentQty}" style="color:blue;"/>  
+                                <apex:Outputtext value="{!mat.instance.Label_Code__c}" style="color:blue;"/>
+                                <apex:Outputtext value="{!mat.instance.Territory__c}" style="color:blue;"/>   
+                                <apex:OutputText value="{0,date,MM/dd/yyyy}" style="color:blue;"> 
+                                    <apex:param value="{!mat.instance.Street_Date__c}" /> 
+                                </apex:OutputText> 
+                            </apex:panelGrid>                                
+                        </apex:repeat>
+                    </apex:outputPanel>
+                    
+                    <!-- Level 1: Components -->
+                    <apex:outputPanel id="inlinetablesec" style="display:'';">
+                        
+                        <apex:outputPanel id="compChild" style="width:100%; float:right;">
+                            <apex:variable value="{!0}" var="componentIndex5"/>
+                            <apex:repeat value="{!material.childComponents}" var="comp" >
+                                <apex:panelGrid columns="8" columnClasses="colstyle" width="100%" cellspacing="0" cellpadding="5 px" >
+                                    <apex:outputLink value="/{!comp.instance.ID}" target="_blank" style="padding-left: 1cm;">{!comp.instance.Name}</apex:outputLink>
+                                    <apex:outputText value="{!comp.instance.Material_Number__c}"  />
+                                    <apex:outputText value="{!comp.instance.UPC__c}" />
+                                    <apex:outputText value="{!comp.instance.Material_Status__c}" />
+                                    <apex:outputText value="{!comp.componentQty}" />  
+                                    <apex:outputText value="{!comp.instance.Label_Code__c}" />
+                                    <apex:outputText value="{!comp.instance.Territory__c}" />  
+                                    <apex:OutputText value="{0,date,MM/dd/yyyy}"> 
+                                        <apex:param value="{!comp.instance.Street_Date__c}" /> 
+                                    </apex:OutputText> 
+                                </apex:panelGrid>                                
+                            </apex:repeat>
+                        </apex:outputPanel>
+                        
+                        
+                        <!--<hr class="rowStyle"/>-->
+                        
+                        <apex:repeat value="{!material.childFERTs}" var="material2" id="repeatLevel2">
+                            <!-- Level 2: FERTs -->                            
+                            <!-- FERT Details -->
+                            <apex:outputPanel style="width:100%; float:left;">
+                                <apex:repeat value="{!material2}" var="mat">
+                                    <apex:panelGrid columns="8" columnClasses="colstyle" width="100%" cellspacing="0" cellpadding="5 px">
+                                        <apex:outputPanel >
+                                            <apex:outputpanel id="plusimage1" style="display:none;padding-left: 1cm;" >
+                                                <apex:image url="{!$Resource.Chevron_Right}" onclick="switchMenu('{!$Component.opLevel2}','{!$Component.minusimage1}','{!$Component.plusimage1}')"/> 
+                                            </apex:outputpanel>
+                                            <apex:outputpanel id="minusimage1" style="padding-left: 1cm;">
+                                                <apex:image url="{!$Resource.Chevron_Down}" onclick="switchMenu('{!$Component.opLevel2}','{!$Component.plusimage1}','{!$Component.minusimage1}')" />
+                                            </apex:outputpanel> &nbsp;
+                                            <apex:outputLink value="/{!mat.instance.ID}" target="_blank" style="color:blue;">{!mat.instance.Name}</apex:outputLink>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputText value="{!mat.instance.Material_Number__c}" style="color:blue;"/>
+                                        <apex:outputText value="{!mat.instance.UPC__c}"  style="color:blue;"/>
+                                        <apex:outputText value="{!mat.instance.Material_Status__c}" style="color:blue;"/>
+                                        <apex:outputText value="{!mat.componentQty}" style="color:blue;"/>
+                                        <apex:Outputtext value="{!mat.instance.Label_Code__c}" style="color:blue;"/>
+                                        <apex:Outputtext value="{!mat.instance.Territory__c}" style="color:blue;"/>  
+                                        <apex:OutputText value="{0,date,MM/dd/yyyy}" style="color:blue;"> 
+                                            <apex:param value="{!mat.instance.Street_Date__c}" /> 
+                                        </apex:OutputText> 
+                                    </apex:panelGrid>                                
+                                </apex:repeat>
+                            </apex:outputPanel>
+                            
+                            <apex:outputPanel id="opLevel2" style="display:'';">
+                                <apex:outputPanel style="width:100%; float:left;">
+                                    <apex:repeat value="{!material2.childComponents}" var="comp" >
+                                        <apex:panelGrid columns="8" columnClasses="colstyle" width="100%" cellspacing="0" cellpadding="5 px" >
+                                            <apex:outputLink value="/{!comp.instance.ID}" target="_blank" style="padding-left: 2cm;">{!comp.instance.Name}</apex:outputLink>
+                                            <apex:outputText value="{!comp.instance.Material_Number__c}" />
+                                            <apex:outputText value="{!comp.instance.UPC__c}" />
+                                            <apex:outputText value="{!comp.instance.Material_Status__c}" />
+                                            <apex:outputText value="{!comp.componentQty}" />    
+                                            <apex:outputText value="{!comp.instance.Label_Code__c}" />
+                                            <apex:outputText value="{!comp.instance.Territory__c}" /> 
+                                            <apex:OutputText value="{0,date,MM/dd/yyyy}" > 
+                                                <apex:param value="{!comp.instance.Street_Date__c}" /> 
+                                            </apex:OutputText> 
+                                        </apex:panelGrid>                                
+                                    </apex:repeat>
+                                </apex:outputPanel>
+                                <!--<hr class="rowStyle"/>-->
+                                
+                                <!--Level 3-->
+                                <apex:repeat value="{!material2.childFERTs}" var="material3" id="repeatLevel3">
+                                    <!-- Level 3: FERTs -->
+                                    <apex:outputPanel >
+                                        <!-- FERT Details -->
+                                        <apex:outputPanel style="width:100%; float:left;">                                                
+                                            <apex:repeat value="{!material3}" var="mat" >
+                                                <apex:panelGrid columns="8" columnClasses="colstyle" width="100%" cellspacing="0" cellpadding="5 px">
+                                                    <apex:outputPanel >
+                                                        <apex:outputpanel id="plusimage2" style="display:none;padding-left: 1.9cm;" >
+                                                            <apex:image url="{!$Resource.Chevron_Right}" onclick="switchMenu('{!$Component.opLevel3}','{!$Component.minusimage2}','{!$Component.plusimage2}')" /> 
+                                                        </apex:outputpanel>
+                                                        <apex:outputpanel id="minusimage2" style="padding-left: 2cm;">
+                                                            <apex:image url="{!$Resource.Chevron_Down}" onclick="switchMenu('{!$Component.opLevel3}','{!$Component.plusimage2}','{!$Component.minusimage2}')" />
+                                                        </apex:outputpanel> &nbsp;
+                                                        <apex:outputLink value="/{!mat.instance.ID}" target="_blank" style="color:blue;">{!mat.instance.Name}</apex:outputLink>
+                                                    </apex:outputPanel>
+                                                    <apex:outputText value="{!mat.instance.Material_Number__c}" style="color:blue;" />
+                                                    <apex:outputText value="{!mat.instance.UPC__c}" style="color:blue;"/>
+                                                    <apex:outputText value="{!mat.instance.Material_Status__c}" style="color:blue;"/>
+                                                    <apex:outputText value="{!mat.componentQty}" style="color:blue;"/>        
+                                                    <apex:Outputtext value="{!mat.instance.Label_Code__c}" style="color:blue;"/>
+                                                    <apex:Outputtext value="{!mat.instance.Territory__c}" style="color:blue;"/>      
+                                                    <apex:OutputText value="{0,date,MM/dd/yyyy}" style="color:blue;"> 
+                                                        <apex:param value="{!mat.instance.Street_Date__c}" /> 
+                                                    </apex:OutputText> 
+                                                </apex:panelGrid>                                
+                                            </apex:repeat>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
+                                    <!-- Level 3: Components -->
+                                    <apex:outputPanel id="opLevel3" style="display:'';">
+                                        <apex:outputPanel style="width:100%; float:left;">                                               
+                                            <apex:repeat value="{!material3.childComponents}" var="comp" >
+                                                <apex:panelGrid columns="8" columnClasses="colstyle" width="100%" cellspacing="0" cellpadding="5 px" >
+                                                    <apex:outputLink value="/{!comp.instance.ID}" target="_blank" style="padding-left: 3cm;">{!comp.instance.Name}</apex:outputLink>
+                                                    <apex:outputText value="{!comp.instance.Material_Number__c}" />
+                                                    <apex:outputText value="{!comp.instance.UPC__c}" />
+                                                    <apex:outputText value="{!comp.instance.Material_Status__c}" />
+                                                    <apex:outputText value="{!comp.componentQty}" /> 
+                                                    <apex:outputText value="{!comp.instance.Label_Code__c}" />
+                                                    <apex:outputText value="{!comp.instance.Territory__c}" />     
+                                                    <apex:OutputText value="{0,date,MM/dd/yyyy}" > 
+                                                        <apex:param value="{!comp.instance.Street_Date__c}" /> 
+                                                    </apex:OutputText> 
+                                                </apex:panelGrid>                                
+                                            </apex:repeat>
+                                        </apex:outputPanel>
+                                                                               
+                                        
+                                        <!--Level 4-->
+                                        <apex:repeat value="{!material3.childFERTs}" var="material4" id="repeatLevel4">
+                                            <!-- Level 4: FERTs -->
+                                            
+                                            <apex:outputPanel >
+                                                <!-- FERT Details -->
+                                                <apex:outputPanel style="width:100%; float:left;">                                                        
+                                                    <apex:repeat value="{!material4}" var="mat" >
+                                                        <apex:panelGrid columnClasses="colstyle" columns="8" width="100%"  cellspacing="0" cellpadding="5 px">
+                                                            <apex:outputPanel >
+                                                                <apex:outputpanel id="plusimage3" style="display:none;padding-left: 2.9cm;" >
+                                                                    <apex:image url="{!$Resource.Chevron_Right}" onclick="switchMenu('{!$Component.opLevel4}','{!$Component.minusimage3}','{!$Component.plusimage3}')" /> 
+                                                                </apex:outputpanel>
+                                                                <apex:outputpanel id="minusimage3" style="padding-left: 3cm;">
+                                                                    <apex:image url="{!$Resource.Chevron_Down}" onclick="switchMenu('{!$Component.opLevel4}','{!$Component.plusimage3}','{!$Component.minusimage3}')" />
+                                                                </apex:outputpanel> &nbsp;
+                                                                <apex:outputLink value="/{!mat.instance.ID}" target="_blank" style="color:blue;">{!mat.instance.Name}</apex:outputLink>
+                                                            </apex:outputPanel>
+                                                            <apex:outputText value="{!mat.instance.Material_Number__c}" style="color:blue;"/>
+                                                            <apex:outputText value="{!mat.instance.UPC__c}" style="color:blue;"/>
+                                                            <apex:outputText value="{!mat.instance.Material_Status__c}" style="color:blue;"/>
+                                                            <apex:outputText value="{!mat.componentQty}" style="color:blue;"/> 
+                                                            <apex:Outputtext value="{!mat.instance.Label_Code__c}" style="color:blue;"/>
+                                                            <apex:Outputtext value="{!mat.instance.Territory__c}" style="color:blue;"/>
+                                                            <apex:OutputText value="{0,date,MM/dd/yyyy}" style="color:blue;"> 
+                                                                <apex:param value="{!mat.instance.Street_Date__c}" /> 
+                                                            </apex:OutputText> 
+                                                        </apex:panelGrid>                                
+                                                    </apex:repeat>
+                                                </apex:outputPanel>
+                                            </apex:outputPanel>
+                                            <!-- Level 4: Components -->
+                                            <apex:outputPanel id="opLevel4" style="display:'';">
+                                                <apex:outputPanel style="width:100%; float:left;">                                                        
+                                                    <apex:repeat value="{!material4.childComponents}" var="comp"  >
+                                                        <apex:panelGrid columnClasses="colstyle" columns="8" width="100%"  cellspacing="0" cellpadding="5 px" >
+                                                            <apex:outputLink value="/{!comp.instance.ID}" target="_blank" style="padding-left: 4cm;">{!comp.instance.Name}</apex:outputLink>
+                                                            <apex:outputText value="{!comp.instance.Material_Number__c}" />
+                                                            <apex:outputText value="{!comp.instance.UPC__c}" />
+                                                            <apex:outputText value="{!comp.instance.Material_Status__c}" />
+                                                            <apex:outputText value="{!comp.componentQty}"/>  
+                                                            <apex:outputText value="{!comp.instance.Label_Code__c}" />
+                                                            <apex:outputText value="{!comp.instance.Territory__c}" />  
+                                                            <apex:OutputText value="{0,date,MM/dd/yyyy}" > 
+                                                                <apex:param value="{!comp.instance.Street_Date__c}" /> 
+                                                            </apex:OutputText> 
+                                                        </apex:panelGrid>                                
+                                                    </apex:repeat>
+                                                </apex:outputPanel>
+                                                
+                                                                                             
+                                            </apex:outputPanel>
+                                        </apex:repeat>   
+                                        
+                                    </apex:outputPanel>
+                                </apex:repeat>
+                                
+                            </apex:outputPanel> 
+                        </apex:repeat>                       
+                        
+                    </apex:outputPanel>
+                    <hr class="rowStyle"/>   
+                </apex:repeat>                
+            </apex:pageBlock>            
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>standard-home</defaultLandingTab>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>Dealforce</label>
+    <tabs>standard-Chatter</tabs>
+    <tabs>Acquisition_Deal__c</tabs>
+    <tabs>standard-report</tabs>
+    <tabs>standard-Dashboard</tabs>
+    <tabs>Shipping_Address__c</tabs>
+    <tabs>Accountant_Location__c</tabs>
+    <tabs>Props_Tracker__c</tabs>
+</CustomApplication>

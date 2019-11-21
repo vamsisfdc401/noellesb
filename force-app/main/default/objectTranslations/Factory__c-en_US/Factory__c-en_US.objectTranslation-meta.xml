@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Factory</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Factory</value>
+    </caseValues>
+    <layouts>
+        <layout>Factory Layout</layout>
+        <sections>
+            <label><!-- Audits --></label>
+            <section>Audits</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Customs Registration --></label>
+            <section>Customs Registration</section>
+        </sections>
+        <sections>
+            <label><!-- Factory Address --></label>
+            <section>Factory Address</section>
+        </sections>
+        <sections>
+            <label><!-- Production Information --></label>
+            <section>Production Information</section>
+        </sections>
+        <sections>
+            <label><!-- Waivers --></label>
+            <section>Waivers</section>
+        </sections>
+        <sections>
+            <label><!-- Workflows --></label>
+            <section>Workflows</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Email --></label>
+        <name>Email</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Factory Details (Audit) --></label>
+        <name>Factory_Details_Audit</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Factory Details (Waiver) --></label>
+        <name>Factory_Details_Waiver</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Update Factory --></label>
+        <name>Update_Factory_LMS</name>
+    </quickActions>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

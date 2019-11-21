@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Master Data</name>
+    <queueMembers>
+        <users>
+            <user>akaatz@nbcuni.com</user>
+            <user>burcu.ertekin@nbcuni.com</user>
+            <user>caitlin.serri@nbcuni.com</user>
+            <user>crystal.clark@nbcuni.com</user>
+            <user>elena.roncagliolo@nbcuni.com</user>
+            <user>korhan.ustunkaya@nbcuni.com</user>
+            <user>lerna.semerci@nbcuni.com</user>
+            <user>mark.reynolds@nbcuni.com</user>
+            <user>niyosha.vazirzadeh@nbcuni.com</user>
+            <user>pilar.cleere@nbcuni.com</user>
+            <user>ryan.hodnett@nbcuni.com</user>
+            <user>shelly.denison@nbcuni.com</user>
+            <user>vahe.zurnachyan@nbcuni.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Material__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>Title_Request__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>v_Project_Request__c</sobjectType>
+    </queueSobject>
+</Queue>

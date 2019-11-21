@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Assign_New_v_Project_to_Queue</fullName>
+        <field>OwnerId</field>
+        <lookupValue>v_Projects</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Assign New v-Project to Queue</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Re_assign_v_project_request</fullName>
+        <description>Assigned the v-project to the master data queue when the status is changed to submitted.</description>
+        <field>OwnerId</field>
+        <lookupValue>Master_Data</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Re-assign v-project request</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_v_Project_Request_Status</fullName>
+        <description>Updated the vproject request status when the v-project number is entered.</description>
+        <field>v_Project_Status__c</field>
+        <literalValue>Closed</literalValue>
+        <name>Update v-Project Request Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>v_Project_POS_Order_End_Date</fullName>
+        <field>POS_Order_End_Date__c</field>
+        <formula>Release__r.Street_Date__c  + 180</formula>
+        <name>v-Project POS/Order End Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>v_Project_Project_Finish_Date</fullName>
+        <field>Project_Finish_Date__c</field>
+        <formula>Release__r.Street_Date__c  + 240</formula>
+        <name>v-Project Project Finish Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>v_Project_Return_End_Date</fullName>
+        <field>Return_End_Date__c</field>
+        <formula>Release__r.Street_Date__c  + 240</formula>
+        <name>v Project Return End Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>Assign v-Project to Queue</fullName>
+        <actions>
+            <name>Assign_New_v_Project_to_Queue</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>true</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Re-assign v-project request</fullName>
+        <actions>
+            <name>Re_assign_v_project_request</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Re-assign v-project request</description>
+        <formula>ispickval( v_Project_Status__c, &quot;Submitted&quot;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update v-Project Request Status</fullName>
+        <actions>
+            <name>Update_v_Project_Request_Status</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Updates the v-project request status when the project number is entered</description>
+        <formula>not(isblank(v_Project_Number__c))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>v-Project Request Date Update</fullName>
+        <actions>
+            <name>v_Project_POS_Order_End_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>v_Project_Project_Finish_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>v_Project_Return_End_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Update v-Project Request object&#39;s defaluts date fields</description>
+        <formula>Release__c   &lt;&gt; Null</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>

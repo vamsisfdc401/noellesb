@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Default_Start_Date</fullName>
+        <description>DFOR-505</description>
+        <field>Start_Date__c</field>
+        <formula>IF(INCLUDES( Package__c , &quot;Pre-Order&quot;), Digital_Release__r.US_EPO_Date__c,Digital_Release__r.US_EST_Date__c)</formula>
+        <name>Default Start Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Default_VOD_Start_Date</fullName>
+        <description>DFOR-505</description>
+        <field>VOD_Start_Date__c</field>
+        <formula>IF(INCLUDES( Platform__c , &quot;VOD&quot;) &amp;&amp; ISBLANK(VOD_Start_Date__c), Digital_Release__r.US_VOD_Start_Date__c, If(VOD_Start_Date__c =  Digital_Release__r.US_VOD_Start_Date__c,null, VOD_Start_Date__c ))</formula>
+        <name>Default VOD Start Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Bonus_Start_Date</fullName>
+        <description>DFOR-505</description>
+        <field>Start_Date__c</field>
+        <formula>IF(IF(INCLUDES(Platform__c,&#39;EST&#39;),false,true) &amp;&amp;  Start_Date__c =  Digital_Release__r.US_EST_Date__c ,null,Start_Date__c)</formula>
+        <name>Update Bonus Start Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>Default Bonus Start Date</fullName>
+        <actions>
+            <name>Default_Start_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>DFOR-505</description>
+        <formula>(!ISBLANK(Package__c ) &amp;&amp; !ISBLANK(Platform__c ) &amp;&amp; ISBLANK(Start_Date__c) &amp;&amp; IF(INCLUDES( Platform__c , &quot;EST&quot;),true,false) &amp;&amp; ISNEW()) || (!ISCHANGED(Start_Date__c) &amp;&amp; ISCHANGED(Package__c) &amp;&amp; !ISNEW() &amp;&amp; IF(INCLUDES( Platform__c , &quot;EST&quot;),true,false)) || (!ISCHANGED(Start_Date__c) &amp;&amp; ISCHANGED(Platform__c) &amp;&amp; !ISNEW() &amp;&amp; IF(INCLUDES( Platform__c , &quot;EST&quot;),true,false))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Default Bonus VOD Start Date</fullName>
+        <actions>
+            <name>Default_VOD_Start_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>DFOR-505</description>
+        <formula>(ISCHANGED(Platform__c) &amp;&amp; ISBLANK(VOD_Start_Date__c ) &amp;&amp; !ISNEW()) || (ISBLANK(VOD_Start_Date__c ) &amp;&amp; ! ISNEW()) || (ISBLANK(VOD_Start_Date__c ) &amp;&amp; ISNEW() ) || (IF(INCLUDES( Platform__c, &quot;EST&quot;),true,false) &amp;&amp; ! ISNEW() &amp;&amp; (IF(INCLUDES( Platform__c, &quot;VOD&quot;),false,true))) || ISBLANK(Platform__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Remove Bonus Start Date On Update</fullName>
+        <actions>
+            <name>Update_Bonus_Start_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>DFOR-505</description>
+        <formula>ISCHANGED(Platform__c) &amp;&amp; !ISNEW()</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

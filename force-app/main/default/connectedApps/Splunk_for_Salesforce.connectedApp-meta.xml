@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>eli.block@nbcuni.com</contactEmail>
+    <label>Splunk for Salesforce</label>
+    <oauthConfig>
+        <callbackUrl>https://potaplp00094lb.tfayd.com:8000/en-US/app/Splunk_TA_salesforce/splunk_ta_salesforce_redirect</callbackUrl>
+        <consumerKey>3MVG9jBOyAOWY5bW2ldeqQWvO4Cbq9uKNwgtCEcNPG.dfPkdQ_W7O_KNbAy0v3o6MvZsYI88S9Dt1dXVUwdtq</consumerKey>
+        <isAdminApproved>false</isAdminApproved>
+        <scopes>Basic</scopes>
+        <scopes>Api</scopes>
+        <scopes>Web</scopes>
+        <scopes>Full</scopes>
+        <scopes>Chatter</scopes>
+        <scopes>CustomApplications</scopes>
+        <scopes>RefreshToken</scopes>
+        <scopes>OpenID</scopes>
+        <scopes>CustomPermissions</scopes>
+        <scopes>Wave</scopes>
+        <scopes>Eclair</scopes>
+    </oauthConfig>
+</ConnectedApp>

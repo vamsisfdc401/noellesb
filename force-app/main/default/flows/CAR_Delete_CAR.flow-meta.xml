@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <interviewLabel>CAR - Delete CAR {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>CAR - Delete CAR</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordDeletes>
+        <name>Delete_CAR</name>
+        <label>Delete CAR</label>
+        <locationX>134</locationX>
+        <locationY>90</locationY>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>CARtoDelete.Id</elementReference>
+            </value>
+        </filters>
+        <object>CAR__c</object>
+    </recordDeletes>
+    <startElementReference>Delete_CAR</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>CARtoDelete</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>CAR__c</objectType>
+    </variables>
+</Flow>

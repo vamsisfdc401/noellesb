@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>false</allowRecall>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>CaseNumber</field>
+        <field>Subject</field>
+        <field>TotalCost__c</field>
+        <field>TotalUnits__c</field>
+        <field>Owner</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>tony@wellgousa.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>Sales only approval required at this time</description>
+        <label>All Well GO Approvals</label>
+        <name>All_Well_GO_Approvals</name>
+    </approvalStep>
+    <description>Rule Set for Well Go Flow</description>
+    <emailTemplate>Promo_CaseMgmt_Emails/Price_Protection_Case_Ask_for_Approval</emailTemplate>
+    <enableMobileDeviceAccess>true</enableMobileDeviceAccess>
+    <entryCriteria>
+        <criteriaItems>
+            <field>Case.RecordType</field>
+            <operation>equals</operation>
+            <value>Price Protection</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Studio_Partner__c</field>
+            <operation>equals</operation>
+            <value>Well Go</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Status</field>
+            <operation>equals</operation>
+            <value>New,Rejected</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.CM_Sold_To__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.TotalUnits__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </criteriaItems>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>CM_Integration_Status_Update_to_N</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Price_Protection_Case_Approved</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>SI_Case_Approved</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>Price_Protection_Case_Rejected</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>SI_Case_Rejected</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <initialSubmissionActions>
+        <action>
+            <name>SI_Case_Pending_Approval</name>
+            <type>FieldUpdate</type>
+        </action>
+    </initialSubmissionActions>
+    <label>Price Protection Cases - Well Go</label>
+    <recordEditability>AdminOnly</recordEditability>
+    <showApprovalHistory>false</showApprovalHistory>
+</ApprovalProcess>

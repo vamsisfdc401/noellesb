@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>RST_Error</fullName>
+        <ccEmails>daniel.marks@slalom.com</ccEmails>
+        <description>RST Error</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/RST_CSV_Upload_Response_Fail</template>
+    </alerts>
+    <alerts>
+        <fullName>RST_Magic_Error</fullName>
+        <ccEmails>daniel.marks@slalom.com</ccEmails>
+        <description>RST Magic Error</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/RST_Magic_Callout_Fail</template>
+    </alerts>
+    <alerts>
+        <fullName>RST_Process_Success_Email</fullName>
+        <ccEmails>daniel.marks@slalom.com</ccEmails>
+        <description>RST Process Success Email</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/RST_CSV_Upload_Response</template>
+    </alerts>
+</Workflow>

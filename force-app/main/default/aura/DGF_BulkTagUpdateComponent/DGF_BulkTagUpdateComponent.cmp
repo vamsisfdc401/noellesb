@@ -1,0 +1,733 @@
+<!--*****************************************************************************************
+Component Name: DGF_BulkTagUpdateComponent
+Purpose: Component for bulk tag update on title/product/promotion
+******************************************************************************************
+Version         DateModified         ModifiedBy               Change
+1.0             03/07/2017           Mohit                    Initial Development
+******************************************************************************************-->
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" access="global" controller="DGF_BulkTagUpdateComponentController">
+    
+    <ltng:require scripts="{!join(',',$Resource.jQuery_Plugin,$Resource.jQuery_StickyHeader)}" afterScriptsLoaded="{!c.scriptLoaded}" />
+    <aura:attribute name="isjQueryLoaded" type="Boolean" default="false"/>
+    <aura:attribute name="CodeError" type="string"  description="use for display no record found message"/>
+    <aura:attribute name="isCodeError" type="boolean" default="false" description="use for display no record found message"/>
+    <aura:attribute name="showSpinner" type="boolean" default="false" description="use for displaying or hiding spinner"/>
+    <aura:attribute name="selectedObject" type="string" default="Product"  description="used for storing selected object"/>
+    <aura:attribute name="objectList" type="String[]" default="Product,Promotion"  description="used for storing selected object"/>
+    <aura:attribute name="fromDate" type="Date" description="for from date"/>
+    <aura:attribute name="toDate" type="Date" description="for to Date"/>   
+    <aura:attribute name="searchResult" type="List" description="use for store and display list return from server"/>    
+    <aura:attribute name="selectedResultList" type="List" description="use for displaying selected records."/>
+    <aura:attribute name="searchResultMaster" type="List" description="use for store and display list return from server"/>    
+    <aura:attribute name="pageSize" type="integer" default="25" description="default number of records to be displayed on a page"/>
+    <aura:attribute name="searchKeyword" type="String" description="use for store user search input"/> 
+    <aura:attribute name="Message" type="boolean" default="false" description="use for display no record found message"/>
+    <aura:attribute name="numberOfRecord" type="integer" default="0" description="use for display Number of records"/>
+    <aura:attribute name="totalNumberOfRecord" type="integer" default="0" description="use for display Number of records"/>
+    <aura:attribute name="selectedRecordCount" type="integer" default="0" description="use for display Number of records"/>
+    <aura:attribute name="isTitleSearch" type="boolean" default="false" description="for title search"/>
+    <aura:attribute name="isProductSearch" type="boolean" default="true" description="for product search"/>
+    <aura:attribute name="isPromotionSearch" type="boolean" default="false" description="for promotion search"/>
+    <aura:attribute name="userInputTags" type="String" description="for tag value"/> 
+    <aura:attribute name="userInputExistingTags" type="String" description="for tag value"/> 
+    <aura:attribute name="promotionFields" type="String[]" default="Name,Tag" description="fields for promotion search"/>
+    <aura:attribute name="titleFields" type="String[]" default="Name,Tag,MPAA Rating,Genre,Initial Release Air year" description="fields for title search"/>
+    <aura:attribute name="productFields" type="String[]" default="Name,He US Rating,Genre,Franchise,Tag" description="fields for product search"/>
+    <aura:attribute name="selectedField" type="string" default="Name" description="used for storing field name"/>
+    <aura:attribute name="selectedOperation" type="string" default="Add"  description="used for storing selected operation"/>
+    <aura:attribute name="tagFieldLabel" type="string" default="Add Tags"  description="for displaying field label"/>
+    <aura:attribute name="operationList" type="String[]" default="Add,Remove,Update"  description="used for storing operation list"/>
+    <aura:attribute name="showEixstingTagInput" type="boolean" default="false" description="for displaying input field for existing tags"/>
+    <aura:attribute name="showConfirmationPopup" type="boolean" default="false" description="for confirmation dialog box in case of remove operation"/>
+    <aura:attribute name="confirmationMessage" type="string" default="Are you sure you want to remove tags from the selected records?" description="for confirmation dialog box in case of remove operation"/>
+    <aura:attribute name="selectedRow" type="String" default="none"/>
+    <aura:attribute name="assending" type="Boolean" default="false"/>
+    <aura:attribute name="selectedRowRecords" type="String" default="none"/>
+    <aura:attribute name="assendingSelectedRecords" type="Boolean" default="false"/>
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}" />
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}" /> 
+    
+    
+    <aura:if isTrue="{!v.isCodeError}">
+        <ui:message title="Error" severity="error" closable="false">        
+            {!v.CodeError}   
+        </ui:message>
+    </aura:if>
+    
+    <div class="slds-page-header">
+        <div class="slds-text-heading--medium slds-m-bottom--small slds-text-title_caps" style="font-weight:bold;">Bulk Tag Updates</div>
+        
+        <!--div for selecting object-->
+        <div class="slds-form--inline slds-m-bottom--small">
+            <div class="slds-form-element ">
+                <label class="slds-form-element__label slds-text-heading--small" for="search">Select Object:</label>
+            </div>
+            <div class="slds-form-element__control slds-p-left_xx-large" style="width:271px;padding-left: 44px;">
+                <ui:inputSelect aura:id="objId" value="{!v.selectedObject}" updateOn="Change" change="{!c.onSelectObjectChange}">
+                    <aura:iteration items="{!v.objectList}" var="obj" >
+                        <ui:inputSelectOption text="{!obj}" label="{!obj}"/>
+                    </aura:iteration>
+                </ui:inputSelect>
+            </div>
+        </div>
+        
+        <!--div for selecting operation-->
+        <div class="slds-form--inline slds-m-bottom--small">
+            <div class="slds-form-element ">
+                <label class="slds-form-element__label slds-text-heading--small" for="search">Select Operation:</label>
+            </div>
+            <div class="slds-form-element__control slds-p-left_xx-large" style="width:246px;padding-left:19px;">
+                <ui:inputSelect aura:id="operationId" value="{!v.selectedOperation}" updateOn="Change" change="{!c.onSelectOperationChange}">
+                    <aura:iteration items="{!v.operationList}" var="opr" >
+                        <ui:inputSelectOption text="{!opr}" label="{!opr}"/>
+                    </aura:iteration>
+                </ui:inputSelect>
+            </div>
+        </div>
+        
+        <!--div for search text-->
+        <div class="slds-form--inline slds-m-bottom--small">
+            <div class="slds-form-element ">
+                <label class="slds-form-element__label slds-text-heading--small" for="search">Search by: </label>   
+                
+                <div class="{!v.selectedObject == 'Promotion' ? 'slds-show slds-form-element__control' : 'slds-hide'}">
+                    <div class="slds-form-element__control" style="width:271px;padding-left: 80px;">
+                        <ui:inputSelect aura:id="selectPromotionField" updateon="change" change="{!c.onSelectFieldChange}" class="slds-form-element__control" multiple="FALSE">
+                            <aura:iteration items="{!v.promotionFields}" var="promField">
+                                <ui:inputSelectOption text="{!promField}" label="{!promField}"/>                    
+                            </aura:iteration>
+                        </ui:inputSelect>
+                    </div> 
+                </div>
+                
+                <div class="{!v.selectedObject == 'Product' ? 'slds-show slds-form-element__control' : 'slds-hide'}">
+                    <div class="slds-form-element__control" style="width:271px;padding-left: 80px;">
+                        <ui:inputSelect aura:id="selectProdField" updateon="change" change="{!c.onSelectFieldChange}" class="slds-form-element__control" multiple="FALSE">
+                            <aura:iteration items="{!v.productFields}" var="prodField">
+                                <ui:inputSelectOption text="{!prodField}" label="{!prodField}"/>                    
+                            </aura:iteration>
+                        </ui:inputSelect>
+                    </div>
+                </div>
+                
+                <div class="{!v.selectedObject == 'Title' ? 'slds-show slds-form-element__control' : 'slds-hide'}">
+                    <div class="slds-form-element__control" style="width:271px;padding-left: 80px;">
+                        <ui:inputSelect aura:id="selectTitleField" updateon="change" change="{!c.onSelectFieldChange}" class="slds-form-element__control" multiple="FALSE">
+                            <aura:iteration items="{!v.titleFields}" var="titleField">
+                                <ui:inputSelectOption text="{!titleField}" label="{!titleField}"/>                    
+                            </aura:iteration>
+                        </ui:inputSelect>
+                    </div> 
+                </div>
+                
+                
+                <div class="slds-form-element__control" style="padding-left: 10px;">
+                    
+                    <ui:inputText aura:id="searchId" class="slds-input" keyup="{!c.onEnterClickSearch}" updateOn="keyup" value="{!v.searchKeyword}" required="true" placeholder="Type here..."/>
+                </div>
+            </div>
+            <div class="slds-form-element slds-p-left_large">
+                <button aura:id="btnSearchId" type="button" onclick="{!c.Search}" class="slds-button slds-button--brand">Search</button>
+            </div>
+        </div>
+        
+        <!--horizontal border-->
+        <div class="slds-form--inline slds-m-top_medium slds-border_bottom">
+        </div>
+        
+        <!--div for date filter-->
+        <div class="slds-form--inline slds-m-bottom--small slds-m-top_medium">            
+            <!--Filter by date heading-->
+            <div class="slds-form-element ">
+                <label class="slds-form-element__label slds-text-heading--small" style="font-weight:bold;">Filter by Dates</label>
+            </div>
+            
+            <!--div for from date-->
+            <div class="slds-form-element slds-p-left_xx-large">
+                <label class="slds-form-element__label slds-text-heading--small" for="search">From</label>
+            </div>            
+            <div class="slds-form-element__control" >
+                <ui:inputDate aura:id="fromDT" value="{!v.fromDate}" displayDatePicker="true"/>
+            </div>
+            
+            <!--div for to date-->
+            <div class="slds-form-element slds-p-left_large">
+                <label class="slds-form-element__label slds-text-heading--small" for="search">Until</label>
+            </div>            
+            <div class="slds-form-element__control" >
+                <ui:inputDate aura:id="toDT" value="{!v.toDate}" displayDatePicker="true"/>
+            </div>
+            
+            <!--filter button-->
+            <div class="slds-form-element slds-p-left_large" style="padding-left: 32px;">
+                <button aura:id="btnFilterId" type="button" onclick="{!c.Filter}" class="slds-button slds-button--brand">Filter</button>
+            </div>
+        </div>
+    </div>
+    
+    <!--Spinner-->
+    <div class="{!v.showSpinner ? 'slds-spinner_container slds-show' : 'slds-spinner_container slds-hide'}" style="z-index:5">
+        <div class="slds-spinner--brand slds-spinner slds-spinner--large"  role="status">
+            <span class="slds-assistive-text">Loading</span>
+            <div class="slds-spinner__dot-a" ></div>
+            <div class="slds-spinner__dot-b" ></div>
+        </div>
+    </div>  
+   
+    
+    <!--Product Search-->
+    <div class="{!v.isProductSearch ? 'slds-m-around--small slds-show' : 'slds-hide'}">
+        <div class="slds-grid slds-wrap table-wrap">
+            <div class="slds-large-size--6-of-12 table-selected" style="border-right: 1px solid rgb(221, 219, 218);line-height: 2.7;">
+                <div class="slds-is-relative" style="clear:both;overflow:hidden;">
+                    <div class="slds-float_left">
+                        <label class="slds-form-element__label slds-text-heading--small slds-m-top--small" for="search">Results</label>                 
+                        <button class="{!v.numberOfRecord > 0 ? 'slds-button slds-button--neutral slds-m-bottom--xx-small' : 'slds-hide' }" onclick="{!c.selectAll}">Select All</button>         
+                        <button class="{!v.numberOfRecord > 0 ? 'slds-button slds-button--neutral slds-m-bottom--xx-small' : 'slds-hide' }" onclick="{!c.showMore}">Show More</button>                                              
+                    </div>
+                    <div class="slds-float_left">
+                          <span class="slds-badge slds-float--right slds-m-top--small count-badge">{!v.numberOfRecord}/{!v.totalNumberOfRecord} records are available meeting the search criteria</span>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-large-size--6-of-12 table-selected" style="line-height: 2.7;">
+                <div class="slds-is-relative" style="clear:both;overflow:hidden;">
+                    <div class="slds-float_left">
+                        <label class="slds-form-element__label slds-text-heading--small slds-m-top--small" for="search">Selected</label>  
+                        <button class="{!v.selectedRecordCount > 0 ? 'slds-button slds-button--neutral slds-m-bottom--xx-small' : 'slds-hide' }" onclick="{!c.removeAll}">Remove All</button>                
+                    </div>
+                    <div class="slds-float_left">
+                        <span class="slds-badge slds-float--right slds-m-top--small count-badge">{!v.selectedRecordCount} records selected</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="slds-grid slds-wrap slds-grid--pull-padded">  
+            <div id="divScroll1" style="height:14rem;" class="slds-theme_default slds-scrollable slds-large-size--6-of-12 slds-border--left slds-border--right slds-border--top slds-border--bottom ">
+                
+                <table id="tblSearchProduct" class="slds-table slds-table--bordered slds-table--cell-buffer">
+                    
+                    <thead id="theadScroll1" >
+                        <tr  class="slds-text-title--caps" >
+                            <th scope="col" style="z-index: 4;">
+                                <div class="slds-truncate" title="Action">Action</div>
+                            </th>
+                            <th scope="col" style="z-index: 3;">
+                                <span onclick="{!c.sort}" id="Name">
+                                    <div class="slds-truncate" title="Product Name">Product Name
+                                        <span aura:id="Name" class="slds-hide">
+                                            <aura:if isTrue="{!v.assending}">
+                                                <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                <aura:set attribute="else">
+                                                    <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                </aura:set>
+                                            </aura:if> 
+                                        </span>
+                                    </div>
+                                </span>
+                            </th>
+                            <th scope="col" style="z-index: 3;">
+                                <span onclick="{!c.sort}" id="Tags__c">
+                                    <div class="slds-truncate" title="Tags">Tags
+                                        <span aura:id="Tags__c" class="slds-hide">
+                                            <aura:if isTrue="{!v.assending}">
+                                                <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                <aura:set attribute="else">
+                                                    <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                </aura:set>
+                                            </aura:if> 
+                                        </span>
+                                    </div>
+                                </span>
+                            </th>
+                            <th scope="col" style="z-index: 3;">
+                                <span onclick="{!c.sort}" id="HE_US_Rating__c">
+                                    <div class="slds-truncate" title="HE US Rating">HE US Rating
+                                        <span aura:id="HE_US_Rating__c" class="slds-hide">
+                                            <aura:if isTrue="{!v.assending}">
+                                                <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                <aura:set attribute="else">
+                                                    <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                </aura:set>
+                                            </aura:if> 
+                                        </span>
+                                    </div>
+                                </span>
+                            </th>
+                            <th scope="col" style="z-index: 3;">
+                                <span onclick="{!c.sort}" id="HE_Primary_Genre__c">
+                                    <div class="slds-truncate" title="HE Primary Genre">HE Primary Genre
+                                        <span aura:id="HE_Primary_Genre__c" class="slds-hide">
+                                            <aura:if isTrue="{!v.assending}">
+                                                <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                <aura:set attribute="else">
+                                                    <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                </aura:set>
+                                            </aura:if> 
+                                        </span>
+                                    </div>
+                                </span>
+                            </th> 
+                            <th scope="col" style="z-index: 3;">
+                                <span onclick="{!c.sort}" id="HE_Secondary_Genre__c">
+                                    <div class="slds-truncate" title="HE Secondary Genre">HE Secondary Genre
+                                        <span aura:id="HE_Secondary_Genre__c" class="slds-hide">
+                                            <aura:if isTrue="{!v.assending}">
+                                                <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                <aura:set attribute="else">
+                                                    <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                </aura:set>
+                                            </aura:if> 
+                                        </span>
+                                    </div>
+                                </span>
+                            </th>
+                            <th scope="col" style="z-index: 3;">
+                                <span onclick="{!c.sort}" id="HE_Tertiary_Genre__c">
+                                    <div class="slds-truncate" title="HE Tertiary Genre">HE Tertiary Genre
+                                        <span aura:id="HE_Tertiary_Genre__c" class="slds-hide">
+                                            <aura:if isTrue="{!v.assending}">
+                                                <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                <aura:set attribute="else">
+                                                    <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                </aura:set>
+                                            </aura:if> 
+                                        </span>
+                                    </div>
+                                </span>
+                            </th>
+                            <th scope="col" style="z-index: 3;">
+                                <span onclick="{!c.sort}" id="Franchise__c">
+                                    <div class="slds-truncate" title="Franchise">Franchise
+                                        <span aura:id="Franchise__c" class="slds-hide">
+                                            <aura:if isTrue="{!v.assending}">
+                                                <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                <aura:set attribute="else">
+                                                    <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                </aura:set>
+                                            </aura:if> 
+                                        </span>
+                                    </div>
+                                </span>
+                            </th>
+                        </tr>
+                    </thead>  
+                    
+                    <tbody id="tbodyScroll1">
+                        
+                        <!--### display all records of searchResult attribute by aura:iteration ###-->
+                        
+                        <aura:iteration items="{!v.searchResult}" var="rec" indexVar="resultIndex">
+                            <tr>
+                                <td style="z-index:2;">
+                                    <div>
+                                        <button class="slds-button slds-text-link" data-index="{!resultIndex}" onclick="{!c.addSelectedRecord}">Add</button> 
+                                    </div>
+                                </td>
+                                <td style="z-index:2;">
+                                    <div class="slds-truncate" style="width:160px;" title="{!rec.Name}"><ui:outputText value="{!rec.Name}" /></div>
+                                </td>
+                                <td style="z-index:1;">
+                                    <div class="slds-truncate" style="width:160px;" title="{!rec.Tags__c}"><ui:outputText value="{!rec.Tags__c}" /></div>
+                                </td>                                
+                                <td style="z-index:1;">
+                                    <div class="slds-truncate" title="{!rec.HE_US_Rating__c}"><ui:outputText value="{!rec.HE_US_Rating__c}" /></div>
+                                </td>
+                                <td style="z-index:1;">
+                                    <div class="slds-truncate" title="{!rec.HE_Primary_Genre__c}"><ui:outputText value="{!rec.HE_Primary_Genre__c}" /></div>
+                                </td>
+                                <td style="z-index:1;">
+                                    <div class="slds-truncate" title="{!rec.HE_Secondary_Genre__c}"><ui:outputText value="{!rec.HE_Secondary_Genre__c}" /></div>
+                                </td>
+                                <td style="z-index:1;">
+                                    <div class="slds-truncate" title="{!rec.HE_Tertiary_Genre__c}"><ui:outputText value="{!rec.HE_Tertiary_Genre__c}" /></div>
+                                </td>
+                                <td >
+                                    <div class="slds-truncate" title="{!rec.Franchise__c}"><ui:outputText value="{!rec.Franchise__c}" /></div>
+                                </td>
+                            </tr>
+                        </aura:iteration>    
+                        <aura:if isTrue="{!v.Message}">
+                            <div class="slds-text-color--error"> No Result Found...</div>
+                        </aura:if>
+                    </tbody>
+                    
+                </table>
+            </div>
+            
+            <div  style="height:14rem;" class="slds-theme_default slds-scrollable slds-large-size--6-of-12 slds-border--right slds-border--top slds-border--bottom">  
+                
+                <table id="tblSelectedProduct" class="slds-table slds-table--bordered slds-table--cell-buffer">
+                    <thead>
+                        <tr class="slds-text-title--caps">
+                            <th scope="col" style="z-index:4;">
+                                <div class="slds-truncate" title="Action">Action</div>
+                            </th>
+                            <th scope="col" style="z-index: 3;">
+                                <span onclick="{!c.selectedSort}" id="selectedName">
+                                    <div class="slds-truncate" title="Product Name">Product Name
+                                        <span aura:id="selectedName" class="slds-hide">
+                                            <aura:if isTrue="{!v.assendingSelectedRecords}">
+                                                <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                <aura:set attribute="else">
+                                                    <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                </aura:set>
+                                            </aura:if> 
+                                        </span>
+                                    </div>
+                                </span>
+                            </th>
+                            <th scope="col" style="z-index: 3;">
+                                <span onclick="{!c.selectedSort}" id="selectedTags__c">
+                                    <div class="slds-truncate" title="Tags">Tags
+                                        <span aura:id="selectedTags__c" class="slds-hide">
+                                            <aura:if isTrue="{!v.assendingSelectedRecords}">
+                                                <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                <aura:set attribute="else">
+                                                    <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                </aura:set>
+                                            </aura:if> 
+                                        </span>
+                                    </div>
+                                </span>
+                            </th>
+                            <th scope="col" style="z-index: 3;">
+                                <span onclick="{!c.selectedSort}" id="selectedHE_US_Rating__c">
+                                    <div class="slds-truncate" title="HE US Rating">HE US Rating
+                                        <span aura:id="selectedHE_US_Rating__c" class="slds-hide">
+                                            <aura:if isTrue="{!v.assendingSelectedRecords}">
+                                                <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                <aura:set attribute="else">
+                                                    <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                </aura:set>
+                                            </aura:if> 
+                                        </span>
+                                    </div>
+                                </span>
+                            </th>
+                            <th scope="col" style="z-index: 3;">
+                                <span onclick="{!c.selectedSort}" id="selectedHE_Primary_Genre__c">
+                                    <div class="slds-truncate" title="HE Primary Genre">HE Primary Genre
+                                        <span aura:id="selectedHE_Primary_Genre__c" class="slds-hide">
+                                            <aura:if isTrue="{!v.assendingSelectedRecords}">
+                                                <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                <aura:set attribute="else">
+                                                    <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                </aura:set>
+                                            </aura:if> 
+                                        </span>
+                                    </div>
+                                </span>
+                            </th> 
+                            <th scope="col" style="z-index: 3;">
+                                <span onclick="{!c.selectedSort}" id="selectedHE_Secondary_Genre__c">
+                                    <div class="slds-truncate" title="HE Secondary Genre">HE Secondary Genre
+                                        <span aura:id="selectedHE_Secondary_Genre__c" class="slds-hide">
+                                            <aura:if isTrue="{!v.assendingSelectedRecords}">
+                                                <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                <aura:set attribute="else">
+                                                    <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                </aura:set>
+                                            </aura:if> 
+                                        </span>
+                                    </div>
+                                </span>
+                            </th>
+                            <th scope="col" style="z-index: 3;">
+                                <span onclick="{!c.selectedSort}" id="selectedHE_Tertiary_Genre__c">
+                                    <div class="slds-truncate" title="HE Tertiary Genre">HE Tertiary Genre
+                                        <span aura:id="selectedHE_Tertiary_Genre__c" class="slds-hide">
+                                            <aura:if isTrue="{!v.assendingSelectedRecords}">
+                                                <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                <aura:set attribute="else">
+                                                    <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                </aura:set>
+                                            </aura:if> 
+                                        </span>
+                                    </div>
+                                </span>
+                            </th>
+                            <th scope="col" style="z-index: 3;">
+                                <span onclick="{!c.selectedSort}" id="selectedFranchise__c">
+                                    <div class="slds-truncate" title="Franchise">Franchise
+                                        <span aura:id="selectedFranchise__c" class="slds-hide">
+                                            <aura:if isTrue="{!v.assendingSelectedRecords}">
+                                                <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                <aura:set attribute="else">
+                                                    <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                </aura:set>
+                                            </aura:if> 
+                                        </span>
+                                    </div>
+                                </span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>                       
+                        <!--### display all records of searchResult attribute by aura:iteration ###-->
+                        <aura:iteration items="{!v.selectedResultList}" var="rec" indexVar="selectedIndex">
+                            <tr>
+                                <td style="z-index:2;">
+                                    <div>
+                                        <button class="slds-button slds-text-link" data-index="{!selectedIndex}" onclick="{!c.removeSelectedRecord}">Remove</button>                                    
+                                    </div>
+                                </td>
+                                <td style="z-index:2;">
+                                    <div class="slds-truncate" style="width:160px;" title="{!rec.Name}"><ui:outputText value="{!rec.Name}" /></div>                                    
+                                </td>
+                                <td style="z-index:1;">
+                                    <div class="slds-truncate" style="width:160px;" title="{!rec.Tags__c}"><ui:outputText value="{!rec.Tags__c}" /></div>
+                                </td>
+                                <td style="z-index:1;">
+                                    <div class="slds-truncate" title="{!rec.HE_US_Rating__c}"><ui:outputText value="{!rec.HE_US_Rating__c}" /></div>
+                                </td >
+                                <td style="z-index:1;">
+                                    <div class="slds-truncate" title="{!rec.HE_Primary_Genre__c}"><ui:outputText value="{!rec.HE_Primary_Genre__c}" /></div>
+                                </td>
+                                <td style="z-index:1;">
+                                    <div class="slds-truncate" title="{!rec.HE_Secondary_Genre__c}"><ui:outputText value="{!rec.HE_Secondary_Genre__c}" /></div>
+                                </td>
+                                <td style="z-index:1;">
+                                    <div class="slds-truncate" title="{!rec.HE_Tertiary_Genre__c}"><ui:outputText value="{!rec.HE_Tertiary_Genre__c}" /></div>
+                                </td>
+                                <td style="z-index:1;">
+                                    <div class="slds-truncate" title="{!rec.Franchise__c}"><ui:outputText value="{!rec.Franchise__c}" /></div>
+                                </td>
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table>                
+            </div>   
+        </div>
+    </div>
+    
+    <!--End of product search-->
+    
+    <!--Promotion Search-->
+    <div class="{!v.isPromotionSearch ? 'slds-m-around--small slds-show' : 'slds-hide'}">
+                <div class="slds-grid slds-wrap table-wrap">
+            <div class="slds-large-size--6-of-12 table-selected" style="border-right: 1px solid rgb(221, 219, 218);line-height: 2.7;">
+                <div class="slds-is-relative" style="clear:both;overflow:hidden;">
+                    <div class="slds-float_left">
+                          <label class="slds-form-element__label slds-text-heading--small slds-m-top--small" for="search">Results</label>                   
+                          <button class="{!v.numberOfRecord > 0 ? 'slds-button slds-button--neutral slds-m-bottom--xx-small' : 'slds-hide' }" onclick="{!c.selectAll}">Select All</button>     
+                          <button class="{!v.numberOfRecord > 0 ? 'slds-button slds-button--neutral slds-m-bottom--xx-small' : 'slds-hide' }" onclick="{!c.showMore}">Show More</button>                                                
+                    </div>
+                    <div class="slds-float_left">
+                          <span class="slds-badge slds-float--right slds-m-top--small count-badge">{!v.numberOfRecord}/{!v.totalNumberOfRecord} records are available meeting the search criteria</span>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-large-size--6-of-12 table-selected" style="line-height: 2.7;">
+                <div class="slds-is-relative" style="clear:both;overflow:hidden;">
+                    <div class="slds-float_left">
+                       <label class="slds-form-element__label slds-text-heading--small slds-m-top--small" for="search">Selected</label>  
+                       <button class="{!v.selectedRecordCount > 0 ? 'slds-button slds-button--neutral slds-m-bottom--xx-small' : 'slds-hide' }" onclick="{!c.removeAll}">Remove All</button>                
+                    </div>
+                    <div class="slds-float_left">
+                         <span class="slds-badge slds-float--right slds-m-top--small count-badge">{!v.selectedRecordCount} records selected</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slds-grid slds-wrap slds-grid--pull-padded">
+            <div id="divScroll1" style="height:14rem;" class="slds-theme_default slds-scrollable slds-large-size--6-of-12 slds-border--left slds-border--right slds-border--top slds-border--bottom ">
+                
+                <table id="tblSearchPromotion" class="slds-table slds-table--bordered slds-table--cell-buffer">
+                    
+                    <thead id="theadScroll1" >
+                        <tr  class="slds-text-title--caps" >
+                            <th scope="col" style="z-index: 4;">
+                                <div class="slds-truncate" title="Action">Action</div>
+                            </th>
+                            <th scope="col" style="z-index: 3;">
+                                <span onclick="{!c.promotionSort}" id="PromotionName">
+                                    <div class="slds-truncate" title="Promotion Name">Promotion Name
+                                        <span aura:id="PromotionName" class="slds-hide">
+                                            <aura:if isTrue="{!v.assending}">
+                                                <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                <aura:set attribute="else">
+                                                    <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                </aura:set>
+                                            </aura:if> 
+                                        </span>
+                                    </div>
+                                </span>
+                            </th>
+                            <th scope="col" style="z-index: 3;">
+                                <span onclick="{!c.promotionSort}" id="PromotionTags__c">
+                                    <div class="slds-truncate" title="Tags">Tags
+                                        <span aura:id="PromotionTags__c" class="slds-hide">
+                                            <aura:if isTrue="{!v.assending}">
+                                                <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                <aura:set attribute="else">
+                                                    <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                </aura:set>
+                                            </aura:if> 
+                                        </span>
+                                    </div>
+                                </span>
+                            </th>
+                        </tr>
+                    </thead>  
+                    
+                    <tbody id="tbodyScroll1">
+                        
+                        <!--### display all records of searchResult attribute by aura:iteration ###-->
+                        
+                        <aura:iteration items="{!v.searchResult}" var="rec" indexVar="resultIndex">
+                            <tr>
+                                <td style="z-index:2;">
+                                    <div>
+                                        <button class="slds-button slds-text-link" data-index="{!resultIndex}" onclick="{!c.addSelectedRecord}">Add</button> 
+                                    </div>
+                                </td>
+                                <td style="z-index:2;">
+                                    <div class="slds-truncate"  title="{!rec.Name}"><ui:outputText value="{!rec.Name}" /></div>
+                                </td>
+                                <td style="z-index:1;">
+                                    <div class="slds-truncate"  title="{!rec.Tags__c}"><ui:outputText value="{!rec.Tags__c}" /></div>
+                                </td>
+                            </tr>
+                        </aura:iteration>    
+                        <aura:if isTrue="{!v.Message}">
+                            <div class="slds-text-color--error"> No Result Found...</div>
+                        </aura:if>
+                    </tbody>
+                    
+                </table>
+            </div>
+            
+            <div  style="height:14rem;" class="slds-theme_default slds-scrollable slds-large-size--6-of-12 slds-border--right slds-border--top slds-border--bottom">  
+                
+                <table id="tblSelectedPromotion" class="slds-table slds-table--bordered slds-table--cell-buffer">
+                    <thead>
+                        <tr class="slds-text-title--caps">
+                            <th scope="col" style="z-index:4;">
+                                <div class="slds-truncate" title="Action">Action</div>
+                            </th>
+                            <th scope="col" style="z-index: 3;">
+                                <span onclick="{!c.selectedPromotionSort}" id="selectedpromotionName">
+                                    <div class="slds-truncate" title="Promotion Name">Promotion Name
+                                        <span aura:id="selectedpromotionName" class="slds-hide">
+                                            <aura:if isTrue="{!v.assendingSelectedRecords}">
+                                                <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                <aura:set attribute="else">
+                                                    <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                </aura:set>
+                                            </aura:if> 
+                                        </span>
+                                    </div>
+                                </span>
+                            </th>
+                            <th scope="col" style="z-index: 3;">
+                                <span onclick="{!c.selectedPromotionSort}" id="selectedpromotionTags__c">
+                                    <div class="slds-truncate" title="Tags">Tags
+                                        <span aura:id="selectedpromotionTags__c" class="slds-hide">
+                                            <aura:if isTrue="{!v.assendingSelectedRecords}">
+                                                <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                <aura:set attribute="else">
+                                                    <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                </aura:set>
+                                            </aura:if> 
+                                        </span>
+                                    </div>
+                                </span>
+                            </th>                           
+                        </tr>
+                    </thead>
+                    <tbody>                       
+                        <!--### display all records of searchResult attribute by aura:iteration ###-->
+                        <aura:iteration items="{!v.selectedResultList}" var="rec" indexVar="selectedIndex">
+                            <tr>
+                                <td style="z-index:2;">
+                                    <div>
+                                        <button class="slds-button slds-text-link" data-index="{!selectedIndex}" onclick="{!c.removeSelectedRecord}">Remove</button>                                    
+                                    </div>
+                                </td>
+                                <td style="z-index:2;">
+                                    <div class="slds-truncate"  title="{!rec.Name}"><ui:outputText value="{!rec.Name}" /></div>                                    
+                                </td>
+                                <td style="z-index:1;">
+                                    <div class="slds-truncate"  title="{!rec.Tags__c}"><ui:outputText value="{!rec.Tags__c}" /></div>
+                                </td>
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table>                
+            </div>   
+        </div>
+    </div>    
+    <!--End of Promotion search-->
+    
+    <!--div for tag input-->
+    <div class="slds-form--inline slds-clearfix slds-theme_default" style="border-radius:2px;">  
+        <!--Existing tags-->
+        <aura:if isTrue="{!v.showEixstingTagInput}">
+            <div class="slds-float--left slds-m-around--small" style="padding-left:400px;">
+                <div class="slds-form-element ">
+                    <label class="slds-form-element__label slds-text-heading--small" style="font-weight:bold;">Existing Tags
+                        <i><p class="slds-text-body_small">Separate tags by commas</p></i>
+                    </label>
+                </div>
+                
+                <div class="slds-form-element__control" style="width:500px;">
+                    <ui:inputTextArea maxlength="255" aura:id="inputTags" value="{!v.userInputExistingTags}" rows="5" placeholder="Type here...." disabled="{!v.selectedRecordCount > 0 ? false : true }"/>
+                </div>
+            </div>       
+        </aura:if>
+        
+        
+        <!--New Tags-->
+        <div class="slds-float--right slds-m-around--small">
+            <div class="slds-form-element ">
+                <label class="slds-form-element__label slds-text-heading--small" style="font-weight:bold;">{!v.tagFieldLabel}
+                    <i><p class="slds-text-body_small">Separate tags by commas</p></i>
+                </label>
+            </div>
+            
+            <div class="slds-form-element__control" style="width:500px;">
+                <ui:inputTextArea maxlength="255" aura:id="inputTags" value="{!v.userInputTags}" rows="5" placeholder="Type here...." disabled="{!v.selectedRecordCount > 0 ? false : true }"/>
+            </div>
+        </div>        
+    </div>
+    
+    <!--Modal popup for remove operation-->
+    <aura:if isTrue="{!v.showConfirmationPopup}">
+        <div class="demo-only" style="height: 640px;">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">                    
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Confirmation Message</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                       <p>{!v.confirmationMessage}</p>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <button class="slds-button slds-button_neutral" onclick="{!c.hidePopup}">Cancel</button>
+                        <button class="slds-button slds-button_brand" onclick="{!c.removeTags}">Delete</button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </aura:if>
+    
+    <!-- blank div to add space. this is to prevent issues with footer in different screen resolution-->
+    <div id="divBlank" style="height:100px;" class="slds-large-size--12-of-12">
+    </div>
+    
+    <!--footer to display button so that they stick to the end of the page-->
+    <div class="slds-docked-form-footer" style="height:50px;">
+        <div class="slds-large-size--10-of-12  slds-p-bottom_x-small slds-p-left_small">
+        </div>
+        
+        <div class="slds-large-size--2-of-12  slds-p-bottom_x-small slds-p-left_small">    
+            <button type="button" class="slds-button slds-button--neutral" onclick="{!c.cancel}">Cancel</button>   
+            <button type="button" onclick="{!c.update}" class="{!v.selectedRecordCount > 0 ? 'slds-button slds-button--brand' : 'slds-hide' }">Update</button>
+        </div>
+    </div> 
+</aura:component>

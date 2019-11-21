@@ -1,0 +1,38 @@
+<apex:page standardStylesheets="true" extensions="TMVersionExt" standardController="Release__c" sidebar="false" showHeader="false">
+    <apex:form >
+<apex:outputPanel id="displayPannel">
+    <!-- Trigger/Open The Modal -->
+<apex:outputPanel id="link" rendered="{!if(isBlank(release.TM_Version__c),true,false)}">
+
+<a href="/apex/ReleaseTversion?id={!Id}"
+   onclick="window.open(this.href,'_self',
+                                   'toolbar=no,
+                                    location=no,
+                                    status=no,
+                                    menubar=no,
+                                    scrollbars=yes,
+                                    resizable=yes,
+                                    width=400,
+                                    height=400');
+ return false;">Add TM version</a>
+</apex:outputPanel>
+
+<apex:outputPanel id="namedisp" rendered="{!if(isBlank(release.TM_Version__c),false,true)}">
+  {!release.TM_Version__r.name} <a href="/apex/ReleaseTversion?id={!Id}"
+   onclick="window.open(this.href,'_self',
+                                   'toolbar=no,
+                                    location=no,
+                                    status=no,
+                                    menubar=no,
+                                    scrollbars=yes,
+                                    resizable=yes,
+                                    width=400,
+                                    height=400');
+ return false;">Change TM version</a> 
+
+</apex:outputPanel>
+
+</apex:outputPanel>
+</apex:form>
+
+</apex:page>

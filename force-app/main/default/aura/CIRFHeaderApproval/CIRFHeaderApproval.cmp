@@ -1,0 +1,24 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global" controller="CIRFHeaderApprovalController" extends="c:Base">
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="errorMessages" type="String" />
+    <aura:handler name="init" value="this" action="{!c.doInit}"/> 
+
+    <aura:attribute name="Spinner" type="boolean" default="false"/>
+    <aura:attribute name="showButtons" type="boolean" default="false"/>
+    
+    <aura:if isTrue="{!v.showButtons}">
+        <div class="slds-align_absolute-center slds-text-heading_large">
+            <p>Are You Sure?</p>
+        </div><br/>
+        <div class="slds-align_absolute-center">
+            <lightning:button name="confirm" class="slds-button slds-button_outline-brand" label="Confirm" onclick="{!c.validateRecord}" />
+            <lightning:button name="cancel" class="slds-button slds-button_brand" label="Cancel" onclick="{!c.closePopup}" />
+        </div>
+    </aura:if>
+    
+    <aura:if isTrue="{!v.Spinner}">
+        <span id="Waitspinner" style="display:block">
+            <ui:spinner />
+        </span>
+    </aura:if>
+</aura:component>

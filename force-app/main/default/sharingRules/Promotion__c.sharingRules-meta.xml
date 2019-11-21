@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>DGF_Account_Promotion_Edit_Share</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>DFOR-939
+Account Users have access to edit all visible Account Promotions</description>
+        <label>DGF Account Promotion Edit Share</label>
+        <sharedTo>
+            <group>DGF_Account</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Account Promotion</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Visibility__c</field>
+            <operation>equals</operation>
+            <value>Visible</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Promotion</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>DFOR-397</description>
+        <label>Promotion Visibility Share to Brand</label>
+        <sharedTo>
+            <role>UPHE_Brand</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Visibility__c</field>
+            <operation>equals</operation>
+            <value>Visible</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Promotion_Visibility_Share_to_Digital</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>DFOR-397</description>
+        <label>Promotion Visibility Share to Digital</label>
+        <sharedTo>
+            <role>UPHE_Digital</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Visibility__c</field>
+            <operation>equals</operation>
+            <value>Visible</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingOwnerRules>
+        <fullName>Promotion_Product_Team_Share</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>DFOR-397</description>
+        <label>Promotion Product Team Share</label>
+        <sharedTo>
+            <group>DGF_Product</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>DGF_Product</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

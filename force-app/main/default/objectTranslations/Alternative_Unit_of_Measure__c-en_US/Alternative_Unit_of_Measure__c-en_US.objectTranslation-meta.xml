@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Alternative Unit of Measure</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Alternative Units of Measure</value>
+    </caseValues>
+    <layouts>
+        <layout>Alternative Unit of Measure Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- UPC --></label>
+            <section>UPC</section>
+        </sections>
+        <sections>
+            <label><!-- Unit of Measure Information --></label>
+            <section>Unit of Measure Information</section>
+        </sections>
+    </layouts>
+    <startsWith>Vowel</startsWith>
+</CustomObjectTranslation>

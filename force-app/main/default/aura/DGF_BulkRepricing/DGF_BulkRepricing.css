@@ -1,0 +1,22 @@
+/*.THIS .filter-table .slds-table{  
+       background-color: rgb(250, 250, 249);
+}
+.THIS .filter-table td{  
+       background-color:#fff;
+}
+.THIS .filter-table .slds-table:not(.slds-no-row-hover) tbody tr:hover>td{  
+       background-color:#fff;
+}*/
+.THIS .count-badge{
+  margin-left: 0.5rem;
+}
+.THIS .table-selected{
+    padding: 0.5rem 1rem;
+    background-color: rgb(250, 250, 249); 
+}
+.THIS .table-wrap{
+    margin: 0 -0.75rem
+}
+.THIS .search-table{
+    height:20rem;
+}

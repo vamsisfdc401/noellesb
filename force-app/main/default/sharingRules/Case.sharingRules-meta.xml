@@ -1,2 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata"/>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>Case_Management_Well_Go</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Sharing rule for Well Go users to view cases</description>
+        <label>Case Management - Well Go</label>
+        <sharedTo>
+            <group>Case_Management_Well_Go</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Price Protection</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Studio_Partner_Text__c</field>
+            <operation>equals</operation>
+            <value>Well Go</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Share_Cinedigm_Cases</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Share Cinedigm Cases with members of Group Case Management - Cinedigm</description>
+        <label>Share Cinedigm Cases</label>
+        <sharedTo>
+            <group>Case_Management_Cinedigm</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Price Protection</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Studio_Partner_Text__c</field>
+            <operation>equals</operation>
+            <value>Cinedigm,CEG</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Share_G1200_Cases</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Share all the G1200 cases with the Group Case Management - G1200</description>
+        <label>Share G1200 Cases</label>
+        <sharedTo>
+            <group>Case_Management_G1200</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Price Protection</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Studio_Partner_Text__c</field>
+            <operation>equals</operation>
+            <value>G1200</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Share_PHE_Cases</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Share PHE Cases with members of group Case Management - PHE</description>
+        <label>Share PHE Cases</label>
+        <sharedTo>
+            <group>Case_Management_PHE</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Price Protection</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Studio_Partner_Text__c</field>
+            <operation>equals</operation>
+            <value>PHE</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Share_UPHE_Cases</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Share UPHE Cases with members of Public Group Case Management - UPHE</description>
+        <label>Share UPHE Cases</label>
+        <sharedTo>
+            <group>Case_Management_UPHE</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Price Protection</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Studio_Partner_Text__c</field>
+            <operation>equals</operation>
+            <value>UPHE</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

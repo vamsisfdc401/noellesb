@@ -1,0 +1,64 @@
+<aura:component controller="DGF_BundlePriceController" implements="force:appHostable,force:hasRecordId,flexipage:availableForAllPageTypes,force:lightningQuickAction" access="global">
+<aura:attribute name="pricingWrapper" type="object"/>
+<aura:attribute name="successResponse" type="String"/>
+<aura:attribute name="displayErrorMsg" type="boolean" default = "false"/>
+<aura:attribute name="displaySuccessMsg" type="boolean" default = "false"/>
+<aura:attribute name="displayValidationMsg" type="boolean" default = "false"/>
+ <aura:handler name="init" value="{!this}" action="{!c.loadData}"/>
+ 
+ 	<aura:if isTrue="{!v.displaySuccessMsg}">
+		<ui:message title="Info" severity="confirm" >        
+	    	<aura:unescapedHtml value="{!v.successResponse}" />   
+	    </ui:message>
+    </aura:if>
+    
+    <aura:if isTrue="{!v.displayErrorMsg}">
+		<ui:message title="Info" severity="error" >        
+	    	<aura:unescapedHtml value="{!v.successResponse}" />   
+	    </ui:message>
+    </aura:if>
+    
+    <aura:if  isTrue="{! (v.displayValidationMsg)}">    
+	    <table class="slds-table slds-table--bordered slds-table--cell-buffer">
+	      <thead>
+	        <tr class="slds-text-title--caps">
+	          <th scope="col">
+	            <div class="slds-truncate" title="Name">Name</div>
+	          </th>
+	          <th scope="col">
+	            <div class="slds-truncate" title="Price">Bundle Price</div>
+	          </th>
+	          <th scope="col">
+	            <div class="slds-truncate" title="Validation Status">Validation Status</div>
+	          </th>
+	          <!--  
+	          <th scope="col">
+	            <div class="slds-truncate" title="Validation Notes">Validation Notes</div>
+	          </th>-->
+	        </tr>
+	      </thead>
+	      <!--table body start, 
+	        Iterate contact list as a <tr>
+	        -->
+	      <tbody>
+	        <aura:iteration items="{!v.pricingWrapper}" var="pricingList">
+	          <tr>
+	            <th scope="row">
+	              <div class="slds-truncate" title="{!pricingList.name}">{!pricingList.name}</div>
+	            </th>
+	            <th scope="row">
+	              <div class="slds-truncate" title="{!pricingList.price}">{!pricingList.price}</div>
+	            </th>
+	            <!-- 
+	            <th scope="row">
+	              <div class="slds-truncate" title="{!pricingList.validationStatus}">{!pricingList.validationStatus}</div>
+	            </th> -->
+	            <th scope="row" style="{!if(pricingList.validationNotes != null,'color:red;font-weight: bold', 'color:black')}">
+	               <div class="slds-truncate" title="{!pricingList.validationNotes}">{!pricingList.validationNotes}</div>
+	            </th>
+	          </tr>
+	        </aura:iteration>
+	      </tbody>
+	    </table>
+    </aura:if>
+</aura:component>

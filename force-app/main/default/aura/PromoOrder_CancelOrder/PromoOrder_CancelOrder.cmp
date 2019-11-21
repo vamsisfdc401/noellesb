@@ -1,0 +1,15 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global" controller="PromoOrder_CancelOrderByAdmin" extends="c:Base">
+    
+    <aura:attribute name="recordId" type="Id" default="a3H1D0000000E15UAE"/>
+    <aura:attribute name="IsPromoAdmin" type="Boolean" default="false"/>
+    <aura:attribute name="OrderStatus" type="String" default="Draft"/>
+    <aura:handler name="init" value="this" action="{!c.doInit}"/>
+    
+    <lightning:card title="Are you sure you want to cancel this Order?">
+        <aura:set attribute="footer">
+            <lightning:button onclick="{!c.accept}" label="Yes"/>
+            <lightning:button onclick="{!c.cancel}" label="No" variant="Brand"/>
+        </aura:set>
+    </lightning:card>
+
+</aura:component>

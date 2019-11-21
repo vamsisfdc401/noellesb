@@ -1,0 +1,19 @@
+<!--*****************************************************************************************
+Component Name: DGF_ConfirmRightsComponent
+Purpose: for validating rights
+******************************************************************************************
+Version         DateModified         ModifiedBy               Change
+1.0             30/06/2017           Mohit                    Initial Development
+******************************************************************************************-->
+<aura:component implements="force:lightningQuickActionWithoutHeader,force:hasRecordID" controller="DGF_ConfirmRightsController">
+    <aura:attribute name="recordId" type="Id"/> 
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>  
+    <aura:attribute name="CodeError" type="string"  description="use for display no record found message"/>
+    <aura:attribute name="isCodeError" type="boolean" default="false" description="use for display no record found message"/>
+    
+    <aura:if isTrue="{!v.isCodeError}">
+        <ui:message title="Error" severity="error" closable="false">        
+            {!v.CodeError}   
+        </ui:message>
+    </aura:if>
+</aura:component>

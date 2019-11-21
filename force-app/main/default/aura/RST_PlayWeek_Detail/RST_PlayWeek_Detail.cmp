@@ -1,0 +1,159 @@
+<aura:component>
+    <aura:attribute name="PlayWeek" type="Object" />
+    
+    <aura:attribute name="useToday" type="Date" />
+    <aura:attribute name="runningTotal" type="Decimal" />
+    <aura:attribute name="start_WKND_BO" type="Decimal" />
+    <aura:attribute name="start_WEEK_BO" type="Decimal" />
+    
+    <aura:attribute name="USE_BO_CALC" type="Boolean" default="true" access="global"/>
+    <aura:attribute name="processing" type="boolean" default="false"/>
+    <aura:attribute name="current_value" type="string"/>
+    
+    
+    <aura:attribute name="showHeader" type="boolean" default="false" />
+    <aura:attribute name="lockTitle" type="boolean" default="false" />    
+    <aura:attribute name="initComplete" type="boolean" default="false" />
+    <aura:attribute name="showChild" type="boolean" default="false" />
+    
+    
+    <aura:method name="updateChild" action="{!c.childUpdated}"> 
+        <aura:attribute name="wknd_bo" type="Decimal"/> 
+        <aura:attribute name="week_bo" type="Decimal"/> 
+        <aura:attribute name="use_bo_calc" type="Boolean"/> 
+    </aura:method>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <aura:handler name="change" value="{!v.PlayWeek}" action="{!c.playWeekUpdated}"/>
+    
+    <aura:if isTrue="{!v.showHeader}">
+        <div class="pw_header pw_grid">
+            
+            <div>Play Week #</div>
+            <div>Week Of</div>
+            <div>Weekend BO</div>
+            <div>Weekend BO Drop %</div>
+            <div>Mid-Week BO</div>
+            <div>Mid-Week BO Drop %</div>
+            <div>Total Week BO</div>
+            <div>Total Week BO Drop %</div>
+            <div>Total Cumulative BO</div>
+            <div>Last Edited By</div>
+            
+        </div>
+    </aura:if>
+    
+    
+    <div class="{!'pw_grid' + if(v.lockTitle, ' locked', '') + if(v.PlayWeek.pw.Source__c == 'User', ' user', '')}">
+        <div class="week_num">
+            <!-- PLAY WEEK NUMBER -->
+            {!v.PlayWeek.pw.Play_Week__c}
+        </div>
+            <!-- WEEK DATE -->
+        <div><lightning:formattedDateTime value="{!v.PlayWeek.pw.Week_Date__c}" timeZone="UTC"/></div>
+        <div>
+            <!-- WEEKEND BO -->
+            <lightning:input 
+                             type="number"
+                             class="slds-text-align_right bo"
+                             disabled="{!or(lessthan(v.PlayWeek.pw.Week_Date__c , v.useToday), v.lockTitle)}" 
+                             variant="label-hidden"
+                             onblur="{!c.userUpdatedBO}"
+                             onfocus="{!c.cellFocus}"
+                             step="any"
+                             value="{!v.PlayWeek.pw.Weekend_BO__c}"
+                             />
+        </div>
+        <div>
+            <!-- WEEKEND DECAY -->
+            <lightning:input 
+                             class="{!'decay' + if(lessthan(v.PlayWeek.pw.Play_Week__c, 2), ' slds-hidden', '') }"
+                             disabled="{!or(lessthan(v.PlayWeek.pw.Week_Date__c , v.useToday), v.lockTitle)}" 
+                             onblur="{!c.userUpdatedDecay}"
+                             onfocus="{!c.cellFocus}"
+                             step="any"
+                             type="number" 
+                             value="{!v.PlayWeek.pw.Weekend_Drop__c}" 
+                             variant="label-hidden"
+                             />
+        </div>
+        <div>
+            <!-- MIDWEEK BO -->
+            <lightning:input 
+                             
+                             class="bo"
+                             disabled="{!or(lessthan(v.PlayWeek.pw.Week_Date__c , v.useToday), v.lockTitle)}" 
+                             onblur="{!c.userUpdatedBO}"
+                             onfocus="{!c.cellFocus}"
+                             value="{! v.PlayWeek.pw.Midweek_BO__c }" 
+                             variant="label-hidden" 
+                             step="any"/>
+        </div>
+        <div>
+            <!-- MIDWEEK DECAY -->
+            <lightning:input 
+                             
+                             class="{!'decay' + if(lessthan(v.PlayWeek.pw.Play_Week__c, 2), ' slds-hidden', '') }"
+                             disabled="{!or(lessthan(v.PlayWeek.pw.Week_Date__c , v.useToday), v.lockTitle)}" 
+                             onblur="{!c.userUpdatedDecay}"
+                             onfocus="{!c.cellFocus}"
+                             step="any"
+                             value="{!v.PlayWeek.pw.Midweek_Drop__c}" 
+                             variant="label-hidden"/>
+        </div>
+		
+        <div>
+            <!-- TOTAL BO -->
+            <lightning:formattedNumber 
+                                       value="{!(v.PlayWeek.pw.Midweek_BO__c * 1) + (v.PlayWeek.pw.Weekend_BO__c * 1)}"
+                                       style="currency" 
+                                       currencyCode="USD" 
+                                       minimumFractionDigits="2"
+                                       maximumFractionDigits="2"
+                                       variant="label-hidden" />
+        </div>
+        <div>
+            <!-- TOTAL BO DECAY -->
+            <lightning:formattedNumber 
+                                       value="{! (((v.PlayWeek.pw.Midweek_BO__c * 1) + (v.PlayWeek.pw.Weekend_BO__c * 1)) / ((v.start_WKND_BO * 1) + (v.start_WEEK_BO * 1)) - 1) * 100}" 
+                                       minimumFractionDigits="2" maximumFractionDigits="2" />
+        </div>
+		<div>
+            <!-- CUMULATIVE -->
+            <lightning:formattedNumber value="{!v.PlayWeek.pw.Cumulative__c}" style="currency" currencyCode="USD"
+                                       minimumFractionDigits="2" maximumFractionDigits="2"/> 
+            <!--
+            <lightning:formattedNumber value="{!(v.runningTotal * 1) + (v.PlayWeek.pw.Midweek_BO__c * 1) + (v.PlayWeek.pw.Weekend_BO__c * 1)}" style="currency" currencyCode="USD"
+                                       minimumFractionDigits="2" maximumFractionDigits="2"/>
+			-->
+        </div>
+
+        <div>
+            <!-- LAST MODIFIED BY NAME -->
+            <aura:if isTrue="{!v.PlayWeek.pw.Source__c == 'User'}">
+	            <ui:outputText value="{!v.PlayWeek.pw.LastModifiedBy.Name}" /> <br/>
+                 <aura:set attribute="else">
+                     <ui:outputText value="{!v.PlayWeek.pw.Source__c}"/>
+                </aura:set>
+            </aura:if>
+            <!--
+			<lightning:formattedDateTime value="{!v.PlayWeek.pw.LastModifiedDate}" year="numeric" month="numeric" day="numeric" hour="2-digit"
+                                 minute="2-digit" timeZoneName="short" hour12="true"/>
+			-->
+        </div>
+        
+       
+    </div>
+    
+    <aura:if isTrue="{!v.showChild}">
+        <c:RST_PlayWeek_Detail 
+                               aura:id="child"
+                               lockTitle="{!v.lockTitle}"
+                               PlayWeek="{!v.PlayWeek.child}" 
+                               runningTotal="{!(v.runningTotal * 1) + (v.PlayWeek.pw.Midweek_BO__c * 1) + (v.PlayWeek.pw.Weekend_BO__c * 1)}"
+                               start_WKND_BO = "{!v.PlayWeek.pw.Weekend_BO__c }"
+                               start_WEEK_BO = "{!v.PlayWeek.pw.Midweek_BO__c }" 
+                               /> 
+    </aura:if>
+</aura:component>

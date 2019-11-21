@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Title</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Titles</value>
+    </caseValues>
+    <layouts>
+        <layout>DGF Title Layout</layout>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Summary --></label>
+            <section>Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Synopsis &amp; Cast --></label>
+            <section>Synopsis &amp; Cast</section>
+        </sections>
+        <sections>
+            <label><!-- TV Specific --></label>
+            <section>TV Specific</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>LAQ Title Layout</layout>
+        <sections>
+            <label><!-- Cast and Directors --></label>
+            <section>Cast and Directors</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Further Information - TV Series Only --></label>
+            <section>Further Information - TV Series Only</section>
+        </sections>
+        <sections>
+            <label><!-- Genre and Language --></label>
+            <section>Genre and Language</section>
+        </sections>
+        <sections>
+            <label><!-- Release Date Strategy --></label>
+            <section>Release Date Strategy</section>
+        </sections>
+        <sections>
+            <label><!-- Title Information --></label>
+            <section>Title Information</section>
+        </sections>
+        <sections>
+            <label><!-- UCG Information cd --></label>
+            <section>UCG Information cd</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>LAQ Title Layout - Read Only</layout>
+        <sections>
+            <label><!-- Cast and Directors --></label>
+            <section>Cast and Directors</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Further Information - TV Series Only --></label>
+            <section>Further Information - TV Series Only</section>
+        </sections>
+        <sections>
+            <label><!-- Genre and Language --></label>
+            <section>Genre and Language</section>
+        </sections>
+        <sections>
+            <label><!-- Release Date Strategy --></label>
+            <section>Release Date Strategy</section>
+        </sections>
+        <sections>
+            <label><!-- Title Information --></label>
+            <section>Title Information</section>
+        </sections>
+        <sections>
+            <label><!-- UCG Information cd --></label>
+            <section>UCG Information cd</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>LAQ Title UPHE Layout</layout>
+        <sections>
+            <label><!-- Cast and Directors --></label>
+            <section>Cast and Directors</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Further Information - TV Series Only --></label>
+            <section>Further Information - TV Series Only</section>
+        </sections>
+        <sections>
+            <label><!-- Genre and Language --></label>
+            <section>Genre and Language</section>
+        </sections>
+        <sections>
+            <label><!-- Release Date Strategy --></label>
+            <section>Release Date Strategy</section>
+        </sections>
+        <sections>
+            <label><!-- Title Information --></label>
+            <section>Title Information</section>
+        </sections>
+        <sections>
+            <label><!-- UCG Information cd --></label>
+            <section>UCG Information cd</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Title Admin Layout</layout>
+        <sections>
+            <label><!-- Added to Layout for Demo 1 --></label>
+            <section>Added to Layout for Demo 1</section>
+        </sections>
+        <sections>
+            <label><!-- Added to Layout for Demo 2 --></label>
+            <section>Added to Layout for Demo 2</section>
+        </sections>
+        <sections>
+            <label><!-- Added to Layout for Demo 3 --></label>
+            <section>Added to Layout for Demo 3</section>
+        </sections>
+        <sections>
+            <label><!-- Added to Layout for Demo 4 --></label>
+            <section>Added to Layout for Demo 4</section>
+        </sections>
+        <sections>
+            <label><!-- Added to Layout for Demo 5 --></label>
+            <section>Added to Layout for Demo 5</section>
+        </sections>
+        <sections>
+            <label><!-- Added to Layout for Demo 6 --></label>
+            <section>Added to Layout for Demo 6</section>
+        </sections>
+        <sections>
+            <label><!-- Cast and Directors (UCG) --></label>
+            <section>Cast and Directors (UCG)</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Data Completeness Information  (UCG) --></label>
+            <section>Data Completeness Information  (UCG)</section>
+        </sections>
+        <sections>
+            <label><!-- Further Information (UCG) --></label>
+            <section>Further Information (UCG)</section>
+        </sections>
+        <sections>
+            <label><!-- Further Information - TV Series Only (UCG) --></label>
+            <section>Further Information - TV Series Only (UCG)</section>
+        </sections>
+        <sections>
+            <label><!-- GTM --></label>
+            <section>GTM</section>
+        </sections>
+        <sections>
+            <label><!-- Genre and Language (UCG) --></label>
+            <section>Genre and Language (UCG)</section>
+        </sections>
+        <sections>
+            <label><!-- Home Entertainment --></label>
+            <section>Home Entertainment</section>
+        </sections>
+        <sections>
+            <label><!-- Information (UCG) --></label>
+            <section>Information (UCG)</section>
+        </sections>
+        <sections>
+            <label><!-- Release Date Strategy --></label>
+            <section>Release Date Strategy</section>
+        </sections>
+        <sections>
+            <label><!-- TV --></label>
+            <section>TV</section>
+        </sections>
+        <sections>
+            <label><!-- Title Information (UCG) --></label>
+            <section>Title Information (UCG)</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Title Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- TV --></label>
+            <section>TV</section>
+        </sections>
+        <sections>
+            <label><!-- Title Information --></label>
+            <section>Title Information</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

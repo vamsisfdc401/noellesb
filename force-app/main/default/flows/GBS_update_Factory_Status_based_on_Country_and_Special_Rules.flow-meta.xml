@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <decisions>
+        <name>Is_SpecialRuleAval</name>
+        <label>Is SpecialRuleAval</label>
+        <locationX>304</locationX>
+        <locationY>240</locationY>
+        <defaultConnectorLabel>[Default Outcome]</defaultConnectorLabel>
+        <rules>
+            <name>Country_Exception</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>SpecialRules</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Special_Rules</targetReference>
+            </connector>
+            <label>Country Exception</label>
+        </rules>
+    </decisions>
+    <formulas>
+        <name>FactoryStatus</name>
+        <dataType>String</dataType>
+        <expression>CASE(  {!SpecialRules} ,
+&quot;No Audit Required&quot;,&quot;No Audit Required&quot;,
+&quot;Restricted Country&quot;,&quot;Restricted Country&quot;,
+&quot;Bangladesh Special Rules&quot;,&quot;NBCU Audit Required&quot;,
+&quot;Not Waiver Eligible&quot;, &quot;NBCU Audit Required&quot;,
+&quot;&quot;)</expression>
+    </formulas>
+    <interviewLabel>GBS-update Factory Status based on Country  and Special Rules {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>GBS-update Factory Status based on Country  and Special Rules</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Lookup_Country_exception</name>
+        <label>Lookup Country exception</label>
+        <locationX>307</locationX>
+        <locationY>130</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_SpecialRuleAval</targetReference>
+        </connector>
+        <filters>
+            <field>Country__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Factory_Country</elementReference>
+            </value>
+        </filters>
+        <object>Factory_Country_Exception__c</object>
+        <outputAssignments>
+            <assignToReference>SpecialRules</assignToReference>
+            <field>Special_Rules__c</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Special_Rules</name>
+        <label>Update Special Rules</label>
+        <locationX>302</locationX>
+        <locationY>384</locationY>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>FactoryID</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Factory_Status__c</field>
+            <value>
+                <elementReference>FactoryStatus</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Special_Rules__c</field>
+            <value>
+                <elementReference>SpecialRules</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Factory__c</object>
+    </recordUpdates>
+    <startElementReference>Lookup_Country_exception</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>Factory_Country</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>FactoryID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>SpecialRules</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

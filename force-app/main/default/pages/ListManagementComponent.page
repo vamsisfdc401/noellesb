@@ -1,0 +1,601 @@
+<!--*****************************************************************************************
+Page Name: ListManagementComponent
+Purpose: list view manager to add exisitng materials
+******************************************************************************************
+Version         DateModified         ModifiedBy               Change
+1.0             25/08/2016           Mohit                    Initial Development
+******************************************************************************************-->
+<apex:page controller="ListManagementComponentController">
+
+    <!--<apex:form >-->
+        <apex:pageMessages ></apex:pageMessages>
+        <apex:form >
+            <apex:actionFunction name="accept" action="{!accept}" id="acceptFunction"/>
+            <apex:actionFunction name="submit" action="{!submit}" id="submitFunction"/>
+        </apex:form>
+        <apex:pageBlock id="pgMainDetail" mode="edit" rendered="{!showPageBlock }" title="Mass Approve BOM">
+            
+            <apex:pageBlockSection title="Parent Material Details">
+                <apex:outputField value="{!parentMaterialDetails.Name}"/>
+                <apex:outputField value="{!parentMaterialDetails.Material_Type__c}"/>
+                <apex:outputField value="{!parentMaterialDetails.Item_Type__c}"/>
+                <apex:outputField value="{!parentMaterialDetails.Item_Code__c}"/>
+                <apex:outputField value="{!parentMaterialDetails.Material_Number__c}"/>            
+            </apex:pageBlockSection>
+            
+            <!--<apex:pageBlockSection collapsible="FALSE">             
+                <apex:selectRadio value="{!rdActivityType}">
+                    <apex:selectOption itemLabel="Search Material" itemValue="1">
+                    </apex:selectOption>
+                    <apex:selectOption itemLabel="Search Title" itemValue="2" itemDisabled="{!enableTitleSearch}"/>
+                    <apex:selectOption itemLabel="Search Episodes" itemValue="3" itemDisabled="{!NOT(enableEpisodeSearch)}"/>
+                    <apex:outputLabel rendered="{!enableTitleSearch}"><b>Title searched cannot be used for selected parent material type.</b></apex:outputLabel>-->
+                        <!--<apex:actionSupport event="onclick" reRender="pgMainDetail,opListView" action="{!setActivityType}"/>-->
+                                     
+                <!--</apex:selectRadio>
+            </apex:pageBlockSection>-->
+            
+            <apex:pageBlockSection title="Search Operations" columns="1" collapsible="FALSE">            
+                <!--<apex:outputText ><b>General Search</b>(Material Number/Description,SGENNO, Title)</apex:outputText>
+                <apex:inputText value="{!searchCriteria}"/>
+                <apex:commandButton value="Search" action="{!btnSearch}" tabindex="0" >
+                </apex:commandbutton>
+                
+                <apex:outputText ><b>Material Number(s)</b></apex:outputText>
+                <apex:inputText value="{!manualAddCriterial}"/>
+                <apex:commandButton value="Manual Add" action="{!btnManualAdd}" >
+                </apex:commandbutton>
+                
+                <apex:outputText ><b>Upload CSV File</b></apex:outputText>
+                
+                <apex:inputFile accept=".csv" value="{!csvFileBody}" filename="{!csvAsString}" contentType="{!csvContentType}"></apex:inputFile>
+                <apex:commandButton value="Import CSV" action="{!btnUploadCSV}" >
+                </apex:commandbutton> -->
+                <apex:form >
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:50%;">
+                            <apex:outputText ><b>Search Criteria</b> (enter complete or part of the value to be searched)</apex:outputText>
+                        </td>
+                        
+                        <td style="width:30%;">
+                            <apex:inputText value="{!searchCriteria}"/>
+                        </td>
+                        
+                        <td style="width:20%;">
+                            <apex:commandButton value="Search" action="{!btnSearch}" tabindex="0">
+                            </apex:commandbutton>
+                        </td>
+                    
+                    </tr>                
+                </table> 
+                </apex:form> 
+                <apex:form >
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:50%;">
+                            <apex:outputText ><b>Material Numbers</b> (multiple values separated by comma can be entered.)</apex:outputText>
+                        </td>
+                        
+                        <td style="width:30%;">
+                            <apex:inputText value="{!manualAddCriterial}"/>
+                        </td>
+                        
+                        <td style="width:20%;">
+                            <apex:commandButton value="Manual Add" action="{!btnManualAdd}">
+                            </apex:commandbutton>
+                        </td>
+                    
+                    </tr>                
+                </table> 
+                </apex:form>     
+                
+                <apex:form >
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:50%;">
+                            <apex:outputText ><b>Select File</b> (only CSV file is allowed)</apex:outputText>
+                        </td>
+                        
+                        <td style="width:30%;">
+                            <apex:inputFile accept=".csv" value="{!csvFileBody}" filename="{!csvAsString}" contentType="{!csvContentType}"></apex:inputFile>
+                        </td>
+                        
+                        <td style="width:20%;">
+                            <apex:commandButton value="Import CSV" action="{!btnUploadCSV}">
+                            </apex:commandbutton> 
+                        </td>
+                    
+                    </tr>                
+                </table> 
+                </apex:form> 
+                
+            </apex:pageBlockSection>            
+        </apex:pageBlock>
+        
+        <apex:pageBlock id="pgDetail" mode="edit" rendered="{!matListView }" title="Mass Approve BOM">
+            <!--<apex:form >
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!cancelSelection}" value="Cancel" rendered="{!NOT(matListView)}"/>
+                <apex:commandButton action="{!cancelSelected}" value="Cancel" rendered="{!matListView}"/>
+            </apex:pageBlockButtons>
+            </apex:form>-->
+            <apex:pageBlockSection collapsible="FALSE">                
+                <!--<apex:selectRadio value="{!rdActivityType}" >
+                    <apex:selectOption itemLabel="Search Material" itemValue="1">
+                    </apex:selectOption>
+                </apex:selectRadio>-->
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection title="Search Operations" columns="1" collapsible="FALSE">            
+                <!--<apex:outputText ><b>General Search</b>(Material Number/Description,SGENNO, Title)</apex:outputText>
+                <apex:inputText value="{!searchCriteria}"/>
+                <apex:commandButton value="Search" action="{!btnSearch}">
+                </apex:commandbutton>
+                
+                <apex:outputText ><b>Material Number(s)</b></apex:outputText>
+                <apex:inputText value="{!manualAddCriterial}"/>
+                <apex:commandButton value="Manual Add" action="{!btnManualAdd}">
+                </apex:commandbutton>
+                
+                <apex:outputText ><b>Upload CSV File</b></apex:outputText>
+                
+                <apex:inputFile accept=".csv" value="{!csvFileBody}" filename="{!csvAsString}" contentType="{!csvContentType}"></apex:inputFile>
+                <apex:commandButton value="Import CSV" action="{!btnUploadCSV}">
+                </apex:commandbutton> -->
+                <apex:form >
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:50%;">
+                            <apex:outputText ><b>Search Criteria</b> (enter complete or part of the value to be searched)</apex:outputText>
+                        </td>
+                        
+                        <td style="width:30%;">
+                            <apex:inputText value="{!searchCriteria}"/>
+                        </td>
+                        
+                        <td style="width:20%;">
+                            <apex:commandButton value="Search" action="{!btnSearch}" tabindex="0">
+                            </apex:commandbutton>
+                        </td>
+                    
+                    </tr>                
+                </table> 
+                </apex:form> 
+                <apex:form >
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:50%;">
+                            <apex:outputText ><b>Material Numbers</b> (multiple values separated by comma can be entered.)</apex:outputText>
+                        </td>
+                        
+                        <td style="width:30%;">
+                            <apex:inputText value="{!manualAddCriterial}"/>
+                        </td>
+                        
+                        <td style="width:20%;">
+                            <apex:commandButton value="Manual Add" action="{!btnManualAdd}">
+                            </apex:commandbutton>
+                        </td>
+                    
+                    </tr>                
+                </table> 
+                </apex:form>     
+                
+                <apex:form >
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:50%;">
+                            <apex:outputText ><b>Upload CSV File</b></apex:outputText>
+                        </td>
+                        
+                        <td style="width:30%;">
+                            <apex:inputFile accept=".csv" value="{!csvFileBody}" filename="{!csvAsString}" contentType="{!csvContentType}"></apex:inputFile>
+                        </td>
+                        
+                        <td style="width:20%;">
+                            <apex:commandButton value="Import CSV" action="{!btnUploadCSV}">
+                            </apex:commandbutton> 
+                        </td>
+                    
+                    </tr>                
+                </table> 
+                </apex:form> 
+            </apex:pageBlockSection>            
+        </apex:pageBlock>
+        <apex:form >
+        <apex:pageBlock id="pgListView" mode="edit" rendered="{!AND(showPageBlock,showMaterialSection)}">
+            <!--Page block section for material-->          
+            <apex:pageBlockSection title="Search Results" columns="2">
+                <apex:outputPanel title="Available Materials" >
+                    <apex:outputText ><b>{!resultSize} records found matching the search criteria</b></apex:outputText> <br/>
+                    <apex:outputText rendered="{!IF(resultSize > 0, TRUE, FALSE)}"><b>Showing page {!pageNumber} of {!CEILING(resultSize/pageSize)}</b></apex:outputText>
+                    <apex:variable value="{!0}" var="recordRow"/>
+                    <apex:pageBlockTable value="{!lstMaterialDetails}" var="mt">
+                        <apex:column >
+                            <apex:actionRegion >
+                                <apex:commandLink action="{!setSelectedMaterial}" rerender="pgListView" >                            
+                                    <span style="padding-right:8px;"><apex:image id="AddImage" value="{!$Resource.Add}" width="10" /></span>
+                                    <apex:param value="{!recordRow}" name="mtRowNumber" assignTo="{!mtRowNumber}"/>
+                                    <apex:param value="{!mt.ID}" name="paramID" assignTo="{!paramID}"/>
+                                </apex:commandLink>
+                            </apex:actionRegion>  
+                            <apex:variable var="recordRow" value="{!recordRow + 1}"/>
+                        </apex:column>
+                        <apex:column headerValue="Material Description">
+                            <apex:outputField value="{!mt.Name}"/>
+                        </apex:column>                        
+                        <apex:column headerValue="Material Number">
+                            <apex:outputField value="{!mt.Material_Number__c }"/>
+                        </apex:column>
+                        <apex:column headerValue="Material Type">
+                            <apex:outputField value="{!mt.Material_Type__c }"/>
+                        </apex:column>  
+                        <apex:column headerValue="SGENNO">
+                            <apex:outputField value="{!mt.SGENNO__c}"/>
+                        </apex:column>                      
+                    </apex:pageBlockTable>
+                    
+                    <apex:outputPanel rendered="{!paginationAvailable}" >
+                        <center>
+                            <apex:panelGrid columns="4" id="pnlGrid">
+                                <apex:commandLink action="{!first}" style="color:blue">First</apex:commandlink>
+                                <apex:commandLink action="{!previous}" rendered="{!hasPrevious}" style="color:blue">Previous</apex:commandlink>
+                                <apex:commandLink action="{!next}" rendered="{!hasNext}" style="color:blue">Next</apex:commandlink>
+                                <apex:commandLink action="{!last}" style="color:blue">Last</apex:commandlink>
+                            </apex:panelGrid>            
+                        </center>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+                
+                <apex:outputPanel title="Selected Materials" >
+                    <apex:outputText ><b>{!selectedResultSize} records selected</b></apex:outputText> <br/>
+                    <apex:outputText rendered="{!IF(selectedResultSize > 0, TRUE, FALSE)}"><b>Showing page {!selectedPageNumber} of {!CEILING(selectedResultSize/pageSize)}</b></apex:outputText>
+                    <apex:variable value="{!0}" var="selectedRecordRow"/>
+                    <apex:pageBlockTable value="{!lstSelectedMaterial}" var="mat">                        
+                        <apex:column >
+                            <apex:actionRegion >
+                               <apex:commandLink action="{!removeSelectedMaterial}" rerender="pgListView" >
+                                    <span style="padding-right:8px;"><apex:image id="RemoveImage" value="{!$Resource.Remove}" width="10"/></span>
+                                    <apex:param value="{!selectedRecordRow}" name="selectedRowNumber" assignTo="{!selectedRowNumber}"/>   
+                                    <apex:param value="{!mat.ID}" name="paramID" assignTo="{!paramID}"/>                                 
+                                </apex:commandLink>
+                                <apex:variable var="selectedRecordRow" value="{!selectedRecordRow + 1}"/>       
+                            </apex:actionRegion>   
+                        </apex:column>                        
+                        <apex:column headerValue="Material Description">
+                            <apex:outputField value="{!mat.Name}"/>
+                        </apex:column>                        
+                        <apex:column headerValue="Material Number">
+                            <apex:outputField value="{!mat.Material_Number__c }"/>
+                        </apex:column>
+                        <apex:column headerValue="Material Type">
+                            <apex:outputField value="{!mat.Material_Type__c }"/>
+                        </apex:column>
+                        <apex:column headerValue="SGENNO">
+                            <apex:outputField value="{!mat.SGENNO__c}"/>
+                        </apex:column>
+                    </apex:pageBlockTable>    
+                    <apex:outputPanel rendered="{!selectedPaginationAvailable}">
+                        <center>
+                            <apex:panelGrid columns="4" id="pnlGridSelected">
+                                <apex:commandLink action="{!selectedfirst}" style="color:blue">First</apex:commandlink>
+                                <apex:commandLink action="{!selectedprevious}" rendered="{!selectedhasPrevious}" style="color:blue">Previous</apex:commandlink>
+                                <apex:commandLink action="{!selectednext}" rendered="{!selectedhasNext}" style="color:blue">Next</apex:commandlink>
+                                <apex:commandLink action="{!selectedlast}" style="color:blue">Last</apex:commandlink>
+                            </apex:panelGrid>            
+                        </center>
+                    </apex:outputPanel>                
+                    <br/>
+                    <div align="right">
+                        <apex:commandButton value="Remove All"  rendered="{!IF(selectedResultSize > 0, TRUE, FALSE)}" action="{!removeAll}"/>
+                        <apex:commandButton value="Accept" rendered="{!showAccept}" action="{!submit}"/>
+                    </div>
+                </apex:outputPanel>
+                
+            </apex:pageBlockSection>
+        </apex:pageBlock>   
+            <apex:pageBlock id="pgListViewMat" mode="edit" rendered="{!AND(matListView,showMaterialSection)}">  
+            <!--Page block section for material-->          
+            <apex:pageBlockSection title="Material List Views" columns="2">
+                <apex:outputPanel title="Available Materials" >
+                    <apex:outputText ><b>{!resultSize} records found matching the search criteria</b></apex:outputText> <br/>
+                    <apex:outputText rendered="{!IF(resultSize > 0, TRUE, FALSE)}"><b>Showing page {!pageNumber} of {!CEILING(resultSize/pageSize)}</b></apex:outputText>
+                    <apex:variable value="{!0}" var="recordRow"/>
+                    <apex:pageBlockTable value="{!lstMaterialDetails}" var="mt">
+                        <apex:column >
+                            <apex:actionRegion >
+                                <apex:commandLink action="{!setSelectedMaterial}" rerender="pgListViewMat" >                            
+                                    <span style="padding-right:8px;"><apex:image id="AddImage" value="{!$Resource.Add}" width="10" /></span>
+                                    <apex:param value="{!recordRow}" name="mtRowNumber" assignTo="{!mtRowNumber}"/>
+                                    <apex:param value="{!mt.ID}" name="paramID" assignTo="{!paramID}"/>
+                                </apex:commandLink>
+                            </apex:actionRegion>  
+                            <apex:variable var="recordRow" value="{!recordRow + 1}"/>
+                        </apex:column>
+                        <apex:column headerValue="Material Description">
+                            <apex:outputField value="{!mt.Name}"/>
+                        </apex:column>                        
+                        <apex:column headerValue="Material Number">
+                            <apex:outputField value="{!mt.Material_Number__c }"/>
+                        </apex:column>
+                        <apex:column headerValue="Material Type">
+                            <apex:outputField value="{!mt.Material_Type__c }"/>
+                        </apex:column>  
+                        <apex:column headerValue="SGENNO">
+                            <apex:outputField value="{!mt.SGENNO__c}"/>
+                        </apex:column>                      
+                    </apex:pageBlockTable>
+                    
+                    <apex:outputPanel rendered="{!paginationAvailable}" >
+                        <center>
+                            <apex:panelGrid columns="4" id="pnlGrid">
+                                <apex:commandLink action="{!first}" style="color:blue">First</apex:commandlink>
+                                <apex:commandLink action="{!previous}" rendered="{!hasPrevious}" style="color:blue">Previous</apex:commandlink>
+                                <apex:commandLink action="{!next}" rendered="{!hasNext}" style="color:blue">Next</apex:commandlink>
+                                <apex:commandLink action="{!last}" style="color:blue">Last</apex:commandlink>
+                            </apex:panelGrid>            
+                        </center>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+                
+                <apex:outputPanel title="Selected Materials" id="SelectedItm">
+                    <apex:outputText ><b>{!selectedResultSize} records selected</b></apex:outputText> <br/>
+                    <apex:outputText rendered="{!IF(selectedResultSize > 0, TRUE, FALSE)}"><b>Showing page {!selectedPageNumber} of {!CEILING(selectedResultSize/pageSize)}</b></apex:outputText>
+                    <apex:variable value="{!0}" var="selectedRecordRow"/>
+                    <apex:pageBlockTable value="{!lstSelectedMaterial}" var="mat">                        
+                        <apex:column >
+                           <apex:actionRegion >
+                                <apex:commandLink action="{!removeSelectedMaterial}" rerender="SelectedItm" >
+                                    <span style="padding-right:8px;"><apex:image id="RemoveImage" value="{!$Resource.Remove}" width="10"/></span>
+                                    <apex:param value="{!selectedRecordRow}" name="selectedRowNumber" assignTo="{!selectedRowNumber}"/>   
+                                    <apex:param value="{!mat.ID}" name="paramID" assignTo="{!paramID}"/>                                 
+                                </apex:commandLink>
+                                <apex:variable var="selectedRecordRow" value="{!selectedRecordRow + 1}"/>
+                            </apex:actionRegion>    
+                        </apex:column>                        
+                        <apex:column headerValue="Material Description">
+                            <apex:outputField value="{!mat.Name}"/>
+                        </apex:column>                        
+                        <apex:column headerValue="Material Number">
+                            <apex:outputField value="{!mat.Material_Number__c }"/>
+                        </apex:column>
+                        <apex:column headerValue="Material Type">
+                            <apex:outputField value="{!mat.Material_Type__c }"/>
+                        </apex:column>
+                        <apex:column headerValue="SGENNO">
+                            <apex:outputField value="{!mat.SGENNO__c}"/>
+                        </apex:column>
+                    </apex:pageBlockTable>    
+                    <apex:outputPanel rendered="{!selectedPaginationAvailable}">
+                        <center>
+                            <apex:panelGrid columns="4" id="pnlGridSelected">
+                                <apex:commandLink action="{!selectedfirst}" style="color:blue">First</apex:commandlink>
+                                <apex:commandLink action="{!selectedprevious}" rendered="{!selectedhasPrevious}" style="color:blue">Previous</apex:commandlink>
+                                <apex:commandLink action="{!selectednext}" rendered="{!selectedhasNext}" style="color:blue">Next</apex:commandlink>
+                                <apex:commandLink action="{!selectedlast}" style="color:blue">Last</apex:commandlink>
+                            </apex:panelGrid>            
+                        </center>
+                    </apex:outputPanel>                
+                    <br/>
+                    <div align="right">
+                        <apex:commandButton value="Remove All"  rendered="{!IF(selectedResultSize > 0, TRUE, FALSE)}" action="{!removeAll}"/>
+                        <apex:commandButton value="Send Direct to SAP" rendered="{!showAccept}" action="{!sendDirecttoSAP}"/>
+                    </div>
+                </apex:outputPanel>
+                
+            </apex:pageBlockSection>    
+            
+        </apex:pageBlock>
+        
+        <apex:pageBlock id="pgListViewTitle" mode="edit" rendered="{!AND(showPageBlock,showTitleSection)}">
+            <!--Page block section for title search-->
+            <apex:pageBlockSection title="Title List View" columns="2" >
+                <apex:outputPanel title="Available Title" >
+                    <apex:outputText ><b>{!resultSize} records found matching the search criteria</b></apex:outputText> <br/>
+                    <apex:outputText rendered="{!IF(resultSize > 0, TRUE, FALSE)}"><b>Showing page {!pageNumber} of {!CEILING(resultSize/pageSize)}</b></apex:outputText>
+                    <apex:variable value="{!0}" var="recordRow"/>
+                    <apex:pageBlockTable value="{!lstTitleDetails}" var="title">
+                        <apex:column >
+                            <apex:actionRegion >
+                                <apex:commandLink action="{!setSelectedTitle}" rerender="pgListViewTitle" >                            
+                                    <span style="padding-right:8px;"><apex:image id="imdAdd" value="{!$Resource.Add}" width="10" /></span>
+                                    <apex:param value="{!recordRow}" name="mtRowNumber" assignTo="{!mtRowNumber}"/>
+                                    <apex:param value="{!title.ID}" name="paramID" assignTo="{!paramID}"/>
+                                </apex:commandLink>
+                            </apex:actionRegion>  
+                            <apex:variable var="recordRow" value="{!recordRow + 1}"/>
+                        </apex:column> 
+                        <apex:column headerValue="Title Name">
+                            <apex:outputField value="{!title.Name}"/>
+                        </apex:column>
+                        <apex:column headerValue="SGENNO">
+                            <apex:outputField value="{!title.SGENNO__c}"/>
+                        </apex:column>                                               
+                    </apex:pageBlockTable>
+                    
+                    <apex:outputPanel rendered="{!paginationAvailable}" >
+                        <center>
+                            <apex:panelGrid columns="4" id="pnlGrid">
+                                <apex:commandLink action="{!first}" style="color:blue">First</apex:commandlink>
+                                <apex:commandLink action="{!previous}" rendered="{!hasPrevious}" style="color:blue">Previous</apex:commandlink>
+                                <apex:commandLink action="{!next}" rendered="{!hasNext}" style="color:blue">Next</apex:commandlink>
+                                <apex:commandLink action="{!last}" style="color:blue">Last</apex:commandlink>
+                            </apex:panelGrid>            
+                        </center>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+                
+                <apex:outputPanel title="Selected Title" >
+                    <apex:outputText ><b>{!selectedResultSize} records selected</b></apex:outputText> <br/>
+                    <apex:outputText rendered="{!IF(selectedResultSize > 0, TRUE, FALSE)}"><b>Showing page {!selectedPageNumber} of {!CEILING(selectedResultSize/pageSize)}</b></apex:outputText>
+                    <apex:variable value="{!0}" var="selectedRecordRow"/>
+                    <apex:pageBlockTable value="{!lstSelectedTitle}" var="titl">                        
+                        <apex:column >
+                            <apex:actionRegion >
+                                <apex:commandLink action="{!removeSelectedTitle}" rerender="pgListViewTitle" >
+                                    <span style="padding-right:8px;"><apex:image id="imgRmv" value="{!$Resource.Remove}" width="10"/></span>
+                                    <apex:param value="{!selectedRecordRow}" name="selectedRowNumber" assignTo="{!selectedRowNumber}"/>   
+                                    <apex:param value="{!titl.ID}" name="paramID" assignTo="{!paramID}"/>                                 
+                                </apex:commandLink>
+                                <apex:variable var="selectedRecordRow" value="{!selectedRecordRow + 1}"/>
+                            </apex:actionRegion>    
+                        </apex:column>                        
+                        <apex:column headerValue="Title Name">
+                            <apex:outputField value="{!titl.Name}"/>
+                        </apex:column>
+                        <apex:column headerValue="SGENNO">
+                            <apex:outputField value="{!titl.SGENNO__c}"/>
+                        </apex:column>
+                         <!--<apex:column headerValue="SGENNO">
+                            <apex:outputField value="{!titl.ID}"/>
+                        </apex:column>           -->            
+                    </apex:pageBlockTable>    
+                    <apex:outputPanel rendered="{!selectedPaginationAvailable}">
+                        <center>
+                            <apex:panelGrid columns="4" id="pnlGridSelected">
+                                <apex:commandLink action="{!selectedfirst}" style="color:blue">First</apex:commandlink>
+                                <apex:commandLink action="{!selectedprevious}" rendered="{!selectedhasPrevious}" style="color:blue">Previous</apex:commandlink>
+                                <apex:commandLink action="{!selectednext}" rendered="{!selectedhasNext}" style="color:blue">Next</apex:commandlink>
+                                <apex:commandLink action="{!selectedlast}" style="color:blue">Last</apex:commandlink>
+                            </apex:panelGrid>            
+                        </center>
+                    </apex:outputPanel>                
+                    <br/>
+                    <div align="right">
+                        <apex:commandButton value="Remove All"  rendered="{!IF(selectedResultSize > 0, TRUE, FALSE)}" action="{!removeAll}"/>
+                        <apex:commandButton value="Accept" rendered="{!showAccept}" action="{!submit}"/>
+                    </div>
+                </apex:outputPanel>
+                
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:pageBlock id="pgListViewEpisodes" mode="edit" rendered="{!AND(showPageBlock,showEpisodeSection)}">  
+                     
+            <apex:pageBlockSection title="Episode List Views" columns="2">
+                <apex:outputPanel title="Available Episodes" >
+                    <apex:outputText ><b>{!resultSize} records found matching the search criteria</b></apex:outputText> <br/>
+                    <apex:outputText rendered="{!IF(resultSize > 0, TRUE, FALSE)}"><b>Showing page {!pageNumber} of {!CEILING(resultSize/pageSize)}</b></apex:outputText>
+                    <apex:variable value="{!0}" var="recordRow"/>
+                    <apex:pageBlockTable value="{!lstEpisodeDetails}" var="ep">
+                        <apex:column >
+                            <apex:actionRegion >
+                                <apex:commandLink action="{!setSelectedEpisode}" rerender="pgListViewEpisodes" >                            
+                                    <span style="padding-right:8px;"><apex:image id="AddImage" value="{!$Resource.Add}" width="10" /></span>
+                                    <apex:param value="{!recordRow}" name="mtRowNumber" assignTo="{!mtRowNumber}"/>
+                                    <apex:param value="{!ep.ID}" name="paramID" assignTo="{!paramID}"/>
+                                </apex:commandLink>
+                            </apex:actionRegion>  
+                            <apex:variable var="recordRow" value="{!recordRow + 1}"/>
+                        </apex:column>
+                        <apex:column headerValue="Material Description">
+                            <apex:outputField value="{!ep.Name}"/>
+                        </apex:column>                        
+                        <apex:column headerValue="Material Number">
+                            <apex:outputField value="{!ep.Material_Number__c }"/>
+                        </apex:column>
+                        <apex:column headerValue="Material Type">
+                            <apex:outputField value="{!ep.Material_Type__c }"/>
+                        </apex:column>  
+                        <apex:column headerValue="SGENNO">
+                            <apex:outputField value="{!ep.SGENNO__c}"/>
+                        </apex:column>                      
+                    </apex:pageBlockTable>
+                    
+                    <apex:outputPanel rendered="{!paginationAvailable}" >
+                        <center>
+                            <apex:panelGrid columns="4" id="pnlGrid">
+                                <apex:commandLink action="{!first}" style="color:blue">First</apex:commandlink>
+                                <apex:commandLink action="{!previous}" rendered="{!hasPrevious}" style="color:blue">Previous</apex:commandlink>
+                                <apex:commandLink action="{!next}" rendered="{!hasNext}" style="color:blue">Next</apex:commandlink>
+                                <apex:commandLink action="{!last}" style="color:blue">Last</apex:commandlink>
+                            </apex:panelGrid>            
+                        </center>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+                
+                <apex:outputPanel title="Selected Materials" >
+                    <apex:outputText ><b>{!selectedResultSize} records selected</b></apex:outputText> <br/>
+                    <apex:outputText rendered="{!IF(selectedResultSize > 0, TRUE, FALSE)}"><b>Showing page {!selectedPageNumber} of {!CEILING(selectedResultSize/pageSize)}</b></apex:outputText>
+                    <apex:variable value="{!0}" var="selectedRecordRow"/>
+                    <apex:pageBlockTable value="{!lstSelectedEpisodes}" var="ep1">                        
+                        <apex:column >
+                            <apex:actionRegion >
+                                <apex:commandLink action="{!removeSelectedEpisode}" rerender="pgListViewEpisodes" >
+                                    <span style="padding-right:8px;"><apex:image id="RemoveImage" value="{!$Resource.Remove}" width="10"/></span>
+                                    <apex:param value="{!selectedRecordRow}" name="selectedRowNumber" assignTo="{!selectedRowNumber}"/>   
+                                    <apex:param value="{!ep1.ID}" name="paramID" assignTo="{!paramID}"/>                                 
+                                </apex:commandLink>
+                                <apex:variable var="selectedRecordRow" value="{!selectedRecordRow + 1}"/>
+                            </apex:actionRegion>    
+                        </apex:column>                        
+                        <apex:column headerValue="Material Description">
+                            <apex:outputField value="{!ep1.Name}"/>
+                        </apex:column>                        
+                        <apex:column headerValue="Material Number">
+                            <apex:outputField value="{!ep1.Material_Number__c }"/>
+                        </apex:column>
+                        <apex:column headerValue="Material Type">
+                            <apex:outputField value="{!ep1.Material_Type__c }"/>
+                        </apex:column>
+                        <apex:column headerValue="SGENNO">
+                            <apex:outputField value="{!ep1.SGENNO__c}"/>
+                        </apex:column>
+                    </apex:pageBlockTable>    
+                    <apex:outputPanel rendered="{!selectedPaginationAvailable}">
+                        <center>
+                            <apex:panelGrid columns="4" id="pnlGridSelected">
+                                <apex:commandLink action="{!selectedfirst}" style="color:blue">First</apex:commandlink>
+                                <apex:commandLink action="{!selectedprevious}" rendered="{!selectedhasPrevious}" style="color:blue">Previous</apex:commandlink>
+                                <apex:commandLink action="{!selectednext}" rendered="{!selectedhasNext}" style="color:blue">Next</apex:commandlink>
+                                <apex:commandLink action="{!selectedlast}" style="color:blue">Last</apex:commandlink>
+                            </apex:panelGrid>            
+                        </center>
+                    </apex:outputPanel>                
+                    <br/>
+                    <div align="right">
+                        <apex:commandButton value="Remove All"  rendered="{!IF(selectedResultSize > 0, TRUE, FALSE)}" action="{!removeAll}"/>
+                        <apex:commandButton value="Accept" rendered="{!showAccept}" action="{!submit}"/>
+                    </div>
+                </apex:outputPanel>
+                
+            </apex:pageBlockSection>           
+            
+        </apex:pageBlock>
+        
+    </apex:form>
+    <script>
+        function submitMaterial()
+        {
+            try
+            {
+                accept();
+                //ClosePopup();
+                
+                
+            }
+            catch(e)
+            {
+                alert(e);
+            }
+            return false;
+        }
+    </script>
+    <script>
+        function submitTitle()
+        {
+            try
+            {
+                submit();
+                //ClosePopup();
+                
+                
+            }
+            catch(e)
+            {
+                alert(e);
+            }
+            return false;
+        }
+    </script>
+</apex:page>

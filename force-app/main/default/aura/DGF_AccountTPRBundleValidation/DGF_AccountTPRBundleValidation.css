@@ -1,0 +1,40 @@
+.THIS.white {
+   color: white;
+}
+
+.THIS .red {
+    color: red;
+}
+
+.THIS .blue {
+    color: blue;
+}
+
+.THIS .green {
+    color: green;
+}
+.THIS .orange {
+    color: orange;
+}
+.THIS .DodgerBlue {
+    color: DodgerBlue;
+}
+.THIS .header {
+   font-size: 13px;
+}
+.THIS .header {
+   font-size: 13px;
+}
+.THIS .head{
+   font-weight: bold; 
+}
+.THIS .custom-background{
+    background-color: white;
+}
+.THIS .table{
+   max-width: 100%;
+    border: none;
+    border-spacing: 0;
+    text-align: left;
+    overflow: overlay
+}

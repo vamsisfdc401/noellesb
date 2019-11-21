@@ -1,0 +1,89 @@
+<aura:component implements="force:lightningQuickActionWithoutHeader,flexipage:availableForRecordHome,force:hasRecordId" 
+                access="global" controller="NewSeasonRelease">    
+    <aura:html tag="style">        
+        .cuf-content {
+        padding: 0 0rem !important;
+        }
+        .slds-p-around--medium {
+        padding: 1rem !important;
+        }            
+        .slds-modal__content{
+        height:unset !important;
+        max-height:unset !important;
+        }
+        .slds-modal__container{
+        max-width: 65rem !important;
+        width:45% !important;
+        }
+        .toastMessage.forceActionsText{
+        white-space : pre-line !important;
+        }
+        .slds-icon-text-default {
+        fill: rgb(251, 249, 247);
+        }
+    </aura:html>    
+    <aura:attribute name="DTRecord" type="Object"
+                    description="A simplified view record object to be displayed"/>
+    <aura:attribute name="newDR" type="Object"/>
+    <aura:attribute name="simpleDR" type="Object"/>
+    <aura:attribute name="newDRError" type="String"/>    
+    <aura:attribute name="releaseOptions" type="Object" access="public"/>
+    <aura:attribute Name="selRelease" type="Object"  access="public" />    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>    
+    <force:recordData aura:id="contactRecordCreator" 
+                      layoutType="FULL"
+                      targetRecord="{!v.newDR}"
+                      targetFields="{!v.simpleDR}"
+                      targetError="{!v.newDRError}" />    
+    <aura:attribute name="showError" type="Boolean" default="false"/>
+    <aura:attribute name= "message" description= "Message content, can be HTML"
+                    type= "String" default= "Message from MessageComponent.cmp"/>
+    <aura:attribute name= "messageType"
+                    description= "Message type, can be error/warning/info/success"
+                    type= "String" default= "info"/>      
+    <!-- Display the new contact form -->
+    <div class="New Season Release">
+        <aura:if isTrue="{!v.showError}">		
+            <div class="{!'slds-notify slds-notify_alert slds-theme–alert-texture slds-theme_' + v.messageType}">
+                <lightning:icon iconName="{!'utility:'+ v.messageType}" size="medium"
+                                
+                                alternativeText="{!v.messageType}" Class="slds-button slds-button_icon slds-button_icon-inverse"/>&nbsp;
+                &nbsp;
+                <span class="slds-text-body–regular" style="white-space: pre-line;text-align: left;">
+                    <aura:unescapedHtml value="{!v.message}"/>
+                </span>
+                <div class="slds-notify__close">
+                    <lightning:icon iconName="{!'utility:close'}" class="slds-button slds-button_icon slds-button_icon-inverse" size="small" />
+                </div>
+            </div>
+            <br/>
+            <br/>
+        </aura:if>
+        <lightning:card iconName="" title="New Season Release">
+            <div class="slds-p-bottom_large slds-p-left_large" >
+                <lightning:recordEditForm aura:id="recordViewForm"
+                                          onsubmit="{!c.handleSaveContact}" 
+                                          objectApiName="Digital_Release__c">
+                    <lightning:messages />
+                    <lightning:inputField fieldName="Name" />
+                    <lightning:inputField fieldName="Title__c" />
+                    <lightning:select aura:id="selRelease" name="selRelease" label="Release Name" required="true" value="{!v.selRelease}"   messageWhenValueMissing="You must define the Season.">
+                        <option value="">-- Please Select --</option>
+                        <aura:iteration items="{!v.releaseOptions}" var="item">
+                            <option text="{!item.Name}" value="{!item.Id}"/>
+                        </aura:iteration>
+                    </lightning:select>
+                    <!-- <lightning:inputField fieldName="Clone_pricing_records_from_last_season__c" />-->
+                    
+                    <lightning:button aura:id="submit" variant="brand" label="Save" type="submit"
+                                      class="slds-m-top_medium" />
+                </lightning:recordEditForm>
+            </div>
+        </lightning:card>         
+    </div>    
+    <!-- Display Lightning Data Service errors -->
+    <aura:if isTrue="{!not(empty(v.newDRError))}">
+        <div class="recordError">
+            {!v.newDRError}</div>
+    </aura:if>
+</aura:component>

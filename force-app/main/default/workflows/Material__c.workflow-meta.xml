@@ -1,0 +1,1133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>BOM_Approved</fullName>
+        <description>BOM Approved</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Manufacturing_Contact__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Releaseforce_Email_Templates_Folder/BOM_Approval_Status</template>
+    </alerts>
+    <alerts>
+        <fullName>BOM_Rejected</fullName>
+        <description>BOM Rejected</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Initial_Submitter__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Manufacturing_Contact__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Releaseforce_Email_Templates_Folder/BOM_Rejection_Status</template>
+    </alerts>
+    <alerts>
+        <fullName>Email_Alert_for_step_1</fullName>
+        <description>Email Alert for step 1</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Manufacturing_Contact__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Releaseforce_Email_Templates_Folder/BOM_Approval_Status_step_1</template>
+    </alerts>
+    <alerts>
+        <fullName>Email_for_Finance_Default_Deal_is_Required_for_the_Material</fullName>
+        <description>Email for Finance Default Deal is Required for the Material</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Deal_Approver_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Releaseforce_Email_Templates_Folder/Finance_Default_Deal_is_Required_for_the_Material</template>
+    </alerts>
+    <alerts>
+        <fullName>Email_for_Pending_Final_Approval</fullName>
+        <description>Email for Pending Final Approval</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Manufacturing_Contact__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Releaseforce_Email_Templates_Folder/BOM_Approval_Status_step_1</template>
+    </alerts>
+    <alerts>
+        <fullName>Material_Number_Notification</fullName>
+        <description>Material Number Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Releaseforce_Email_Templates_Folder/Material_Number_Notification_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>Material_Rejected</fullName>
+        <description>Material Rejected</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Initial_Submitter__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Releaseforce_Email_Templates_Folder/Material_Rejection_Status</template>
+    </alerts>
+    <alerts>
+        <fullName>Notification_for_material_change_from_processed_in_SAP</fullName>
+        <ccEmails>Hariharan.Viswanathan@nbcuni.com</ccEmails>
+        <ccEmails>Dinakar.Kesavamattam@nbcuni.com</ccEmails>
+        <description>Notification for material change from processed in SAP</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>asmita.asmitagharat@nbcuni.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>vamsi.marala@nbcuni.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Releaseforce_Email_Templates_Folder/Notification_for_material_change_from_processed_in_SAP</template>
+    </alerts>
+    <alerts>
+        <fullName>Reject_Email_Alert_for_step_1</fullName>
+        <description>Reject Email Alert for step 1</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Manufacturing_Contact__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Releaseforce_Email_Templates_Folder/BOM_Rejection_Status_step_1</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Email_Notification_on_Disc_Master_Change</fullName>
+        <description>Send Email Notification on Disc Master Change</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Ops_Team</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Releaseforce_Email_Templates_Folder/Disc_Master_Change_Notification_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Email_to_Master_Data</fullName>
+        <description>Send Email to Master Data</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Master_Data_User</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Releaseforce_Email_Templates_Folder/Email_to_Master_data_for_Material_type_BOM_Components_update</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Change_status_to_Draft</fullName>
+        <field>Material_Status__c</field>
+        <literalValue>Draft</literalValue>
+        <name>Change status to Draft</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Change_status_to_sent_back</fullName>
+        <field>Material_Status__c</field>
+        <literalValue>Sent Back</literalValue>
+        <name>Change status to sent back</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Get_Submitter_s_Email</fullName>
+        <field>Initial_Submitter__c</field>
+        <formula>$User.Email</formula>
+        <name>Get Submitter&#39;s Email</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Item_Code_to_SS</fullName>
+        <description>This field update changes the Item Code to Single Selection</description>
+        <field>Item_Code__c</field>
+        <literalValue>SS - SINGLE SELECTION</literalValue>
+        <name>Item Code to SS</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Item_Type_to_S</fullName>
+        <description>This field update changes the Item Type to Single.</description>
+        <field>Item_Type__c</field>
+        <literalValue>S (Single)</literalValue>
+        <name>Item Type to S</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Remove_BOM_Group</fullName>
+        <description>Wipes out BOM group value after bom is approved by group level approver</description>
+        <field>Brand_Group__c</field>
+        <name>Remove BOM Group</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Remove_Delete_Check</fullName>
+        <field>Deletion_Flag__c</field>
+        <literalValue>0</literalValue>
+        <name>Remove Delete Check</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Is_Disc_Master_to_True</fullName>
+        <field>Is_Disc_Master__c</field>
+        <literalValue>Y</literalValue>
+        <name>Set Is Disc Master to True</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Unlock_Flag</fullName>
+        <field>Unlock_Me__c</field>
+        <literalValue>1</literalValue>
+        <name>Set Unlock Flag</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Uncheck_BOM_Wizard_Approval</fullName>
+        <field>BOM_Wizard_Approval__c</field>
+        <literalValue>0</literalValue>
+        <name>Uncheck BOM Wizard Approval</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Uncheck_Delete_Checkbox</fullName>
+        <field>Deletion_Flag__c</field>
+        <literalValue>0</literalValue>
+        <name>Uncheck Delete Checkbox</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update</fullName>
+        <field>Xplant_Material_Status__c</field>
+        <formula>&#39;AA&#39;</formula>
+        <name>UpdateXPlantStatus</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UpdateCrossRef</fullName>
+        <field>Cross_Ref__c</field>
+        <name>UpdateCrossRef</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UpdateDealId</fullName>
+        <field>Deal_ID__c</field>
+        <name>UpdateDealId</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_BOM_Integration_State</fullName>
+        <field>BOM_Integration_State__c</field>
+        <literalValue>N</literalValue>
+        <name>Update BOM Integration State</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_BOM_Requested_By</fullName>
+        <field>BOM_Requested_By__c</field>
+        <formula>LastModifiedBy.Email</formula>
+        <name>Update BOM Requested By</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_BOM_Requested_Date</fullName>
+        <field>BOM_Requested_Date__c</field>
+        <formula>NOW()</formula>
+        <name>Update BOM Requested Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_BOM_Status</fullName>
+        <field>BOM_Status__c</field>
+        <literalValue>Draft</literalValue>
+        <name>Update BOM Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_BOM_Status_to_In_Progress</fullName>
+        <field>BOM_Status__c</field>
+        <literalValue>In Progress</literalValue>
+        <name>Update BOM Status to In Progress</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_BOM_Status_to_PendingFinalApprova</fullName>
+        <field>BOM_Status__c</field>
+        <literalValue>Pending Final Approval</literalValue>
+        <name>Update BOM Status to PendingFinalApprova</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_BOM_status_to_Approved</fullName>
+        <field>BOM_Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Update BOM status to Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_BOM_status_to_Draft</fullName>
+        <field>BOM_Status__c</field>
+        <literalValue>Draft</literalValue>
+        <name>Update BOM status to Draft</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_BOM_status_to_Sent_Back</fullName>
+        <field>BOM_Status__c</field>
+        <literalValue>Sent Back</literalValue>
+        <name>Update BOM status to Sent Back</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_BOM_status_to_Submitted</fullName>
+        <field>BOM_Status__c</field>
+        <literalValue>Submitted</literalValue>
+        <name>Update BOM status to Submitted</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_DEALID</fullName>
+        <field>Deal_ID__c</field>
+        <formula>&#39;580439-001&#39;</formula>
+        <name>Update DEALID</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Deal_Id</fullName>
+        <field>Deal_ID__c</field>
+        <formula>IF( Deal__c &lt;&gt; null, Deal__r.Deal_ID__c ,&#39;&#39;)</formula>
+        <name>Update Deal Id</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Deal_Id_for_Cinedigm</fullName>
+        <field>Deal_ID__c</field>
+        <formula>IF( TEXT(Material_Type__c) = &#39;FERT&#39; , &#39;PKGDEAL00085&#39;, &#39;&#39;)</formula>
+        <name>Update Deal Id for Cinedigm</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Disc_Master_Text</fullName>
+        <field>Is_Disc_Master_Text__c</field>
+        <formula>IF(TEXT(Is_Disc_Master__c) != &#39;&#39;,TEXT(Is_Disc_Master__c ),&#39;blank&#39;)</formula>
+        <name>Update Disc Master Text</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Function</fullName>
+        <field>Function__c</field>
+        <literalValue>003</literalValue>
+        <name>Update Function</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Heep_Selection_Ref_No</fullName>
+        <field>Selection_Reference_Number__c</field>
+        <formula>Episode__r.Material_Number__c</formula>
+        <name>Update Heep Selection Ref No</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Integration_State</fullName>
+        <field>Material_Integration_State__c</field>
+        <literalValue>N</literalValue>
+        <name>Update Integration State</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Material_Desc</fullName>
+        <field>Material_Description_Unique__c</field>
+        <formula>Name</formula>
+        <name>Update Material Desc</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Material_Label_code</fullName>
+        <field>Label_Code__c</field>
+        <literalValue>59 - Paramount</literalValue>
+        <name>Update Material Label code</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Material_Pre_Order_Close_Date</fullName>
+        <field>Pre_Order_Close_Date__c</field>
+        <formula>IF( $Profile.Name !=&#39;Platform API&#39;, Street_Date__c - 42, Pre_Order_Close_Date__c)</formula>
+        <name>Update Material Pre Order Close Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Material_Record_Type</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>Material</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>Update Material Record Type</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Material_Status_to_Approved</fullName>
+        <description>This action updates Material status value to Approved.</description>
+        <field>Material_Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Update Material Status to Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Material_Status_to_Draft</fullName>
+        <description>This action updates the Material Status to Draft.</description>
+        <field>Material_Status__c</field>
+        <literalValue>Draft</literalValue>
+        <name>Update Material Status to Draft</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Material_Status_to_Sent_Back</fullName>
+        <description>This action updates the Material Status value to Sent Back.</description>
+        <field>Material_Status__c</field>
+        <literalValue>Sent Back</literalValue>
+        <name>Update Material Status to Sent Back</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Material_Status_to_Submitted</fullName>
+        <description>This field update action updates Material Status value to Submitted.</description>
+        <field>Material_Status__c</field>
+        <literalValue>Submitted</literalValue>
+        <name>Update Material Status to Submitted</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Material_Status_to_deleted</fullName>
+        <field>Material_Status__c</field>
+        <literalValue>Deleted</literalValue>
+        <name>Update Material Status to deleted</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Origin_Code</fullName>
+        <field>TM_Origin_Code__c</field>
+        <name>Update Origin Code</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Original_Release_Date</fullName>
+        <field>Original_Release_Date__c</field>
+        <formula>Street_Date__c</formula>
+        <name>Update Original Release Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Parent_Material_Number_on_Child</fullName>
+        <field>Parent_Material_Number__c</field>
+        <formula>IF(Episode__r.Material_Number__c &lt;&gt; Null, Episode__r.Material_Number__c, &#39;1500&#39;)</formula>
+        <name>Update Parent Material Number on Child</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Pre_Order_Close_Date</fullName>
+        <field>Pre_Order_Close_Date__c</field>
+        <formula>Release__r.Pre_Order_Close_Date__c</formula>
+        <name>Update Pre Order Close Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Prior_Value_of_Disc_Master</fullName>
+        <field>Old_Disc_Master__c</field>
+        <formula>IF(TEXT(PRIORVALUE( Is_Disc_Master__c )) != &#39;&#39;,TEXT(PRIORVALUE( Is_Disc_Master__c )),&#39;blank&#39;)</formula>
+        <name>Update Prior Value of Disc Master</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Priorvalue_for_BOM_Quantity</fullName>
+        <field>Prior_BOM_Quantity__c</field>
+        <formula>IF(TEXT(PRIORVALUE(  BOM_Quantity__c )) != &#39;&#39;,TEXT(PRIORVALUE( BOM_Quantity__c )),&#39;blank&#39;)</formula>
+        <name>Update Priorvalue for BOM Quantity</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Request_Number</fullName>
+        <field>Request_Number__c</field>
+        <formula>Id</formula>
+        <name>Update Request Number</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_SGENNO</fullName>
+        <field>SGENNO__c</field>
+        <formula>SGENNO_ReadOnly__c</formula>
+        <name>Update SGENNO</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Selection_Ref_No</fullName>
+        <field>Selection_Reference_Number__c</field>
+        <formula>IF( OR (ISPICKVAL(Material_Type__c,&#39;ROH&#39;) ,ISPICKVAL(Material_Type__c,&#39;Z009&#39;)),&#39;89173214000&#39;,null )</formula>
+        <name>Update Selection Ref No</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Skip_Validation_Field</fullName>
+        <description>This action increments the Should Skip Validation Rule value by 1.</description>
+        <field>Should_Skip_Validation_Rule__c</field>
+        <formula>Should_Skip_Validation_Rule__c + 1</formula>
+        <name>Update Skip Validation Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Status_field</fullName>
+        <field>Material_Status__c</field>
+        <literalValue>Deleted</literalValue>
+        <name>Update Status field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Street_Date_based_on_Release</fullName>
+        <field>Street_Date__c</field>
+        <formula>Release__r.Street_Date__c</formula>
+        <name>Update Street Date based on Release</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Sysgen_Default_Value</fullName>
+        <field>SGENNO__c</field>
+        <formula>TEXT(580439)</formula>
+        <name>Update Sysgen Default Value</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_TM_Status</fullName>
+        <field>TM_Status__c</field>
+        <name>Update TM Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_TM_Version</fullName>
+        <field>TM_Version__c</field>
+        <formula>TEXT(353756)</formula>
+        <name>Update TM Version</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_group</fullName>
+        <field>Material_Group__c</field>
+        <literalValue>55111514 - Product Duplication - Motion pictures on Digital Video</literalValue>
+        <name>Update group</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>field_update_for_the_old_material_number</fullName>
+        <field>Old_Material_Load__c</field>
+        <formula>Old_Material_No__r.Material_Number__c</formula>
+        <name>field update for the old material number</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>pre_order_close_date_on_update_request</fullName>
+        <description>updated pre-order close date from sales on update request materials</description>
+        <field>Pre_Order_Close_Date__c</field>
+        <formula>Street_Date__c - 42</formula>
+        <name>pre-order close date on update request</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>uncheck_send_direct_to_sap</fullName>
+        <field>send_direct_to_SAP__c</field>
+        <literalValue>0</literalValue>
+        <name>uncheck send direct to sap</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>AutoPopulate Item Category Group</fullName>
+        <active>false</active>
+        <description>This flow auto populates the Item Category Group field.</description>
+        <formula>AND(OR(ISPICKVAL( Item_Type__c , &#39;S (Single)&#39;), ISPICKVAL( Item_Type__c , &#39;M (Multipack)&#39;), ISPICKVAL(Item_Type__c ,&#39;D (Display Vehicle)&#39;)),ISPICKVAL( Material_Type__c , &#39;FERT&#39;))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Change BOM Status to In Progress</fullName>
+        <actions>
+            <name>Update_BOM_Status_to_In_Progress</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>AND($Profile.Name &lt;&gt; &#39;Platform API&#39;,NOT(ISNEW()), OR(ISPICKVAL(BOM_Status__c , &#39;Draft&#39;),ISPICKVAL(BOM_Status__c , &#39;Sent Back&#39;)),  OR(ISCHANGED(Plant__c),ISCHANGED(BOM_Usage__c),ISCHANGED(Valid_From__c),ISCHANGED(BOM_Category__c),ISCHANGED(Alternative_BOM__c),ISCHANGED(BOM_Long_Text__c)))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Check Material Status and update record type</fullName>
+        <actions>
+            <name>Update_Material_Record_Type</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Material__c.Material_Status__c</field>
+            <operation>equals</operation>
+            <value>Processed in SAP</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Material__c.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>Update</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Default Disc Master for ROH</fullName>
+        <actions>
+            <name>Set_Is_Disc_Master_to_True</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Material__c.Item_Code__c</field>
+            <operation>equals</operation>
+            <value>DS - DISC</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Defaulting for FERT Contra</fullName>
+        <actions>
+            <name>Item_Code_to_SS</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Item_Type_to_S</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>This workflow triggers once the</description>
+        <formula>AND( ISPICKVAL(Material_Type__c, &#39;FERT&#39;),  ISPICKVAL(Format_Description__c, &#39;CONTRA&#39;), NOT(ISNULL(Title__c)) )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Disc Master Change Notification</fullName>
+        <actions>
+            <name>Send_Email_Notification_on_Disc_Master_Change</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Update_Disc_Master_Text</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Prior_Value_of_Disc_Master</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>WF to send email alert when disc master is updated on material record.</description>
+        <formula>ISCHANGED(  Is_Disc_Master__c )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email Alert when BOM Material is updated</fullName>
+        <actions>
+            <name>Send_Email_to_Master_Data</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(ISCHANGED( Material_Type__c ),  OR( ISPICKVAL( Material_Type__c , &#39;ROH&#39;), ISPICKVAL(Material_Type__c , &#39;Z009&#39;) ) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email for Finance Default Deal is Required for the Title from Material</fullName>
+        <actions>
+            <name>Email_for_Finance_Default_Deal_is_Required_for_the_Material</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Email for Finance Default Deal is Required for the Title from Material</description>
+        <formula>Deal__c = NULL &amp;&amp; Title__c &lt;&gt; NULL</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Material Number Notification</fullName>
+        <actions>
+            <name>Material_Number_Notification</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>WF to send email alert when a material number is generated</description>
+        <formula>ISCHANGED(Material_Number__c) &amp;&amp; ISCHANGED(UPC__c) &amp;&amp; ( $Profile.Name  &lt;&gt; &quot;API User Profile&quot;)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Old Material%2FOld SAP number update</fullName>
+        <actions>
+            <name>field_update_for_the_old_material_number</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Material__c.Old_Material_Load__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <description>USST-2837</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Prior Value BOM Quantity</fullName>
+        <actions>
+            <name>Update_Priorvalue_for_BOM_Quantity</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>ISCHANGED( BOM_Quantity__c )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Processed in SAP to Submitted</fullName>
+        <actions>
+            <name>Notification_for_material_change_from_processed_in_SAP</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>IF( AND(TEXT(PRIORVALUE(Material_Status__c)) = &#39;Processed in SAP&#39;, OR((ISPICKVAL(Material_Status__c, &#39;Submitted&#39;)),(ISPICKVAL(Material_Status__c, &#39;Approved&#39;)) ), NOT( $Profile.Name  = &#39;System Administrator&#39;) ) , true , false)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Send Email when BOM is Approved</fullName>
+        <actions>
+            <name>BOM_Approved</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(ISCHANGED(BOM_Status__c),TEXT(PRIORVALUE(BOM_Status__c)) &lt;&gt; TEXT(BOM_Status__c), ISPICKVAL(BOM_Status__c, &#39;Approved&#39;))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Send Email when BOM is Pending Final Approval</fullName>
+        <actions>
+            <name>Email_for_Pending_Final_Approval</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>AND( ISPICKVAL(Material_Type__c ,&#39;FERT&#39;),ISCHANGED(BOM_Status__c),TEXT(PRIORVALUE(BOM_Status__c)) &lt;&gt; TEXT(BOM_Status__c), ISPICKVAL(BOM_Status__c, &#39;Pending Final Approval&#39;))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Send Email when BOM is Rejected</fullName>
+        <actions>
+            <name>BOM_Rejected</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(ISCHANGED(BOM_Status__c),TEXT(PRIORVALUE(BOM_Status__c)) &lt;&gt; TEXT(BOM_Status__c), ISPICKVAL(BOM_Status__c, &#39;Sent Back&#39;))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update BOM Requested Date and By</fullName>
+        <actions>
+            <name>Update_BOM_Requested_By</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_BOM_Requested_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Material__c.BOM_Status__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Dates from Release</fullName>
+        <actions>
+            <name>Update_Pre_Order_Close_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Street_Date_based_on_Release</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <formula>Release__c  &lt;&gt; null</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Deal Id based on Deal</fullName>
+        <actions>
+            <name>Update_Deal_Id</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>AND((ISNEW() || ISCHANGED(Deal__c)), $UserRole.Name  &lt;&gt; &#39;G1200&#39;, NOT(ISPICKVAL( Item_Type__c , &#39;D (Display Vehicle)&#39;)),NOT(ISPICKVAL( Item_Type__c , &#39;M (Multipack) &#39;)) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Deal Id for Cinedigm Role</fullName>
+        <actions>
+            <name>Update_Deal_Id_for_Cinedigm</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>User.UserRoleId</field>
+            <operation>equals</operation>
+            <value>Cinedigm</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Material__c.Item_Type__c</field>
+            <operation>notEqual</operation>
+            <value>M (Multipack),D (Display Vehicle)</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Defaults For MultiData</fullName>
+        <actions>
+            <name>Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>UpdateCrossRef</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>UpdateDealId</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Origin_Code</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_TM_Status</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Material__c.Item_Type__c</field>
+            <operation>equals</operation>
+            <value>M (Multipack)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Material__c.Item_Code__c</field>
+            <operation>contains</operation>
+            <value>CL (Collection Pack),VP (Value Pack),MS (Multiple Series),CL - Gift Set,MT (Multi Title),XS (Special Singles)</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Delete checkbox</fullName>
+        <actions>
+            <name>Update_Material_Status_to_deleted</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>AND ( 
+NOT(ISPICKVAL( Material_Type__c , &#39;FERT&#39;)), 
+RecordType.DeveloperName = &#39;Material&#39;, 
+ISCHANGED( Deletion_Flag__c ), 
+Deletion_Flag__c = TRUE 
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Item Category Group</fullName>
+        <active>false</active>
+        <formula>AND(OR(ISNEW(), ISCHANGED( Material_Type__c )), OR( ISPICKVAL(Material_Type__c, &#39;ROH&#39;), ISPICKVAL(Material_Type__c, &#39;Z009&#39;)))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Material Child Selection Number Reference</fullName>
+        <actions>
+            <name>Update_Heep_Selection_Ref_No</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>Episode__c   &lt;&gt; NULL</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Material Description</fullName>
+        <active>false</active>
+        <formula>AND(ISNEW() || (ISCHANGED( Title_Abbreviation__c ) || ISCHANGED( Format_Description__c ) || ISCHANGED( Retailer_Rental__c) || ISCHANGED( Territory__c ) ), NOT(ISPICKVAL( Item_Type__c , &#39;D (Display Vehicle)&#39;)))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Material Description v2</fullName>
+        <active>false</active>
+        <formula>true</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Material Group</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>Material__c.Material_Type__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Material Group v2</fullName>
+        <actions>
+            <name>Update_group</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <formula>AND( NOT( $Profile.Name  = &#39;Platform API&#39;),    OR(ISNEW() , ISPICKVAL(Material_Type__c , &#39;FERT&#39;)&amp;&amp; ISCHANGED( Material_Type__c )) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Material Label Code</fullName>
+        <actions>
+            <name>Update_Material_Label_code</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>User.ProfileId</field>
+            <operation>equals</operation>
+            <value>PHE</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Original Release Date</fullName>
+        <actions>
+            <name>Update_Material_Pre_Order_Close_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Original_Release_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <formula>IF( ISNEW() , NOT(ISNULL( Street_Date__c )), (NOT(ISNULL( Street_Date__c )) &amp;&amp; ISCHANGED(Street_Date__c)))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Original Release Date for PHE</fullName>
+        <active>false</active>
+        <booleanFilter>(1 OR 2 OR 3)</booleanFilter>
+        <criteriaItems>
+            <field>User.ProfileId</field>
+            <operation>equals</operation>
+            <value>PHE</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.ProfileId</field>
+            <operation>equals</operation>
+            <value>Master Data Admin</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.ProfileId</field>
+            <operation>equals</operation>
+            <value>Customer Service</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Request Number</fullName>
+        <actions>
+            <name>Update_Request_Number</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Material__c.Name</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update SGENNO in material</fullName>
+        <actions>
+            <name>Update_SGENNO</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>Title__c  &lt;&gt; null</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Unique Material Description</fullName>
+        <actions>
+            <name>Update_Material_Desc</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>To populate unique material description field.</description>
+        <formula>AND(OR(NOT(ISNULL(Name)) &amp;&amp;  ISCHANGED(Name), ISNEW()),  RecordType.DeveloperName != &#39;Update&#39;, $Profile.Name != &#39;Platform API&#39;)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Workflow to update Sysgen DEALID TM Version</fullName>
+        <actions>
+            <name>Update_Selection_Ref_No</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>User.UserRoleId</field>
+            <operation>equals</operation>
+            <value>G1200</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Material__c.Item_Type__c</field>
+            <operation>notEqual</operation>
+            <value>M (Multipack),D (Display Vehicle)</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>pre-order close date for update request materials</fullName>
+        <actions>
+            <name>pre_order_close_date_on_update_request</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Material__c.Material_Status__c</field>
+            <operation>equals</operation>
+            <value>Processed in SAP</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Material__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Update</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

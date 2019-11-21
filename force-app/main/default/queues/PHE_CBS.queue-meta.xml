@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>PHE CBS</name>
+    <queueMembers>
+        <users>
+            <user>david_gonzalez@paramount.com</user>
+            <user>erika_custer@paramount.com</user>
+            <user>justin_shumny@paramount.com</user>
+            <user>kristen_hermanson@paramount.com</user>
+            <user>matt_arsulich@paramount.com.prod</user>
+            <user>shane_sullivan@paramount.com.prod</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Material__c</sobjectType>
+    </queueSobject>
+</Queue>

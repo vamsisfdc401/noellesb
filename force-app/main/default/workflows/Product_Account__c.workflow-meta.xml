@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>DGF_Set_Version_to_Alternate</fullName>
+        <description>DFOR-263</description>
+        <field>Version__c</field>
+        <literalValue>Alternate</literalValue>
+        <name>DGF Set Version to Alternate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>DGF_Set_Version_to_Theatrical</fullName>
+        <description>DFOR-263</description>
+        <field>Version__c</field>
+        <literalValue>Theatrical</literalValue>
+        <name>DGF Set Version to Theatrical</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>DGF_Update_Bundle_Launch_Date</fullName>
+        <description>DFOR-619</description>
+        <field>Launch_Date__c</field>
+        <formula>IF(ISBLANK(Launch_Date__c),IF(TEXT(Account__r.Territory__c) = &#39;US&#39;,Product__r.Digital_Release__r.US_Bundle_Avail_Date__c,IF(TEXT(Account__r.Territory__c) = &#39;CA&#39;,Product__r.Digital_Release__r.CA_Bundle_Avail_Date__c,Launch_Date__c)),Launch_Date__c)</formula>
+        <name>DGF Update Bundle Launch Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>DGF_Update_Bundle_Prod_Acc_RecType</fullName>
+        <description>DFOR-619</description>
+        <field>RecordTypeId</field>
+        <lookupValue>Bundle</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>DGF Update Bundle Prod Acc RecType</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>DGF_Update_Film_Prod_Account_RecType</fullName>
+        <description>DFOR-619</description>
+        <field>RecordTypeId</field>
+        <lookupValue>Film</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>DGF Update Film Prod Account RecType</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>DGF_Update_Launch_Date</fullName>
+        <field>Launch_Date__c</field>
+        <formula>IF(ISBLANK(Launch_Date__c),IF(TEXT(Account__r.Territory__c) = &#39;US&#39;,Product__r.Digital_Release__r.US_EST_Launch_Date__c,IF(TEXT(Account__r.Territory__c) = &#39;CA&#39;,Product__r.Digital_Release__r.CA_EST_Launch_Date__c,Launch_Date__c)),Launch_Date__c)</formula>
+        <name>DGFUpdate Launch Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>DGF_Update_PreOrder_Product_Acc_RecType</fullName>
+        <description>DFOR-263</description>
+        <field>RecordTypeId</field>
+        <lookupValue>Pre_Order</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>DGF Update PreOrder Product Acc RecType</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>DGF_Update_Pre_Order_Date</fullName>
+        <description>DFOR-263</description>
+        <field>Pre_Order_Date__c</field>
+        <formula>IF(Pre_Order_Date__c == null || ISBLANK(Pre_Order_Date__c) , Product__r.Start_Date__c , Pre_Order_Date__c)</formula>
+        <name>DGF Update Pre Order Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>DGF_Update_TV_Prod_Acc_Recype</fullName>
+        <description>DFOR-619</description>
+        <field>RecordTypeId</field>
+        <lookupValue>TV</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>DGF Update TV Prod Acc Recype</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_4K_EST_Date</fullName>
+        <description>DFOR-719</description>
+        <field>X4K_EST__c</field>
+        <formula>IF(ISBLANK(X4K_EST__c)&amp;&amp; Product__r.UHD__c = true &amp;&amp;  Product__r.Digital_Release__r.New_to_UHD__c = true,IF( TEXT(Account__r.Territory__c) = &#39;US&#39; ,  Product__r.Digital_Release__r.New_to_UHD_US_EST_Release_Date__c ,IF(TEXT(Account__r.Territory__c) = &#39;CA&#39;,Product__r.Digital_Release__r.New_to_UHD_CA_EST_Release_Date__c,X4K_EST__c )),IF(ISBLANK(X4K_EST__c),IF( TEXT(Account__r.Territory__c) = &#39;US&#39; ,Product__r.Digital_Release__r.US_EST_Date__c  ,IF(TEXT(Account__r.Territory__c) = &#39;CA&#39;,Product__r.Digital_Release__r.CA_EST_Date__c,X4K_EST__c)),X4K_EST__c))</formula>
+        <name>Update 4K EST Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_EST_Start_Date</fullName>
+        <description>DFOR-122</description>
+        <field>EST_Start_Date__c</field>
+        <formula>IF(ISBLANK(EST_Start_Date__c), IF( TEXT(Account__r.Territory__c) = &#39;US&#39;, Product__r.Digital_Release__r.US_EST_Date__c,IF(TEXT(Account__r.Territory__c) = &#39;CA&#39;,  Product__r.Digital_Release__r.CA_EST_Date__c ,EST_Start_Date__c )),EST_Start_Date__c )</formula>
+        <name>Update EST Start Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Launch_Date</fullName>
+        <field>Launch_Date__c</field>
+        <formula>IF(Product__r.RecordType.DeveloperName = &#39;TV&#39; &amp;&amp; RecordType.DeveloperName = &#39;TV&#39; &amp;&amp; Product__r.Digital_Release__r.RecordType.DeveloperName = &#39;TV&#39;&amp;&amp; ISBLANK(Launch_Date__c) ,IF(TEXT(Account__r.Territory__c) = &#39;US&#39;,Product__r.Digital_Release__r.US_EST_Launch_Date__c,IF(TEXT(Account__r.Territory__c) = &#39;CA&#39;,Product__r.Digital_Release__r.CA_EST_Launch_Date__c,Launch_Date__c)),IF(Product__r.RecordType.DeveloperName = &#39;Bundle&#39; &amp;&amp; RecordType.DeveloperName = &#39;Bundle&#39; &amp;&amp; Product__r.Digital_Release__r.RecordType.DeveloperName = &#39;Bundle&#39;&amp;&amp; ISBLANK(Launch_Date__c), IF(TEXT(Account__r.Territory__c) = &#39;US&#39;,Product__r.Digital_Release__r.US_Bundle_Avail_Date__c,IF(TEXT(Account__r.Territory__c) = &#39;CA&#39;,Product__r.Digital_Release__r.CA_Bundle_Avail_Date__c,Launch_Date__c)),Launch_Date__c))</formula>
+        <name>Update Launch Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_PPV_End_Date</fullName>
+        <description>DFOR-175</description>
+        <field>PPV_End_Date__c</field>
+        <formula>IF(ISBLANK(PPV_End_Date__c), IF( TEXT(Account__r.Territory__c) =&#39;US&#39;,Product__r.Digital_Release__r.US_VOD_End_Date__c,IF(TEXT(Account__r.Territory__c)=&#39;CA&#39;,Product__r.Digital_Release__r.CA_VOD_End_Date__c,PPV_End_Date__c)),PPV_End_Date__c)</formula>
+        <name>Update PPV End Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_PPV_Start_Date</fullName>
+        <description>DFOR-175</description>
+        <field>PPV_Start_Date__c</field>
+        <formula>IF(ISBLANK(PPV_Start_Date__c), IF( TEXT(Account__r.Territory__c) = &#39;US&#39;, Product__r.Digital_Release__r.US_VOD_Start_Date__c,IF(TEXT(Account__r.Territory__c)=&#39;CA&#39;,Product__r.Digital_Release__r.CA_VOD_Start_Date__c,PPV_Start_Date__c)),PPV_Start_Date__c)</formula>
+        <name>Update PPV Start Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Push_VOD_End_Date</fullName>
+        <description>DFOR-175</description>
+        <field>Push_VOD_End_Date__c</field>
+        <formula>IF(ISBLANK(Push_VOD_End_Date__c), IF( TEXT(Account__r.Territory__c) = &#39;US&#39;, Product__r.Digital_Release__r.US_VOD_End_Date__c,IF(TEXT(Account__r.Territory__c)=&#39;CA&#39;,Product__r.Digital_Release__r.CA_VOD_End_Date__c,Push_VOD_End_Date__c)),Push_VOD_End_Date__c)</formula>
+        <name>Update Push VOD End Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Push_VOD_Start_Date</fullName>
+        <description>DFOR-175</description>
+        <field>Push_VOD_Start_Date__c</field>
+        <formula>IF(ISBLANK(Push_VOD_Start_Date__c), IF( TEXT(Account__r.Territory__c) = &#39;US&#39;, Product__r.Digital_Release__r.US_VOD_Start_Date__c,IF(TEXT(Account__r.Territory__c)=&#39;CA&#39;,Product__r.Digital_Release__r.CA_VOD_Start_Date__c,Push_VOD_Start_Date__c)),Push_VOD_Start_Date__c)</formula>
+        <name>Update Push VOD Start Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_VOD_End_Date</fullName>
+        <description>DFOR-122</description>
+        <field>VOD_End_Date__c</field>
+        <formula>IF(ISBLANK( VOD_End_Date__c ), IF( TEXT(Account__r.Territory__c) = &#39;US&#39;, Product__r.Digital_Release__r.US_VOD_End_Date__c,IF(TEXT(Account__r.Territory__c)=&#39;CA&#39;,Product__r.Digital_Release__r.CA_VOD_End_Date__c,VOD_End_Date__c )),VOD_End_Date__c)</formula>
+        <name>Update VOD End Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_VOD_Start_Date</fullName>
+        <description>DFOR-122</description>
+        <field>VOD_Start_Date__c</field>
+        <formula>IF(ISBLANK(VOD_Start_Date__c), IF( TEXT(Account__r.Territory__c) = &#39;US&#39;, Product__r.Digital_Release__r.US_VOD_Start_Date__c,IF(TEXT(Account__r.Territory__c)=&#39;CA&#39;,Product__r.Digital_Release__r.CA_VOD_Start_Date__c,VOD_Start_Date__c)),VOD_Start_Date__c)</formula>
+        <name>Update VOD Start Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>DGF Update Bundle Product</fullName>
+        <actions>
+            <name>DGF_Update_Bundle_Launch_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>DGF_Update_Bundle_Prod_Acc_RecType</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>DFOR-619</description>
+        <formula>Product__r.RecordType.DeveloperName ==&#39;Bundle&#39; &amp;&amp; Product__r.Digital_Release__r.RecordType.DeveloperName==&#39;Bundle&#39; &amp;&amp; Carriage__c = False</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>DGF Update PreOrder Product Account</fullName>
+        <actions>
+            <name>DGF_Update_PreOrder_Product_Acc_RecType</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>DGF_Update_Pre_Order_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>DFOR-263</description>
+        <formula>Product__r.RecordType.DeveloperName ==&#39;Pre_Order&#39;</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>DGF Update TV Product</fullName>
+        <actions>
+            <name>DGF_Update_Launch_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>DGF_Update_TV_Prod_Acc_Recype</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>DFOR-619</description>
+        <formula>Product__r.RecordType.DeveloperName ==&#39;TV&#39; &amp;&amp; Product__r.Digital_Release__r.RecordType.DeveloperName==&#39;TV&#39; &amp;&amp; Carriage__c = False</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>DGF Update Version to Alternate</fullName>
+        <actions>
+            <name>DGF_Set_Version_to_Alternate</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>DFOR-263</description>
+        <formula>Product__r.RecordType.DeveloperName ==&#39;Pre_Order&#39; &amp;&amp;  INCLUDES(Product__r.Version_Availability__c , &#39;Alternate&#39;) &amp;&amp;  Account__r.Pre_Order_Best_Version__c</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>DGF Update Version to Theatrical</fullName>
+        <actions>
+            <name>DGF_Set_Version_to_Theatrical</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>DFOR-263</description>
+        <formula>Product__r.RecordType.DeveloperName ==&#39;Pre_Order&#39; &amp;&amp;  (!INCLUDES(Product__r.Version_Availability__c , &#39;Alternate&#39;) ||  !Account__r.Pre_Order_Best_Version__c)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Populate Dates for Film Product Account</fullName>
+        <actions>
+            <name>Update_4K_EST_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_EST_Start_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_PPV_End_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_PPV_Start_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Push_VOD_End_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Push_VOD_Start_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_VOD_End_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_VOD_Start_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>DFOR-122</description>
+        <formula>Product__r.RecordType.DeveloperName  = &#39;Film&#39;   &amp;&amp;  RecordType.DeveloperName = &#39;Film&#39; &amp;&amp; Product__r.Digital_Release__r.RecordType.DeveloperName = &#39;Film&#39; &amp;&amp;  Carriage__c = False &amp;&amp; OR(ISBLANK(EST_Start_Date__c),ISBLANK(VOD_Start_Date__c),ISBLANK(VOD_End_Date__c),ISBLANK(PPV_Start_Date__c), ISBLANK(PPV_End_Date__c),ISBLANK(Push_VOD_Start_Date__c),ISBLANK(Push_VOD_End_Date__c), ISBLANK( X4K_EST__c ))</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Populate Launch Date for TV and Bundle Product Account</fullName>
+        <actions>
+            <name>Update_Launch_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>DFOR-51,52</description>
+        <formula>(Product__r.RecordType.DeveloperName = &#39;TV&#39; &amp;&amp; RecordType.DeveloperName = &#39;TV&#39; &amp;&amp; Product__r.Digital_Release__r.RecordType.DeveloperName = &#39;TV&#39;) || (Product__r.RecordType.DeveloperName = &#39;Bundle&#39; &amp;&amp; RecordType.DeveloperName = &#39;Bundle&#39; &amp;&amp; Product__r.Digital_Release__r.RecordType.DeveloperName = &#39;Bundle&#39;) &amp;&amp; ISBLANK(Launch_Date__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

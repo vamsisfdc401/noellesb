@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Case_Notification_to_Owner</fullName>
+        <description>Case - Notification to Owner</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Promo_CaseMgmt_Emails/Case_Created_Notify_Owner</template>
+    </alerts>
+    <alerts>
+        <fullName>Price_Protection_Case_Approved</fullName>
+        <description>Price Protection - Case Approved</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Promo_CaseMgmt_Emails/Price_Protection_Case_Request_Approved</template>
+    </alerts>
+    <alerts>
+        <fullName>Price_Protection_Case_Rejected</fullName>
+        <description>Price Protection - Case Rejected</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Promo_CaseMgmt_Emails/Price_Protection_Case_Request_Rejected</template>
+    </alerts>
+    <alerts>
+        <fullName>Shipping_Issue_Case_Send_Approval_Email</fullName>
+        <description>Shipping Issue Case - Send Approval Email</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <recipients>
+            <field>LastModifiedById</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Promo_CaseMgmt_Emails/Shipping_Issues_Case_Request_Approved</template>
+    </alerts>
+    <alerts>
+        <fullName>Shipping_Issue_Case_Send_Approval_Requested_Email</fullName>
+        <ccEmails>tanmay.jain@capgemini.com</ccEmails>
+        <description>Shipping Issue Case - Send Approval Requested Email</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <recipients>
+            <field>FSTR__Completed_By__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>LastModifiedById</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Promo_CaseMgmt_Emails/Shipping_Issues_Case_Ask_for_Approval</template>
+    </alerts>
+    <alerts>
+        <fullName>Shipping_Issue_Case_Send_Rejection_Email</fullName>
+        <description>Shipping Issue Case - Send Rejection Email</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <recipients>
+            <field>LastModifiedById</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Promo_CaseMgmt_Emails/Shipping_Issues_Case_Request_Rejected</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>CM_Integration_Status_Update_to_N</fullName>
+        <description>This action updates POD Case integration status to &quot;N&quot;</description>
+        <field>Integration_Status__c</field>
+        <literalValue>N</literalValue>
+        <name>CM Integration Status Update to N</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CM_Update_Status_to_Closed</fullName>
+        <description>Updates Case Status to Closed</description>
+        <field>Status</field>
+        <literalValue>Closed</literalValue>
+        <name>CM Update Status to Closed</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CM_Update_Status_to_Document_Created</fullName>
+        <description>Updates case status to document created</description>
+        <field>Status</field>
+        <literalValue>Doc # Created</literalValue>
+        <name>CM Update Status to Document Created</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CM_Update_Status_to_Submitted</fullName>
+        <description>Updates Case Status to &quot;Submitted&quot;</description>
+        <field>Status</field>
+        <literalValue>Submitted</literalValue>
+        <name>CM Update Status to Submitted</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Case_Status_New</fullName>
+        <description>Set Case Status to New</description>
+        <field>Status</field>
+        <literalValue>New</literalValue>
+        <name>Case Status - New</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>SI_Case_Approved</fullName>
+        <field>Status</field>
+        <literalValue>Approved</literalValue>
+        <name>SI Case - Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>SI_Case_Pending_Approval</fullName>
+        <field>Status</field>
+        <literalValue>Pending Approval</literalValue>
+        <name>SI Case - Pending Approval</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>SI_Case_Rejected</fullName>
+        <field>Status</field>
+        <literalValue>Rejected</literalValue>
+        <name>SI Case - Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>Case - New Record Created</fullName>
+        <actions>
+            <name>Case_Notification_to_Owner</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Send an email to the Owner about new Case creation</description>
+        <formula>OR (ISNEW(), ISCHANGED (OwnerId))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Case Management POD Status Update-%22Document %23 Created%22</fullName>
+        <actions>
+            <name>CM_Update_Status_to_Document_Created</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Integration_Status__c</field>
+            <operation>equals</operation>
+            <value>S</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>PO Discrepancies</value>
+        </criteriaItems>
+        <description>Update case status to &quot;Document # created&quot; when integration status is set to &quot;S&quot; for POD</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Case Management PP Status Update-%22Closed%22</fullName>
+        <actions>
+            <name>CM_Update_Status_to_Closed</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Integration_Status__c</field>
+            <operation>equals</operation>
+            <value>S</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Price Protection</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.SAP_Order_Number__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>Update case status to &quot;Closed&quot; when integration status is set to &quot;S&quot; for PP</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Case Management Status Update-%22Submitted%22</fullName>
+        <actions>
+            <name>CM_Update_Status_to_Submitted</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Integration_Status__c</field>
+            <operation>equals</operation>
+            <value>P</value>
+        </criteriaItems>
+        <description>Update case status to &quot;Submitted&quot; when integration status is set to &quot;P&quot; for Cases</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

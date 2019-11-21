@@ -1,0 +1,1019 @@
+<apex:page standardController="Acquisition_Deal__c" renderAs="pdf" extensions="legalSummaryViewsOnAcqDeal" action="{!queryRelatedObjects}">
+    <apex:pageBlock title="Legal Summary View -Approved ">
+        <apex:outputText value="Title" style="font-weight:bold;font-size: 97%;"/>
+        <br/>
+        <br/>
+        <table width="100%">  
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Title Name: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedTitle.Name}" style="font-size:88%;color:#006600;"/></td>   
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Genre: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedTitle.LAQ_Genre__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Sub Genre: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedTitle.LAQ_Sub_Genre__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Cast: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedTitle.LAQ_Cast__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Directors: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedTitle.LAQ_Directors__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Producers: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedTitle.LAQ_Producers__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Writers: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedTitle.LAQ_Writers__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Original Language: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedTitle.LAQ_Original_Language__c}" style="font-size:88%;color:#006600;"/></td>     
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Other Languages: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedTitle.LAQ_Other_Languages__c}" style="font-size:88%;color:#006600;"/></td>     
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Production Budget: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedTitle.LAQ_Production_Budget__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+        </table>
+        
+        <br/>
+        <!--<apex:outputText value="Acquisition Deal" style="font-weight:bold;font-size: 97%;"/>-->
+        <table width="100%">  
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Licensor: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!currentDeal.Licensor__r.Name}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>        
+        </table>
+        <br/>
+        
+        <apex:outputText value="Primary Terms" style="font-weight:bold;font-size: 97%;"/>
+        <br/>
+        <br/>
+        <table width="100%"> 
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="PR Obligation: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><p value="{!approvedPT.PR_Obligation__c}"><apex:outputText value="{!approvedPT.PR_Obligation__c}" style="text-align:justify !important;font-size:88%;color:#006600;"/></p></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Clearances: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Clearances_PL__c}" style="font-size:88%;color:#006600;"/></td> 
+                
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Clearances Details of the Exclusions: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Clearances_Details_of_the_Exclusions__c}" style="font-size:88%;color:#006600;"/></td>
+                
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Music Payments: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Music_Payments__c}" style="font-size:88%;color:#006600;"/></td>
+                
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Music Pay Details of the Exclusions: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Music_Payments_Details_of_the_Exclusions__c}" style="font-size:88%;color:#006600;"/></td>
+                
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Other Conditions: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Other_Conditions__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+        </table>
+        <table>
+            <tr><td><apex:outputText value="Term" style="font-size:97%;font-weight: bold;"/></td></tr>
+        </table>
+        <br/>
+        <table>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Years of the Term: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Years_of_the_Term__c}" style="font-size:88%;color:#006600;"/></td>     
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Plus Years if Unrecouped: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Plus_Years_if_Unrecouped__c}" style="font-size:88%;color:#006600;"/></td>     
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="+ Plus Sell-off Period (Months): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Plus_Sell_off_Period__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Term Start Date On: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Term_Start_Date_On__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Term Start Date On (If Other): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Term_Start_Date_On_If_Other__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+        </table>
+        <table>
+            <tr><td><apex:outputText value="Options" style="font-size:97%;font-weight: bold;"/></td></tr>          
+        </table>
+        <br/>
+        <table>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Extend the Term: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Extend_the_Term__c}" style="font-size:88%;color:#006600;"/></td>     
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Acquire future productions: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Acquire_future_productions__c}" style="font-size:88%;color:#006600;"/></td>   
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Acquire reserved territories (G+): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Acquire_reserved_territories__c}" style="font-size:88%;color:#006600;"/></td>     
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Acquire reserved rights (G+): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Acquire_reserved_rights__c}" style="font-size:88%;color:#006600;"/></td>   
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Other (please list): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Other_please_list__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Other Options details: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Other_Options_details__c}" style="font-size:88%;color:#006600;"/></td>   
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Future production details (G+): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Future_production_details__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Cross collaterisation: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Cross_collaterisation__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+        </table>
+        <br/>
+        <table>
+            <tr>
+                <td width="25%"><apex:outputText value="Universal Recoupable Costs" style="font-size:97%;font-weight: bold;"/></td>
+            </tr>
+        </table>
+        <br/>
+        <table width="100%">
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Interest: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Interest__c}" style="font-size:88%;color:#006600;"/></td>  
+                
+                
+                <td width="25%" valign="top"><apex:outputText value="Interest Caps: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Interest_Caps__c}" style="font-size:88%;color:#006600;"/></td> 
+                
+            </tr>  
+            <tr>    
+                <td width="25%" valign="top"><apex:outputText value="Interest Source: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Interest_Source__c}" style="font-size:88%;color:#006600;"/></td>
+                <td width="25%" valign="top"></td>
+                <td width="25%" valign="top"></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="DLT Origination: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.DLT_Origination__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                
+                <td width="25%" valign="top"><apex:outputText value="DLT Origination Caps: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.DLT_Origination_Caps__c}" style="font-size:88%;color:#006600;"/></td>
+                
+            </tr>
+            <tr>   
+                <td width="25%" valign="top"><apex:outputText value="Central Marketing: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Central_Marketing__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                
+                <td width="25%" valign="top"><apex:outputText value="Central Marketing Caps: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Central_Marketing_Caps__c}" style="font-size:88%;color:#006600;"/></td>
+                
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="MG: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.MG_Checkbox__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="MG Caps: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.MG_Caps__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Delivery Materials: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Delivery_Materials__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="Delivery Materials Caps: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Delivery_Materials_Caps__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Clearances: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Clearances__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="Clearances Caps: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Clearances_Caps__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="P & A: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.P_A__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="P & A Caps: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.P_A_Caps__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr> 
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Television Costs: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Television_Costs__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="Television Costs Caps: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Television_Costs_Caps__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Other Costs: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Other_Costs__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="Other Costs Caps: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Other_Costs_Caps__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+        </table>
+        <table width="100%">
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Universal Responsibility: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Costs_on_Universals_resp__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>                        
+        </table>
+        <table width="100%">
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Licensor's Release Condition (G+): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Licensors_Release_Condition__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="Universal Release Condition: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Universal_Release_Condition__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+        </table>
+        <table width="100%">
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Licensor's Release Condition Detail (G+): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Licensors_Release_Condition_Details__c}" style="font-size:88%;color:#006600;"/></td>       
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Universal Release Condition Details: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Universal_Release_Condition_Details__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr> 
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Deal Structure: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Deal_Structure__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Other Deal Structure: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Other_Deal_Structure__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>    
+            
+        </table>
+        <br/>
+        
+        <!--<apex:outputText value="Financials" style="font-weight:bold;font-size: 97%;"/>-->
+        <table width="100%">    
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="MG: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedFinancials.MG__c}" style="font-size:88%;color:#006600;"/></td>  
+                <td width="25%" valign="top"></td>
+                <td width="25%" valign="top"></td>  
+            </tr>    
+        </table>
+        <br/>
+        
+        <!--<apex:outputText value="Primary Terms" style="font-weight:bold;font-size: 97%;"/>-->
+        <table width="100%"> 
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Signature: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Signature_payterms__c}" style="font-size:88%;color:#006600;"/></td> 
+                <td width="25%" valign="top"></td>
+                <td width="25%" valign="top"></td>   
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Acceptance of Delivery: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Acceptance_of_Delivery_pt__c}" style="font-size:88%;color:#006600;"/></td>
+                <td width="25%" valign="top"></td>
+                <td width="25%" valign="top"></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Fulfilment of Release Condition: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Fulfilment_of_Release_Condition_pt__c}" style="font-size:88%;color:#006600;"/></td>
+                <td width="25%" valign="top"></td>
+                <td width="25%" valign="top"></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="First Release by Universal: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.First_Release_by_Universal_pt__c}" style="font-size:88%;color:#006600;"/></td> 
+                <td width="25%" valign="top"></td>
+                <td width="25%" valign="top"></td>   
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Fulfilment of Talent PR obligation: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Fulfilment_of_Talent_PR_obl_pt__c}" style="font-size:88%;color:#006600;"/></td>  
+                <td width="25%" valign="top"></td>
+                <td width="25%" valign="top"></td>  
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Commencement of Principal Photography: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Commencement_of_Princ_Photo_pt__c}" style="font-size:88%;color:#006600;"/></td>  
+                <td width="25%" valign="top"></td>
+                <td width="25%" valign="top"></td>  
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Commencement of Post Production: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Commencement_of_Post_Prod_pt__c}" style="font-size:88%;color:#006600;"/></td>
+                <td width="25%" valign="top"></td>
+                <td width="25%" valign="top"></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Other: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Other_pt__c}" style="font-size:88%;color:#006600;"/></td>
+                <td width="25%" valign="top"></td>
+                <td width="25%" valign="top"></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Other Payment Terms: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Other_Payment_Terms__c}" style="font-size:88%;color:#006600;"/></td>   
+            </tr>
+        </table>
+        <!--Principal Rights-->
+        <!--<table width="100%">    
+<tr>
+<td width="25%" valign="top"><apex:outputText value="Tip: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+<td width="25%" valign="top"><apex:outputText value="{!approvedPT.Explanation_Intro__c}" style="font-size:88%;color:#006600;"/></td>    
+</tr>
+</table>-->
+        <br/>
+        <table width="100%">
+            
+            <tr><td><apex:outputText value="Principal Licensed Rights" style="font-size:97%;font-weight: bold;"/></td></tr>
+            
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Mark All Acquired Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Mark_All_Rights_Acquired__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="Change All Paid On: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Change_All_Rights_Paid_On__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <br/>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Theatrical Acquired Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Theatrical_Acquired__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="Theatrical 'Must Have' Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Theatrical_MustHave__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Licensor's Share of Rec. (Theatrical): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Licensor_s_Share_of_Receipts_Theatrical__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="Paid On (Theatrical): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Theatrical_Paid_On__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <br/>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Home Ent Acquired Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Home_Ent_Acquired__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="Home Ent 'Must Have' Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Home_Ent_Must_Have__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="% for New Release: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Home_Video_Percent_for_New_Release__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"></td>
+                <td width="25%" valign="top"></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="% for Catalogue: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Home_Video_Percent_for_Catalogue__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="Paid On (Home Ent): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Paid_On_Home_Ent__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <br/> 
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="EST Acquired Acquired Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.EST_Acquired__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="EST 'Must Have' Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.EST_MustHave__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="% for New Release: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.EST_Percent_for_New_Release__c}" style="font-size:88%;color:#006600;"/></td>
+                <td width="25%" valign="top"></td>
+                <td width="25%" valign="top"></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="% for Catalogue: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.EST_Percent_for_Catalogue__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="Paid On (EST): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.EST_Paid_On__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>  
+            <br/>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="TVOD Acquired Acquired Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.TVOD_Acquired__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="TVOD 'Must Have' Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.TVOD_MustHave__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="% for New Release: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.TVOD_Percent_for_New_Release__c}" style="font-size:88%;color:#006600;"/></td>
+                <td width="25%" valign="top"></td>
+                <td width="25%" valign="top"></td>    
+            </tr>  
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="% for Catalogue: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.TVOD_Percent_for_Catalogue__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="Paid On (TVOD): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.TVOD_Paid_On__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <br/>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="SVOD Acquired Acquired Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.SVOD_Acquired__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="SVOD 'Must Have' Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.SVOD_MustHave__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="% for New Release: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.SVOD_Percent_for_New_Release__c}" style="font-size:88%;color:#006600;"/></td>
+                <td width="25%" valign="top"></td>
+                <td width="25%" valign="top"></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="% for Catalogue: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.SVOD_Percent_for_Catalogue__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="Paid On (SVOD): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.SVOD_Paid_On__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr> 
+            <br/> 
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="FVOD / AVOD Acquired Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.FVOD_AVOD_Acquired__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="FVOD / AVOD 'Must Have' Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.FVOD_AVOD_MustHave__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>  
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="% for New Release: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.FVOD_AVOD_Percent_for_New_Release__c}" style="font-size:88%;color:#006600;"/></td>    
+                <td width="25%" valign="top"></td>
+                <td width="25%" valign="top"></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="% for Catalogue: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.FVOD_AVOD_Percent_for_Catalogue__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="Paid On (FVOD): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.FVOD_Paid_On__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr> 
+        </table>
+        <br/>
+        <table width="100%"> 
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="PPV Acquired Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.PPV_Acquired_Rights__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="PPV 'Must Have' Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.PPV_Must_Have_Rights__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="% for New Release: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.PPV_Percent_for_New_Release__c}" style="font-size:88%;color:#006600;"/></td>    
+                <td width="25%" valign="top"></td>
+                <td width="25%" valign="top"></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="% for Catalogue: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.PPV_Percent_for_Catalogue__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="Paid On: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.PPV_Paid_On__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <br/>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Pay TV Acquired Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Pay_TV_Acquired__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="Pay TV 'Must Have' Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Pay_TV_MustHave__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Licensor's Share of Rec (Pay TV): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Licensor_s_Share_of_Rec_Pay_TV__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="Paid On (Pay TV): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Pay_TV_Paid_On__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="% if chosen for TV output deals: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Pay_If_Chosen__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="Paid On: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Pay_TV_if_chosen_output_Paid_On__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <br/>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Free TV Acquired Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Free_TV_Acquired__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="Free TV 'Must Have' Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Free_TV_MustHave__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Licensor's Share of Rec (Free TV): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Licensor_s_Share_of_Rec_Free_TV__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="Paid On (Free TV): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Free_TV_Paid_On__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="% if chosen for TV output deals: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Free_TV_If_Chosen__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="Paid On: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Free_TV_If_Chosen_Paid_On__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <br/>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Catch-Up TV Acquired Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Catch_Up_TV_Acquired__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="Catch-Up TV 'Must Have' Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Catch_Up_TV_MustHave__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Licensor's Share of Rec (Catch-Up TV): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Licensor_s_Share_of_Rec_Catch_Up_TV__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="Paid On: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Catch_UP_TV_Paid_On__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="% if chosen for TV output deals: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.CatchUp_TV_If_Chosen__c}" style="font-size:88%;color:#006600;"/></td>    
+                
+                <td width="25%" valign="top"><apex:outputText value="Paid On: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Catchup_TV_If_Chosen_Paid_On__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <br/>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Further Details (Primary): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Further_Details_Primary__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Universal's Share of Receipts(Primary): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Universal_s_Share_of_Receipts_Primary__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            
+            <!--Secondary Rights-->    
+            <br/>
+            <tr><td width="auto"><apex:outputText value="Secondary Licensed Rights" style="font-size:97%;font-weight: bold;"/></td></tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="NonTheatrical Acquired Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.NonTheatrical_Acquired__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                <td width="25%" valign="top"><apex:outputText value="NonTheatrical 'Must Have' Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.NonTheatrical_MustHave__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Licensor's Share of Rec (NonTheatrical): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Licensor_s_Share_of_Receipts_NonTheatric__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                <td width="25%" valign="top"><apex:outputText value="Paid On (Non Theatrical): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.NonTheatrical_Paid_On__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Promotional: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.NonTheatrical_Promotional__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <br/>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Merchandising Acquired Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Merchandising_Acquired__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                <td width="25%" valign="top"><apex:outputText value="Merchandising 'Must Have Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Merchandising_MustHave__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Licensor's Share of Rec (Merchandising): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Licensor_s_Share_of_Rec_Merchandising__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                <td width="25%" valign="top"><apex:outputText value="Paid On (Merchandising): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Merchandising_Paid_On__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Promotional: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Merchandising_Promotional__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <br/>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Literary Publishing Acquired Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Literary_Publishing_Acquired__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                <td width="25%" valign="top"><apex:outputText value="Literary Publishing 'Must Have' Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Literary_Publishing_MustHave__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Licensor's Share of Rec. (Literary Publ): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Licensor_s_Share_of_Rec_Literary_Publ__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                <td width="25%" valign="top"><apex:outputText value="Paid On (Literary Publishing): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Literary_Publ_Paid_On__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Promotional: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Literary_Publishing_Promotional__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <br/>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Clip Acquired Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Clip_Acquired__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                <td width="25%" valign="top"><apex:outputText value="Clip 'Must Have' Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Clip_MustHave__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Licensor's Share of Rec. (Clip): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Licensor_s_Share_of_Rec_Clip__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                <td width="25%" valign="top"><apex:outputText value="Paid On (Clip): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Clip_Paid_On__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Promotional: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Clip_Promotional__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Non-Exclusive: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Clip_Non_Exclusive__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Interactive Acquired Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Interactive_Acquired__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                <td width="25%" valign="top"><apex:outputText value="Interactive 'Must Have' Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Interactive_MustHave__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Licensor's Share of Rec (Interactive): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Licensor_s_Share_of_Rec_Interactive__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                <td width="25%" valign="top"><apex:outputText value="Paid On (Interactive): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Interactive_Paid_On__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Promotional: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Interactive_Promotional__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <br/>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Theme Park Acquired Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Theme_Park_Acquired__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                <td width="25%" valign="top"><apex:outputText value="Theme Park 'Must Have' Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Theme_Park_MustHave__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Licensor's Share of Rec (Theme Park): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Licensor_s_Share_of_Rec_Theme_Park__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                <td width="25%" valign="top"><apex:outputText value="Paid On (Theme Park): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Theme_Park_Paid_On__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Promotional: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Theme_Park_Promotional__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <br/>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Sponsorship Acquired Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Sponsorship_Acquired__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                <td width="25%" valign="top"><apex:outputText value="Sponsorship 'Must Have' Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Sponsorship_MustHave__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Licensor's Share of Rec (Sponsorship): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Licensor_s_Share_of_Rec_Sponsorship__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                <td width="25%" valign="top"><apex:outputText value="Paid On (Sponsorship): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Sponsorship_Paid_On__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Promotional: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Sponsorship_Promotional__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <br/>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Audio Only Acquired Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Audio_Only_Acquired__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                <td width="25%" valign="top"><apex:outputText value="Audio Only 'Must Have' Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Audio_Only_MustHave__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Licensor's Share of Rec (Audio Only): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Licensor_s_Share_of_Rec_Audio_Only__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                <td width="25%" valign="top"><apex:outputText value="Paid On (Audio Only): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Audio_Only_Paid_On__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Promotional: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Audio_Only_Promotional__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <br/>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Stage Play Acquired Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Stage_Play_Acquired__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                <td width="25%" valign="top"><apex:outputText value="Stage Play 'Must Have' Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Stage_Play_MustHave__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Licensor's Share of Rec (Stage Play): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Licensor_s_Share_of_Rec_Stage_Play__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                <td width="25%" valign="top"><apex:outputText value="Paid On (Stage Play): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Stage_Play_Paid_On__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Promotional: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Stage_Play_Promotional__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <br/>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Soundtrack Acquired Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Soundtrack_Acquired__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                <td width="25%" valign="top"><apex:outputText value="Soundtrack 'Must Have' Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Soundtrack_MustHave__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Licensor's Share of Rec (Soundtrack): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Licensor_s_Share_of_Rec_Soundtrack__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                <td width="25%" valign="top"><apex:outputText value="Paid On (Soundtrack): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Soundtrack_Paid_On__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Promotional: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Soundtrack_Promotional__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <br/>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Airlines Acquired Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Airlines_Acquired_Rights__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                <td width="25%" valign="top"><apex:outputText value="Airlines 'Must Have' Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Airlines_Must_Have_Rights__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Licensor's Share of Rec (Airlines): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Licensor_s_Share_of_Rec_Airlines__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                <td width="25%" valign="top"><apex:outputText value="Paid On: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Airlines_Paid_On__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Promotional: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Airlines_Promotional__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Ship Acquired Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Ship_Acquired_Rights__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                <td width="25%" valign="top"><apex:outputText value="Ship 'Must Have' Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Ship_Must_Have_Rights__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Licensor's Share of Rec (Ship): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Licensor_s_Share_of_Rec_Ship__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                <td width="25%" valign="top"><apex:outputText value="Paid On: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Ship_Rights_Paid_On__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Promotional: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Ship_Promotional__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <br/>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Other Acquired Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Other_Acquired_Rights__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                <td width="25%" valign="top"><apex:outputText value="Other 'Must Have' Rights: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Other_Must_Have_Rights__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="If Other please list: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.If_Other_please_list_Other_Rights__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Licensor's Share of Rec (Other): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Licensor_s_Share_of_Rec_Other__c}" style="font-size:88%;color:#006600;"/></td>
+                
+                <td width="25%" valign="top"><apex:outputText value="Paid On: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputText value="{!approvedPT.Other_Rights_Paid_On__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Other Promotional: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="25%" valign="top"><apex:outputField value="{!approvedPT.Other_Promotional__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+        </table>
+        <table width="100%">
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Further Details (Secondary): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Further_Details_Sec__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="25%" valign="top"><apex:outputText value="Universal's Share of Receipts (Sec): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Universal_Share_of_Receipts_Secondary__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>    
+                <td width="25%" valign="top"><apex:outputText value="Other Financial Terms (S+): " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="75%" valign="top"><apex:outputText value="{!approvedPT.Other_Financial_Terms__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+        </table>
+        <table>
+            <!--<tr>    
+<td width="25%" valign="top"><apex:outputText value="Tip Holdbacks: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+<td width="25%" valign="top"><apex:outputText value="{!approvedPT.Holdbacks_intro__c}"/></td>
+</tr>-->
+            <br/>
+            <tr><td><apex:outputText value="Holdbacks" style="font-size:97%;font-weight: bold;"/></td></tr>
+        </table>
+        <br/>
+        <table width="100%">
+            <tr>
+                <td width="40%" valign="top"><apex:outputText value="All Rights Universal Holdbacks: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedPT.All_Rights_Universal_Holdbacks__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="40%" valign="top"><apex:outputText value="All Rights Licensor Holdbacks: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedPT.All_Rights_Licensor_Holdbacks__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <br/>
+            <tr>
+                <td width="40%" valign="top"><apex:outputText value="Theatrical Universal Holdbacks: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedPT.Theatrical_Universal_Holdbacks__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="40%" valign="top"><apex:outputText value="Theatrical Licensor Holdbacks: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedPT.Theatrical_Licensor_Holdbacks__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <br/>
+            <tr>
+                <td width="40%" valign="top"><apex:outputText value="Home Video Universal Holdbacks: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedPT.Home_Video_Universal_Holdbacks__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="40%" valign="top"><apex:outputText value="Home Video Licensor Holdbacks: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedPT.Home_Video_Licensor_Holdbacks__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+        </table>
+        <br/>
+        <table width="100%">
+            <tr>
+                <td width="40%" valign="top"><apex:outputText value="EST Universal Holdbacks: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedPT.EST_Universal_Holdbacks__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="40%" valign="top"><apex:outputText value="EST Licensor Holdbacks: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedPT.EST_Licensor_Holdbacks__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <br/>
+            <tr>
+                <td width="40%" valign="top"><apex:outputText value="TVOD Universal Holdbacks: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedPT.TVOD_Universal_Holdbacks__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>   
+                <td width="40%" valign="top"><apex:outputText value="TVOD Licensor Holdbacks: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedPT.TVOD_Licensor_Holdbacks__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <br/>
+            <tr>
+                <td width="40%" valign="top"><apex:outputText value="SVOD Universal Holdbacks: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedPT.SVOD_Universal_Holdbacks__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="40%" valign="top"><apex:outputText value="SVOD Licensor Holdbacks: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedPT.SVOD_Licensor_Holdbacks__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <br/>
+            <tr>
+                <td width="40%" valign="top"><apex:outputText value="FVOD / AVOD Universal Holdbacks: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedPT.FVOD_AVOD_Universal_Holdbacks__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="40%" valign="top"><apex:outputText value="FVOD / AVOD Licensor Holdbacks: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedPT.FVOD_AVOD_Licensor_Holdbacks__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <br/>
+            <tr>
+                <td width="40%" valign="top"><apex:outputText value="Pay TV Universal Holdbacks: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedPT.Pay_TV_Universal_Holdbacks__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>  
+                <td width="40%" valign="top"><apex:outputText value="Pay TV Licensor Holdbacks: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedPT.Pay_TV_Licensor_Holdbacks__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <br/>
+            <tr>
+                <td width="40%" valign="top"><apex:outputText value="Free TV Universal Holdbacks: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedPT.Free_TV_Universal_Holdbacks__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr> 
+                <td width="40%" valign="top"><apex:outputText value="Free TV Licensor Holdbacks: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedPT.Free_TV_Licensor_Holdbacks__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <br/>
+            <tr>
+                <td width="40%" valign="top"><apex:outputText value="Catch-Up TV Universal Holdbacks: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedPT.CatchUp_TV_Universal_Holdbacks__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>  
+                <td width="40%" valign="top"><apex:outputText value="Catch-Up TV Licensor Holdbacks: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedPT.CatchUp_TV_Licensor_Holdbacks__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+        </table>
+        <br/>
+        <table width="100%">
+            <tr>
+                <td width="40%" valign="top"><apex:outputText value="Further Holdbacks Details: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedPT.Further_Holdbacks_Details__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>         
+                <td width="40%" valign="top"><apex:outputText value="+ Acquisition Territories: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedPT.Acquisition_Territories__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="40%" valign="top"><apex:outputText value="Other Territories: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedPT.Other_Territories__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+            <tr>
+                <td width="40%" valign="top"><apex:outputText value="Exclusion within Territories: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedPT.Exclusion_within_Territories__c}" style="font-size:88%;color:#006600;"/></td>
+            </tr>
+        </table>
+        <br/>
+        <apex:outputText value="Risk & Compliance" style="font-weight:bold;font-size: 97%;"/>
+        
+        <table width="100%">
+            <br/>
+            <tr>
+                <td width="40%" valign="top"><apex:outputText value="Risk Level: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedRisk.Risk_level__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="40%" valign="top"><apex:outputText value="Unsecure Payment Risk: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputField value="{!approvedRisk.Unsecure_Payment_Risk__c}" style="font-size:88%;color:#006600;"/></td>   
+            </tr>
+            <tr>
+                <td width="40%" valign="top"><apex:outputText value="Percent of Unsecure Payment: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedRisk.Percent_of_Unsecure_Payment__c}" style="font-size:88%;color:#006600;"/></td>   
+            </tr>
+            <tr>
+                <td width="40%" valign="top"><apex:outputText value="Steps to Mitigate known risk: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedRisk.Steps_to_mitigate__c}" style="font-size:88%;color:#006600;"/></td>   
+            </tr>
+            <tr>
+                <td width="40%" valign="top"><apex:outputText value="Production Services: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputField value="{!approvedRisk.Production_Services__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            <tr>
+                <td width="40%" valign="top"><apex:outputText value="Approvals: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedRisk.Approvals__c}" style="font-size:88%;color:#006600;"/></td>   
+            </tr>          
+            
+            <tr>
+                <td width="40%" valign="top"><apex:outputText value="MG Budget Ratio: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedRisk.MG_Budget_Ratio__c}" style="font-size:88%;color:#006600;"/></td>    
+            </tr>
+            
+        </table>
+        <br/>
+        <!--<apex:outputText value="Financials" style="font-weight:bold;font-size: 97%;"/>-->
+        <table width="100%"> 
+            <tr>
+                <td width="40%" valign="top"><apex:outputText value="Interparty Agreement: " style="font-size:88%;font-weight: bold;color: #4A4A56;"/></td>
+                <td width="60%" valign="top"><apex:outputText value="{!approvedFinancials.Interparty_Agreement__c}" style="font-size:88%;color:#006600;"/></td>   
+            </tr>     
+        </table>
+    </apex:pageBlock>
+</apex:page>

@@ -1,0 +1,132 @@
+<aura:component description="New Title Edit" controller="RST_NewTitle_Controller">
+    
+    <aura:attribute name="titles" type="Object[]" />
+    <aura:attribute name="genres" type="Object[]" />
+    <aura:attribute name="newTitle" type="Object" />
+    <aura:attribute name="titles_list" type="Object[]" />
+    <aura:attribute name="filter_list" type="Object[]" />
+    <aura:attribute name="selected_list" type="Object[]" />
+    <aura:attribute name="result_list" type="Object[]" />
+    
+    <aura:attribute name="result" type="Object" />
+    <aura:attribute name="filterTitle" type="String" />
+    
+    <aura:attribute name="forecastOptions" type="List" default="[
+                                                                {'label': 'Genre', 'value': 'Genre'},
+                                                                {'label': 'Comps', 'value': 'Compare'}
+                                                                ]" />
+    
+    
+    <aura:attribute name="seasonOptions" type="List" default="[
+                                                              {'label': 'Summer', 'value': 'Summer'},
+                                                              {'label': 'Non-Summer', 'value': 'NonSummer'}
+                                                              ]" />
+    
+    
+    <aura:attribute name="curStep" type="Integer" default="0" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <div>
+        <lightning:layout>
+            <lightning:layoutItem size="4">
+                <h2>Forecast New Title</h2>
+                <!-- STEP 1 -->
+                <h3>Select a title to forecast &amp; BO amounts:</h3>
+                <lightning:recordEditForm aura:id="recordViewForm" objectApiName="RST_Play_Week__c">
+                    <lightning:inputField aura:id="newTitleName" fieldName="ui_OpenForecast_Titles__c" onchange="{!c.titleChanged}"/><br />
+                </lightning:recordEditForm>
+                <lightning:input aura:id="openWBOEntry" label="Enter Opening Weekend BO in Millions" placeholder="Weekend BO..." value="{!v.newTitle.Weekend_BO}"
+                                 type="number" formatter="currency" step="0.01" />
+                <br />
+                <lightning:input aura:id="openWBOEntry" label="Enter Opening Mid-Week BO in Millions" placeholder="Mid-Week BO..." value="{!v.newTitle.Midweek_BO}"
+                                 type="number" formatter="currency" step="0.01" />
+                <br />
+                <lightning:button variant="brand" label="Next" title="Next button" onclick="{! c.enterTitleNext }" disabled="{!or(empty(v.newTitle), and(empty(v.newTitle.Weekend_BO),empty(v.newTitle.Midweek_BO)))}"
+                                  class="{!if(v.curStep > 0, 'slds-hidden', '')+' nbcu-btn dark'}" />
+            </lightning:layoutItem>
+            
+            <!--STEP 2 -->	
+            
+            <lightning:layoutItem size="4">
+                <aura:if isTrue="{!v.curStep >= 1}">
+                    <div class="stepTwo">
+                        <h3>Choose forecast decay model:</h3>
+                        <lightning:radioGroup label="" 
+                                              name="forecastModelGroup" options="{! v.forecastOptions }"
+                                              type="button" value="{! v.newTitle.forecastModel }" />
+                        <br />
+                        <aura:if isTrue="{!v.newTitle.forecastModel == 'Genre'}">
+                            <h3>Select season:<span class="required">*</span></h3>
+                            
+                            <lightning:radioGroup label="" name="seasonModelGroup" options="{! v.seasonOptions }" type="button"
+                                                  value="{! v.newTitle.seasonModel }" />
+                            <br />
+                            <h3>Select genre:<span class="required">*</span></h3>
+                            <lightning:select name="genreSelect" label="" required="true" value="{!v.newTitle.RenTrak_Genre}">
+                                <aura:iteration items="{!v.genres}" var="genre">
+                                    <option text="{!genre}"></option>
+                                </aura:iteration>
+                            </lightning:select>
+                        </aura:if>
+                        <aura:if isTrue="{!v.newTitle.forecastModel == 'Compare'}">
+                            <h3>Select up to 5 titles:</h3>
+                            <lightning:input aura:id="titleFilter" label="Filter Title List" onchange="{!c.updateFilterList}" value="{!v.filterTitle}"/><br/>
+                            <lightning:dualListbox 
+									fieldLevelHelp="Forecast will be based on chosen titles." 
+									label=""
+                                    max="5" 
+                                    min="1" 
+                                    options="{!v.filter_list}" 
+                                    onchange="{! c.titleCompareUpdated }" 
+                                    selectedLabel="Selected"
+                                    sourceLabel="Available"
+                                    value="{!v.selected_list}" />
+                            
+                            
+                        </aura:if>
+                        <br />
+                        <lightning:button 
+                                class="{!if(v.result, 'slds-hidden', '')+' nbcu-btn dark'}"
+                                disabled="{!
+                                    not(or(
+                                        and(v.newTitle.forecastModel == 'Genre', !empty(v.newTitle.seasonModel)), 
+                                        and(v.newTitle.forecastModel == 'Compare', !empty(v.selected_list))
+                                    ))}"
+                                label="Next" 
+                                onclick="{! c.enterTitleNext }" 
+                                title="Next button" 
+								variant="brand"/>
+                        
+                    </div>
+                </aura:if>
+            </lightning:layoutItem>
+            
+            
+            <!--STEP 3 -->
+            <lightning:layoutItem size="4">
+                <aura:if isTrue="{!v.curStep == 2}">
+                    <lightning:spinner alternativeText="Loading" size="small" />
+                </aura:if>
+                <aura:if isTrue="{!v.result}">
+                    <div class="stepThree">
+                        <aura:if isTrue="{!v.result.result == 'Success'}">
+                            <h2>New title update was successful!</h2>
+                            <aura:set attribute="else">
+                                <h2>Error</h2><br />
+                                <p>There was a problem updating the forecast model:</p>
+                                <aura:iteration items="{!v.result.issues}" var="issue">
+                                    {!issue}<br />
+                                </aura:iteration>
+                                <br/>
+                                <!--<lightning:button class="nbcu-btn" label="Try Again" title="retry forecast" onclick="{! c.retryClick }" />-->
+                            </aura:set>
+                        </aura:if>
+                    </div>
+                </aura:if>
+                
+            </lightning:layoutItem>
+        </lightning:layout>
+    </div>
+    
+</aura:component>

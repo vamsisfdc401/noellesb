@@ -1,0 +1,5 @@
+<apex:page standardController="LMS__c" sidebar="false" showHeader="false">
+    <GBLite:EmbedComponent baseGridUrl="{!$Page.GBLite__Grid}" />
+
+    <iframe id="gridFrame" scrolling="auto" height="250" width="100%" frameborder="0" src="{!gridPage}gname=GBS Contacts&fpf=Factory__c&fpv={!LMS__c.Factory__c}&sbb=1&sh=0&ssb=0&sfname=default"></iframe>
+</apex:page>

@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>ConvertDateFmt</name>
+        <label>FormatDates</label>
+        <locationX>459</locationX>
+        <locationY>461</locationY>
+        <assignmentItems>
+            <assignToReference>FmtApprovalExpDt</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>FormatAprovalExpirtationDate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>UpdateWaiverStatusNote1</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>FmtApprovalDt</name>
+        <label>FormatDates</label>
+        <locationX>73</locationX>
+        <locationY>464</locationY>
+        <assignmentItems>
+            <assignToReference>FmtApprovalExpDt</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>FormatAprovalExpirtationDate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>FmtAuditDt</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>FormatedAuditDt</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Factory_Status_Note_for_Audit</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Is_Audit_Record_Found</name>
+        <label>Is Audit Record Found ?</label>
+        <locationX>171</locationX>
+        <locationY>356</locationY>
+        <defaultConnectorLabel>[Default Outcome]</defaultConnectorLabel>
+        <rules>
+            <name>AuditRecordFound</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>AuditRecordTypeID</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>FmtApprovalDt</targetReference>
+            </connector>
+            <label>AuditRecordFound</label>
+        </rules>
+        <rules>
+            <name>NoAuditRecord</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>AuditRecordTypeID</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>UpdateFactoryStatusWOAuditRecord</targetReference>
+            </connector>
+            <label>NoAuditRecord</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>IsWaiverRecordFound</name>
+        <label>IsWaiverRecordFound</label>
+        <locationX>507</locationX>
+        <locationY>340</locationY>
+        <defaultConnectorLabel>[Default Outcome]</defaultConnectorLabel>
+        <rules>
+            <name>WaiverRecordFound</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>WaiverRecord</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>ConvertDateFmt</targetReference>
+            </connector>
+            <label>WaiverRecordFound</label>
+        </rules>
+        <rules>
+            <name>NoWaiverRecord</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>WaiverRecord</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>UpdateFactWOWaiver</targetReference>
+            </connector>
+            <label>NoWaiverRecord</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Which_Workflow</name>
+        <label>Which Workflow</label>
+        <locationX>350</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>[Default Outcome]</defaultConnectorLabel>
+        <rules>
+            <name>Audit_Workflow</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>AuditWF</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Lookup_Audit_Recordtype</targetReference>
+            </connector>
+            <label>Audit Workflow</label>
+        </rules>
+        <rules>
+            <name>Waiver_WF</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Waiver</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>LookupWaiverRecordTypeid</targetReference>
+            </connector>
+            <label>Waiver WF</label>
+        </rules>
+    </decisions>
+    <description>GBS-279</description>
+    <formulas>
+        <name>FormatAprovalExpirtationDate</name>
+        <dataType>String</dataType>
+        <expression>CASE(MONTH({!ApprovalExptDt}),
+
+1, &quot;January&quot;,
+
+2, &quot;February&quot;,
+
+3, &quot;March&quot;,
+
+4, &quot;April&quot;,
+
+5, &quot;May&quot;,
+
+6, &quot;June&quot;,
+
+7, &quot;July&quot;,
+
+8, &quot;August&quot;,
+
+9, &quot;September&quot;,
+
+10, &quot;October&quot;,
+
+11, &quot;November&quot;,
+
+12, &quot;December&quot;,
+
+&quot;None&quot;) +&quot; &quot;+ TEXT( Day ({!ApprovalExptDt})) + &quot;, &quot; + TEXT(Year({!ApprovalExptDt}))</expression>
+    </formulas>
+    <formulas>
+        <name>FormatedAuditDt</name>
+        <dataType>String</dataType>
+        <expression>CASE(MONTH({!AuditDt}),
+
+1, &quot;January&quot;,
+
+2, &quot;February&quot;,
+
+3, &quot;March&quot;,
+
+4, &quot;April&quot;,
+
+5, &quot;May&quot;,
+
+6, &quot;June&quot;,
+
+7, &quot;July&quot;,
+
+8, &quot;August&quot;,
+
+9, &quot;September&quot;,
+
+10, &quot;October&quot;,
+
+11, &quot;November&quot;,
+
+12, &quot;December&quot;,
+
+&quot;None&quot;) +&quot; &quot;+ TEXT(Day ({!AuditDt})) + &quot;, &quot; + TEXT(Year({!AuditDt}))</expression>
+    </formulas>
+    <formulas>
+        <name>UpdateAuditStatusNote</name>
+        <dataType>String</dataType>
+        <expression>CASE(  {!FactoryStatus} ,
+&quot;Waiver Review or NBCU Audit Required&quot;,{!$Label.GBS_Status_Note_Waiver_Review_or_NBCU_Audit_Required},
+&quot;NBCU Audit Required&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_Required},
+&quot;NBCU Audit - Under Scheduling&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_Under_Scheduling},
+&quot;NBCU Audit - On Hold&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_On_Hold},
+&quot;No Audit Required&quot;, {!$Label.GBS_Status_Note_No_Audit_Required},
+&quot;NBCU Audit - Correction Required&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_Correction_Required},
+&quot;NBCU Audit - Pending Rejection&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_Pending_Rejection},
+&quot;NBCU Audit - Rejected&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_Rejected},
+&quot;NBCU Audit - Rejected Child Labor&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_Rejected_Child_Labor},
+&quot;NBCU Audit - Conditionally Approved&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_Conditionally_Approved},
+&quot;NBCU Audit - Conditionally Approved (Pending Rejection)&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_Conditionally_Approved_Pending_Rejection},
+&quot;NBCU Audit - Officially Approved&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_Officially_Approved},
+&quot;NBCU Audit - Official Approval Expired&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_Official_Approval_Expired},
+&quot;NBCU Audit - Conditional Approval Expired&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_Conditional_Approval_Expired},
+&quot;NBCU Audit - Approved Re-Audit (90 Days)&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_Approved_Re_Audit_90_Days},
+&quot;NBCU Audit - Lapsed - Re-audit Required&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_Lapsed_Re_Audit_Required},
+&quot;Production Not Authorized &quot;,
+{!$Label.GBS_Status_Note_Production_Not_Authorized},
+&quot;&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>UpdateauditStatusWORecord</name>
+        <dataType>String</dataType>
+        <expression>CASE(  {!FactoryStatus} ,
+&quot;Waiver Review or NBCU Audit Required&quot;,{!$Label.GBS_Status_Note_Waiver_Review_or_NBCU_Audit_Required},
+&quot;NBCU Audit Required&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_Required},
+&quot;NBCU Audit - Under Scheduling&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_Under_Scheduling},
+&quot;NBCU Audit - On Hold&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_On_Hold},
+&quot;No Audit Required&quot;, {!$Label.GBS_Status_Note_No_Audit_Required},
+&quot;NBCU Audit - Correction Required&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_Correction_Required},
+&quot;NBCU Audit - Pending Rejection&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_Pending_Rejection},
+&quot;NBCU Audit - Rejected&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_Rejected},
+&quot;NBCU Audit - Rejected Child Labor&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_Rejected_Child_Labor},
+&quot;NBCU Audit - Conditionally Approved&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_Conditionally_Approved},
+&quot;NBCU Audit - Conditionally Approved (Pending Rejection)&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_Conditionally_Approved_Pending_Rejection},
+&quot;NBCU Audit - Officially Approved&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_Officially_Approved},
+&quot;NBCU Audit - Official Approval Expired&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_Official_Approval_Expired},
+&quot;NBCU Audit - Conditional Approval Expired&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_Conditional_Approval_Expired},
+&quot;NBCU Audit - Approved Re-Audit (90 Days)&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_Approved_Re_Audit_90_Days},
+&quot;NBCU Audit - Lapsed - Re-audit Required&quot;,{!$Label.GBS_Status_Note_NBCU_Audit_Lapsed_Re_Audit_Required},
+&quot;Production Not Authorized &quot;,
+{!$Label.GBS_Status_Note_Production_Not_Authorized},
+&quot;&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>UpdateWaiverStatusNote</name>
+        <dataType>String</dataType>
+        <expression>CASE(  {!FactoryStatus}  ,
+&quot;Waiver Review or NBCU Audit Required&quot;,{!$Label.GBS_Status_Note_Waiver_Review_or_NBCU_Audit_Required},
+&quot;Waiver Review - Pending Documentation&quot;,{!$Label.GBS_Status_Note_Waiver_Review_Pending_Documentation},
+&quot;Waiver Review - Pending Review&quot;,{!$Label.GBS_Status_Note_Waiver_Review_Pending_Review},
+&quot;Waiver Review - Approved&quot;,{!$Label.GBS_Status_Note_Waiver_Review_Approved},
+&quot;Waiver Review - Approved (Spot Check Required)&quot;,{!$Label.GBS_Status_Note_Waiver_Review_Approved_Spot_Check_Required},
+&quot;Waiver Review - Approved (Spot Check Passed)&quot;,{!$Label.GBS_Status_Note_Waiver_Review_Approved_Spot_Check_Passed},
+&quot;Waiver Review - Spot Check Failed&quot;,{!$Label.GBS_Status_Note_Waiver_Review_Spot_Check_Failed},
+&quot;Waiver Review - Disapproved&quot;,{!$Label.GBS_Status_Note_Waiver_Review_Disapproved},
+&quot;Waiver Review - Expired&quot;,{!$Label.GBS_Status_Note_Waiver_Review_Expired},
+&quot;&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>UpdateWaiverWORecord</name>
+        <dataType>String</dataType>
+        <expression>CASE(  {!FactoryStatus}  ,
+&quot;Waiver Review or NBCU Audit Required&quot;,{!$Label.GBS_Status_Note_Waiver_Review_or_NBCU_Audit_Required},
+&quot;Waiver Review - Pending Documentation&quot;,{!$Label.GBS_Status_Note_Waiver_Review_Pending_Documentation},
+&quot;Waiver Review - Pending Review&quot;,{!$Label.GBS_Status_Note_Waiver_Review_Pending_Review},
+&quot;Waiver Review - Approved&quot;,{!$Label.GBS_Status_Note_Waiver_Review_Approved},
+&quot;Waiver Review - Approved (Spot Check Required)&quot;,{!$Label.GBS_Status_Note_Waiver_Review_Approved_Spot_Check_Required},
+&quot;Waiver Review - Approved (Spot Check Passed)&quot;,{!$Label.GBS_Status_Note_Waiver_Review_Approved_Spot_Check_Passed},
+&quot;Waiver Review - Spot Check Failed&quot;,{!$Label.GBS_Status_Note_Waiver_Review_Spot_Check_Failed},
+&quot;Waiver Review - Disapproved&quot;,{!$Label.GBS_Status_Note_Waiver_Review_Disapproved},
+&quot;Waiver Review - Expired&quot;,{!$Label.GBS_Status_Note_Waiver_Review_Expired},
+&quot;&quot;)</expression>
+    </formulas>
+    <interviewLabel>GBS-Update Factory Notes from Status {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>GBS-Update Factory Notes from Status</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Look_up_Audit_Workflow</name>
+        <label>Look up Audit Workflow</label>
+        <locationX>176</locationX>
+        <locationY>236</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_Audit_Record_Found</targetReference>
+        </connector>
+        <filters>
+            <field>Factory__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>FactoryID</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>GBS_Current_Workflow__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Workflow__c</object>
+        <outputAssignments>
+            <assignToReference>AuditDt</assignToReference>
+            <field>Audit_Date__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>WorkflowID</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>HoldReason</assignToReference>
+            <field>On_Hold_Reason__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>RejectionReason</assignToReference>
+            <field>Rejection_Rationale__c</field>
+        </outputAssignments>
+        <sortField>SystemModstamp</sortField>
+        <sortOrder>Desc</sortOrder>
+    </recordLookups>
+    <recordLookups>
+        <name>Lookup_Audit_Recordtype</name>
+        <label>Lookup Audit Recordtype</label>
+        <locationX>180</locationX>
+        <locationY>122</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Look_up_Audit_Workflow</targetReference>
+        </connector>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Audit</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>SobjectType</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Workflow__c</stringValue>
+            </value>
+        </filters>
+        <object>RecordType</object>
+        <outputAssignments>
+            <assignToReference>AuditRecordTypeID</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordLookups>
+        <name>LookupWaiverRecordTypeid</name>
+        <label>LookupWaiverRecordTypeid</label>
+        <locationX>581</locationX>
+        <locationY>55</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>WaiverWF</targetReference>
+        </connector>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Waiver</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>SobjectType</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Workflow__c</stringValue>
+            </value>
+        </filters>
+        <object>RecordType</object>
+        <outputAssignments>
+            <assignToReference>WaiverRecordTypeID</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordLookups>
+        <name>WaiverWF</name>
+        <label>WaiverWF</label>
+        <locationX>495</locationX>
+        <locationY>198</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>IsWaiverRecordFound</targetReference>
+        </connector>
+        <filters>
+            <field>Factory__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>FactoryID</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>GBS_Current_Workflow__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Workflow__c</object>
+        <outputAssignments>
+            <assignToReference>WaiverRecord.Id</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+        <sortField>SystemModstamp</sortField>
+        <sortOrder>Desc</sortOrder>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Factory_Status_Note_for_Audit</name>
+        <label>Update Factory Status Note for Audit</label>
+        <locationX>72</locationX>
+        <locationY>572</locationY>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>FactoryID</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Status_Note__c</field>
+            <value>
+                <elementReference>UpdateAuditStatusNote</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Factory__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>UpdateFactoryStatusWOAuditRecord</name>
+        <label>UpdateFactoryStatusWOAuditRecord</label>
+        <locationX>263</locationX>
+        <locationY>570</locationY>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>FactoryID</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Status_Note__c</field>
+            <value>
+                <elementReference>UpdateauditStatusWORecord</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Factory__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>UpdateFactWOWaiver</name>
+        <label>UpdateFactWOWaiver</label>
+        <locationX>659</locationX>
+        <locationY>568</locationY>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>FactoryID</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Status_Note__c</field>
+            <value>
+                <elementReference>UpdateWaiverWORecord</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Factory__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>UpdateWaiverStatusNote1</name>
+        <label>UpdateWaiverStatusNote</label>
+        <locationX>434</locationX>
+        <locationY>575</locationY>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>FactoryID</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Status_Note__c</field>
+            <value>
+                <elementReference>UpdateWaiverStatusNote</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Factory__c</object>
+    </recordUpdates>
+    <startElementReference>Which_Workflow</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>ApprovalExptDt</name>
+        <dataType>Date</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>AuditDt</name>
+        <dataType>Date</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>AuditRecordTypeID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>AuditWF</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <name>Factorycountry</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>FactoryID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>FactoryStatus</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>FmtApprovalExpDt</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>FmtAuditDt</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>HoldReason</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>RejectionReason</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>Waiver</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <name>WaiverRecord</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Workflow__c</objectType>
+    </variables>
+    <variables>
+        <name>WaiverRecordTypeID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>WorkflowID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

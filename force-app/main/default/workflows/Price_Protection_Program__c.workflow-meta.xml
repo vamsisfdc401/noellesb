@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>StatustoClosed</fullName>
+        <field>Status__c</field>
+        <literalValue>Closed</literalValue>
+        <name>StatustoClosed</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>StatustoPublish</fullName>
+        <field>Status__c</field>
+        <literalValue>Published</literalValue>
+        <name>StatustoPublish</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>PP Update Status to Closed</fullName>
+        <actions>
+            <name>StatustoClosed</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <formula>IF( AND( ISPICKVAL( Status__c , &#39;Published&#39;) ,( Submission_Deadline__c  + 14 = TODAY()   ) ),true,false)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>PP Update Status to Published</fullName>
+        <actions>
+            <name>StatustoPublish</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>IF( AND( ISPICKVAL( Status__c , &#39;Queued&#39;) ,( Effective_Date__c &lt; TODAY() ), No_of_Materials__c &gt; 0 ),true,false)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

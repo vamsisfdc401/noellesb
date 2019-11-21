@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CIRF Material</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>CIRF Materials</value>
+    </caseValues>
+    <layouts>
+        <layout>CIRF Material Layout</layout>
+        <sections>
+            <label><!-- Alternate Materials --></label>
+            <section>Alternate Materials</section>
+        </sections>
+        <sections>
+            <label><!-- Approvals --></label>
+            <section>Approvals</section>
+        </sections>
+        <sections>
+            <label><!-- Canada Only --></label>
+            <section>Canada Only</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Forecasting --></label>
+            <section>Forecasting</section>
+        </sections>
+        <sections>
+            <label><!-- Ready to Execute --></label>
+            <section>Ready to Execute</section>
+        </sections>
+        <sections>
+            <label><!-- Sales Information --></label>
+            <section>Sales Information</section>
+        </sections>
+        <sections>
+            <label><!-- Stickering --></label>
+            <section>Stickering</section>
+        </sections>
+        <sections>
+            <label><!-- Units --></label>
+            <section>Units</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

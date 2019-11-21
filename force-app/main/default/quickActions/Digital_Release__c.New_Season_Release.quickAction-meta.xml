@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldOverrides>
+        <field>Create_From_Parent__c</field>
+        <formula>True</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Name</field>
+        <formula>Digital_Release__c.Name</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Series_Name__c</field>
+        <formula>Digital_Release__c.Id</formula>
+    </fieldOverrides>
+    <label>Create New Season</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <quickActionLayout>
+        <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
+        <quickActionLayoutColumns>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Name</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+        </quickActionLayoutColumns>
+        <quickActionLayoutColumns/>
+    </quickActionLayout>
+    <targetObject>Digital_Release__c</targetObject>
+    <targetParentField>Series_Name__c</targetParentField>
+    <targetRecordType>Digital_Release__c.TV</targetRecordType>
+    <type>Create</type>
+</QuickAction>

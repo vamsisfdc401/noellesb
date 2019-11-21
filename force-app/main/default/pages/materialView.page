@@ -1,0 +1,94 @@
+<!--*****************************************************************************************
+Page Name: MaterialView
+Purpose: This page is responsible to handle the view of Material. Created to handle Approval Section in page.
+******************************************************************************************
+Version         DateModified         ModifiedBy               Change
+1.0             15/11/2016           Ipsita Mishra            Initial Development
+******************************************************************************************-->
+<apex:page standardController="Material__c" extensions="MaterialViewExt">    
+    <apex:includeScript value="{!URLFOR($Resource.NBCU_StyleClasses, '/js/vendor/jquery-1.11.2.min.js')}"/>
+    <script>
+    try{
+        var url2 = location.href;
+        var match2 = url2.match(/inline=1/);
+        if(match2 != null)
+        {
+            var newUrl = url2.replace(/inline=1/, '');
+            window.top.location = newUrl;
+        }
+    } catch(e){alert(e);}
+    //$j = jQuery.noConflict();
+    $(document).ready(function(){   
+       $("input[name='piSubmit']").hide();
+    });
+    function reload () { //USST-2764
+        window.top.location.reload();
+    }
+    </script>
+    
+    <style>
+        .custPopup {
+        background-color: white;
+        border-width: 2px;
+        border-style: solid;
+        z-index: 3;
+        left: 50%;
+        padding: 10px;
+        position: fixed;
+        width: 300px;
+        margin-left: -200px;
+        top: 200px;
+        }
+        
+        .popupBackground {
+            background-color: black;
+            opacity: 0.20;
+            filter: alpha(opacity=20);
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 2;
+        }
+    </style>
+    
+    <chatter:feedWithFollowers entityId="{!Material__c.Id}" rendered="{!NOT(enablePoller)}"/> <!--USST-2764-->
+    
+    <apex:outputPanel id="opMatDetail" rendered="{!NOT(enablePoller)}"> <!--USST-2764-->
+        <apex:detail inlineEdit="true"/>
+    </apex:outputPanel>    
+    
+    <apex:outputText value="Screen is locked. Default processing is still running." rendered="{!enablePoller}"/> <!--USST-2764-->
+    
+    <apex:form >
+        <apex:outputPanel id="opPoller" rendered="{!enablePoller}"> <!--USST-2764-->
+            <apex:actionPoller status="ajaxStatus" enabled="{!enablePoller}" interval="5" rerender="opMatDetail" action="{!checkDefaultingCompletion}" oncomplete="reload()"/> <!-- USST-2764-->
+        </apex:outputPanel>
+        
+        <!--Action status tag used to show ajax status-->
+        <apex:actionStatus id="ajaxStatus">
+            <apex:facet name="start">
+                <div class="popupBackground" style="z-index:1001;" layout="block">&nbsp;</div>
+                <div style="position:fixed;top:40%;left:50%;z-index:1002">
+                    <div style="padding:14px 10px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;border:1px solid #1288FF;background-color:#F5F5F5;margin-left:-100px;vertical-align:top;">
+                        <table>
+                            <tr valign="bottom">
+                                <td><img src="/img/loading.gif" width="25" height="25" /> &nbsp;</td>
+                                <td><span style="font-weight:bold;font-color:#1288FF;font-size:14px;">Screen is locked. Default processing is still running.</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </apex:facet>
+        </apex:actionStatus>
+    </apex:form>
+    <apex:outputPanel rendered="{!NOT(enablePoller)}"> <!--USST-2764-->
+        <c:tbomItemsView parentId="{!Material__c.Id}" allowCreate="false" allowEdit="true" allowDelete="true" displayMode="edit" />
+        <apex:relatedList list="ProcessSteps" ></apex:relatedList>
+        <script>
+            $("input[name='piSubmit']").hide();
+        </script>
+    </apex:outputPanel>
+    
+</apex:page>

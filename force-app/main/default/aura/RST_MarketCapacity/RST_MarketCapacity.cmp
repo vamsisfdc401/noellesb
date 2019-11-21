@@ -1,0 +1,275 @@
+<aura:component controller="RST_ViewController">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="weeks_all" type="Object" /> <!-- ALL MC WEEKS -->
+    <aura:attribute name="weeks" type="Object" /> <!--  FILTERED MC WEEKS FOR PAGE  -->
+    <aura:attribute name="selectedWeek" type="Object" /> <!--  SELECTED MC WEEK. Used to display PlayWeeks with same Week  -->
+    <aura:attribute name="selectedWeekDetail" type="Object" /> <!--  PlayWeek Details from selected week  -->
+    <aura:attribute name="weekDates" type="Object" /> <!-- All MC Week Dates. Used for Picklist to select a single week-->
+    
+    <aura:attribute name="sortField" type="String" default="Name" /> <!--  FIELD BEING SORTED  -->
+    <aura:attribute name="sortAsc" type="Boolean" default="true" /> <!--  SORT DIRECTION  -->
+    
+    <!-- Used for date range to filter Market Capacity Weeks -->
+    <aura:attribute name="appSettings" type="RST_Application_Setting__mdt" />
+    <aura:attribute name="startDate" type="Object" />
+    <aura:attribute name="endDate" type="Object" />
+    
+    <aura:attribute name="titleHeader" type="String" /> <!-- Header either Market Capacity All or Market Capacity by Weekend -->
+    <aura:attribute name="isEditable" type="Boolean" default="false" />
+    
+    <!-- <aura:attribute name="showPDFPanel" type="Boolean" default="false"/>
+    <aura:attribute name="pdfReportType" type="String" default="MCAll"/>
+    -->
+    
+   
+    
+    <lightning:card title="">
+        
+         <aura:if isTrue="{!v.showSpinner }">
+        <lightning:spinner alternativeText="Loading" size="large" />
+    </aura:if>
+        
+        <div class="slds-grid slds-wrap headline">
+            <div class="slds-col slds-size_1-of-2">
+                <h2>{!v.titleHeader}</h2>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+                <lightning:button class="nbcu-btn clear minimal" variant="base" label="Clear All Filters" onclick="{! c.clearFilters }" value="select-all"/>
+            </div>
+        </div>
+        
+        
+        <div class="slds-grid slds-gutters dateFilter">
+            <div class="slds-col slds-size_2-of-12">
+                <p>From Date:</p>
+                <ui:inputDate aura:id="startDateInput" value="{!v.startDate}" displayDatePicker="true" format="MM/dd/yyyy" change="{!c.filterPlayWeeks}"/>
+            </div>
+            
+            <div class="slds-col slds-size_2-of-12">
+                <p>To Date:</p>
+                <ui:inputDate aura:id="endDateInput" value="{!v.endDate}" displayDatePicker="true" format="MM/dd/yyyy" change="{!c.filterPlayWeeks}"/>
+            </div>
+            
+            <div class="slds-col slds-size_2-of-12">
+                <p>View by Week:</p>
+                <lightning:select aura:id="weeks-select" label="pick a week" variant="label-hidden" onchange="{!c.filterPlayWeeks}">
+                    <option></option>
+                    <aura:iteration items="{!v.weekDates}" var="week">
+                        <option text="{!week}"></option>
+                    </aura:iteration>
+                </lightning:select>
+            </div>
+            <div class="slds-col slds-size_3-of-12"></div>
+            <div class="slds-col slds-size_3-of-12">
+                <!--<lightning:button class="nbcu-btn dark pdf" variant="base" label="Download PDF" onclick="{! c.togglePDF }" value="MCAll"/> -->
+                <ui:button class="nbcu-btn dark csv" label="Download MC Weeks CSV" press="{!c.downloadMarketCapacityCSV}" />
+            </div>
+        </div>
+        
+
+        
+        <div class="tableWrapper">
+                    <p>All figures in $USD Millions</p>
+        <table class="weeks">
+            <tr>
+                <aura:if isTrue="{!v.isEditable}"><th></th></aura:if>
+                <th>Date
+                    <lightning:button label="{!and(not(v.sortAsc), v.sortField == 'Week_Date__c') ? '&#8743;' : '&#8744;'}" 
+                                      onclick="{! c.sortClick }" value="Week_Date__c"  class="sort_button"/>
+                </th>
+                <th>Occupied $s
+                    <lightning:button label="{!and(not(v.sortAsc), v.sortField == 'Occupied_dollar__c') ? '&#8743;' : '&#8744;'}" 
+                                      onclick="{! c.sortClick }" value="Occupied_dollar__c"  class="sort_button"/>
+                </th>
+                <th>Max Market Capacity
+                    <lightning:button label="{!and(not(v.sortAsc), v.sortField == 'Max_Market_Capacity__c') ? '&#8743;' : '&#8744;'}" 
+                                      onclick="{! c.sortClick }" value="Max_Market_Capacity__c"  class="sort_button"/>
+                </th>
+                <th>Max Available $s
+                    <lightning:button label="{!and(not(v.sortAsc), v.sortField == 'Max_Available_dollars__c') ? '&#8743;' : '&#8744;'}" 
+                                      onclick="{! c.sortClick }" value="Max_Available_dollars__c"  class="sort_button"/>
+                </th>
+                <th>Avg Market Capacity
+                    <lightning:button label="{!and(not(v.sortAsc), v.sortField == 'Average_Market_Capacity__c') ? '&#8743;' : '&#8744;'}" 
+                                      onclick="{! c.sortClick }" value="Average_Market_Capacity__c"  class="sort_button"/>
+                </th>
+                <th>Avg Available $s
+                    <lightning:button label="{!and(not(v.sortAsc), v.sortField == 'Average_Available_dollars__c') ? '&#8743;' : '&#8744;'}" 
+                                      onclick="{! c.sortClick }" value="Average_Available_dollars__c"  class="sort_button"/>
+                </th>
+                <th>Min Market Capacity
+                    <lightning:button label="{!and(not(v.sortAsc), v.sortField == 'Min_Market_Capacity__c') ? '&#8743;' : '&#8744;'}" 
+                                      onclick="{! c.sortClick }" value="Min_Market_Capacity__c"  class="sort_button"/>
+                </th>
+                <th>Min Available $s
+                    <lightning:button label="{!and(not(v.sortAsc), v.sortField == 'Min_Available_dollars__c') ? '&#8743;' : '&#8744;'}" 
+                                      onclick="{! c.sortClick }" value="Min_Available_dollars__c"  class="sort_button"/>
+                </th>
+            </tr>
+            <aura:iteration items="{!v.weeks}" var="week">
+                <tr class="{!if(v.selectedWeek.Id == week.Id, 'selected', '')}">
+                    <aura:if isTrue="{!v.isEditable}">
+                        <td>
+                            <lightning:button class="expandPlayWeek"
+                                              label="{!if(v.selectedWeek == week.Week_Date__c, '-', '+')}" 
+                                              onclick="{! c.weekClick }"
+                                              value="{!week.Week_Date__c}" />
+                        </td>
+                    </aura:if>
+                    <td><lightning:formattedDateTime value="{!week.Week_Date__c}" month="2-digit" day="2-digit" year="numeric" timeZone="UTC"/></td>
+                    <td>
+                        <lightning:formattedNumber value="{!week.Occupied_dollar__c}" style="currency"
+                                                   currencyCode="USD" minimumFractionDigits="2" />
+                    </td>
+                    <td>
+                        <lightning:formattedNumber value="{!week.Max_Market_Capacity__c}" style="currency"
+                                                   currencyCode="USD" minimumFractionDigits="2" />
+                    </td>
+                    <td>
+                        <lightning:formattedNumber value="{!week.Max_Available_dollars__c}" style="currency"
+                                                   currencyCode="USD" minimumFractionDigits="2" />
+                    </td>
+                    <td>
+                        <lightning:formattedNumber value="{!week.Average_Market_Capacity__c}" style="currency"
+                                                   currencyCode="USD" minimumFractionDigits="2" />
+                    </td>
+                    <td>
+                        <lightning:formattedNumber value="{!week.Average_Available_dollars__c}" style="currency"
+                                                   currencyCode="USD" minimumFractionDigits="2" />
+                    </td>
+                    <td>
+                        <lightning:formattedNumber value="{!week.Min_Market_Capacity__c}" style="currency"
+                                                   currencyCode="USD" minimumFractionDigits="2" />
+                    </td>
+                    <td>
+                        <lightning:formattedNumber value="{!week.Min_Available_dollars__c}" style="currency"
+                                                   currencyCode="USD" minimumFractionDigits="2" />
+                    </td>
+                </tr>
+                <aura:if isTrue="{!and(v.selectedWeek, v.selectedWeek == week.Week_Date__c)}">
+                    <tr>
+                        <td colspan="9">
+                            
+                            <lightning:layout class="title_detail">
+                                <lightning:layoutItem padding="around-small">
+                                    <!--market capacity chart?-->
+                                    <!--<lightning:button class="nbcu-btn dark margin" variant="base" label="Download PDF" onclick="{! c.togglePDF }"  value="MCPlayWeeks"/> -->
+                                    <ui:button class="nbcu-btn dark margin" label="Download MC PlayWeeks CSV" press="{!c.downloadMCPlayWeekCSV}" />
+                                </lightning:layoutItem>
+                                
+                                
+                                <lightning:layoutItem padding="around-small">
+                                    <table class="playweeks">
+                                        <tr>
+                                            <th>Rank</th>
+                                            <th>Title</th>
+                                            <th>Play Week</th>
+                                            <th>Source</th>
+                                            <th>Distributor</th>
+                                            <th>Rating</th>
+                                            <th>Weekend BO (FSS)</th>
+                                            <th>Weekend BO Drop %</th>
+                                            <th>Mid-Week BO (MTWR)</th>
+                                            <th>Mid-Week BO As % of Weekend BO</th>
+                                            <th>Total Week BO</th>
+                                            <th>Total Week BO Drop %</th>
+                                            <th>Total Cumulative BO</th>
+                                            <th>Locked/Unlocked</th>
+                                            <th>Last Edited By</th>
+                                            
+                                        </tr>
+                                        
+                                        <aura:iteration items="{!v.selectedWeekDetail.titlePlayWeeks}" var="playWeek" indexVar="index" >
+                                            <tr>
+                                                <td>{!index + 1}</td>
+                                                <td>{!playWeek.Title__r.Name}</td>
+                                                <td>{!playWeek.Play_Week__c}</td>
+                                                <td>{!playWeek.Source__c}</td>
+                                                <td>{!playWeek.Title__r.Distributor__c}</td>
+                                                <td>{!playWeek.Title__r.Rating__c}</td>
+                                                <td>
+                                                    <lightning:formattedNumber 
+                                                                               value="{!playWeek.Weekend_BO__c}" 
+                                                                               style="currency"
+                                                                               currencyCode="USD" 
+                                                                               minimumIntegerDigits="1"
+                                                                               maximumFractionDigits="2"
+                                                                               minimumFractionDigits="2" />
+                                                </td>
+                                                <td>
+                                                    <lightning:formattedNumber 
+                                                                               value="{!playWeek.Weekend_Drop__c / 100}"
+                                                                               style="percent" 
+                                                                               maximumFractionDigits="2"
+                                                                               minimumFractionDigits="2" />
+                                                </td>
+                                                
+                                                <td>
+                                                    <lightning:formattedNumber 
+                                                                               value="{!playWeek.Midweek_BO__c}" 
+                                                                               style="currency"
+                                                                               currencyCode="USD" 
+                                                                               minimumIntegerDigits="1"
+                                                                               maximumFractionDigits="2"
+                                                                               minimumFractionDigits="2" />
+                                                </td>
+                                                <td>
+                                                    <lightning:formattedNumber
+                                                                               value="{! (playWeek.Midweek_BO__c * 1) / (playWeek.Weekend_BO__c * 1) }"
+                                                                               style="percent"
+                                                                               maximumFractionDigits="2"
+                                                                               minimumFractionDigits="2" />
+                                                    
+                                                </td>
+                                                <td>
+                                                    <lightning:formattedNumber 
+                                                                               value="{!playWeek.Total_BO_formula__c}" 
+                                                                               style="currency"
+                                                                               currencyCode="USD" 
+                                                                               minimumIntegerDigits="1"
+                                                                               maximumFractionDigits="2"
+                                                                               minimumFractionDigits="2" />
+                                                </td>
+                                                <td>
+                                                    
+                                                    <lightning:formattedNumber
+                                                                               value="{!playWeek.TST_Total_Week_BO_Drop__c / 100}"
+                                                                               style="percent"
+                                                                               maximumFractionDigits="2"
+                                                                               minimumFractionDigits="2" />                          
+                                                </td>
+                                                <td>
+                                                    <!--{!playWeek.Cumulative__c}-->   
+                                                    <lightning:formattedNumber 
+                                                                               value="{!playWeek.Cumulative__c}" 
+                                                                               style="currency"
+                                                                               currencyCode="USD" 
+                                                                               minimumIntegerDigits="1"
+                                                                               maximumFractionDigits="2"
+                                                                               minimumFractionDigits="2" />
+                                                </td>
+                                                <td>
+                                                    <aura:if isTrue="{!playWeek.Title__r.Lock_Title__c}">
+                                                        Locked
+                                                        <aura:set attribute="else">
+                                                            Unlocked
+                                                        </aura:set>
+                                                    </aura:if>
+                                                </td>
+                                                <td>
+                                                    <ui:outputText value="{!playWeek.LastModifiedBy.Name}"/>
+                                                </td>
+                                            </tr>
+                                            
+                                        </aura:iteration>
+                                    </table>
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                        </td>
+                    </tr>
+                </aura:if>
+            </aura:iteration>
+        </table>
+            </div>
+    </lightning:card>
+</aura:component>

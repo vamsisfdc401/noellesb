@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Standard</label>
+    <protected>false</protected>
+    <values>
+        <field>Magic_Future_Years__c</field>
+        <value xsi:type="xsd:double">10.0</value>
+    </values>
+    <values>
+        <field>Magic_Start_Date__c</field>
+        <value xsi:type="xsd:date">2014-01-01</value>
+    </values>
+    <values>
+        <field>Market_Capacity_Day_Range__c</field>
+        <value xsi:type="xsd:double">120.0</value>
+    </values>
+    <values>
+        <field>Market_Capacity_Week_Range__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Playweek_Maximum__c</field>
+        <value xsi:type="xsd:double">15.0</value>
+    </values>
+    <values>
+        <field>Playweek_Minimum__c</field>
+        <value xsi:type="xsd:double">1.0</value>
+    </values>
+    <values>
+        <field>Title_Report_URL__c</field>
+        <value xsi:type="xsd:string">00O0d0000058VTOEA2</value>
+    </values>
+    <values>
+        <field>Title_Week_Range__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Weeks_Before_Title_Start_Date__c</field>
+        <value xsi:nil="true"/>
+    </values>
+</CustomMetadata>

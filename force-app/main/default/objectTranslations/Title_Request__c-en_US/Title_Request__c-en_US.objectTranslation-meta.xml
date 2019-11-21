@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Title Request</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Title Requests</value>
+    </caseValues>
+    <layouts>
+        <layout>Created</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Descriptive Text --></label>
+            <section>Descriptive Text</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Created Master Data</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Descpriptive Text --></label>
+            <section>Descpriptive Text</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Submitted</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Descriptive Information --></label>
+            <section>Descriptive Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Title Request Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Descriptive Information --></label>
+            <section>Descriptive Information</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

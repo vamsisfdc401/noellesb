@@ -1,0 +1,29 @@
+<!--*****************************************************************************************
+Page Name: TVersion
+Purpose: Call page to TMVersion vf page when user select the TM Version on Material object
+******************************************************************************************
+Version         DateModified         ModifiedBy               Change
+1.0                                                      Initial Development
+******************************************************************************************-->
+<apex:page standardStylesheets="true" extensions="TMVersionExt" standardController="Material__c"  sidebar="false" showHeader="false">
+    
+    <apex:form >
+        <apex:outputPanel id="refresh" rendered="true">
+            <apex:outputPanel id="refresh1" rendered="{!refreshPage}">
+                <script>
+                window.top.location='/{!Material__c.id}';
+                </script>
+            </apex:outputPanel>
+        </apex:outputPanel>
+        <apex:pageMessages />
+        <apex:outputPanel rendered="{!SUCCESS}">
+            <apex:outputLabel ></apex:outputLabel>
+        </apex:outputPanel>
+        <apex:selectList value="{!tmVersion}" label="TM version" size="1">
+            <apex:selectOptions value="{!tmVersionOpt}"/>
+        </apex:selectList>
+        <apex:commandButton value="Save" action="{!SaveTM}" />
+        <apex:commandButton value="Cancel" action="{!Cancel}" />
+    </apex:form>
+    
+</apex:page>

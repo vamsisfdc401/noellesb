@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Error_Message</name>
+        <label>Error Message</label>
+        <locationX>14</locationX>
+        <locationY>400</locationY>
+        <actionName>chatterPost</actionName>
+        <actionType>chatterPost</actionType>
+        <inputParameters>
+            <name>subjectNameOrId</name>
+            <value>
+                <elementReference>inputAcquisitionDeal.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>text</name>
+            <value>
+                <elementReference>chatterErrorFlow</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Success_Message</name>
+        <label>Success Message</label>
+        <locationX>788</locationX>
+        <locationY>396</locationY>
+        <actionName>chatterPost</actionName>
+        <actionType>chatterPost</actionType>
+        <inputParameters>
+            <name>subjectNameOrId</name>
+            <value>
+                <elementReference>inputAcquisitionDeal.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>text</name>
+            <value>
+                <stringValue>Record type changed successfully in all related records to: {!inputAcquisitionDeal.Acq_Deal_Level_Internal_Name__c}</stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <description>Change Record Type to related Board Pack objects depending on Acquisition Deal Level - only editable Record Types: Bronze, Silver, Gold, Platinum and Master</description>
+    <formulas>
+        <name>chatterErrorFlow</name>
+        <dataType>String</dataType>
+        <expression>{!$Label.FlowErrorMessage}</expression>
+    </formulas>
+    <formulas>
+        <name>compsRecordTypeId</name>
+        <dataType>String</dataType>
+        <expression>CASE ( {!inputAcquisitionDeal.Acq_Deal_Level_Internal_Name__c} ,
+
+&quot;Bronze&quot;,     {!$Label.RecordTypeId_Bronze_New_Comps} ,
+&quot;Silver&quot;,     {!$Label.RecordTypeId_Silver_New_Comps} ,
+&quot;Gold&quot;,       {!$Label.RecordTypeId_Gold_New_Comps} ,
+&quot;Platinum&quot;,   {!$Label.RecordTypeId_Platinum_New_Comps} ,
+              {!$Label.RecordTypeId_Master_Comps} 
+)</expression>
+    </formulas>
+    <formulas>
+        <name>financialsRecordTypeId</name>
+        <dataType>String</dataType>
+        <expression>CASE ( {!inputAcquisitionDeal.Acq_Deal_Level_Internal_Name__c} ,
+
+&quot;Bronze&quot;,     {!$Label.RecordTypeId_Bronze_New_Financials} ,
+&quot;Silver&quot;,     {!$Label.RecordTypeId_Silver_New_Financials} ,
+&quot;Gold&quot;,       {!$Label.RecordTypeId_Gold_New_Financials} ,
+&quot;Platinum&quot;,   {!$Label.RecordTypeId_Platinum_New_Financials} ,
+              {!$Label.RecordTypeId_Master_Financials} 
+)</expression>
+    </formulas>
+    <formulas>
+        <name>primaryTermsRecortTypeId</name>
+        <dataType>String</dataType>
+        <expression>CASE ( {!inputAcquisitionDeal.Acq_Deal_Level_Internal_Name__c} ,
+
+
+&quot;Bronze&quot;,     {!$Label.RecordTypeId_Bronze_New_Primary_Terms} ,
+&quot;Silver&quot;,    {!$Label.RecordTypeId_Silver_New_Primary_Terms} ,
+&quot;Gold&quot;,    {!$Label.RecordTypeId_Gold_New_Primary_Terms} ,
+&quot;Platinum&quot;,   {!$Label.RecordTypeId_Platinum_New_Primary_Terms} ,
+     {!$Label.RecordTypeId_Master_Primary_Terms} 
+)</expression>
+    </formulas>
+    <formulas>
+        <name>riskComplianceRecordTypeId</name>
+        <dataType>String</dataType>
+        <expression>CASE ( {!inputAcquisitionDeal.Acq_Deal_Level_Internal_Name__c} ,
+
+
+&quot;Bronze&quot;,     {!$Label.RecordTypeId_Bronze_New_Risk_Compliance} ,
+&quot;Silver&quot;,     {!$Label.RecordTypeId_Silver_New_Risk_Compliance} ,
+&quot;Gold&quot;,       {!$Label.RecordTypeId_Gold_New_Risk_Compliance} ,
+&quot;Platinum&quot;,   {!$Label.RecordTypeId_Platinum_New_Risk_Compliance} ,
+              {!$Label.RecordTypeId_Master_Risk_Compliance} 
+)</expression>
+    </formulas>
+    <formulas>
+        <name>titleRecordTypeId</name>
+        <dataType>String</dataType>
+        <expression>CASE ( {!inputAcquisitionDeal.Acq_Deal_Level_Internal_Name__c} ,
+
+
+&quot;Bronze&quot;,     {!$Label.RecordTypeId_Bronze_New_Title} ,
+&quot;Silver&quot;,     {!$Label.RecordTypeId_Silver_New_Title} ,
+&quot;Gold&quot;,       {!$Label.RecordTypeId_Gold_New_Title},
+&quot;Platinum&quot;,   {!$Label.RecordTypeId_Platinum_New_Title} ,
+              {!$Label.RecordTypeId_Master_Title} 
+)</expression>
+    </formulas>
+    <interviewLabel>Subflow Acquisition Deal Assign Record Ids to Related Objects {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Subflow Acquisition Deal Assign Record Ids to Related Objects</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Fetch_Current_Acquisition_Deal</name>
+        <label>Fetch Current Acquisition Deal</label>
+        <locationX>164</locationX>
+        <locationY>18</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_Record_Type_to_Title</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Error_Message</targetReference>
+        </faultConnector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>inputAcquisitionDeal.Id</elementReference>
+            </value>
+        </filters>
+        <object>Acquisition_Deal__c</object>
+        <outputReference>inputAcquisitionDeal</outputReference>
+        <queriedFields>Title_Context__c</queriedFields>
+        <queriedFields>Primary_Term__c</queriedFields>
+        <queriedFields>Financials__c</queriedFields>
+        <queriedFields>Comps__c</queriedFields>
+        <queriedFields>Risk_Compliance__c</queriedFields>
+        <queriedFields>Acq_Deal_Level_Internal_Name__c</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Fetch_Current_Acquisition_Deal_0</name>
+        <label>TEST ONLY Fetch Current Acquisition Deal</label>
+        <locationX>19</locationX>
+        <locationY>14</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Fetch_Current_Acquisition_Deal</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Error_Message</targetReference>
+        </faultConnector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>a0Z55000000immv</stringValue>
+            </value>
+        </filters>
+        <object>Acquisition_Deal__c</object>
+        <outputReference>inputAcquisitionDeal</outputReference>
+        <queriedFields>Title_Context__c</queriedFields>
+        <queriedFields>Primary_Term__c</queriedFields>
+        <queriedFields>Financials__c</queriedFields>
+        <queriedFields>Comps__c</queriedFields>
+        <queriedFields>Risk_Compliance__c</queriedFields>
+        <queriedFields>Acq_Deal_Level_Internal_Name__c</queriedFields>
+    </recordLookups>
+    <recordUpdates>
+        <name>Assign_Record_Type_to_Comps</name>
+        <label>Assign Record Type to Comps</label>
+        <locationX>642</locationX>
+        <locationY>141</locationY>
+        <connector>
+            <targetReference>Assign_Record_Type_to_Risk_Compliance</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Error_Message</targetReference>
+        </faultConnector>
+        <filters>
+            <field>Comps_Approval_Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Approved</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Comps_Approval_Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Approved - Historical</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>inputAcquisitionDeal.Comps__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Signed__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>RecordTypeId</field>
+            <value>
+                <elementReference>compsRecordTypeId</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Comps__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Assign_Record_Type_to_Fiancials</name>
+        <label>Assign Record Type to Fiancials</label>
+        <locationX>506</locationX>
+        <locationY>140</locationY>
+        <connector>
+            <targetReference>Assign_Record_Type_to_Comps</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Error_Message</targetReference>
+        </faultConnector>
+        <filters>
+            <field>Financials_Approval_Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Approved</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Financials_Approval_Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Approved - Historical</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>inputAcquisitionDeal.Financials__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Signed__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>RecordTypeId</field>
+            <value>
+                <elementReference>financialsRecordTypeId</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Financials__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Assign_Record_Type_to_Primary_Terms_0</name>
+        <label>Assign Record Type to Primary Terms</label>
+        <locationX>369</locationX>
+        <locationY>137</locationY>
+        <connector>
+            <targetReference>Assign_Record_Type_to_Fiancials</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Error_Message</targetReference>
+        </faultConnector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>inputAcquisitionDeal.Primary_Term__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Primary_Term_Approval_Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Approved</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Primary_Term_Approval_Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Approved - Historical</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Signed__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>RecordTypeId</field>
+            <value>
+                <elementReference>primaryTermsRecortTypeId</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Primary_Terms__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Assign_Record_Type_to_Risk_Compliance</name>
+        <label>Assign Record Type to Risk &amp; Compliance</label>
+        <locationX>785</locationX>
+        <locationY>142</locationY>
+        <connector>
+            <targetReference>Success_Message</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Error_Message</targetReference>
+        </faultConnector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>inputAcquisitionDeal.Risk_Compliance__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Risk_Compliance_Approval_Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Approved</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Risk_Compliance_Approval_Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Approved - Historical</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Signed__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>RecordTypeId</field>
+            <value>
+                <elementReference>riskComplianceRecordTypeId</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Risk_Compliance__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Assign_Record_Type_to_Title</name>
+        <label>Assign Record Type to Title</label>
+        <locationX>229</locationX>
+        <locationY>135</locationY>
+        <connector>
+            <targetReference>Assign_Record_Type_to_Primary_Terms_0</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Error_Message</targetReference>
+        </faultConnector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>inputAcquisitionDeal.Title_Context__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>LAQ_Signed__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>LAQ_Title_Approval_Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Approved</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>LAQ_Title_Approval_Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Approved - Historical</stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>RecordTypeId</field>
+            <value>
+                <elementReference>titleRecordTypeId</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Title__c</object>
+    </recordUpdates>
+    <startElementReference>Fetch_Current_Acquisition_Deal</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>inputAcquisitionDeal</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Acquisition_Deal__c</objectType>
+    </variables>
+</Flow>

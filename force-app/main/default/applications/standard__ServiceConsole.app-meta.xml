@@ -179,7 +179,19 @@
     <tabs>standard-Case</tabs>
     <tabs>standard-Opportunity</tabs>
     <tabs>standard-Lead</tabs>
+    <tabs>Shipping_Address__c</tabs>
+    <tabs>Accountant_Location__c</tabs>
+    <tabs>Props_Tracker__c</tabs>
     <workspaceConfig>
+        <mappings>
+            <tab>Accountant_Location__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Props_Tracker__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Shipping_Address__c</tab>
+        </mappings>
         <mappings>
             <tab>standard-Account</tab>
         </mappings>

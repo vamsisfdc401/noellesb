@@ -1,0 +1,595 @@
+<!--*****************************************************************************************
+Component Name: DGF_BulkRePricing
+Purpose: Component for bulk repricing
+******************************************************************************************
+Version         DateModified         ModifiedBy               Change
+1.0             19/05/2017           Prarthana                 Initial Development
+******************************************************************************************-->
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" access="global" controller="DGF_BulkRepricingController" >   
+    <ltng:require scripts="{!join(',',$Resource.jQuery_Plugin,$Resource.jQuery_StickyHeader)}" afterScriptsLoaded="{!c.scriptLoaded}" />
+    
+    <aura:attribute name="searchProductName" type="String" description="use for store user search input"/>    
+    <!--<aura:attribute name="searchUSESTTier" type="String" description="use for store user search input" />    
+    <aura:attribute name="searchCAESTTier" type="String" description="use for store user search input"/> -->
+    <aura:attribute name="Message" type="boolean" default="false" description="use for display no record found message"/>
+    <aura:attribute name="searchResult" type="List" description="use for store and display list return from server"/>  
+    <aura:attribute name="isCodeError" type="boolean" default="false" description="use for display no record found message"/>
+    <aura:attribute name="showSpinner" type="boolean" default="false" description="use for displaying or hiding spinner"/>
+    <aura:attribute name="numberOfRecord" type="integer" default="0" description="use for display Number of records"/>
+    <aura:attribute name="selectedResultList" type="List" description="use for displaying selected records."/>
+    <aura:attribute name="selectedRecordCount" type="integer" default="0" description="use for display Number of records"/>
+    <aura:attribute name="hideProdList" type="Boolean" description="used to hide the product list and render the repricing section" default="false"/>
+    <aura:attribute name="priceEffectiveDate" type="String" description="use for displaying Price Effective Date"/>
+    <aura:attribute name="selectedUSESTTier" type="String" description="used for storing selected US EST Tier"/>
+    <aura:attribute name="selectedCAESTTier" type="String" description="used for storing selected CA EST Tier"/>
+    <aura:attribute name="CodeError" type="string"  description="use for display no record found message"/>
+    <aura:attribute name="isjQueryLoaded" type="Boolean" default="false"/>
+    <aura:attribute name="isScrollLoaded" type="Boolean" default="false"/>
+    <aura:attribute name="selectedRow" type="String" default="none"/>
+    <aura:attribute name="assending" type="Boolean" default="false"/>
+    <aura:attribute name="selectedRowRecords" type="String" default="none"/>
+    <aura:attribute name="assendingSelectedRecords" type="Boolean" default="false"/>
+    <aura:attribute name="prefix" type="String" default=""/>
+    <aura:attribute name="searchResultMaster" type="List" description="use for store and display list return from server"/>    
+    <aura:attribute name="pageSize" type="integer" default="25" description="default number of records to be displayed on a page"/>
+    <aura:attribute name="totalNumberOfRecord" type="integer" default="0" description="use for display Number of records"/>
+    
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}" />
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}" />    
+    
+    <aura:if isTrue="{!v.isCodeError}">
+        <ui:message title="Error" severity="error" closable="false">        
+            <aura:unescapedHtml value="{!v.CodeError}" />  
+        </ui:message>
+    </aura:if>
+    
+    <aura:if isTrue="{!v.hideProdList==False}">
+        
+        <div class="slds-page-header">
+            <div class="slds-text-heading--medium slds-m-bottom--small slds-text-title_caps" style="font-weight:bold;">Bulk Repricing</div>
+            
+            <div class="slds-text-heading--medium slds-m-bottom--small" style="font-weight:bold;">Search and select Multiple Products</div>
+            <div class="slds-form--inline slds-m-bottom--small">
+                <div class="slds-form-element ">
+                    <label class="slds-form-element__label slds-text-heading--small" for="search">Search for Products</label>
+                    <div class="slds-form-element__control">
+                        <ui:inputText aura:id="searchProdId" class="slds-input" keyup="{!c.onEnterClickSearch}" updateOn="keyup"  value="{!v.searchProductName}"  placeholder="Type here..."/>
+                    </div>
+                </div>
+                
+                <div class="slds-form-element">
+                    <button aura:id="btnSearchId" type="button" onclick="{!c.Search}"  class="slds-button slds-button--brand">Search</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slds-m-around--small">
+            
+            <div class="{!v.showSpinner ? 'slds-spinner_container slds-show' : 'slds-spinner_container slds-hide'}" style="z-index:5">
+                <div class="slds-spinner--brand slds-spinner slds-spinner--large" role="status">
+                    <span class="slds-assistive-text">Loading</span>
+                    <div class="slds-spinner__dot-a"></div>
+                    <div class="slds-spinner__dot-b"></div>
+                </div>
+            </div> 
+            <div class="slds-grid slds-wrap table-wrap">
+                <div class="slds-large-size--6-of-12 table-selected" style="border-right: 1px solid rgb(221, 219, 218);">
+                    <div class="slds-is-relative" style="clear:both;overflow:hidden;">
+                        <div class="slds-float_left">
+                            <label class="slds-form-element__label slds-text-heading--small slds-m-top--small" for="search">Results</label>  
+                            <button class="{!v.numberOfRecord > 0 ? 'slds-button slds-button--neutral slds-m-bottom--xx-small' : 'slds-hide' }" onclick="{!c.selectAll}">Select All</button> 
+                            <button class="{!v.numberOfRecord > 0 ? 'slds-button slds-button--neutral slds-m-bottom--xx-small' : 'slds-hide' }" onclick="{!c.showMore}">Show More</button> 
+                        </div> 
+                        <div class="slds-float_left">
+                            <span class="slds-badge slds-m-top--small slds-is-absolute count-badge">{!v.numberOfRecord}/{!v.totalNumberOfRecord} records are available meeting the search criteria</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-large-size--6-of-12 table-selected">
+                    <div class="slds-is-relative" style="clear:both;overflow:hidden;">
+                        <div class="slds-float_left">
+                            <label class="slds-form-element__label slds-text-heading--small slds-m-top--small" for="search">Selected</label>  
+                            <button class="{!v.selectedRecordCount > 0 ? 'slds-button slds-button--neutral slds-m-bottom--xx-small' : 'slds-hide' }" onclick="{!c.removeAll}">Remove All</button>
+                        </div>
+                        <div class="slds-float_left">
+                            <span class="slds-badge slds-m-top--small slds-is-absolute count-badge">{!v.selectedRecordCount} records selected</span>   
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-grid slds-wrap slds-grid--pull-padded filter-table">
+                <div class="slds-theme_default slds-scrollable slds-large-size--6-of-12 slds-border--left slds-border--right slds-border--top slds-border--bottom search-table">                    
+                    
+                    <table id="tblAllSearched" class="slds-table slds-table--bordered slds-table--cell-buffer" >
+                        <thead>                                
+                            <tr class="slds-text-title--caps">
+                                <th scope="col" style="z-index: 4;">
+                                    <div class="slds-truncate" title="Select" >Select</div>
+                                </th>
+                                
+                                <th scope="col" style="z-index: 3;">
+                                    <span onclick="{!c.sort}" id="prodName">
+                                        <div class="slds-truncate" title="Product">Product
+                                            <span aura:id="prodName" class="slds-hide">
+                                                <aura:if isTrue="{!v.assending}">
+                                                        <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                    <aura:set attribute="else">
+                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                    </aura:set>
+                                                </aura:if> 
+                                            </span>
+                                        </div>
+                                    </span>
+                                </th>
+                                <th scope="col" style="z-index: 3;">
+                                    <span onclick="{!c.sort}" id="USESTTier">
+                                        <div class="slds-truncate" title="Current US EST Tier">Current US EST Tier
+                                            <span aura:id="USESTTier" class="slds-hide">
+                                                <aura:if isTrue="{!v.assending}">
+                                                        <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                    <aura:set attribute="else">
+                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                    </aura:set>
+                                                </aura:if> 
+                                            </span>
+                                        </div>
+                                    </span>                                    
+                                </th>
+                                <th scope="col" style="z-index: 3;" >
+                                    <span onclick="{!c.sort}" id="US_SD_WSP">
+                                        <div class="slds-truncate" title="US SD WSP">US SD WSP
+                                            <span aura:id="US_SD_WSP" class="slds-hide">
+                                                <aura:if isTrue="{!v.assending}">
+                                                        <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                    <aura:set attribute="else">
+                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                    </aura:set>
+                                                </aura:if> 
+                                            </span>
+                                        </div>
+                                    </span>                                    
+                                </th>
+                                <th scope="col" style="z-index: 3;">
+                                    <span onclick="{!c.sort}" id="US_HD_WSP">
+                                        <div class="slds-truncate" title="US HD WSP">US HD WSP
+                                            <span aura:id="US_HD_WSP" class="slds-hide">
+                                                <aura:if isTrue="{!v.assending}">
+                                                        <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                    <aura:set attribute="else">
+                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                    </aura:set>
+                                                </aura:if> 
+                                            </span>
+                                        </div>
+                                    </span>                                    
+                                </th> 
+                                <th scope="col" style="z-index: 3;">
+                                    <span onclick="{!c.sort}" id="US_UHD_WSP">
+                                        <div class="slds-truncate" title="US UHD WSP">US UHD WSP
+                                            <span aura:id="US_UHD_WSP" class="slds-hide">
+                                                <aura:if isTrue="{!v.assending}">
+                                                        <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                    <aura:set attribute="else">
+                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                    </aura:set>
+                                                </aura:if> 
+                                            </span>
+                                        </div>
+                                    </span>                                    
+                                </th>
+                                <th scope="col" style="z-index: 3;">
+                                    <span onclick="{!c.sort}" id="CAESTTier">
+                                        <div class="slds-truncate" title="Current CA EST Tier">Current CA EST Tier
+                                            <span aura:id="CAESTTier" class="slds-hide">
+                                                <aura:if isTrue="{!v.assending}">
+                                                        <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                    <aura:set attribute="else">
+                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                    </aura:set>
+                                                </aura:if> 
+                                            </span>
+                                        </div>
+                                    </span>                                    
+                                </th> 
+                                <th scope="col" style="z-index: 3;">
+                                    <span onclick="{!c.sort}" id="CA_SD_WSP">
+                                        <div class="slds-truncate" title="CA SD WSP">CA SD WSP
+                                            <span aura:id="CA_SD_WSP" class="slds-hide">
+                                                <aura:if isTrue="{!v.assending}">
+                                                        <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                    <aura:set attribute="else">
+                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                    </aura:set>
+                                                </aura:if> 
+                                            </span>
+                                        </div>
+                                    </span>                                    
+                                </th> 
+                                <th scope="col" style="z-index: 3;">
+                                    <span onclick="{!c.sort}" id="CA_HD_WSP">
+                                        <div class="slds-truncate" title="CA HD WSP">CA HD WSP
+                                            <span aura:id="CA_HD_WSP" class="slds-hide">
+                                                <aura:if isTrue="{!v.assending}">
+                                                        <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                    <aura:set attribute="else">
+                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                    </aura:set>
+                                                </aura:if> 
+                                            </span>
+                                        </div>
+                                    </span>                                    
+                                </th>
+                                <th scope="col" style="z-index: 3;">
+                                    <span onclick="{!c.sort}" id="CA_UHD_WSP">
+                                        <div class="slds-truncate" title="CA UHD WSP">CA UHD WSP
+                                            <span aura:id="CA_UHD_WSP" class="slds-hide">
+                                                <aura:if isTrue="{!v.assending}">
+                                                        <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                    <aura:set attribute="else">
+                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                    </aura:set>
+                                                </aura:if> 
+                                            </span>
+                                        </div>
+                                    </span>                                    
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <!--### display all records of searchResult attribute by aura:iteration ###-->
+                            
+                            <aura:iteration items="{!v.searchResult}" var="prod" indexVar="resultIndex">
+                                <tr>
+                                    <td style="z-index:2;">
+                                        <div>
+                                            <button class="slds-button slds-text-link" data-index="{!resultIndex}" onclick="{!c.addProd}">Add</button> 
+                                        </div>
+                                    </td>
+                                    <td style="z-index:2;">
+                                        <div class="slds-truncate" style="width:160px;" title="{!prod.prodName}"><ui:outputText value="{!prod.prodName}" /></div>
+                                    </td>
+                                    <td style="z-index:1;">
+                                        <div class="slds-truncate" style="width:160px;" title="{!prod.USESTTier}"><ui:outputText value="{!prod.USESTTier}" /></div>
+                                    </td>
+                                    <td style="z-index:1;">
+                                        <div class="slds-truncate" style="width:72px;" title="{!prod.US_SD_WSP}"><ui:outputText value="{!prod.US_SD_WSP}" /></div>
+                                    </td >
+                                    <td style="z-index:1;">
+                                        <div class="slds-truncate" style="width:72px;" title="{!prod.US_HD_WSP}"><ui:outputText value="{!prod.US_HD_WSP}" /></div>
+                                    </td>
+                                    <td style="z-index:1;">
+                                        <div class="slds-truncate" style="width:72px;" title="{!prod.US_UHD_WSP}"><ui:outputText value="{!prod.US_UHD_WSP}" /></div>
+                                    </td>
+                                    <td style="z-index:1;">
+                                        <div class="slds-truncate" style="width:160px;" title="{!prod.CAESTTier}"><ui:outputText value="{!prod.CAESTTier}" /></div>
+                                    </td>
+                                    <td style="z-index:1;">
+                                        <div class="slds-truncate" style="width:72px;" title="{!prod.CA_SD_WSP}"><ui:outputText value="{!prod.CA_SD_WSP}" /></div>
+                                    </td>
+                                    <td style="z-index:1;">
+                                        <div class="slds-truncate" style="width:72px;" title="{!prod.CA_HD_WSP}"><ui:outputText value="{!prod.CA_HD_WSP}" /></div>
+                                    </td>
+                                    <td style="z-index:1;">
+                                        <div class="slds-truncate" style="width:72px;" title="{!prod.CA_UHD_WSP}"><ui:outputText value="{!prod.CA_UHD_WSP}" /></div>
+                                    </td>
+                                </tr>
+                            </aura:iteration>    
+                            
+                            <aura:if isTrue="{!v.Message}">
+                                <div class="slds-text-color--error"> No Result Found...</div>
+                            </aura:if>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="slds-theme_default slds-scrollable slds-large-size--6-of-12 slds-border--right slds-border--top slds-border--bottom search-table">    
+                    <table id="tblAllSelected" class="slds-table slds-table--bordered slds-table--cell-buffer">
+                        <thead> 
+                            <tr class="slds-text-title--caps">
+                                <th scope="col" style="z-index:4;">
+                                    <div class="slds-truncate" title="Select">Remove</div>
+                                </th>
+                                <th scope="col" style="z-index: 3;">
+                                    <span onclick="{!c.selectedSort}" id="selectedprodName">
+                                        <div class="slds-truncate" title="Product">Product
+                                            <span aura:id="selectedprodName" class="slds-hide">
+                                                <aura:if isTrue="{!v.assendingSelectedRecords}">
+                                                        <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                    <aura:set attribute="else">
+                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                    </aura:set>
+                                                </aura:if> 
+                                            </span>
+                                        </div>
+                                    </span>
+                                </th>
+                                <th scope="col" style="z-index: 3;">
+                                    <span onclick="{!c.selectedSort}" id="selectedUSESTTier">
+                                        <div class="slds-truncate" title="Current US EST Tier">Current US EST Tier
+                                            <span aura:id="selectedUSESTTier" class="slds-hide">
+                                                <aura:if isTrue="{!v.assendingSelectedRecords}">
+                                                        <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                    <aura:set attribute="else">
+                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                    </aura:set>
+                                                </aura:if> 
+                                            </span>
+                                        </div>
+                                    </span>                                    
+                                </th>
+                                <th scope="col" style="z-index: 3;" >
+                                    <span onclick="{!c.selectedSort}" id="selectedUS_SD_WSP">
+                                        <div class="slds-truncate" title="US SD WSP">US SD WSP
+                                            <span aura:id="selectedUS_SD_WSP" class="slds-hide">
+                                                <aura:if isTrue="{!v.assendingSelectedRecords}">
+                                                        <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                    <aura:set attribute="else">
+                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                    </aura:set>
+                                                </aura:if> 
+                                            </span>
+                                        </div>
+                                    </span>                                    
+                                </th>
+                                <th scope="col" style="z-index: 3;">
+                                    <span onclick="{!c.selectedSort}" id="selectedUS_HD_WSP">
+                                        <div class="slds-truncate" title="US HD WSP">US HD WSP
+                                            <span aura:id="selectedUS_HD_WSP" class="slds-hide">
+                                                <aura:if isTrue="{!v.assendingSelectedRecords}">
+                                                        <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                    <aura:set attribute="else">
+                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                    </aura:set>
+                                                </aura:if> 
+                                            </span>
+                                        </div>
+                                    </span>                                    
+                                </th> 
+                                <th scope="col" style="z-index: 3;">
+                                    <span onclick="{!c.selectedSort}" id="selectedUS_UHD_WSP">
+                                        <div class="slds-truncate" title="US UHD WSP">US UHD WSP
+                                            <span aura:id="selectedUS_UHD_WSP" class="slds-hide">
+                                                <aura:if isTrue="{!v.assendingSelectedRecords}">
+                                                        <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                    <aura:set attribute="else">
+                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                    </aura:set>
+                                                </aura:if> 
+                                            </span>
+                                        </div>
+                                    </span>                                    
+                                </th>
+                                <th scope="col" style="z-index: 3;">
+                                    <span onclick="{!c.selectedSort}" id="selectedCAESTTier">
+                                        <div class="slds-truncate" title="Current CA EST Tier">Current CA EST Tier
+                                            <span aura:id="selectedCAESTTier" class="slds-hide">
+                                                <aura:if isTrue="{!v.assendingSelectedRecords}">
+                                                        <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                    <aura:set attribute="else">
+                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                    </aura:set>
+                                                </aura:if> 
+                                            </span>
+                                        </div>
+                                    </span>                                    
+                                </th> 
+                                <th scope="col" style="z-index: 3;">
+                                    <span onclick="{!c.selectedSort}" id="selectedCA_SD_WSP">
+                                        <div class="slds-truncate" title="CA SD WSP">CA SD WSP
+                                            <span aura:id="selectedCA_SD_WSP" class="slds-hide">
+                                                <aura:if isTrue="{!v.assendingSelectedRecords}">
+                                                        <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                    <aura:set attribute="else">
+                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                    </aura:set>
+                                                </aura:if> 
+                                            </span>
+                                        </div>
+                                    </span>                                    
+                                </th> 
+                                <th scope="col" style="z-index: 3;">
+                                    <span onclick="{!c.selectedSort}" id="selectedCA_HD_WSP">
+                                        <div class="slds-truncate" title="CA HD WSP">CA HD WSP
+                                            <span aura:id="selectedCA_HD_WSP" class="slds-hide">
+                                                <aura:if isTrue="{!v.assendingSelectedRecords}">
+                                                        <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                    <aura:set attribute="else">
+                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                    </aura:set>
+                                                </aura:if> 
+                                            </span>
+                                        </div>
+                                    </span>                                    
+                                </th>
+                                <th scope="col" style="z-index: 3;">
+                                    <span onclick="{!c.selectedSort}" id="selectedCA_UHD_WSP">
+                                        <div class="slds-truncate" title="CA UHD WSP">CA UHD WSP
+                                            <span aura:id="selectedCA_UHD_WSP" class="slds-hide">
+                                                <aura:if isTrue="{!v.assendingSelectedRecords}">
+                                                        <lightning:icon iconName="utility:arrowup" size="xx-small"/>
+                                                    <aura:set attribute="else">
+                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+                                                    </aura:set>
+                                                </aura:if> 
+                                            </span>
+                                        </div>
+                                    </span>                                    
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>                       
+                            <!--### display all records of searchResult attribute by aura:iteration ###-->
+                            <aura:iteration items="{!v.selectedResultList}" var="prod" indexVar="selectedIndex">
+                                <tr>
+                                    <td style="z-index:2;">
+                                        <div>
+                                            <button class="slds-button slds-text-link" data-index="{!selectedIndex}" onclick="{!c.removeProd}">Remove</button>                                    
+                                        </div>
+                                    </td>
+                                    <td style="z-index:2;">
+                                        <div class="slds-truncate" style="width:160px;" title="{!prod.prodName}"><ui:outputText value="{!prod.prodName}" /></div>
+                                    </td>
+                                    <td style="z-index:1;">
+                                        <div class="slds-truncate" style="width:160px;" title="{!prod.USESTTier}"><ui:outputText value="{!prod.USESTTier}" /></div>
+                                    </td>
+                                    <td style="z-index:1;">
+                                        <div class="slds-truncate" style="width:72px;" title="{!prod.US_SD_WSP}"><ui:outputText value="{!prod.US_SD_WSP}" /></div>
+                                    </td>
+                                    <td style="z-index:1;">
+                                        <div class="slds-truncate" style="width:72px;" title="{!prod.US_HD_WSP}"><ui:outputText value="{!prod.US_HD_WSP}" /></div>
+                                    </td>
+                                    <td style="z-index:1;">
+                                        <div class="slds-truncate" style="width:72px;" title="{!prod.US_UHD_WSP}"><ui:outputText value="{!prod.US_UHD_WSP}" /></div>
+                                    </td>
+                                    <td style="z-index:1;">
+                                        <div class="slds-truncate" style="width:160px;" title="{!prod.CAESTTier}"><ui:outputText value="{!prod.CAESTTier}" /></div>
+                                    </td>
+                                    <td style="z-index:1;">
+                                        <div class="slds-truncate" style="width:72px;" title="{!prod.CA_SD_WSP}"><ui:outputText value="{!prod.CA_SD_WSP}" /></div>
+                                    </td>
+                                    <td style="z-index:1;">
+                                        <div class="slds-truncate" style="width:72px;" title="{!prod.CA_HD_WSP}"><ui:outputText value="{!prod.CA_HD_WSP}" /></div>
+                                    </td>
+                                    <td style="z-index:1;">
+                                        <div class="slds-truncate" style="width:72px;" title="{!prod.CA_UHD_WSP}"><ui:outputText value="{!prod.CA_UHD_WSP}" /></div>
+                                    </td>
+                                </tr>
+                            </aura:iteration>
+                        </tbody>
+                    </table>                
+                </div>   
+            </div>
+            
+            <div id="divBlank" style="height:100px;" class="slds-large-size--12-of-12">
+            </div>
+            
+            <div class="slds-docked-form-footer" style="height:50px;">
+                <div class="slds-large-size--10-of-12  slds-p-bottom_x-small slds-p-left_small">
+                </div>
+                
+                <div class="slds-large-size--2-of-12  slds-p-bottom_x-small slds-p-left_small">                        
+                    <button type="button" class="slds-button slds-button--neutral" onclick="{!c.cancel}">Cancel</button>                    
+                    <button type="button" class="{!v.selectedRecordCount > 0 ? 'slds-button slds-button--brand slds-m-bottom--xx-small' : 'slds-hide' }" onclick="{!c.displayNextSection}">Next</button>
+                </div>
+            </div> 
+        </div>
+    </aura:if>
+    
+    <aura:if isTrue="{!v.hideProdList}">
+        <div class="slds-page-header">
+            <div class="slds-text-heading--medium slds-m-bottom--small slds-text-title_caps" style="font-weight:bold;">Bulk Repricing</div>
+            
+            <div class="slds-text-heading--medium slds-m-bottom--small " style="font-weight:bold;">Confirm selection and Price Effective Date</div>
+            <div class="slds-form--inline slds-m-bottom--small">
+                <div class="slds-form-element ">
+                    <div class="slds-form-element__control">
+                        <ui:inputDate aura:id="EffectiveDate" 
+                                      class="slds-input" 
+                                      label="Price Effective Date"
+                                      labelClass="slds-form-element__label slds-text-heading--small slds-m-top--small"
+                                      value="{!v.priceEffectiveDate}"
+                                      displayDatePicker="true" required="true"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slds-m-around--small">
+            
+            <div class="slds-grid slds-wrap slds-grid--pull-padded">
+                <div style="height:500px;" class="slds-theme_default slds-scrollable slds-border--left slds-border--right slds-border--top slds-border--bottom slds-large-size--12-of-12">
+                    
+                    <table id="tblMassPriceUpdt" class="slds-table slds-table--bordered slds-table--cell-buffer">
+                        <thead>
+                            <tr >
+                                <th colspan="2" style="z-index:3;">
+                                    <label class="slds-form-element__label slds-text-heading--small slds-m-top--small" for="search">Products</label> 
+                                </th>
+                                <th colspan="3" style="z-index:3;">
+                                    <span class="slds-badge slds-float--right slds-m-top--small">{!v.selectedRecordCount} records selected</span>
+                                </th>
+                            </tr>
+                            <tr class="slds-text-title--caps">
+                                <th scope="col" style="z-index:4;">
+                                    <div class="slds-truncate" title="Product">Product</div>
+                                </th>
+                                <th scope="col" style="z-index:3;">
+                                    <div class="slds-truncate" style="width:166px;" title="Title">New US EST Tier</div>
+                                </th>
+                                <th scope="col" style="z-index:3;">
+                                    <div class="slds-truncate" style="width:166px;" title="Version">New CA EST Tier</div>
+                                </th>
+                                <th scope="col" style="z-index:3;">
+                                    <div class="slds-truncate" style="width:166px;" title="Version">Current US EST Tier</div>
+                                </th>
+                                <th scope="col" style="z-index:3;">
+                                    <div class="slds-truncate" style="width:166px;" title="Version">Current CA EST Tier</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            
+                            <!--### display all records of searchResult attribute by aura:iteration ###-->
+                            
+                            <aura:iteration items="{!v.selectedResultList}" var="prod" indexVar="resultIndex">
+                                <tr>                                    
+                                    <td style="z-index:2;">
+                                        <div class="slds-truncate" style="width:160px;" title="{!prod.prodName}"><ui:outputText value="{!prod.prodName}" /></div>
+                                    </td>
+                                    <td style="z-index:1;">
+                                        <div class="slds-form-element ">
+                                            <div  class="slds-truncate" style="width:166px;">
+                                                
+                                                <ui:inputSelect aura:id="newUSESTID" value="{!prod.newUSESTTier}" >
+                                                    <aura:iteration items="{!prod.usESTTierOpt}" var="est">
+                                                        <ui:inputSelectOption text="{!est}" label="{!est}">                                                            
+                                                        </ui:inputSelectOption>
+                                                    </aura:iteration>
+                                                </ui:inputSelect> 
+                                            </div>
+                                        </div>
+                                    </td>
+                                    
+                                    <td style="z-index:1;">
+                                        <div class="slds-form-element ">
+                                            <div  class="slds-truncate" style="width:166px;">
+                                                <ui:inputSelect aura:id="newCAESTID"  value="{!prod.newCAESTTier}"  >
+                                                    <aura:iteration items="{!prod.caESTTierOpt}" var="est">
+                                                        <ui:inputSelectOption text="{!est}" label="{!est}"/>                    
+                                                    </aura:iteration>
+                                                </ui:inputSelect>                                               
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="z-index:1;">
+                                        <div class="slds-truncate" style="width:160px;" title="{!prod.USESTTier}"><ui:outputText value="{!prod.USESTTier}" /></div>
+                                    </td>
+                                    
+                                    <td style="z-index:1;">
+                                        <div class="slds-truncate" style="width:160px;" title="{!prod.CAESTTier}"><ui:outputText value="{!prod.CAESTTier}" /></div>
+                                    </td>   
+                                </tr>
+                            </aura:iteration>                        
+                        </tbody>
+                    </table>
+                </div>                
+            </div>
+            
+            <div id="divBlank" style="height:100px;" class="slds-large-size--12-of-12">
+            </div>
+            
+            <div class="slds-docked-form-footer" style="height:50px;">
+                <div class="slds-large-size--9-of-12  slds-p-bottom_x-small slds-p-left_small">
+                </div>
+                
+                <div class="slds-large-size--3-of-12  slds-p-bottom_x-small slds-p-left_small">                        
+                    <button type="button" class="slds-button slds-button--brand" onclick="{!c.displayPreviousSection}">Back</button>
+                    <button type="button" class="slds-button slds-button--brand" onclick="{!c.confirmSelection}">Confirm</button>
+                    <button type="button" class="slds-button slds-button--neutral" onclick="{!c.cancel}">Cancel</button>     
+                </div>
+            </div> 
+        </div>
+    </aura:if>
+</aura:component>

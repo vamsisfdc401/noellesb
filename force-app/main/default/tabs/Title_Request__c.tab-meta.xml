@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customObject>true</customObject>
+    <description>Title requests are used to facilitate getting new titles created in GTM. Creation is currently manual.</description>
+    <motif>Custom33: Desk</motif>
+</CustomTab>

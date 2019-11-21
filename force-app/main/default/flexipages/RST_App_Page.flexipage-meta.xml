@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Tabbed interface to navigate through views to assist in forecasting BO amounts for upcoming theatrical releases.</description>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentName>RST_AppInterface</componentName>
+        </componentInstances>
+        <name>header</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <name>main</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>Release Scheduling Tool</masterLabel>
+    <template>
+        <name>RST_AppPageTemplate</name>
+    </template>
+    <type>AppPage</type>
+</FlexiPage>

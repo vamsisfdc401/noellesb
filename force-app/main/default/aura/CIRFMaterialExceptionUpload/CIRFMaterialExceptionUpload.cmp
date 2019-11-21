@@ -1,0 +1,22 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" controller="CIRFMaterialExceptionsUpload" extends="c:Base">
+	<!--<aura:attribute name="recordId" type="Id" default="a3LM0000000XHbBMAW"/>-->
+    <aura:attribute name="fileName" type="String" default="No File Selected.." />
+    
+    <aura:handler name="init" value="this" action="{!c.doInit}"/>
+    
+    <lightning:card title="CIRF Material Exceptions Upload">
+        <aura:set attribute="actions">
+        	<lightning:button variant="base" label="Download Template" onclick="{!c.downloadTemplate}" name="Download Template"/>
+        </aura:set>
+        <aura:set attribute="footer">
+            <lightning:button value="Upload" name="Upload" Title="Upload" label="Upload" onclick="{!c.processCSV}"/>
+            <lightning:button variant="Brand" value="Cancel" name="Cancel" Title="Cancel" label="Cancel" onclick="{!c.cancel}"/>
+            
+        </aura:set>
+        <lightning:input aura:id="fileId" tabindex="1" onchange="{!c.handleFilesChange}" accept=".csv" type="file" name="file" label="Upload Attachment" multiple="false"/>
+        <div class="slds-text-body_small slds-text-color_error">{!v.fileName} </div>
+        <span id="Waitspinner" style="display:none">
+            <ui:spinner />
+        </span>
+    </lightning:card>
+</aura:component>

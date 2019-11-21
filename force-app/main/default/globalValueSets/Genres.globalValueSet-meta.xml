@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Feature Film</fullName>
+        <default>false</default>
+        <label>Feature Film</label>
+    </customValue>
+    <customValue>
+        <fullName>Documentary (non-Film Group)</fullName>
+        <default>false</default>
+        <label>Documentary (non-Film Group)</label>
+    </customValue>
+    <customValue>
+        <fullName>Documentary (Film Group)</fullName>
+        <default>false</default>
+        <label>Documentary (Film Group)</label>
+    </customValue>
+    <customValue>
+        <fullName>Animated Feature</fullName>
+        <default>false</default>
+        <label>Animated Feature</label>
+    </customValue>
+    <customValue>
+        <fullName>Animated TV Series</fullName>
+        <default>false</default>
+        <label>Animated TV Series</label>
+    </customValue>
+    <customValue>
+        <fullName>TV Series</fullName>
+        <default>false</default>
+        <label>TV Series</label>
+    </customValue>
+    <customValue>
+        <fullName>TV Special</fullName>
+        <default>false</default>
+        <label>TV Special</label>
+    </customValue>
+    <customValue>
+        <fullName>Live Event</fullName>
+        <default>false</default>
+        <label>Live Event</label>
+    </customValue>
+    <customValue>
+        <fullName>Various</fullName>
+        <default>false</default>
+        <label>Various</label>
+    </customValue>
+    <description>Title Genre that might be shared between Acquisition Title, Title and other objects</description>
+    <masterLabel>Genres</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

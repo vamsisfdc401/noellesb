@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>37.0</apiVersion>
+    <availableInTouch>true</availableInTouch>
+    <confirmationTokenRequired>false</confirmationTokenRequired>
+    <description>VF Page to start the flow for the link &quot;Create New Deal Alike&quot;</description>
+    <label>Acquisition Deal - Create New Deal Alike Flow Start</label>
+</ApexPage>

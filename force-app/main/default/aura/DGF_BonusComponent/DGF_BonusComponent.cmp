@@ -1,0 +1,70 @@
+<aura:component implements="force:appHostable,force:hasRecordId,flexipage:availableForAllPageTypes" access="global" controller="DGF_PackageComponentController">
+    <aura:attribute name="pkgName" type="string"/>
+    <aura:attribute name="releaseId" type="String"/>
+    <aura:attribute name="bonusList" type="list"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="showSpinner" type="boolean" default="false" description="use for displaying or hiding spinner"/>      
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}" />
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}" />  
+    <aura:attribute name="releaseName" type="String"/>
+    
+    <div class="{!v.showSpinner ? 'slds-spinner_container slds-show' : 'slds-spinner_container slds-hide'}" style="z-index:5">
+        <div class="slds-spinner--brand slds-spinner slds-spinner--large" role="status">
+            <span class="slds-assistive-text">Loading</span>
+            <div class="slds-spinner__dot-a"></div>
+            <div class="slds-spinner__dot-b"></div>
+        </div>
+    </div>
+    
+    <div class="slds-page-header slds-text-heading--medium slds-m-bottom--small" style="font-weight:bold;">            
+        <ui:outputURL value="{!'/'+v.releaseId}"  label="{!v.releaseName}"/> > {!v.pkgName}
+    </div>
+    
+    <div class="slds-m-around--small">       
+        
+        <div class="slds-grid slds-wrap slds-grid--pull-padded">            
+            <div style="height:600px;" class="slds-theme_default slds-scrollable slds-border--left slds-border--right slds-border--top slds-border--bottom slds-large-size--12-of-12">
+                <table id="tblMassPriceUpdt" class="slds-table slds-table--bordered slds-table--cell-buffer">
+                    <thead>
+                        <tr class="slds-text-title--caps">
+                            <th scope="col" style="z-index:4;">
+                                <div class="slds-truncate" title="Bonus Name">Bonus Name</div>
+                            </th>
+                            <th scope="col" style="z-index:3;">
+                                <div class="slds-truncate" style="width:550px;" title="Description">Description</div>
+                            </th>
+                            <th scope="col" style="z-index:3;">
+                                <div class="slds-truncate" style="width:133px;" title="Runtime {min:sec}">Runtime {min:sec}</div>
+                            </th>
+                            <th scope="col" style="z-index:3;">
+                                <div class="slds-truncate" style="width:200px;" title="Package">Package</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>                        
+                        <!--### display all records of searchResult attribute by aura:iteration ###-->                        
+                        <aura:iteration items="{!v.bonusList}" var="bonus" indexVar="resultIndex">
+                            <tr>                                    
+                                <th scope="row" style="z-index:2;">
+                                    <div class="slds-truncate" title="{!bonus.Name}">
+                                        <ui:outputURL value="{!'/'+bonus.Id}" target="_blank" label="{!bonus.Name}"/>
+                                    </div>
+                                </th>
+                                <td style="z-index:2;">
+                                    <div class="slds-truncate" style="width:550px;" title="{!bonus.Description__c}"><ui:outputText value="{!bonus.Description__c}" /></div>
+                                </td>
+                                <td style="z-index:2;">
+                                    <div class="slds-truncate" style="width:133px;" title="{!bonus.Run_Time_min_sec__c}"><ui:outputText value="{!bonus.Run_Time_min_sec__c}" /></div>
+                                </td>
+                                <td style="z-index:2;">
+                                    <div class="slds-truncate" style="width:200px;" title="{!bonus.Package__c}"><ui:outputText value="{!bonus.Package__c}" /></div>
+                                </td>
+                            </tr>
+                        </aura:iteration>
+                    </tbody>                    
+                </table>
+            </div>
+        </div>
+    </div>       
+</aura:component>

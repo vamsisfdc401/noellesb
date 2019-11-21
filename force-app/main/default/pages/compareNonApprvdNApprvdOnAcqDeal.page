@@ -1,0 +1,183 @@
+<apex:page standardController="Acquisition_Deal__c" sidebar="false" showHeader="false" extensions="compareRelatedRecordsOnAcquisitionDeal" action="{!compareRelatedObjects}">
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial,Helvetica,sans-serif;font-size:1em;font-weight: normal;padding:5px 5px;border-color: #ECECEC;border-bottom: 1px solid #ECECEC;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial,Helvetica,sans-serif;font-size:1em;font-weight: normal;padding:5px 5px;border-color: #ECECEC;border-bottom: 1px solid #ECECEC;overflow:hidden;word-break:normal;}
+.tg .tg-yw4l{vertical-align:top}
+</style>
+  <br/>
+  <br/>
+  
+  <apex:outputPanel rendered="{!NOT(isSF1)}"> 
+  <apex:outputText value="Title" style="font-weight:bold;font-size: 1.3em;margin-left:5px;font-family:Arial,Helvetica,sans-serif;"/>
+  <table class="tg" width="100%">
+  <tr>  
+  <th class="tg-yw4l" width="33%"><apex:outputText value="Field Name" style="font-weight:bold;"/></th>
+  <th class="tg-yw4l" width="33%"><apex:outputText value="Approved Value" style="font-weight:bold;color:#006600;" /></th>
+  <th class="tg-yw4l" width="33%"><apex:outputText value="Non-Approved Value" style="font-weight:bold;color:#cc2900;" /></th>
+  </tr>
+  <apex:repeat value="{!notMatchingTitleAPIFieldNames}" var="fieldApiName">
+  <tr>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="{!TitleFieldsWithLabelMap[fieldApiName]}" style="font-size:91%;font-weight: bold;color: #4A4A56;"/></td>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="{!approvedTitleFieldsWithData[fieldApiName]}" style="color:#006600;"/></td>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="{!nonApprovedTitleFieldsWithData[fieldApiName]}" style="color:#cc2900;"/></td>    
+  </tr>
+  </apex:repeat> 
+  </table> 
+  <br/>
+  <br/>
+  <apex:outputText value="Primary Terms" style="font-weight:bold;font-size: 1.3em;margin-left:5px;font-family:Arial,Helvetica,sans-serif;"/>
+  <table class="tg" width="100%">
+  <tr>  
+  <th class="tg-yw4l" width="33%"><apex:outputText value="Field Name" style="font-weight:bold;"/></th>
+  <th class="tg-yw4l" width="33%"><apex:outputText value="Approved Value" style="font-weight:bold;color:#006600;" /></th>
+  <th class="tg-yw4l" width="33%"><apex:outputText value="Non-Approved Value" style="font-weight:bold;color:#cc2900;"/></th>
+  </tr>
+  <apex:repeat value="{!notMatchingPrimTermAPIFieldNames}" var="fieldApiName">
+  <tr>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="{!PrimTermFieldsWithLabelMap[fieldApiName]}" style="font-size:91%;font-weight: bold;color: #4A4A56;"/></td>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="{!approvedPrimTermFieldsWithData[fieldApiName]}" style="color:#006600;"/></td>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="{!nonApprovedPrimTermFieldsWithData[fieldApiName]}" style="color:#cc2900;"/></td>    
+  </tr>
+  </apex:repeat> 
+  </table>
+  <br/>
+  <br/>
+  <apex:outputText value="Financials" style="font-weight:bold;font-size: 1.3em;margin-left:5px;font-family:Arial,Helvetica,sans-serif;"/>
+  <table class="tg" width="100%">
+  <tr>  
+  <th class="tg-yw4l" width="33%"><apex:outputText value="Field Name" style="font-weight:bold;"/></th>
+  <th class="tg-yw4l" width="33%"><apex:outputText value="Approved Value" style="font-weight:bold;color:#006600;" /></th>
+  <th class="tg-yw4l" width="33%"><apex:outputText value="Non-Approved Value" style="font-weight:bold;color:#cc2900;" /></th>
+  </tr>
+  <apex:repeat value="{!notMatchingfinancialAPIFieldNames}" var="fieldApiName">
+  <tr>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="{!financialFieldsWithLabelMap[fieldApiName]}" style="font-size:91%;font-weight: bold;color: #4A4A56;"/></td>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="{!approvedfinancialFieldsWithData[fieldApiName]}" style="color:#006600;"/></td>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="{!nonApprovedfinancialFieldsWithData[fieldApiName]}" style="color:#cc2900;"/></td>    
+  </tr>
+  </apex:repeat> 
+  </table>
+  <br/>
+  <br/>
+  <apex:outputText value="Risk and Compliance" style="font-weight:bold;font-size: 1.3em;margin-left:5px;font-family:Arial,Helvetica,sans-serif;"/>
+  <table class="tg" width="100%">
+  <tr>  
+  <th class="tg-yw4l" width="33%"><apex:outputText value="Field Name" style="font-weight:bold;"/></th>
+  <th class="tg-yw4l" width="33%"><apex:outputText value="Approved Value" style="font-weight:bold;color:#006600;"/></th>
+  <th class="tg-yw4l" width="33%"><apex:outputText value="Non-Approved Value" style="font-weight:bold;color:#cc2900;"/></th>
+  </tr>
+  <apex:repeat value="{!notMatchingRiskNCompAPIFieldNames}" var="fieldApiName">
+  <tr>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="{!riskNCompFieldsWithLabelMap[fieldApiName]}" style="font-size:91%;font-weight: bold;color: #4A4A56;"/></td>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="{!approvedRiskNCompFieldsWithData[fieldApiName]}" style="color:#006600;"/></td>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="{!nonApprovedRiskNCompFieldsWithData[fieldApiName]}" style="color:#cc2900;"/></td>    
+  </tr>
+  </apex:repeat> 
+  </table>
+  <br/>
+  <br/>
+  <apex:outputText value="Comps" style="font-weight:bold;font-size: 1.3em;margin-left:5px;font-family:Arial,Helvetica,sans-serif;"/>
+  <table class="tg" width="100%">
+  <tr>  
+  <th class="tg-yw4l" width="33%"><apex:outputText value="Field Name" style="font-weight:bold;"/></th>
+  <th class="tg-yw4l" width="33%"><apex:outputText value="Approved Value" style="font-weight:bold;color:#006600;"/></th>
+  <th class="tg-yw4l" width="33%"><apex:outputText value="Non-Approved Value" style="font-weight:bold;color:#cc2900;"/></th>
+  </tr>
+  <apex:repeat value="{!notMatchingCompsAPIFieldNames}" var="fieldApiName">
+  <tr>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="{!compsFieldsWithLabelMap[fieldApiName]}" style="font-size:91%;font-weight: bold;color: #4A4A56;"/></td>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="{!approvedCompsFieldsWithData[fieldApiName]}" style="color:#006600;"/></td>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="{!nonApprovedCompsFieldsWithData[fieldApiName]}" style="color:#cc2900;"/></td>    
+  </tr>
+  </apex:repeat> 
+  </table>
+  </apex:outputPanel>
+  
+  <apex:outputPanel rendered="{!isSF1}"> 
+  <apex:outputText value="Title" style="font-weight:bold;font-size: 1.3em;margin-left:5px;font-family:Arial,Helvetica,sans-serif;"/>
+  <table class="tg" width="100%">
+  
+  <apex:repeat value="{!notMatchingTitleAPIFieldNames}" var="fieldApiName">
+  <tr>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="{!TitleFieldsWithLabelMap[fieldApiName]}" style="font-size:91%;font-weight: bold;color: #4A4A56;"/></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="Approved Value : {!approvedTitleFieldsWithData[fieldApiName]}" style="color:#006600;"/></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="Non-Approved Value : {!nonApprovedTitleFieldsWithData[fieldApiName]}" style="color:#cc2900;"/></td>    
+  </tr>
+  </apex:repeat> 
+  </table> 
+  <br/>
+  <br/>
+  <apex:outputText value="Primary Terms" style="font-weight:bold;font-size: 1.3em;margin-left:5px;font-family:Arial,Helvetica,sans-serif;"/>
+  <table class="tg" width="100%">
+  
+  <apex:repeat value="{!notMatchingPrimTermAPIFieldNames}" var="fieldApiName">
+  <tr>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="{!PrimTermFieldsWithLabelMap[fieldApiName]}" style="font-size:91%;font-weight: bold;color: #4A4A56;"/></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="Approved Value: {!approvedPrimTermFieldsWithData[fieldApiName]}" style="color:#006600;"/></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="Non-Approved Value: {!nonApprovedPrimTermFieldsWithData[fieldApiName]}" style="color:#cc2900;"/></td>    
+  </tr>
+  </apex:repeat> 
+  </table>
+  <br/>
+  <br/>
+  <apex:outputText value="Financials" style="font-weight:bold;font-size: 1.3em;margin-left:5px;font-family:Arial,Helvetica,sans-serif;"/>
+  <table class="tg" width="100%">
+  
+  <apex:repeat value="{!notMatchingfinancialAPIFieldNames}" var="fieldApiName">
+  <tr>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="{!financialFieldsWithLabelMap[fieldApiName]}" style="font-size:91%;font-weight: bold;color: #4A4A56;"/></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="Approved Value: {!approvedfinancialFieldsWithData[fieldApiName]}" style="color:#006600;"/></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="Non-Approved Value: {!nonApprovedfinancialFieldsWithData[fieldApiName]}" style="color:#cc2900;"/></td>    
+  </tr>
+  </apex:repeat> 
+  </table>
+  <br/>
+  <br/>
+  <apex:outputText value="Risk and Compliance" style="font-weight:bold;font-size: 1.3em;margin-left:5px;font-family:Arial,Helvetica,sans-serif;"/>
+  <table class="tg" width="100%">
+  
+  <apex:repeat value="{!notMatchingRiskNCompAPIFieldNames}" var="fieldApiName">
+  <tr>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="{!riskNCompFieldsWithLabelMap[fieldApiName]}" style="font-size:91%;font-weight: bold;color: #4A4A56;"/></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="Approved Value: {!approvedRiskNCompFieldsWithData[fieldApiName]}" style="color:#006600;"/></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="Non-Approved Value: {!nonApprovedRiskNCompFieldsWithData[fieldApiName]}" style="color:#cc2900;"/></td>    
+  </tr>
+  </apex:repeat> 
+  </table>
+  <br/>
+  <br/>
+  <apex:outputText value="Comps" style="font-weight:bold;font-size: 1.3em;margin-left:5px;font-family:Arial,Helvetica,sans-serif;"/>
+  <table class="tg" width="100%">
+  
+  <apex:repeat value="{!notMatchingCompsAPIFieldNames}" var="fieldApiName">
+  <tr>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="{!compsFieldsWithLabelMap[fieldApiName]}" style="font-size:91%;font-weight: bold;color: #4A4A56;"/></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="Approved Value: {!approvedCompsFieldsWithData[fieldApiName]}" style="color:#006600;"/></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" width="33%"><apex:outputText value="Non-Approved Value: {!nonApprovedCompsFieldsWithData[fieldApiName]}" style="color:#cc2900;"/></td>    
+  </tr>
+  </apex:repeat> 
+  </table>
+  </apex:outputPanel>
+</apex:page>

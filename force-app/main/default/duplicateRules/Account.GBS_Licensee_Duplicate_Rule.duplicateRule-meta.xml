@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DuplicateRule xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <actionOnInsert>Allow</actionOnInsert>
+    <actionOnUpdate>Allow</actionOnUpdate>
+    <alertText xsi:nil="true"/>
+    <description>GBS-25</description>
+    <duplicateRuleFilter>
+        <booleanFilter xsi:nil="true"/>
+        <duplicateRuleFilterItems>
+            <field>RecordType</field>
+            <operation>equals</operation>
+            <value>GBS Licensee</value>
+            <sortOrder>1</sortOrder>
+            <table>Account</table>
+        </duplicateRuleFilterItems>
+        <duplicateRuleFilterItems>
+            <field>Inactive_in_RSG__c</field>
+            <operation>equals</operation>
+            <value>false</value>
+            <sortOrder>2</sortOrder>
+            <table>Account</table>
+        </duplicateRuleFilterItems>
+    </duplicateRuleFilter>
+    <duplicateRuleMatchRules>
+        <matchRuleSObjectType>Account</matchRuleSObjectType>
+        <matchingRule>GBS_Account_Matching_Rule</matchingRule>
+        <objectMapping xsi:nil="true"/>
+    </duplicateRuleMatchRules>
+    <isActive>true</isActive>
+    <masterLabel>GBS Licensee Duplicate Rule</masterLabel>
+    <operationsOnInsert>Report</operationsOnInsert>
+    <operationsOnUpdate>Report</operationsOnUpdate>
+    <securityOption>EnforceSharingRules</securityOption>
+    <sortOrder>2</sortOrder>
+</DuplicateRule>

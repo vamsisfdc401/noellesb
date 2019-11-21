@@ -1,0 +1,204 @@
+.THIS {
+    background-color: #400095;
+    padding: 25px;
+    min-height: 100%;
+    
+}
+
+/* APP HEADER */
+
+.THIS .logo {
+    padding: 0 0 25px 0;
+}
+.THIS .logo img {
+    max-width: 90px;
+}
+
+/* TABS */ 
+
+.THIS .slds-tabs_scoped__link, 
+.THIS .slds-tabs--scoped__link {
+    height: 45px;
+    padding: 3px 25px;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+.THIS li[data-tab-value="upload"],
+.THIS li[data-tab-value="add"]{
+    background: #400095;
+    color: white;
+    border: 1px solid white;
+}
+.THIS li[data-tab-value="upload"] a,
+.THIS li[data-tab-value="add"] a {
+    color: white;
+}
+.THIS li[data-tab-value="upload"].slds-is-active a,
+.THIS li[data-tab-value="add"].slds-is-active a {
+    color: rgb(62, 62, 60);
+}
+
+/* HEADLINE TYPOGRAPHY */
+
+.THIS h2 {
+    color: #400095;
+    font-size: 22px;
+    font-weight: bold;
+}
+.THIS h3 {
+    font-size: 15px;
+    margin: 15px 0 0;
+}
+
+/* BUTTONS */
+
+.THIS .slds-button:focus {
+    box-shadow: none;
+}
+.THIS .nbcu-btn {
+    padding: 5px 15px;
+    border-radius: 0;
+    text-transform: uppercase;
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+}
+.THIS .nbcu-btn.minimal {
+    padding: 0;
+    border: none;
+    color: #400095;
+}
+.THIS .nbcu-btn.dark{
+    background: #400095;
+    border: none;
+}
+.THIS .nbcu-btn.border {
+    border: 2px solid #400095;
+    color: #400095;
+}
+.THIS .nbcu-btn.gray {
+    border: none;
+    color: #000;
+    background: #eee;
+}
+.THIS .nbcu-btn.margin {
+    margin: 15px 15px 0 0;
+}
+.THIS .nbcu-btn.refresh {
+    float: right;
+}
+.THIS button.expandPlayWeek,
+.THIS .expandPlayWeek button {
+    padding: 0 5px 0 10px;
+    font-size: 18px;
+    background: transparent;
+    border: none;
+    position: relative;
+    height: 10px;
+    top: -13px;
+}
+.THIS .expandPlayWeek button {
+    
+}
+
+/* DATE FILTERS */
+
+.THIS .dateFilter {
+	background: #eee;
+    padding: 10px;
+    margin: 10px 0 !important;
+}
+.THIS .nbcu-btn.minimal.clear{
+    margin-top: 15px;
+    float: right;
+}
+
+/* TABLE TH */
+
+.THIS .slds-cell-fixed,
+.THIS .weeks th,
+.THIS .titles > tr > th,
+.THIS .playweeks th {
+    background-color: #d9e0e2;
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: 12px;
+    border-right: 1px solid #eee;
+}
+.THIS .slds-cell-fixed {
+    padding: 0;
+}
+.THIS .weeks th {
+    padding: 10px 5px 0 5px;;
+}
+.THIS .titles > tr > th,
+.THIS .playweeks th {
+    padding: 10px 5px 0px;
+}
+.THIS .sortIcons {
+    width: 12px;
+}
+
+/* TABLE CELLS */
+
+.THIS table td {
+    /*border-bottom: 1px solid #ddd;*/
+    padding: 0 5px;
+}
+.THIS table tr:nth-child(odd) td {
+    background: #eee;
+}
+.THIS .cRST_ReleaseSumList table td,
+.THIS .cRST_MarketCapacity table td {
+    padding: 5px;
+}
+.THIS table td span.uiOutputText {
+    height: 20px;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+    text-overflow: ellipsis;
+}
+
+/* EXPANDED PLAY WEEK TABLE */
+.THIS .title_detail button {
+    min-width: 134px;
+}
+
+/* GENERAL SLDS OVERRIDES */
+
+.THIS .slds-card {
+    border: none;
+    box-shadow: none;
+}
+
+/* LIST VIEW HEADER WRAPPING */
+
+.THIS .slds-truncate {
+    overflow: visible;
+    white-space: pre-wrap;
+}
+.THIS th {
+    height: 27px;
+}
+.THIS .forceListViewManagerGrid .slds-cell-fixed {
+    height: 60px;
+}
+.THIS a.slds-th__action {
+    position: relative;
+    top: 15px;
+}
+/* Removes the 'check all' checkboxes */
+.THIS .forceRecordLayout th:nth-child(2) .slds-checkbox, 
+.THIS .forceRecordLayout td:nth-child(2) .slds-checkbox {
+    display: none;
+}
+
+.THIS .magicStatus {
+    color: white;
+}
+@media screen and (max-width: 1200px) {
+    .THIS {
+        
+    }
+}

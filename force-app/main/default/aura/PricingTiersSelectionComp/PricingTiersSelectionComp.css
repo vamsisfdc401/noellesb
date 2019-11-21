@@ -1,0 +1,17 @@
+.THIS .slds-modal__container{
+       max-width: 70rem !important;
+       width:90% !important;
+
+}
+.THIS .tier-one {
+	background-color: green;
+    color: white;
+}
+
+.THIS .tier-two {
+    background-color: yellow;
+    color: black;
+}
+.THIS .table-hover tbody tr:hover td, .THIS .table-hover tbody tr:hover th {
+  	background-color: red;
+}

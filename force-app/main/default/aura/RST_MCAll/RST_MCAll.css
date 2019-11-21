@@ -1,0 +1,21 @@
+.THIS .forceListViewManagerHeader .slds-media__figure /*icon*/,
+.THIS nav[role="navigation"] /*object name*/,
+.THIS force-list-view-manager-status-info /*list view details*/,
+.THIS .test-listViewSettingsMenu.forceListViewSettingsMenu /*list view settings icon*/,
+.THIS .forceListViewManagerHeader.slds-page-header--object-home .slds-grid:first-child /*first row of content */
+{
+    display: none;
+}
+/* removes cursor actions on list view links */
+.THIS a.outputLookupLink.forceOutputLookup,
+.THIS h2 a {
+    pointer-events: none;
+    color: inherit;
+    cursor: inherit;
+}
+/* removes background of header section */
+.THIS .forceListViewManagerHeader.slds-page-header--object-home {
+    padding: 0 0 15px 0;
+    background: transparent;
+    border: none;
+}

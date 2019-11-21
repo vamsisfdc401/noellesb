@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Gross Receipts</fullName>
+        <default>false</default>
+        <label>Gross Receipts</label>
+    </customValue>
+    <customValue>
+        <fullName>Gross Receipts after costs &amp; expenses</fullName>
+        <default>false</default>
+        <label>Gross Receipts after costs &amp; expenses</label>
+    </customValue>
+    <customValue>
+        <fullName>Net Receipts</fullName>
+        <default>false</default>
+        <label>Net Receipts</label>
+    </customValue>
+    <customValue>
+        <fullName>Net Proceeds</fullName>
+        <default>false</default>
+        <label>Net Proceeds</label>
+    </customValue>
+    <customValue>
+        <fullName>Net Profits</fullName>
+        <default>false</default>
+        <label>Net Profits</label>
+    </customValue>
+    <customValue>
+        <fullName>Net Profits after costs and expenses</fullName>
+        <default>false</default>
+        <label>Net Profits after costs and expenses</label>
+    </customValue>
+    <customValue>
+        <fullName>Distribution fee (to Universal)</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Distribution fee (to Universal)</label>
+    </customValue>
+    <masterLabel>Paid On Options</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

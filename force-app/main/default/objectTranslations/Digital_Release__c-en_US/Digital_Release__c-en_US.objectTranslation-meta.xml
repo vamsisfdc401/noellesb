@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Digital Release</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Digital Releases</value>
+    </caseValues>
+    <layouts>
+        <layout>Bundle</layout>
+        <sections>
+            <label><!-- Bundle Description --></label>
+            <section>Bundle Description</section>
+        </sections>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Release Dates --></label>
+            <section>Release Dates</section>
+        </sections>
+        <sections>
+            <label><!-- Release Detail --></label>
+            <section>Release Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Release Details --></label>
+            <section>Release Details</section>
+        </sections>
+        <sections>
+            <label><!-- Resolutions --></label>
+            <section>Resolutions</section>
+        </sections>
+        <sections>
+            <label><!-- Summary --></label>
+            <section>Summary</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Competitive</layout>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Release Dates --></label>
+            <section>Release Dates</section>
+        </sections>
+        <sections>
+            <label><!-- Release Details --></label>
+            <section>Release Details</section>
+        </sections>
+        <sections>
+            <label><!-- Release Windows (Days) --></label>
+            <section>Release Windows (Days)</section>
+        </sections>
+        <sections>
+            <label><!-- Retail Pricing --></label>
+            <section>Retail Pricing</section>
+        </sections>
+        <sections>
+            <label><!-- Summary --></label>
+            <section>Summary</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Digital Release Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Film Release</layout>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Product Resolutions --></label>
+            <section>Product Resolutions</section>
+        </sections>
+        <sections>
+            <label><!-- Release Dates --></label>
+            <section>Release Dates</section>
+        </sections>
+        <sections>
+            <label><!-- Release Detail --></label>
+            <section>Release Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Release Details --></label>
+            <section>Release Details</section>
+        </sections>
+        <sections>
+            <label><!-- Release Windows (Days) --></label>
+            <section>Release Windows (Days)</section>
+        </sections>
+        <sections>
+            <label><!-- Resolution Availability --></label>
+            <section>Resolution Availability</section>
+        </sections>
+        <sections>
+            <label><!-- Summary --></label>
+            <section>Summary</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- VOD Availability --></label>
+            <section>VOD Availability</section>
+        </sections>
+        <sections>
+            <label><!-- iTunes Retail Prices --></label>
+            <section>iTunes Retail Prices</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Series</layout>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Release Dates --></label>
+            <section>Release Dates</section>
+        </sections>
+        <sections>
+            <label><!-- Release Detail --></label>
+            <section>Release Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Resolutions --></label>
+            <section>Resolutions</section>
+        </sections>
+        <sections>
+            <label><!-- Summary --></label>
+            <section>Summary</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>TV Release</layout>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Release Dates --></label>
+            <section>Release Dates</section>
+        </sections>
+        <sections>
+            <label><!-- Release Detail --></label>
+            <section>Release Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Resolutions --></label>
+            <section>Resolutions</section>
+        </sections>
+        <sections>
+            <label><!-- Summary --></label>
+            <section>Summary</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Clone Previous Season --></label>
+        <name>Clone_Season</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Confirm Rights --></label>
+        <name>Confirm_Rights</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Season Release --></label>
+        <name>Create_Season_Release</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Delete Release --></label>
+        <name>Delete_Release</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Edit Order of Titles --></label>
+        <name>Edit_Order_of_Titles</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Product --></label>
+        <name>New_Product</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Create New Season --></label>
+        <name>New_Season_Release</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Select Pricing Tier --></label>
+        <name>Select_Pricing_Tier</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Update Bundle Release --></label>
+        <name>Update_Bundle_Release</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Update Film Release --></label>
+        <name>Update_Film_Release</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Update TV Initial Launch Details --></label>
+        <name>Update_TV_Initial_Launch_Details</name>
+    </quickActions>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

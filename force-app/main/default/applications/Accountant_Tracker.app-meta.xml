@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>AccountantTrackerProfile_Record_Page2</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>AccountantTrackerProfile__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <content>Accountant_Tracker_Home_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+    </actionOverrides>
+    <brand>
+        <headerColor>#0070D2</headerColor>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <description>PSG team accounting Tracker</description>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>Accountant Tracker</label>
+    <navType>Standard</navType>
+    <tabs>standard-home</tabs>
+    <tabs>AccountantTrackerProfile__c</tabs>
+    <tabs>standard-report</tabs>
+    <tabs>FSTR__PCE_Custom_Reports</tabs>
+    <tabs>Accountant_Location__c</tabs>
+    <tabs>Props_Tracker__c</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>Accountant_Tracker_UtilityBar</utilityBar>
+</CustomApplication>

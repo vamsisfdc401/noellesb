@@ -1,0 +1,219 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<aura:attribute name="pricingWrapper" type="object[]"/>
+    <table class="slds-table slds-table_bordered slds-table_cell-buffer" style="table-layout:auto;">
+            <tbody>
+                <tr><th class="head" style="text-align:right">Pricing Name</th>
+                    <th class="head" style="text-align:right">US EST SD WSP</th>
+                    <th class="head" style="text-align:right">US EST SD SRP</th>
+                    <th class="head" style="text-align:right">US EST HD WSP</th>
+                    <th class="head" style="text-align:right">US EST HD SRP</th>
+                    <th class="head" style="text-align:right">US EST UHD WSP</th>
+                    <th class="head" style="text-align:right">US EST UHD SRP</th>
+                    <th class="head" style="text-align:right">CA EST SD WSP</th>
+                    <th class="head" style="text-align:right">CA EST SD SRP</th>
+                    <th class="head" style="text-align:right">CA EST HD WSP</th>
+                    <th class="head" style="text-align:right">CA EST HD SRP</th>
+                    <th class="head" style="text-align:right">CA EST UHD WSP</th>
+                    <th class="head" style="text-align:right">CA EST UHD SRP</th>
+                    <th class="head">Promos</th>
+                </tr>
+                 <aura:iteration items="{!v.pricingWrapper}" var="Pricewrap">
+                <tr>
+                    <td style="text-align:right">{!Pricewrap.titleName}</td>
+                    <aura:if isTrue="{!Pricewrap.USESTSDWSP==undefined}">
+                     <td style="text-align:right" class="{!Pricewrap.USESTSDWSPFlag}">NA</td>
+                        <aura:set attribute="else">
+                            <aura:if isTrue="{!Pricewrap.USESTSDWSP==0}">
+                                <td style="text-align:right" class="{!Pricewrap.USESTSDWSPFlag}">$ 0.00</td>
+                            <aura:set attribute="else">
+                                <aura:if isTrue="{!Pricewrap.USESTSDWSP lt 1}">
+                                    <td style="text-align:right" class="{!Pricewrap.USESTSDWSPFlag}">$ {!Pricewrap.USESTSDWSP}</td>
+                                    <aura:set attribute="else">
+                           <td style="text-align:right" class="{!Pricewrap.USESTSDWSPFlag}"><ui:outputCurrency value="{!Pricewrap.USESTSDWSP}" format="$ ##.00"/></td>
+                                    </aura:set >
+                                    </aura:if>
+                                </aura:set>
+                                </aura:if>
+                            </aura:set>
+                    </aura:if>
+                    <aura:if isTrue="{!Pricewrap.USESTSDSRP==undefined}">
+                     <td style="text-align:right" class="{!Pricewrap.USESTSDSRPFlag}">NA</td>
+                        <aura:set attribute="else">
+                            <aura:if isTrue="{!Pricewrap.USESTSDSRP==0}">
+                                <td style="text-align:right" class="{!Pricewrap.USESTSDSRPFlag}">$ 0.00</td>
+                            <aura:set attribute="else">
+                                <aura:if isTrue="{!Pricewrap.USESTSDSRP lt 1}">
+                                    <td style="text-align:right" class="{!Pricewrap.USESTSDSRPFlag}">$ {!Pricewrap.USESTSDSRP}</td>
+                                    <aura:set attribute="else">
+                           <td style="text-align:right" class="{!Pricewrap.USESTSDSRPFlag}"><ui:outputCurrency value="{!Pricewrap.USESTSDSRP}" format="$ ##.00"/></td>
+                                    </aura:set >
+                                    </aura:if>
+                                </aura:set>
+                                </aura:if>
+                            </aura:set>
+                    </aura:if>
+                    <aura:if isTrue="{!Pricewrap.USESTHDWSP==undefined}">
+                     <td style="text-align:right" class="{!Pricewrap.USESTHDWSPFlag}">NA</td>
+                        <aura:set attribute="else">
+                            <aura:if isTrue="{!Pricewrap.USESTHDWSP==0}">
+                                <td style="text-align:right" class="{!Pricewrap.USESTHDWSPFlag}">$ 0.00</td>
+                            <aura:set attribute="else">
+                                <aura:if isTrue="{!Pricewrap.USESTHDWSP lt 1}">
+                                    <td style="text-align:right" class="{!Pricewrap.USESTHDWSPFlag}">$ {!Pricewrap.USESTHDWSP}</td>
+                                    <aura:set attribute="else">
+                           <td style="text-align:right" class="{!Pricewrap.USESTHDWSPFlag}"><ui:outputCurrency value="{!Pricewrap.USESTHDWSP}" format="$ ##.00"/></td>
+                                    </aura:set >
+                                    </aura:if>
+                                </aura:set>
+                                </aura:if>
+                            </aura:set>
+                    </aura:if>
+                    <aura:if isTrue="{!Pricewrap.USESTHDSRP==undefined}">
+                     <td style="text-align:right" class="{!Pricewrap.USESTHDSRPFlag}">NA</td>
+                        <aura:set attribute="else">
+                            <aura:if isTrue="{!Pricewrap.USESTHDSRP==0}">
+                                <td style="text-align:right" class="{!Pricewrap.USESTHDSRPFlag}">$ 0.00</td>
+                            <aura:set attribute="else">
+                                <aura:if isTrue="{!Pricewrap.USESTHDSRP lt 1}">
+                                    <td style="text-align:right" class="{!Pricewrap.USESTHDSRPFlag}">$ {!Pricewrap.USESTHDSRP}</td>
+                                    <aura:set attribute="else">
+                           <td style="text-align:right" class="{!Pricewrap.USESTHDSRPFlag}"><ui:outputCurrency value="{!Pricewrap.USESTHDSRP}" format="$ ##.00"/></td>
+                                    </aura:set >
+                                    </aura:if>
+                                </aura:set>
+                                </aura:if>
+                            </aura:set>
+                    </aura:if>
+                    <aura:if isTrue="{!Pricewrap.USESTUHDWSP==undefined}">
+                     <td style="text-align:right" class="{!Pricewrap.USESTUHDWSPFlag}">NA</td>
+                        <aura:set attribute="else">
+                            <aura:if isTrue="{!Pricewrap.USESTUHDWSP==0}">
+                                <td style="text-align:right" class="{!Pricewrap.USESTUHDWSPFlag}">$ 0.00</td>
+                            <aura:set attribute="else">
+                                <aura:if isTrue="{!Pricewrap.USESTUHDWSP lt 1}">
+                                    <td style="text-align:right" class="{!Pricewrap.USESTUHDWSPFlag}">$ {!Pricewrap.USESTUHDWSP}</td>
+                                    <aura:set attribute="else">
+                           <td style="text-align:right" class="{!Pricewrap.USESTUHDWSPFlag}"><ui:outputCurrency value="{!Pricewrap.USESTUHDWSP}" format="$ ##.00"/></td>
+                                    </aura:set >
+                                    </aura:if>
+                                </aura:set>
+                                </aura:if>
+                            </aura:set>
+                    </aura:if>
+                    <aura:if isTrue="{!Pricewrap.USESTUHDSRP==undefined}">
+                     <td style="text-align:right" class="{!Pricewrap.USESTUHDSRPFlag}">NA</td>
+                        <aura:set attribute="else">
+                            <aura:if isTrue="{!Pricewrap.USESTUHDSRP==0}">
+                                <td style="text-align:right" class="{!Pricewrap.USESTUHDSRPFlag}">$ 0.00</td>
+                            <aura:set attribute="else">
+                                <aura:if isTrue="{!Pricewrap.USESTUHDSRP lt 1}">
+                                    <td style="text-align:right" class="{!Pricewrap.USESTUHDSRPFlag}">$ {!Pricewrap.USESTUHDSRP}</td>
+                                    <aura:set attribute="else">
+                           <td style="text-align:right" class="{!Pricewrap.USESTUHDSRPFlag}"><ui:outputCurrency value="{!Pricewrap.USESTUHDSRP}" format="$ ##.00"/></td>
+                                    </aura:set >
+                                    </aura:if>
+                                </aura:set>
+                                </aura:if>
+                            </aura:set>
+                    </aura:if>
+                    <aura:if isTrue="{!Pricewrap.CAESTSDWSP==undefined}">
+                     <td style="text-align:right" class="{!Pricewrap.CAESTSDWSPFlag}">NA</td>
+                        <aura:set attribute="else">
+                            <aura:if isTrue="{!Pricewrap.CAESTSDWSP==0}">
+                                <td style="text-align:right" class="{!Pricewrap.CAESTSDWSPFlag}">$ 0.00</td>
+                            <aura:set attribute="else">
+                                <aura:if isTrue="{!Pricewrap.CAESTSDWSP lt 1}">
+                                    <td style="text-align:right" class="{!Pricewrap.CAESTSDWSPFlag}">$ {!Pricewrap.CAESTSDWSP}</td>
+                                    <aura:set attribute="else">
+                           <td style="text-align:right" class="{!Pricewrap.CAESTSDWSPFlag}"><ui:outputCurrency value="{!Pricewrap.CAESTSDWSP}" format="$ ##.00"/></td>
+                                    </aura:set >
+                                    </aura:if>
+                                </aura:set>
+                                </aura:if>
+                            </aura:set>
+                    </aura:if>
+                    <aura:if isTrue="{!Pricewrap.CAESTSDSRP==undefined}">
+                     <td style="text-align:right" class="{!Pricewrap.CAESTSDSRPFlag}">NA</td>
+                        <aura:set attribute="else">
+                            <aura:if isTrue="{!Pricewrap.CAESTSDSRP==0}">
+                                <td style="text-align:right" class="{!Pricewrap.CAESTSDSRPFlag}">$ 0.00</td>
+                            <aura:set attribute="else">
+                                <aura:if isTrue="{!Pricewrap.CAESTSDSRP lt 1}">
+                                    <td style="text-align:right" class="{!Pricewrap.CAESTSDSRPFlag}">$ {!Pricewrap.CAESTSDSRP}</td>
+                                    <aura:set attribute="else">
+                           <td style="text-align:right" class="{!Pricewrap.CAESTSDSRPFlag}"><ui:outputCurrency value="{!Pricewrap.CAESTSDSRP}" format="$ ##.00"/></td>
+                                    </aura:set >
+                                    </aura:if>
+                                </aura:set>
+                                </aura:if>
+                            </aura:set>
+                    </aura:if>
+                    <aura:if isTrue="{!Pricewrap.CAESTHDWSP==undefined}">
+                     <td style="text-align:right" class="{!Pricewrap.CAESTHDWSPFlag}">NA</td>
+                        <aura:set attribute="else">
+                            <aura:if isTrue="{!Pricewrap.CAESTHDWSP==0}">
+                                <td style="text-align:right" class="{!Pricewrap.CAESTHDWSPFlag}">$ 0.00</td>
+                            <aura:set attribute="else">
+                                <aura:if isTrue="{!Pricewrap.CAESTHDWSP lt 1}">
+                                    <td style="text-align:right" class="{!Pricewrap.CAESTHDWSPFlag}">$ {!Pricewrap.CAESTHDWSP}</td>
+                                    <aura:set attribute="else">
+                           <td style="text-align:right" class="{!Pricewrap.CAESTHDWSPFlag}"><ui:outputCurrency value="{!Pricewrap.CAESTHDWSP}" format="$ ##.00"/></td>
+                                    </aura:set >
+                                    </aura:if>
+                                </aura:set>
+                                </aura:if>
+                            </aura:set>
+                    </aura:if>
+                    <aura:if isTrue="{!Pricewrap.CAESTHDSRP==undefined}">
+                     <td style="text-align:right" class="{!Pricewrap.CAESTHDSRPFlag}">NA</td>
+                        <aura:set attribute="else">
+                            <aura:if isTrue="{!Pricewrap.CAESTHDSRP==0}">
+                                <td style="text-align:right" class="{!Pricewrap.CAESTHDSRPFlag}">$ 0.00</td>
+                            <aura:set attribute="else">
+                                <aura:if isTrue="{!Pricewrap.CAESTHDSRP lt 1}">
+                                    <td style="text-align:right" class="{!Pricewrap.CAESTHDSRPFlag}">$ {!Pricewrap.CAESTHDSRP}</td>
+                                    <aura:set attribute="else">
+                           <td style="text-align:right" class="{!Pricewrap.CAESTHDSRPFlag}"><ui:outputCurrency value="{!Pricewrap.CAESTHDSRP}" format="$ ##.00"/></td>
+                                    </aura:set >
+                                    </aura:if>
+                                </aura:set>
+                                </aura:if>
+                            </aura:set>
+                    </aura:if>
+                    <aura:if isTrue="{!Pricewrap.CAESTUHDWSP==undefined}">
+                     <td style="text-align:right" class="{!Pricewrap.CAESTUHDWSPFlag}">NA</td>
+                        <aura:set attribute="else">
+                            <aura:if isTrue="{!Pricewrap.CAESTUHDWSP==0}">
+                                <td style="text-align:right" class="{!Pricewrap.CAESTUHDWSPFlag}">$ 0.00</td>
+                            <aura:set attribute="else">
+                                <aura:if isTrue="{!Pricewrap.CAESTUHDWSP lt 1}">
+                                    <td style="text-align:right" class="{!Pricewrap.CAESTUHDWSPFlag}">$ {!Pricewrap.CAESTUHDWSP}</td>
+                                    <aura:set attribute="else">
+                           <td style="text-align:right" class="{!Pricewrap.CAESTUHDWSPFlag}"><ui:outputCurrency value="{!Pricewrap.CAESTUHDWSP}" format="$ ##.00"/></td>
+                                    </aura:set >
+                                    </aura:if>
+                                </aura:set>
+                                </aura:if>
+                            </aura:set>
+                    </aura:if>
+                    <aura:if isTrue="{!Pricewrap.CAESTUHDSRP==undefined}">
+                     <td style="text-align:right" class="{!Pricewrap.CAESTUHDSRPFlag}">NA</td>
+                        <aura:set attribute="else">
+                            <aura:if isTrue="{!Pricewrap.CAESTUHDSRP==0}">
+                                <td style="text-align:right" class="{!Pricewrap.CAESTUHDSRPFlag}">$ 0.00</td>
+                            <aura:set attribute="else">
+                                <aura:if isTrue="{!Pricewrap.CAESTUHDSRP lt 1}">
+                                    <td style="text-align:right" class="{!Pricewrap.CAESTUHDSRPFlag}">$ {!Pricewrap.CAESTUHDSRP}</td>
+                                    <aura:set attribute="else">
+                           <td style="text-align:right" class="{!Pricewrap.CAESTUHDSRPFlag}"><ui:outputCurrency value="{!Pricewrap.CAESTUHDSRP}" format="$ ##.00"/></td>
+                                    </aura:set >
+                                    </aura:if>
+                                </aura:set>
+                                </aura:if>
+                            </aura:set>
+                    </aura:if>
+                    <td style="text-align:left">{!Pricewrap.affectedPromotions}</td></tr>
+                </aura:iteration>
+        </tbody>
+        </table>
+</aura:component>

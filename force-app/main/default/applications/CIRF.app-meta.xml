@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override updated by Lightning App Builder during activation.</comment>
+        <content>CIRF_Account_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>CIRF_Corrugate_Full_Page_Layout</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>CIRF_Corrugate__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>CIRF_Header_Page_Updated</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>CIRF_Header__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>CIRF_Material_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>CIRF_Material__c</pageOrSobjectType>
+    </actionOverrides>
+    <brand>
+        <headerColor>#C4A7E4</headerColor>
+        <logoVersion>1</logoVersion>
+        <shouldOverrideOrgTheme>true</shouldOverrideOrgTheme>
+    </brand>
+    <description>Catalog Inventory Request Form</description>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>CIRF</label>
+    <navType>Standard</navType>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>LAQ_Full_User_Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>UPHE CG Full User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Platform API</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Limited Administrator</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>LAQ_Full_User_Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>UPHE CG Standard User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>LAQ_Read_All_User_Home_Page_Layout</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>UPHE CG Read All User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>LAQ_Full_User_Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>UPHE CG Approver</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>LAQ_LA_Approver</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>UPHE LA Approver</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>LAQ_Read_All_User_Home_Page_Layout</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Brand User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>GBS_Core_Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>GBS Core</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>LAQ_Read_All_User_Home_Page_Layout</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Case Mgmt-Brand</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>DD Account User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>DD Business Intelligence User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>DD Finance User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>DD Marketing User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>DD Ops User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>DD Product User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>DD Read Only</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <tabs>CIRF_Homepage</tabs>
+    <tabs>CIRF_Header__c</tabs>
+    <tabs>standard-Dashboard</tabs>
+    <tabs>standard-report</tabs>
+    <tabs>Shipping_Address__c</tabs>
+    <tabs>Accountant_Location__c</tabs>
+    <tabs>Props_Tracker__c</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>CIRF_UtilityBar</utilityBar>
+</CustomApplication>

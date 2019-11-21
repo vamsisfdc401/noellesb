@@ -1,0 +1,106 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller="DGF_TPRBundlePriceValidationController" >
+<aura:attribute name="recordId" type="string"/>
+<aura:attribute name="accountsList" type="string[]"/>
+<aura:attribute name="accountPromotions" type="object[]"/>
+<aura:handler name="init" value="{!this}" action="{!c.doInIt}"/>    
+<aura:attribute name="bundleWrapper" type="object[]"/>
+<aura:attribute name="paginationList" type="object[]"/>
+<aura:attribute name="pageSize" type="Integer" default="5"/>
+<aura:attribute name="totalSize" type="Integer" default="0"/>
+<aura:attribute name="start" type="Integer" default="0"/>
+<aura:attribute name="end" type="Integer" default="0"/>
+<aura:attribute name="pageNumber" type="Integer" default="1"/>
+<aura:attribute name="accountName" type="string"/>
+<aura:attribute name="promotion" type="object"/>
+<aura:attribute name="today" type="Date" />
+
+ <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+ <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+
+     <!--loading spinner start... style=Brand Medium (blue dots)-->
+ <aura:if isTrue="{!v.Spinner}">
+    <div aura:id="spinnerId" class="slds-spinner_container">
+       <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+         <span class="slds-assistive-text">Loading</span>
+         <div class="slds-spinner__dot-a"></div>
+         <div class="slds-spinner__dot-b"></div>
+       </div>
+    </div>
+ </aura:if>
+  <!-- Loading spinner end-->
+
+ <div class="slds-box slds-theme_shade" >
+  
+      
+     <p>Account Promotion</p>    
+     <div class="slds-grid">
+     <div class="slds-col slds-size_4-of-12">
+     <aura:if isTrue="{!v.accountName!=undefined}">   
+     <ui:inputText aura:id="nameOutput" value="{!v.accountName}" disabled="true"/>
+     
+    <aura:set attribute="else">
+    <lightning:select aura:id="accNameId" name="Accounts" label="Accounts" required="true" onchange="{!c.validateSelected}">
+        <option value="--None--">--None--</option>
+        <aura:iteration items="{!v.accountPromotions}" var="option">
+            <option text="{!option.Account__r.Name}" value="{!option.Account__c}"/>
+        </aura:iteration>
+    </lightning:select>
+         </aura:set>
+         </aura:if>
+     </div>
+     </div>
+    </div>
+    
+      <div class="slds-box slds-theme_shade slds-scrollable" > 
+    <h1 style="text-align: center;" class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate"  title="TPR Bundle Validation Report">TPR Bundle Validation Report</h1>
+    <div class="slds-grid" >
+     <div class="slds-col slds-size_4-of-12" >
+         <b>Promotion Name:</b>&nbsp; <ui:outputText  value="{!v.promotion.Name}"/>
+      </div>
+  </div>
+  <div class="slds-grid">
+  	<div class="slds-col slds-size_4-of-12">
+    	<b>  Start Date:</b>&nbsp; <ui:outputdate  value="{!v.promotion.Start_Date__c}" format="MM/dd/yyyy"/> &nbsp;&nbsp;&nbsp;&nbsp; <b> End Date:</b>&nbsp; <ui:outputdate  value="{!v.promotion.End_Date__c}" format="MM/dd/yyyy"/>	
+    </div>
+  </div>
+  <div class="slds-grid">
+  	<div class="slds-col slds-size_4-of-12">
+    	Validation covers window from  <ui:outputdate  value="{!v.today}" /> &nbsp;to end of promotion	
+    </div>
+  </div>
+  <br/>
+  <aura:if isTrue="{!v.paginationList.length>0}">
+      <aura:iteration items="{!v.paginationList}" var="wrap">
+         <div class="slds-theme_shade slds-scrollable" > 
+        <table class="table">
+            <thead ><tr style="font-size: 14px;"><b>{!wrap.bundleName}</b></tr>
+        </thead>
+            <tbody>
+                <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                <aura:if isTrue="{!!wrap.validationStatus}">
+                <c:DGF_TPRBundlePriceValidationChild pricingWrapper="{!wrap.pricingWrapperList}"/>
+                <br/><aura:if isTrue="{!wrap.suggestedPricingSummaryUS !=''}"><tr><td>Suggested Bundle US TPR SRP's:&nbsp;{!wrap.suggestedPricingSummaryUS}</td></tr></aura:if>
+                    <aura:if isTrue="{!wrap.suggestedPricingSummaryCA !=''}"><tr><td>Suggested Bundle CA TPR SRP's:&nbsp;{!wrap.suggestedPricingSummaryCA}</td></tr></aura:if>
+                <aura:set attribute="else"> 
+                <tr><td>Titles: {!wrap.titleNames}</td></tr>
+                </aura:set>
+               </aura:if>
+            </tbody>
+        </table>
+        </div><hr/>
+      </aura:iteration>
+        <aura:set attribute="else">
+            <p>No records to show</p>
+        </aura:set>
+      </aura:if>
+    <div class="slds-align_absolute-center">
+                <lightning:button    variant="brand" label="Back" onclick="{! c.navigateBack}"/>
+                <lightning:button aura:id="previousId"  class="{!(v.start == 0 &amp;&amp; v.pageNumber==1) ?'slds-hide':'slds-show'}"   variant="brand" label="Previous Page" onclick="{! c.handlePrevious }" />            
+                <lightning:button  aura:id="nextId"  class="{!(v.end >= v.totalSize||v.totalSize le 5)  ?'slds-hide':'slds-show'}"  variant="brand" label="Next Page" onclick="{! c.handleNext }" />
+            </div>
+    </div>
+    <footer role="contentinfo"  class="slds-p-around_large">
+        <p style="font-style:italic;color:red">Color Code Red: “Bundle Price Exceeds sum of individual titles”</p><p style="font-style:italic;color:blue">Color Code Blue: “Pricing for Titles that exist in Active Promotions”</p>
+
+    </footer>
+</aura:component>

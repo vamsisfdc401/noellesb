@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>entityName</name>
+                <value>Acquisition_Deal__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>filterName</name>
+                <value>All_Acquisition_Deals</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>pageSize</name>
+                <value>25</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:filterListCard</componentName>
+        </componentInstances>
+        <name>main</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>Acquisition Deals</masterLabel>
+    <quickActionList>
+        <quickActionListItems>
+            <quickActionName>New_Acquisition_Deal</quickActionName>
+        </quickActionListItems>
+    </quickActionList>
+    <template>
+        <name>flexipage:defaultAppHomeTemplate</name>
+    </template>
+    <type>AppPage</type>
+</FlexiPage>

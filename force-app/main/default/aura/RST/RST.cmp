@@ -1,0 +1,111 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="RST_Controller">
+
+    <aura:attribute name="upload_record_id" type="Object" access="global" />
+    <aura:attribute name="accept" type="List" default="['.csv']" />
+    <aura:attribute name="processing" type="Boolean" default="false" />
+    <aura:attribute name="processingMagic" type="Boolean" default="false" />
+    <aura:attribute name="Result" type="Object" />
+    <aura:attribute name="curStep" type="Integer" />
+
+    <aura:attribute name="steps" type="Object[]" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:handler event="c:RST_Event" action="{!c.eventReceived}" />
+
+	<h2>Release Scheduling CSV Uploader</h2>
+    <lightning:card>
+        <lightning:tabset>
+            
+            <lightning:tab label="Working CSV Parse Tool" title="2nd tab extended title">
+                <lightning:layout>
+                    <lightning:layoutItem padding="around-small">
+                        <div class="header-column">
+                            <!--p class="field-title" title="Steps">Steps</p-->
+
+                            <div class="slds-progress slds-progress_vertical">
+                                <ol class="slds-progress__list">
+                                    <aura:iteration items="{!v.steps}" var="step">
+                                        <aura:if isTrue="(! lessthan(v.curStep , step.num) }">
+                                            <li class="slds-progress__item">
+                                                <div class="slds-progress__marker"></div>
+                                                <div class="slds-progress__item_content slds-grid slds-grid_align-spread">Soon...Step:
+                                                    {!step.num}: {!step.text}</div>
+                                            </li>
+                                            <aura:set attribute="else">
+                                                <li class="{!'slds-progress__item ' + if(lessthan(v.curStep , step.num), 'slds-is-completed', 'slds-is-active')}">
+                                                    <div class="slds-progress__marker"><span class="slds-assistive-text">{!if(lessthan(v.curStep
+                                                            , step.num), 'Complete', 'Active')}</span></div>
+                                                    <div class="slds-progress__item_content slds-grid slds-grid_align-spread">Step
+                                                        {!step.num}: {!step.text}</div>
+                                                </li>
+                                            </aura:set>
+                                        </aura:if>
+                                    </aura:iteration>
+                                </ol>
+                            </div>
+                        </div>
+                    </lightning:layoutItem>
+
+                    <lightning:layoutItem padding="around-small">
+                        <div class="header-column">
+                            <h3>Step {!v.curStep}</h3>
+                            <p class="field-title" title="Instructions">Instructions</p>
+
+                            <aura:if isTrue="{!and(v.Result , v.Result.result != 'Success')}">
+                                Reported issues:
+                                <ul>
+                                    <aura:iteration items="{!v.Result.issues}" var="issue">
+                                        <li>{!issue}</li>
+                                    </aura:iteration>
+                                </ul>
+                                <hr />
+                            </aura:if>
+
+
+
+                            <aura:if isTrue="{!and(!v.upload_record_id, v.curStep==1 )}">
+                                <lightning:recordEditForm objectApiName="RST_Forecast_Upload__c" onsuccess="{!c.handleNewUploadRecord}">
+                                    <lightning:messages />
+                                    Press the button below to start the upload process.
+                                    <lightning:inputField fieldName="Name" class="slds-hidden" />
+                                    <lightning:button variant="brand" type="submit" name="save" label="Start Upload" />
+                                </lightning:recordEditForm>
+                            </aura:if>
+
+                            <aura:if isTrue="{!and(v.upload_record_id, not(v.processing))}">
+                                <lightning:fileUpload name="fileUploader" label="Demo Upload" accept="{!v.accept}"
+                                    recordId="{!v.upload_record_id}" onuploadfinished="{! c.handleUploadFinished }" />
+                            </aura:if>
+
+
+
+                            <aura:if isTrue="{!v.curStep==2}">
+                                Reading CSV for {!upload_record_id}
+                                <c:RST_ProcessCSV use_recordId="{!v.upload_record_id}" />
+                            </aura:if>
+
+                            <aura:if isTrue="{!v.curStep==3}">
+                                batch file running...
+
+
+                            </aura:if>
+
+                            <aura:if isTrue="{!v.curStep==4}">
+                                success loading the csv, going to get magic...
+
+                            </aura:if>
+                        </div>
+                    </lightning:layoutItem>
+                </lightning:layout>
+            </lightning:tab>
+            <lightning:tab label="Title Detail">
+                <c:RST_TitleDetail />
+            </lightning:tab>
+            <lightning:tab label="New Title">
+                <c:RST_NewTitle />
+            </lightning:tab>
+        </lightning:tabset>
+    </lightning:card>
+
+</aura:component>

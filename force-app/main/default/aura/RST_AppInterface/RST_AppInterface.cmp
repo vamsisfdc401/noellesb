@@ -1,0 +1,23 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable" description="RST Interface" controller="RST_NewTitle_Controller">
+	<aura:attribute name="magicStatus" type="string" default="Checking..." />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <div>
+        <div class="slds-grid">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12 logo">
+        		<img src="{!$Resource.RST_UniversalLogo}"/>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12 buttons">
+                <span class="magicStatus">{!v.magicStatus}</span> 
+                <lightning:button class="nbcu-btn refresh" label="Refresh Magic" title="magic refresh" onclick="{! c.magicClick }" />
+            </div>
+        </div>
+        <lightning:tabset variant="scoped">
+            <lightning:tab onactive="{! c.handleActive }" label="Release Summary" id="releasesum" />
+            <lightning:tab onactive="{! c.handleActive }" label="Title Detail Summary" id="titledetail" />
+            <lightning:tab onactive="{! c.handleActive }" label="Market Capacity All" id="mc-all" />
+            <lightning:tab onactive="{! c.handleActive }" label="Market Capacity by Weekend" id="mc-weekend" />
+            <lightning:tab onactive="{! c.handleActive }" label="Upload CSV" id="upload" />
+            <lightning:tab onactive="{! c.handleActive }" label="Forecast New Title" id="add" />
+        </lightning:tabset>
+    </div>
+</aura:component>

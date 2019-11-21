@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Catalog</name>
+    <queueMembers>
+        <users>
+            <user>alida.demirjian@nbcuni.com</user>
+            <user>brand2.test@nbcuni.com.prd</user>
+            <user>caye.bohn@nbcuni.com</user>
+            <user>isabella.weiss@nbcuni.com</user>
+            <user>lindsay.bartold@nbcuni.com</user>
+            <user>savannah.flynn@nbcuni.com</user>
+            <user>vanessa.mancia@nbcuni.com</user>
+            <user>vihan.chelliah@nbcuni.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Material__c</sobjectType>
+    </queueSobject>
+</Queue>

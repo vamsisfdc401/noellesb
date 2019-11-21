@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>false</allowRecall>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>CaseNumber</field>
+        <field>Owner</field>
+        <field>CreatedDate</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>anaheed.aharonian@nbcuni.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>Approval from Credit Analyst team</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Case.TotalCost__c</field>
+                <operation>greaterThan</operation>
+                <value>USD 0</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>ApproveRecord</ifCriteriaNotMet>
+        <label>Credit Team Review Analyst Approval</label>
+        <name>Credit_Team_Review_Analyst_Approval</name>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>hripsi.khachatryan@nbcuni.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>Credit Manager Approval</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Case.TotalCost__c</field>
+                <operation>greaterThan</operation>
+                <value>USD 500</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Total Cost &gt; $500</label>
+        <name>Total_Cost_500</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>dena.kimball@nbcuni.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>silva.kasparian@nbcuni.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>walter.wiacek@nbcuni.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>Credit Director Approval</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Case.TotalCost__c</field>
+                <operation>greaterThan</operation>
+                <value>&quot;USD 35,000&quot;</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Total Cost &gt; $35k</label>
+        <name>Total_Cost_35000</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>heather.briggs@nbcuni.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>VP Controller Approval</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Case.TotalCost__c</field>
+                <operation>greaterThan</operation>
+                <value>&quot;USD 50,000&quot;</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Total Cost &gt; $50k</label>
+        <name>Total_Cost_50000</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>brent.baker@nbcuni.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>CFO Approval</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Case.TotalCost__c</field>
+                <operation>greaterThan</operation>
+                <value>&quot;USD 500,000&quot;</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Total Cost &gt; $500k</label>
+        <name>Total_Cost_500000</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>brent.baker@nbcuni.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>Executive VP Approval</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Case.TotalCost__c</field>
+                <operation>greaterThan</operation>
+                <value>&quot;USD 5,000,000&quot;</value>
+            </criteriaItems>
+        </entryCriteria>
+        <label>Total Cost &gt; $5M</label>
+        <name>Total_Cost_5000000</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <description>PO Discrepancy Cases less than 100 unit claims</description>
+    <emailTemplate>Promo_CaseMgmt_Emails/Shipping_Issues_Case_Ask_for_Approval</emailTemplate>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <criteriaItems>
+            <field>Case.RecordType</field>
+            <operation>equals</operation>
+            <value>PO Discrepancies</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Status</field>
+            <operation>equals</operation>
+            <value>New,Rejected</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.TotalUnits__c</field>
+            <operation>lessThan</operation>
+            <value>100</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.TotalUnits__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </criteriaItems>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>CM_Integration_Status_Update_to_N</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>SI_Case_Approved</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>Shipping_Issue_Case_Send_Rejection_Email</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>SI_Case_Rejected</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <initialSubmissionActions>
+        <action>
+            <name>SI_Case_Pending_Approval</name>
+            <type>FieldUpdate</type>
+        </action>
+    </initialSubmissionActions>
+    <label>POD Cases - Approval Flow LT100</label>
+    <recallActions>
+        <action>
+            <name>Case_Status_New</name>
+            <type>FieldUpdate</type>
+        </action>
+    </recallActions>
+    <recordEditability>AdminOrCurrentApprover</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>TV</name>
+    <queueMembers>
+        <users>
+            <user>brand3.test@nbcuni.com.prd</user>
+            <user>irina.torosyan@nbcuni.com</user>
+            <user>jordan.cramer@nbcuni.com</user>
+            <user>kat.ramos@nbcuni.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Material__c</sobjectType>
+    </queueSobject>
+</Queue>

@@ -2,8 +2,8 @@
 <DuplicateRule xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <actionOnInsert>Allow</actionOnInsert>
     <actionOnUpdate>Allow</actionOnUpdate>
-    <alertText>Use one of these records?</alertText>
-    <description>Identify accounts that duplicate other accounts.</description>
+    <alertText>Duplicate Alert</alertText>
+    <description>Duplicate Rule for Account records.</description>
     <duplicateRuleFilter xsi:nil="true"/>
     <duplicateRuleMatchRules>
         <matchRuleSObjectType>Account</matchRuleSObjectType>
@@ -11,7 +11,7 @@
         <objectMapping xsi:nil="true"/>
     </duplicateRuleMatchRules>
     <isActive>true</isActive>
-    <masterLabel>Standard Account Duplicate Rule</masterLabel>
+    <masterLabel>Standard Account duplicate rule</masterLabel>
     <operationsOnInsert>Alert</operationsOnInsert>
     <operationsOnInsert>Report</operationsOnInsert>
     <operationsOnUpdate>Report</operationsOnUpdate>

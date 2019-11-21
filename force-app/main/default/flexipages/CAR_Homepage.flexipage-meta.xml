@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flexiPageRegions>
+        <name>region1</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>cacheAge</name>
+                <value>10</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>reportName</name>
+                <value>CARs_in_Progress1</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>showRefreshButton</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:reportChart</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>decorate</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>richTextValue</name>
+                <value>&lt;b&gt;&lt;u&gt;&lt;span style=&quot;font-size:20px;&quot;&gt;Common Reports&lt;/span&gt;&lt;/u&gt;&lt;/b&gt;&lt;br /&gt;
+&lt;a href=&quot;https://uphe.lightning.force.com/lightning/r/Report/00O0d0000056pJFEAY/view&quot;&gt;My To Do List&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://uphe.lightning.force.com/lightning/r/Report/00O0d0000056oqXEAQ/view&quot;&gt;CARs I Care About&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://uphe.lightning.force.com/lightning/r/Report/00O0d0000056oqZEAQ/view&quot;&gt;CARs Pending Finance Approval&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://uphe.lightning.force.com/lightning/r/Report/00O0d0000056pJKEAY/view&quot;&gt;My Old CARs&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://uphe.lightning.force.com/lightning/r/Report/00O0d0000056oqYEAQ/view&quot;&gt;Old CARs I Care(d) About&lt;/a&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;span style=&quot;font-size:20px;&quot;&gt;&lt;b&gt;&lt;u&gt;Training&lt;/u&gt;&lt;/b&gt;&lt;/span&gt;&lt;br /&gt;
+&lt;a href=&quot;https://uphe.my.salesforce.com/sfc/p/36000001EIVO/a/0d0000004nrH/mJT8rAylFmTWAJDnWojn7zsTSRyNJO8Ygo6t.ErjiQ8&quot; target=&quot;_blank&quot;&gt;CAR Cheat Sheet&lt;/a&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;span style=&quot;font-size:20px;&quot;&gt;&lt;u&gt;&lt;b&gt;Have an Issue?&lt;/b&gt;&lt;/u&gt;&lt;/span&gt;&lt;br /&gt;
+&lt;a href=&quot;https://nbcu.service-now.com/nav_to.do?uri=%2Fcom.glideapp.servicecatalog_cat_item_view.do%3Fsysparm_id%3D03e71f586f269100e904f00dba3ee443%26sysparm_link_parent%3De15706fc0a0a0aa7007fc21e1ab70c2f%26sysparm_groupSYSID%3Db9bce124dba9320408eef9a61d961909&quot; target=&quot;_blank&quot;&gt;Open a Service Request&lt;/a&gt;</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:richText</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>entityNames</name>
+                <value>[&quot;CAR__c&quot;]</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>maxRecords</name>
+                <value>3</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:recentItems</componentName>
+        </componentInstances>
+        <name>region2</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>entityName</name>
+                <value>CAR__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>filterName</name>
+                <value>My_List</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>hideActionBar</name>
+                <value>false</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>pageSize</name>
+                <value>10</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:filterListCard</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>entityName</name>
+                <value>CAR_Team__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>filterName</name>
+                <value>All</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>hideActionBar</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>pageSize</name>
+                <value>10</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:filterListCard</componentName>
+        </componentInstances>
+        <name>region3</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>CAR Homepage</masterLabel>
+    <template>
+        <name>flexipage:appHomeTemplateHeaderTwoColumnsLeftSidebar</name>
+    </template>
+    <type>AppPage</type>
+</FlexiPage>

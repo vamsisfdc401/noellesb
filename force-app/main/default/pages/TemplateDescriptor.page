@@ -1,0 +1,68 @@
+<!--*****************************************************************************************
+Page Name: TemplateDescriptor
+Purpose: This page helps to define a Material Template.
+******************************************************************************************
+Version         DateModified         ModifiedBy               Change
+1.0             10/03/2017           Suman                    Initial Development
+******************************************************************************************-->
+<apex:page standardController="Material_Template__c" extensions="TemplateWizardController" title="Template Definition" tabStyle="Material_Template__c">
+    <style type="text/css">
+        .popupBackground{
+            background-color:black;
+            opacity: 0.20;
+            filter: alpha(opacity = 20);
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 2;
+        }
+        
+    </style>
+    
+    <!-- Action Status: Processing Overlay -->
+    <apex:actionStatus id="wait">
+        <apex:facet name="start" >
+            <div class="popupBackground" style="z-index:1001;" layout="block">&nbsp;</div>
+            <div style="position:fixed;top:40%;left:50%;z-index:1002">
+                <div style="padding:14px 10px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;border:1px solid #1288FF;background-color:#F5F5F5;margin-left:-100px;vertical-align:top;">
+                    <table>
+                        <tr valign="bottom"><td><img src="/img/loading.gif" width="25" height ="25" /> &nbsp;</td>
+                        <td><span style="font-weight:bold;font-color:#1288FF;font-size:14px;">Processing...</span></td></tr>
+                    </table>
+                </div> 
+            </div>                   
+        </apex:facet>
+    </apex:actionStatus>
+    
+    <apex:sectionHeader title="Template Edit" subtitle="{!IF((isNewTemplate && recId == null), 'New Template', template.Template_Name__c)}" />
+    <apex:pageMessages id="pgMsg" />
+    
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!saveAction}" rendered="{!hasEditAccess}"/>    <!-- Added for REL-135 -->
+                <apex:commandButton value="Next" action="{!redirectFirstToSecondPage}" rendered="{!hasEditAccess}"/>
+                <!--<apex:commandButton value="Review" action="{!redirectFirstToThirdPage}" rendered="{!NOT(ISNULL(recId))}"/>-->    <!-- Removed for REL-135 -->
+                <apex:commandButton value="Cancel" action="{!cancel}"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="Enter Template Information" collapsible="false" id="templateSection">
+                <apex:inputField value="{!template.Template_Name__c}" rendered="{!hasEditAccess}"/>
+                <apex:inputField value="{!template.Is_Active__c}" rendered="{!hasEditAccess}"/>
+                <!--<apex:inputField value="{!template.Brand_Group__c}" rendered="{!ISNULL(recId)}">    
+                    <apex:actionSupport event="onchange" action="{!handleBrandGroupChange}" status="wait" reRender="templateSection"/>
+                </apex:inputField>-->    <!-- Removed for REL-131 -->
+                <apex:selectList value="{!template.Brand_Group__c}" size="1" rendered="{!ISNULL(recId)}">    <!-- Added for REL-131 -->
+                    <apex:selectOptions value="{!availableBrandGroups}"></apex:selectOptions>
+                    <apex:actionSupport event="onchange" action="{!handleBrandGroupChange}" status="wait" reRender="templateSection"/>
+                </apex:selectList>
+                <apex:outputField value="{!template.Template_Name__c}" rendered="{!NOT(hasEditAccess)}"/>
+                <apex:outputField value="{!template.Is_Active__c}" rendered="{!NOT(hasEditAccess)}"/>
+                <apex:outputField value="{!template.Brand_Group__c}" rendered="{!NOT(ISNULL(recId))}"/>
+                <apex:pageBlockSectionItem >&nbsp;</apex:pageBlockSectionItem>
+                <apex:outputField value="{!template.OwnerId}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

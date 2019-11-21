@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Financials</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Financials</value>
+    </caseValues>
+    <layouts>
+        <layout>Financials Admin Layout</layout>
+        <sections>
+            <label><!-- + Thresholds --></label>
+            <section>+ Thresholds</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dropbox --></label>
+            <section>Dropbox</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - Central Costs --></label>
+            <section>FYFA - Central Costs</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - Domestic Margins --></label>
+            <section>FYFA - Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - International Margins --></label>
+            <section>FYFA - International Margins</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - International and Domestic Margins --></label>
+            <section>FYFA - International and Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - MG and Overages --></label>
+            <section>FYFA - MG and Overages</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - Margins --></label>
+            <section>FYFA - Margins</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - Revenue --></label>
+            <section>FYFA - Revenue</section>
+        </sections>
+        <sections>
+            <label><!-- Financial Summary --></label>
+            <section>Financial Summary</section>
+        </sections>
+        <sections>
+            <label><!-- First Year Financial Analysis --></label>
+            <section>First Year Financial Analysis</section>
+        </sections>
+        <sections>
+            <label><!-- First Year TVD Breakdown --></label>
+            <section>First Year TVD Breakdown</section>
+        </sections>
+        <sections>
+            <label><!-- Forecasts --></label>
+            <section>Forecasts</section>
+        </sections>
+        <sections>
+            <label><!-- Forecats Home Ent --></label>
+            <section>Forecats Home Ent</section>
+        </sections>
+        <sections>
+            <label><!-- Home Ent Forecast --></label>
+            <section>Home Ent Forecast</section>
+        </sections>
+        <sections>
+            <label><!-- Interparty Agreement --></label>
+            <section>Interparty Agreement</section>
+        </sections>
+        <sections>
+            <label><!-- Origination and Marketing Costs --></label>
+            <section>Origination and Marketing Costs</section>
+        </sections>
+        <sections>
+            <label><!-- P&amp;L Assumptions --></label>
+            <section>P&amp;L Assumptions</section>
+        </sections>
+        <sections>
+            <label><!-- Reason if not confirmed by TV --></label>
+            <section>Reason if not confirmed by TV</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - Central Costs --></label>
+            <section>SYFA - Central Costs</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - Domestic Margins --></label>
+            <section>SYFA - Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - International Margins --></label>
+            <section>SYFA - International Margins</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - International and Domestic Margins --></label>
+            <section>SYFA - International and Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - MG and Overages --></label>
+            <section>SYFA - MG and Overages</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - Margins --></label>
+            <section>SYFA - Margins</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - Revenue --></label>
+            <section>SYFA - Revenue</section>
+        </sections>
+        <sections>
+            <label><!-- Second Year Financial Analysis --></label>
+            <section>Second Year Financial Analysis</section>
+        </sections>
+        <sections>
+            <label><!-- Second Year TVD Breakdown --></label>
+            <section>Second Year TVD Breakdown</section>
+        </sections>
+        <sections>
+            <label><!-- Sensitivities (S+) --></label>
+            <section>Sensitivities (S+)</section>
+        </sections>
+        <sections>
+            <label><!-- Strategic Justification --></label>
+            <section>Strategic Justification</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - Central Costs --></label>
+            <section>UFA - Central Costs</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - Domestic Margins --></label>
+            <section>UFA - Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - International  Margins --></label>
+            <section>UFA - International  Margins</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - International and Domestic Margins --></label>
+            <section>UFA - International and Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - MG and Overages --></label>
+            <section>UFA - MG and Overages</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - Margins --></label>
+            <section>UFA - Margins</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - Revenue --></label>
+            <section>UFA - Revenue</section>
+        </sections>
+        <sections>
+            <label><!-- Ultimate Financial Analysis --></label>
+            <section>Ultimate Financial Analysis</section>
+        </sections>
+        <sections>
+            <label><!-- Ultimate TVD Breakdown --></label>
+            <section>Ultimate TVD Breakdown</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Financials Layout</layout>
+        <sections>
+            <label><!-- + Thresholds --></label>
+            <section>+ Thresholds</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dropbox --></label>
+            <section>Dropbox</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - Central Costs --></label>
+            <section>FYFA - Central Costs</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - Domestic Margins --></label>
+            <section>FYFA - Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - International Margins --></label>
+            <section>FYFA - International Margins</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - International and Domestic Margins --></label>
+            <section>FYFA - International and Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - MG and Overages --></label>
+            <section>FYFA - MG and Overages</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - Margins --></label>
+            <section>FYFA - Margins</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - Revenue --></label>
+            <section>FYFA - Revenue</section>
+        </sections>
+        <sections>
+            <label><!-- Financial Summary --></label>
+            <section>Financial Summary</section>
+        </sections>
+        <sections>
+            <label><!-- First Year Financial Analysis --></label>
+            <section>First Year Financial Analysis</section>
+        </sections>
+        <sections>
+            <label><!-- First Year TVD Breakdown --></label>
+            <section>First Year TVD Breakdown</section>
+        </sections>
+        <sections>
+            <label><!-- Forecasts --></label>
+            <section>Forecasts</section>
+        </sections>
+        <sections>
+            <label><!-- Forecats Home Ent --></label>
+            <section>Forecats Home Ent</section>
+        </sections>
+        <sections>
+            <label><!-- Home Ent Forecast --></label>
+            <section>Home Ent Forecast</section>
+        </sections>
+        <sections>
+            <label><!-- Interparty Agreement --></label>
+            <section>Interparty Agreement</section>
+        </sections>
+        <sections>
+            <label><!-- Origination and Marketing Costs --></label>
+            <section>Origination and Marketing Costs</section>
+        </sections>
+        <sections>
+            <label><!-- P&amp;L Assumptions --></label>
+            <section>P&amp;L Assumptions</section>
+        </sections>
+        <sections>
+            <label><!-- Reason if not confirmed by TV --></label>
+            <section>Reason if not confirmed by TV</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - Central Costs --></label>
+            <section>SYFA - Central Costs</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - Domestic Margins --></label>
+            <section>SYFA - Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - International Margins --></label>
+            <section>SYFA - International Margins</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - International and Domestic Margins --></label>
+            <section>SYFA - International and Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - MG and Overages --></label>
+            <section>SYFA - MG and Overages</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - Margins --></label>
+            <section>SYFA - Margins</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - Revenue --></label>
+            <section>SYFA - Revenue</section>
+        </sections>
+        <sections>
+            <label><!-- Second Year Financial Analysis --></label>
+            <section>Second Year Financial Analysis</section>
+        </sections>
+        <sections>
+            <label><!-- Second Year TVD Breakdown --></label>
+            <section>Second Year TVD Breakdown</section>
+        </sections>
+        <sections>
+            <label><!-- Sensitivities (S+) --></label>
+            <section>Sensitivities (S+)</section>
+        </sections>
+        <sections>
+            <label><!-- Strategic Justification --></label>
+            <section>Strategic Justification</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - Central Costs --></label>
+            <section>UFA - Central Costs</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - Domestic Margins --></label>
+            <section>UFA - Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - International  Margins --></label>
+            <section>UFA - International  Margins</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - International and Domestic Margins --></label>
+            <section>UFA - International and Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - MG and Overages --></label>
+            <section>UFA - MG and Overages</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - Margins --></label>
+            <section>UFA - Margins</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - Revenue --></label>
+            <section>UFA - Revenue</section>
+        </sections>
+        <sections>
+            <label><!-- Ultimate Financial Analysis --></label>
+            <section>Ultimate Financial Analysis</section>
+        </sections>
+        <sections>
+            <label><!-- Ultimate TVD Breakdown --></label>
+            <section>Ultimate TVD Breakdown</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Financials Layout - Read Only</layout>
+        <sections>
+            <label><!-- + Thresholds --></label>
+            <section>+ Thresholds</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dropbox --></label>
+            <section>Dropbox</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - Central Costs --></label>
+            <section>FYFA - Central Costs</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - Domestic Margins --></label>
+            <section>FYFA - Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - International Margins --></label>
+            <section>FYFA - International Margins</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - International and Domestic Margins --></label>
+            <section>FYFA - International and Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - MG and Overages --></label>
+            <section>FYFA - MG and Overages</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - Margins --></label>
+            <section>FYFA - Margins</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - Revenue --></label>
+            <section>FYFA - Revenue</section>
+        </sections>
+        <sections>
+            <label><!-- Financial Summary --></label>
+            <section>Financial Summary</section>
+        </sections>
+        <sections>
+            <label><!-- First Year Financial Analysis --></label>
+            <section>First Year Financial Analysis</section>
+        </sections>
+        <sections>
+            <label><!-- First Year TVD Breakdown --></label>
+            <section>First Year TVD Breakdown</section>
+        </sections>
+        <sections>
+            <label><!-- Forecasts --></label>
+            <section>Forecasts</section>
+        </sections>
+        <sections>
+            <label><!-- Forecats Home Ent --></label>
+            <section>Forecats Home Ent</section>
+        </sections>
+        <sections>
+            <label><!-- Home Ent Forecast --></label>
+            <section>Home Ent Forecast</section>
+        </sections>
+        <sections>
+            <label><!-- Interparty Agreement --></label>
+            <section>Interparty Agreement</section>
+        </sections>
+        <sections>
+            <label><!-- Origination and Marketing Costs --></label>
+            <section>Origination and Marketing Costs</section>
+        </sections>
+        <sections>
+            <label><!-- P&amp;L Assumptions --></label>
+            <section>P&amp;L Assumptions</section>
+        </sections>
+        <sections>
+            <label><!-- Reason if not confirmed by TV --></label>
+            <section>Reason if not confirmed by TV</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - Central Costs --></label>
+            <section>SYFA - Central Costs</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - Domestic Margins --></label>
+            <section>SYFA - Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - International Margins --></label>
+            <section>SYFA - International Margins</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - International and Domestic Margins --></label>
+            <section>SYFA - International and Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - MG and Overages --></label>
+            <section>SYFA - MG and Overages</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - Margins --></label>
+            <section>SYFA - Margins</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - Revenue --></label>
+            <section>SYFA - Revenue</section>
+        </sections>
+        <sections>
+            <label><!-- Second Year Financial Analysis --></label>
+            <section>Second Year Financial Analysis</section>
+        </sections>
+        <sections>
+            <label><!-- Second Year TVD Breakdown --></label>
+            <section>Second Year TVD Breakdown</section>
+        </sections>
+        <sections>
+            <label><!-- Sensitivities (S+) --></label>
+            <section>Sensitivities (S+)</section>
+        </sections>
+        <sections>
+            <label><!-- Strategic Justification --></label>
+            <section>Strategic Justification</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - Central Costs --></label>
+            <section>UFA - Central Costs</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - Domestic Margins --></label>
+            <section>UFA - Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - International  Margins --></label>
+            <section>UFA - International  Margins</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - International and Domestic Margins --></label>
+            <section>UFA - International and Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - MG and Overages --></label>
+            <section>UFA - MG and Overages</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - Margins --></label>
+            <section>UFA - Margins</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - Revenue --></label>
+            <section>UFA - Revenue</section>
+        </sections>
+        <sections>
+            <label><!-- Ultimate Financial Analysis --></label>
+            <section>Ultimate Financial Analysis</section>
+        </sections>
+        <sections>
+            <label><!-- Ultimate TVD Breakdown --></label>
+            <section>Ultimate TVD Breakdown</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Financials Layout -New Read Only</layout>
+        <sections>
+            <label><!-- + Thresholds --></label>
+            <section>+ Thresholds</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dropbox --></label>
+            <section>Dropbox</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - Central Costs --></label>
+            <section>FYFA - Central Costs</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - Domestic Margins --></label>
+            <section>FYFA - Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - International Margins --></label>
+            <section>FYFA - International Margins</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - International and Domestic Margins --></label>
+            <section>FYFA - International and Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - MG and Overages --></label>
+            <section>FYFA - MG and Overages</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - Margins --></label>
+            <section>FYFA - Margins</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - Revenue --></label>
+            <section>FYFA - Revenue</section>
+        </sections>
+        <sections>
+            <label><!-- Financial Summary --></label>
+            <section>Financial Summary</section>
+        </sections>
+        <sections>
+            <label><!-- First Year Financial Analysis --></label>
+            <section>First Year Financial Analysis</section>
+        </sections>
+        <sections>
+            <label><!-- First Year TVD Breakdown --></label>
+            <section>First Year TVD Breakdown</section>
+        </sections>
+        <sections>
+            <label><!-- Forecast Sources --></label>
+            <section>Forecast Sources</section>
+        </sections>
+        <sections>
+            <label><!-- Interparty Agreement --></label>
+            <section>Interparty Agreement</section>
+        </sections>
+        <sections>
+            <label><!-- Origination and Marketing Costs --></label>
+            <section>Origination and Marketing Costs</section>
+        </sections>
+        <sections>
+            <label><!-- P&amp;L Assumptions --></label>
+            <section>P&amp;L Assumptions</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - Central Costs --></label>
+            <section>SYFA - Central Costs</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - Domestic Margins --></label>
+            <section>SYFA - Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - International Margins --></label>
+            <section>SYFA - International Margins</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - International and Domestic Margins --></label>
+            <section>SYFA - International and Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - MG and Overages --></label>
+            <section>SYFA - MG and Overages</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - Margins --></label>
+            <section>SYFA - Margins</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - Revenue --></label>
+            <section>SYFA - Revenue</section>
+        </sections>
+        <sections>
+            <label><!-- Second Year Financial Analysis --></label>
+            <section>Second Year Financial Analysis</section>
+        </sections>
+        <sections>
+            <label><!-- Second Year TVD Breakdown --></label>
+            <section>Second Year TVD Breakdown</section>
+        </sections>
+        <sections>
+            <label><!-- Sensitivities (S+) --></label>
+            <section>Sensitivities (S+)</section>
+        </sections>
+        <sections>
+            <label><!-- Strategic Justification --></label>
+            <section>Strategic Justification</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - Central Costs --></label>
+            <section>UFA - Central Costs</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - Domestic Margins --></label>
+            <section>UFA - Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - International  Margins --></label>
+            <section>UFA - International  Margins</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - International and Domestic Margins --></label>
+            <section>UFA - International and Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - MG and Overages --></label>
+            <section>UFA - MG and Overages</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - Margins --></label>
+            <section>UFA - Margins</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - Revenue --></label>
+            <section>UFA - Revenue</section>
+        </sections>
+        <sections>
+            <label><!-- Ultimate Financial Analysis --></label>
+            <section>Ultimate Financial Analysis</section>
+        </sections>
+        <sections>
+            <label><!-- Ultimate TVD Breakdown --></label>
+            <section>Ultimate TVD Breakdown</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>New Financials Layout</layout>
+        <sections>
+            <label><!-- + Thresholds --></label>
+            <section>+ Thresholds</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dropbox --></label>
+            <section>Dropbox</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - Central Costs --></label>
+            <section>FYFA - Central Costs</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - Domestic Margins --></label>
+            <section>FYFA - Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - International Margins --></label>
+            <section>FYFA - International Margins</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - International and Domestic Margins --></label>
+            <section>FYFA - International and Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - MG and Overages --></label>
+            <section>FYFA - MG and Overages</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - Margins --></label>
+            <section>FYFA - Margins</section>
+        </sections>
+        <sections>
+            <label><!-- FYFA - Revenue --></label>
+            <section>FYFA - Revenue</section>
+        </sections>
+        <sections>
+            <label><!-- Financial Summary --></label>
+            <section>Financial Summary</section>
+        </sections>
+        <sections>
+            <label><!-- First Year Financial Analysis --></label>
+            <section>First Year Financial Analysis</section>
+        </sections>
+        <sections>
+            <label><!-- First Year TVD Breakdown --></label>
+            <section>First Year TVD Breakdown</section>
+        </sections>
+        <sections>
+            <label><!-- Forecast Sources --></label>
+            <section>Forecast Sources</section>
+        </sections>
+        <sections>
+            <label><!-- Interparty Agreement --></label>
+            <section>Interparty Agreement</section>
+        </sections>
+        <sections>
+            <label><!-- Origination and Marketing Costs --></label>
+            <section>Origination and Marketing Costs</section>
+        </sections>
+        <sections>
+            <label><!-- P&amp;L Assumptions --></label>
+            <section>P&amp;L Assumptions</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - Central Costs --></label>
+            <section>SYFA - Central Costs</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - Domestic Margins --></label>
+            <section>SYFA - Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - International Margins --></label>
+            <section>SYFA - International Margins</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - International and Domestic Margins --></label>
+            <section>SYFA - International and Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - MG and Overages --></label>
+            <section>SYFA - MG and Overages</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - Margins --></label>
+            <section>SYFA - Margins</section>
+        </sections>
+        <sections>
+            <label><!-- SYFA - Revenue --></label>
+            <section>SYFA - Revenue</section>
+        </sections>
+        <sections>
+            <label><!-- Second Year Financial Analysis --></label>
+            <section>Second Year Financial Analysis</section>
+        </sections>
+        <sections>
+            <label><!-- Second Year TVD Breakdown --></label>
+            <section>Second Year TVD Breakdown</section>
+        </sections>
+        <sections>
+            <label><!-- Sensitivities (S+) --></label>
+            <section>Sensitivities (S+)</section>
+        </sections>
+        <sections>
+            <label><!-- Strategic Justification --></label>
+            <section>Strategic Justification</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - Central Costs --></label>
+            <section>UFA - Central Costs</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - Domestic Margins --></label>
+            <section>UFA - Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - International  Margins --></label>
+            <section>UFA - International  Margins</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - International and Domestic Margins --></label>
+            <section>UFA - International and Domestic Margins</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - MG and Overages --></label>
+            <section>UFA - MG and Overages</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - Margins --></label>
+            <section>UFA - Margins</section>
+        </sections>
+        <sections>
+            <label><!-- UFA - Revenue --></label>
+            <section>UFA - Revenue</section>
+        </sections>
+        <sections>
+            <label><!-- Ultimate Financial Analysis --></label>
+            <section>Ultimate Financial Analysis</section>
+        </sections>
+        <sections>
+            <label><!-- Ultimate TVD Breakdown --></label>
+            <section>Ultimate TVD Breakdown</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

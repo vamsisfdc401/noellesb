@@ -1,0 +1,1044 @@
+<!--*****************************************************************************************
+Page Name: ReviewMaterialDescription
+Purpose: Display the summary of the material wizard
+******************************************************************************************
+Version         DateModified         ModifiedBy               Change
+1.0             03/09/2016           Suman/Mohit/Ipsita       Initial Development
+******************************************************************************************-->
+<apex:page controller="MaterialCreationWizardController" sidebar="false" docType="html-5.0" title="{!operatingObject}">
+    <style type="text/css">
+        .bPageBlock .detailList tr td, .bPageBlock .detailList tr th, .hoverDetail .bPageBlock .detailList tr td, .hoverDetail .bPageBlock .detailList tr th {
+        border-bottom: 0px solid #FFFFFF;
+        }
+        
+        .popupBackground{
+        background-color:black;
+        opacity: 0.20;
+        filter: alpha(opacity = 20);
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        }
+        
+        /* Indentation of table. */
+        .nbcu_rw_table_child {
+        padding-left: 40px;
+        }
+        
+        .nbcuButtonSetLabel {
+        cursor: pointer;
+        padding: 3px 8px;
+        background: #f8f8f8;
+        border-radius: 5px;
+        border: 1px solid gray;
+        display: inline-block;
+        color: black;
+        font-weight: bold;
+        }
+        
+        .nbcuButtonSetMenu {
+        width: 150px;
+        }
+        
+        table.list {
+        width: 1100px !important;
+        }
+        
+        
+        .nbcu_table_rw table {
+        width: 1122px !important;
+        }
+        
+        .nbcuButtonSetMenu a {
+        display: block;
+        padding: 3px 8px;
+        }
+        
+        .nbcu_exapnd_collapse {
+        float: left;
+        cursor: pointer;
+        }
+        
+        .nbcu_table_rw {
+        float: left;
+        }
+        
+        .nbcu_rw_table_child input,
+        .nbcu_table_rw input {
+        width: 100%;
+        }
+        
+        .nbcu_rw_table_parent table,
+        .nbcu_rw_table_child table {
+        margin-bottom: 10px;
+        }
+        
+        .nbcu_commandlink {
+        float: right;
+        margin-left: 30px;
+        width: 200px;
+        }
+        
+        .nbcu_commandlink > a {
+        display: inline-block;
+        padding: 0 5px 5px 0;
+        margin-right: 25px;
+        }
+        
+        .nbcu_commandlink img {
+        padding-right: 5px;
+        }
+        
+        .nbcuButtonSet {
+        position: relative;
+        }
+        
+        .nbcuButtonSetMenu {
+        display: none;
+        position: absolute;
+        top: 22px;
+        background: #f8f8f8;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid gray;
+        z-index: 100;
+        }
+        
+        .nbcu_wzd_fmt table select,
+        .nbcu_wzd_fmt table input {
+        width: 80px !important;
+        }
+        
+        .nbcu_outer_shell{
+        padding: 15px;
+        border-bottom: 2px solid black;
+        margin-top: 10px;
+        }
+        
+        .nbcu_table_rw td span,
+        .nbcu_table_rw input,
+        .nbcu_table_rw select,
+        .nbcu_table_rw a,
+        .nbcu_table_rw label {
+        color: blue !important;
+        }
+        
+        .clearfix:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+        }
+        * html .clearfix             { zoom: 1; } /* IE6 */
+        *:first-child+html .clearfix { zoom: 1; } /* IE7 */
+        
+    </style>
+    
+    <script>
+    function switchMenu(obj,obj1,obj2) 
+    {
+        var el = document.getElementById(obj);    
+        
+        
+        if ( el.style.display != 'none' ) {
+            el.style.display = 'none';
+        }
+        else {
+            el.style.display = '';
+        }
+        
+        var e2 = document.getElementById(obj1);                                       
+        if ( e2.style.display != 'none' ) {
+            e2.style.display = 'none';
+        }
+        else {
+            e2.style.display = '';
+        }
+        
+        var e3 = document.getElementById(obj2);                                       
+        if ( e2.style.display != 'none' ) {
+            e3.style.display = 'none';
+        }
+        else {
+            e3.style.display = '';
+        }        
+    }
+    </script>
+    
+    <apex:sectionHeader title="{!operatingObject}" subtitle="Wizard"/>
+    <apex:pageMessages id="pgMsg"></apex:pageMessages>
+    
+    <apex:actionStatus id="ajaxStatus" >
+        <apex:facet name="start" >
+            <div class="popupBackground" style="z-index:1001;" layout="block">&nbsp;</div>
+            <div style="position:fixed;top:40%;left:50%;z-index:1002">
+                <div style="padding:14px 10px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;border:1px solid #1288FF;background-color:#F5F5F5;margin-left:-100px;vertical-align:top;">
+                    <table>
+                        <tr valign="bottom"><td><img src="/img/loading.gif" width="25" height ="25" /> &nbsp;</td>
+                            <td><span style="font-weight:bold;font-color:#1288FF;font-size:14px;">Processing...</span></td></tr>
+                    </table>
+                </div> 
+            </div>                   
+        </apex:facet>
+    </apex:actionStatus>
+    
+    <apex:actionStatus id="ajaxStatus1" >
+        <apex:facet name="start" >
+            <div class="popupBackground" style="z-index:1001;" layout="block">&nbsp;</div>
+            <div style="position:fixed;top:40%;left:50%;z-index:1002">
+                <div style="padding:14px 10px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;border:1px solid #1288FF;background-color:#F5F5F5;margin-left:-100px;vertical-align:top;">
+                    <table>
+                        <tr valign="bottom"><td><img src="/img/loading.gif" width="25" height ="25" /> &nbsp;</td>
+                            <td><span style="font-weight:bold;font-color:#1288FF;font-size:14px;">Creating Material...</span></td></tr>
+                    </table>
+                </div> 
+            </div>                   
+        </apex:facet>
+    </apex:actionStatus>
+    
+    <apex:actionStatus id="ajaxStatus2" >
+        <apex:facet name="start" >
+            <div class="popupBackground" style="z-index:1001;" layout="block">&nbsp;</div>
+            <div style="position:fixed;top:40%;left:50%;z-index:1002">
+                <div style="padding:14px 10px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;border:1px solid #1288FF;background-color:#F5F5F5;margin-left:-100px;vertical-align:top;">
+                    <table>
+                        <tr valign="bottom"><td><img src="/img/loading.gif" width="25" height ="25" /> &nbsp;</td>
+                            <td><span style="font-weight:bold;font-color:#1288FF;font-size:14px;">Creating Sales...</span></td></tr>
+                    </table>
+                </div> 
+            </div>                   
+        </apex:facet>
+    </apex:actionStatus>
+    
+    <apex:actionStatus id="ajaxStatus3" >
+        <apex:facet name="start" >
+            <div class="popupBackground" style="z-index:1001;" layout="block">&nbsp;</div>
+            <div style="position:fixed;top:40%;left:50%;z-index:1002">
+                <div style="padding:14px 10px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;border:1px solid #1288FF;background-color:#F5F5F5;margin-left:-100px;vertical-align:top;">
+                    <table>
+                        <tr valign="bottom"><td><img src="/img/loading.gif" width="25" height ="25" /> &nbsp;</td>
+                            <td><span style="font-weight:bold;font-color:#1288FF;font-size:14px;">Creating Plant...</span></td></tr>
+                    </table>
+                </div> 
+            </div>                   
+        </apex:facet>
+    </apex:actionStatus>
+    
+    <apex:actionStatus id="ajaxStatus4" >
+        <apex:facet name="start" >
+            <div class="popupBackground" style="z-index:1001;" layout="block">&nbsp;</div>
+            <div style="position:fixed;top:40%;left:50%;z-index:1002">
+                <div style="padding:14px 10px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;border:1px solid #1288FF;background-color:#F5F5F5;margin-left:-100px;vertical-align:top;">
+                    <table>
+                        <tr valign="bottom"><td><img src="/img/loading.gif" width="25" height ="25" /> &nbsp;</td>
+                            <td><span style="font-weight:bold;font-color:#1288FF;font-size:14px;">Creating Classification...</span></td></tr>
+                    </table>
+                </div> 
+            </div>                   
+        </apex:facet>
+    </apex:actionStatus>
+    
+    <apex:actionStatus id="ajaxStatus5" >
+        <apex:facet name="start" >
+            <div class="popupBackground" style="z-index:1001;" layout="block">&nbsp;</div>
+            <div style="position:fixed;top:40%;left:50%;z-index:1002">
+                <div style="padding:14px 10px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;border:1px solid #1288FF;background-color:#F5F5F5;margin-left:-100px;vertical-align:top;">
+                    <table>
+                        <tr valign="bottom"><td><img src="/img/loading.gif" width="25" height ="25" /> &nbsp;</td>
+                            <td><span style="font-weight:bold;font-color:#1288FF;font-size:14px;">Creating AUoM...</span></td></tr>
+                    </table>
+                </div> 
+            </div>                   
+        </apex:facet>
+    </apex:actionStatus>
+    
+    <apex:actionStatus id="ajaxStatus6" >
+        <apex:facet name="start" >
+            <div class="popupBackground" style="z-index:1001;" layout="block">&nbsp;</div>
+            <div style="position:fixed;top:40%;left:50%;z-index:1002">
+                <div style="padding:14px 10px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;border:1px solid #1288FF;background-color:#F5F5F5;margin-left:-100px;vertical-align:top;">
+                    <table>
+                        <tr valign="bottom"><td><img src="/img/loading.gif" width="25" height ="25" /> &nbsp;</td>
+                            <td><span style="font-weight:bold;font-color:#1288FF;font-size:14px;">Creating Valuation...</span></td></tr>
+                    </table>
+                </div> 
+            </div>                   
+        </apex:facet>
+    </apex:actionStatus>
+    
+    <apex:actionStatus id="ajaxStatus8" >
+        <apex:facet name="start" >
+            <div class="popupBackground" style="z-index:1001;" layout="block">&nbsp;</div>
+            <div style="position:fixed;top:40%;left:50%;z-index:1002">
+                <div style="padding:14px 10px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;border:1px solid #1288FF;background-color:#F5F5F5;margin-left:-100px;vertical-align:top;">
+                    <table>
+                        <tr valign="bottom"><td><img src="/img/loading.gif" width="25" height ="25" /> &nbsp;</td>
+                            <td><span style="font-weight:bold;font-color:#1288FF;font-size:14px;">Setting additinal defaults...</span></td></tr>
+                    </table>
+                </div> 
+            </div>                   
+        </apex:facet>
+    </apex:actionStatus>
+    
+    <apex:actionStatus id="ajaxStatus7" >
+        <apex:facet name="start" >
+            <div class="popupBackground" style="z-index:1001;" layout="block">&nbsp;</div>
+            <div style="position:fixed;top:40%;left:50%;z-index:1002">
+                <div style="padding:14px 10px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;border:1px solid #1288FF;background-color:#F5F5F5;margin-left:-100px;vertical-align:top;">
+                    <table>
+                        <tr valign="bottom"><td><img src="/img/loading.gif" width="25" height ="25" /> &nbsp;</td>
+                            <td><span style="font-weight:bold;font-color:#1288FF;font-size:14px;">Redirecting...</span></td></tr>
+                    </table>
+                </div> 
+            </div>                   
+        </apex:facet>
+    </apex:actionStatus>
+    
+    <apex:form id="theForm">
+        <apex:actionFunction action="{!setMaterialDefault}" 
+                             name="setDefault" 
+                             reRender="MasterContainerPanel" 
+                             oncomplete="createMaterial() ;" 
+                             status="ajaxStatus"/>
+        
+        <!--<apex:actionFunction action="{!setMaterialDefault1}" 
+name="setMaterialDefault1" 
+reRender="MasterContainerPanel" 
+oncomplete="createMaterial() ;" 
+status="ajaxStatus8"/>-->
+        
+        <apex:actionFunction action="{!submit}" 
+                             name="createMaterial" 
+                             reRender="MasterContainerPanel"                         
+                             oncomplete="createBOMItem();" 
+                             status="ajaxStatus"/>
+                             
+        <apex:actionFunction action="{!createBOMItem}" 
+                             name="createBOMItem" 
+                             reRender="MasterContainerPanel"                         
+                             oncomplete="createSalesRecord();" 
+                             status="ajaxStatus"/>
+        
+        <apex:actionFunction action="{!createSalesRecord}" 
+                             name="createSalesRecord" 
+                             reRender="MasterContainerPanel" 
+                             oncomplete="createPlantRecord() ;" 
+                             status="ajaxStatus"/>
+        
+        <apex:actionFunction action="{!createPlantRecord}" 
+                             name="createPlantRecord" 
+                             reRender="MasterContainerPanel" 
+                             oncomplete="createClassificationRecord() ;" 
+                             status="ajaxStatus"/>
+        
+        <apex:actionFunction action="{!createClassificationRecord}" 
+                             name="createClassificationRecord" 
+                             reRender="MasterContainerPanel" 
+                             oncomplete="createAUoMRecord() ;" 
+                             status="ajaxStatus"/>
+        
+        <apex:actionFunction action="{!createAUoMRecord}" 
+                             name="createAUoMRecord" 
+                             reRender="MasterContainerPanel" 
+                             oncomplete="createValuationRecord() ;" 
+                             status="ajaxStatus"/>
+        
+        <apex:actionFunction action="{!createValuationRecord}" 
+                             name="createValuationRecord" 
+                             reRender="MasterContainerPanel" 
+                             oncomplete="redirectUserAndSetQueue() ;" 
+                             status="ajaxStatus"/>     
+        
+        <apex:actionFunction action="{!redirectUserAndSetQueue}" 
+                             name="redirectUserAndSetQueue" 
+                             reRender="MasterContainerPanel,pgMsg"                         
+                             oncomplete="status='false';" 
+                             status="ajaxStatus"/>            
+        
+        <apex:outputPanel id="MasterContainerPanel">
+            <apex:pageBlock id="MasterContainer" mode="MainDetail">
+                <apex:pageBlockButtons location="bottom">
+                    <apex:commandButton value="< Back" action="{!backMaterialDescription}"/>
+                    <apex:commandButton value="Create" onclick="setDefault();return false;"/>
+                    <apex:commandButton value="Cancel" action="{!cancel}" immediate="true" html-formnovalidate="formnovalidate"/>  
+                </apex:pageBlockButtons>
+                
+                <!--page block section to display release details for update scenario-->
+                <apex:pageBlockSection id="pgSectionExistingRelease" title="Release Information" collapsible="false" rendered="{!OR(showReleaseView,showReleaseNew)}">
+                    <apex:outputField value="{!releaseDetails.Name}" />
+                    <apex:outputField value="{!releaseDetails.Title__c}"/>
+                    <apex:outputField value="{!releaseDetails.Street_Date__c}"/>
+                    <apex:outputField value="{!releaseDetails.Brand_Group__c}" />
+                    <apex:outputField value="{!releaseDetails.Territory__c}" />
+                    <apex:outputField value="{!releaseDetails.Project_Type__c}" />
+                    <apex:outputField value="{!releaseDetails.Promotion_Name_Abbreviation__c}"/> 
+                    <apex:outputField value="{!releaseDetails.Label_Code__c}"/>              
+                </apex:pageBlockSection>
+                <!--End of page block section-->
+                
+                <apex:pageBlockSection id="pgSectionExistingMaterial" title="Material Information" collapsible="false" rendered="{!showMaterialView}">
+                    <apex:outputField value="{!materialDetails.Name}" />
+                    <apex:outputField value="{!materialDetails.Release__c}"/>
+                    <apex:outputField value="{!materialDetails.Item_Type__c}"/>
+                    <apex:outputField value="{!materialDetails.Item_Code__c}" />
+                    <apex:outputField value="{!materialDetails.Material_Type__c}" />              
+                </apex:pageBlockSection>
+                
+                <hr style="border-bottom: 2px solid black;"/>
+                
+                <!-- BOM Hierarchy Configuration -->
+                <apex:outputPanel id="panel1stLevel">
+                    <apex:variable var="l1Index" value="{!0}" />
+                    <apex:repeat value="{!rootIns.Data}" var="material" id="repeatLevel1">
+                        <!-- Level 1: FERTs -->
+                        <apex:variable var="materialIndexPath1" value="{!TEXT(l1Index)}" />
+                        <apex:outputpanel layout="block" styleclass="nbcu_outer_shell clearfix">
+                            <apex:outputPanel layout="block" styleclass="nbcu_rw_table_parent clearfix">
+                                <!-- FERT Details -->
+                                <apex:outputpanel layout="block" styleclass="nbcu_tableset">
+                                    
+                                    <apex:outputpanel id="plusimage1" style="display:{!if(material.isCollapsed,"block","none")};" styleclass="nbcu_exapnd_collapse">
+                                        <apex:image url="{!$Resource.Chevron_Right_Pink}">
+                                            <apex:actionSupport event="onclick" reRender="MasterContainer" action="{!sectionCollapseExpand}" status="ajaxStatus" oncomplete="clickNbcuButtonSet();">
+                                                <apex:param value="{!materialIndexPath1}" name="materialIndex1" assignTo="{!materialIndex}" />
+                                                <apex:param value="{!1}" name="bomDepth1" assignTo="{!selectedMaterialLevel}" />
+                                            </apex:actionSupport>                                   
+                                        </apex:image>
+                                    </apex:outputpanel>
+                                    <apex:outputpanel id="minusimage1" style="display:{!if(material.isCollapsed,"none","block")};" styleclass="nbcu_exapnd_collapse">
+                                        <apex:image url="{!$Resource.Chevron_Down_Pink}" >
+                                            <apex:actionSupport event="onclick" reRender="MasterContainer" action="{!sectionCollapseExpand}" status="ajaxStatus" oncomplete="clickNbcuButtonSet();">
+                                                <apex:param value="{!materialIndexPath1}" name="materialIndex1" assignTo="{!materialIndex}" />
+                                                <apex:param value="{!1}" name="bomDepth1" assignTo="{!selectedMaterialLevel}" />
+                                            </apex:actionSupport>
+                                            
+                                        </apex:image>
+                                    </apex:outputpanel>
+                                    
+                                    <apex:outputpanel layout="block" styleClass="nbcu_table_rw">
+                                        <apex:pageBlockTable value="{!material}" var="mat">
+                                            <apex:column headerValue="Material Description" style="width:365px;" > 
+                                                <apex:inputField html-size="40" style="width:360px;" value="{!mat.instance.Name}" rendered="{!NOT(mat.isExistingRecord)}" >
+                                                </apex:inputField>   
+                                                <apex:outputField value="{!mat.instance.Name}" rendered="{!mat.isExistingRecord}" />
+                                            </apex:column>
+                                            <apex:column headerValue="Material Number" >
+                                                <apex:outputField value="{!mat.instance.Material_Number__c}" />
+                                            </apex:column>
+                                            <apex:column headerValue="MPM" rendered="{!showMPM}"> 
+                                                <apex:inputField value="{!mat.instance.MPM_Issue__c}" style="width:100px;" rendered="{!NOT(mat.isExistingRecord)}">
+                                                </apex:inputField>   
+                                                <apex:outputField value="{!mat.instance.MPM_Issue__c}" rendered="{!mat.isExistingRecord}"/>
+                                            </apex:column>
+                                            <apex:column headerValue="Sales Plan Grp" rendered="{!showMPM}"> 
+                                                <apex:inputField value="{!mat.instance.Sales_Planning_Group__c}" style="width:70px;" rendered="{!NOT(mat.isExistingRecord)}">
+                                                </apex:inputField>   
+                                                <apex:outputField value="{!mat.instance.Sales_Planning_Group__c}" rendered="{!mat.isExistingRecord}"/>
+                                            </apex:column>
+                                            <!--<apex:column headerValue="Sub-Format" rendered="{!showMPM}"> 
+<apex:inputField value="{!mat.instance.Subformat__c}" style="width:50px;" rendered="{!NOT(mat.isExistingRecord)}">
+</apex:inputField>   
+<apex:outputField value="{!mat.instance.Subformat__c}" rendered="{!mat.isExistingRecord}"/>
+</apex:column> -->
+                                            <apex:column headerValue="Title/SGENNO">
+                                                <apex:outputField value="{!mat.instance.Title__c}" rendered="{!AND(NOT(mat.instance.Item_Type__c == 'M (Multipack)'),NOT(mat.instance.Item_Type__c == 'D (Display Vehicle)'))}"/> <!-- USST-2977 -->
+                                                <!--<apex:outputLabel value="{!mat.sysgenNo}"/>-->
+                                                <apex:outputLabel value="{!mat.sysgenNo}" rendered="{!AND(NOT(mat.isExistingRecord),NOT(mat.instance.Item_Type__c == 'M (Multipack)'),NOT(mat.instance.Item_Type__c == 'D (Display Vehicle)'))}" /> <!-- USST-2977 -->
+                                                <apex:outputLabel value="{!mat.instance.SGENNO__c}" rendered="{!AND(mat.isExistingRecord,NOT(mat.instance.Item_Type__c == 'M (Multipack)'),NOT(mat.instance.Item_Type__c == 'D (Display Vehicle)'))}"/> <!-- USST-2977 -->
+                                            </apex:column> 
+                                            <!--<apex:column headerValue="Material Format"> 
+<apex:outputField value="{!mat.instance.Format_Description__c}"/>
+</apex:column>-->
+                                            <apex:column headerValue="Label Code"> 
+                                                <apex:inputField value="{!mat.instance.Label_Code__c}" style="width:100px;" rendered="{!NOT(mat.isExistingRecord)}" >
+                                                    <apex:actionSupport event="onchange" reRender="MasterContainerPanel" action="{!setSubLabelCode}" status="ajaxStatus" >
+                                                        <apex:param value="{!materialIndexPath1}" name="materialIndex1" assignTo="{!materialIndex}" />
+                                                        <apex:param value="{!1}" name="bomDepth1" assignTo="{!selectedMaterialLevel}" />
+                                                    </apex:actionSupport>
+                                                </apex:inputField>
+                                                <apex:outputField value="{!mat.instance.Label_Code__c}" rendered="{!mat.isExistingRecord}"/>
+                                            </apex:column>
+                                            <apex:column headerValue="Sub-Label Code">
+                                                <apex:inputField value="{!mat.instance.Sub_Label_Code_Lookup__c}" style="width:100px;" rendered="{!NOT(mat.isExistingRecord)}" >
+                                                    <apex:actionSupport event="onchange" reRender="MasterContainerPanel"/>
+                                                </apex:inputField>
+                                                <apex:outputField value="{!mat.instance.Sub_Label_Code_Lookup__c}" rendered="{!mat.isExistingRecord}"/>
+                                            </apex:column>
+                                            <!-- USST-2960 start-->
+                                            <apex:column headerValue="Material Expiration Date" style="width:160px;">
+                                                <apex:inputField style="width:45%;" value="{!mat.instance.Material_Expiration_Date__c}" rendered="{!AND(mat.instance.Material_Type__c == 'FERT', NOT(mat.instance.Item_Type__c == 'D (Display Vehicle)'))}"/>
+                                            </apex:column>
+                                            <!-- USST-2960 end-->
+                                            <apex:column headerValue="Territory"> 
+                                                <apex:outputField value="{!mat.instance.Territory__c}" />
+                                            </apex:column>
+                                        </apex:pageBlockTable>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                            
+                            
+                            
+                            <apex:outputpanel layout="block" rendered="{!NOT(material.isCollapsed)}" id="inlinetablesec" styleClass="nbcu_rw_table_child clearfix">
+                                <!-- Level 1: Components -->
+                                <apex:outputpanel layout="block" rendered="{!material.childComponents.size > 0}">                        
+                                    <apex:outputPanel >
+                                        <apex:variable value="{!0}" var="componentIndex5"/>
+                                        <apex:pageBlockTable value="{!material.childComponents}" var="comp">
+                                            <apex:column headerValue="Material Description">
+                                                <apex:inputField value="{!comp.instance.Name}" style="width:360px;" rendered="{!NOT(comp.isExistingRecord)}"/>
+                                                <apex:outputField value="{!comp.instance.Name}" rendered="{!comp.isExistingRecord}"/>
+                                            </apex:column>
+                                            <apex:column headerValue="Material Number" >
+                                                <apex:outputField value="{!comp.instance.Material_Number__c}"/>
+                                            </apex:column>
+                                            <apex:column headerValue="MPM" rendered="{!showMPM}">
+                                                <apex:inputField value="{!comp.instance.MPM_Issue__c}" style="width:100px;" rendered="{!NOT(comp.isExistingRecord)}"/>
+                                                <apex:outputField value="{!comp.instance.MPM_Issue__c}" rendered="{!comp.isExistingRecord}"/>
+                                            </apex:column>
+                                            <!--<apex:column headerValue="Sales Plan Grp" rendered="{!showMPM}"> 
+<apex:inputField value="{!comp.instance.Sales_Planning_Group__c}" style="width:70px;" rendered="{!NOT(comp.isExistingRecord)}">
+</apex:inputField>   
+<apex:outputField value="{!comp.instance.Sales_Planning_Group__c}" rendered="{!comp.isExistingRecord}"/>
+</apex:column>-->
+                                            <!--<apex:column headerValue="Sub-Format" rendered="{!showMPM}"> 
+<apex:inputField value="{!comp.instance.Subformat__c}" style="width:50px;" rendered="{!NOT(comp.isExistingRecord)}">
+</apex:inputField>   
+<apex:outputField value="{!comp.instance.Subformat__c}" rendered="{!comp.isExistingRecord}"/>
+</apex:column> -->
+                                            <apex:column headerValue="Component Type">
+                                                <apex:outputField value="{!comp.instance.Component_Type__c}"/>
+                                            </apex:column>
+                                            
+                                            <apex:column headerValue="Label Code"> 
+                                                <!--<apex:inputField value="{!comp.instance.Label_Code__c}" style="width:auto;" rendered="{!NOT(comp.isExistingRecord)}" />
+<apex:outputField value="{!comp.instance.Label_Code__c}" rendered="{!comp.isExistingRecord}"/>-->
+                                                <apex:outputField value="{!comp.instance.Label_Code__c}" />
+                                            </apex:column>
+                                            <apex:column headerValue="Territory"> 
+                                                <apex:outputField value="{!comp.instance.Territory__c}"/>
+                                            </apex:column>
+                                            <apex:column headerValue="Link">                                        
+                                                <apex:inputField value="{!comp.instance.Association_Required__c}"/>
+                                            </apex:column>
+                                        </apex:pageBlockTable>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                
+                                <!-- Level 2 -->
+                                <apex:outputPanel id="panel2ndLevel">
+                                    <apex:variable var="l2Index" value="{!0}" />
+                                    <apex:repeat value="{!material.childIns.Data}" var="material2" id="repeatLevel2">
+                                        <!-- Level 2: FERTs -->
+                                        <apex:variable var="materialIndexPath2" value="{!TEXT(l1Index) + ';' + TEXT(l2Index)}" />
+                                        <apex:outputpanel layout="block" >
+                                            <apex:outputpanel layout="block" styleClass="nbcu_rw_table_parent clearfix">
+                                                <!-- FERT Details -->
+                                                <apex:outputPanel styleclass="nbcu_tableset">
+                                                    
+                                                    <apex:outputpanel id="plusimage2" style="display:{!if(material2.isCollapsed,"block","none")};" styleclass="nbcu_exapnd_collapse">
+                                                        <apex:image url="{!$Resource.Chevron_Right_Green}" >
+                                                            <apex:actionSupport event="onclick" reRender="MasterContainer" action="{!sectionCollapseExpand}" status="ajaxStatus" oncomplete="clickNbcuButtonSet();">
+                                                                <apex:param value="{!materialIndexPath2}" name="materialIndex2" assignTo="{!materialIndex}" />
+                                                                <apex:param value="{!2}" name="bomDepth2" assignTo="{!selectedMaterialLevel}" />
+                                                            </apex:actionSupport>                                               
+                                                        </apex:image>
+                                                    </apex:outputpanel>
+                                                    <apex:outputpanel id="minusimage2" style="display:{!if(material2.isCollapsed,"none","block")};" styleclass="nbcu_exapnd_collapse">
+                                                        <apex:image url="{!$Resource.Chevron_Down_Green}" >
+                                                            <apex:actionSupport event="onclick" reRender="MasterContainer" action="{!sectionCollapseExpand}" status="ajaxStatus" oncomplete="clickNbcuButtonSet();">
+                                                                <apex:param value="{!materialIndexPath2}" name="materialIndex2" assignTo="{!materialIndex}" />
+                                                                <apex:param value="{!2}" name="bomDepth2" assignTo="{!selectedMaterialLevel}" />
+                                                            </apex:actionSupport>                                               
+                                                        </apex:image>
+                                                    </apex:outputpanel>
+                                                    
+                                                    <apex:outputpanel styleClass="nbcu_table_rw">
+                                                        <apex:pageBlockTable value="{!material2}" var="mat">
+                                                            <apex:column headerValue="Material Description" style="width:365px;"> 
+                                                                <apex:inputField value="{!mat.instance.Name}" style="width:360px;" rendered="{!NOT(mat.isExistingRecord)}">
+                                                                </apex:inputField>   
+                                                                <apex:outputField value="{!mat.instance.Name}" rendered="{!mat.isExistingRecord}"/>
+                                                            </apex:column>
+                                                            <apex:column headerValue="Material Number" >
+                                                                <apex:outputField value="{!mat.instance.Material_Number__c}" />
+                                                            </apex:column>
+                                                            <apex:column headerValue="MPM" rendered="{!showMPM}"> 
+                                                                <apex:inputField value="{!mat.instance.MPM_Issue__c}" style="width:100px;" rendered="{!NOT(mat.isExistingRecord)}">
+                                                                </apex:inputField>   
+                                                                <apex:outputField value="{!mat.instance.MPM_Issue__c}" rendered="{!mat.isExistingRecord}"/>
+                                                            </apex:column>
+                                                            <apex:column headerValue="Sales Plan Grp" rendered="{!showMPM}"> 
+                                                                <apex:inputField value="{!mat.instance.Sales_Planning_Group__c}" style="width:70px;" rendered="{!NOT(mat.isExistingRecord)}">
+                                                                </apex:inputField>   
+                                                                <apex:outputField value="{!mat.instance.Sales_Planning_Group__c}" rendered="{!mat.isExistingRecord}"/>
+                                                            </apex:column>
+                                                            <!--<apex:column headerValue="Sub-Format" rendered="{!showMPM}"> 
+<apex:inputField value="{!mat.instance.Subformat__c}" style="width:50px;" rendered="{!NOT(mat.isExistingRecord)}">
+</apex:inputField>   
+<apex:outputField value="{!mat.instance.Subformat__c}" rendered="{!mat.isExistingRecord}"/>
+</apex:column> -->
+                                                            <apex:column headerValue="Title/SGENNO">
+                                                                <apex:outputField value="{!mat.instance.Title__c}" rendered="{!AND(NOT(mat.instance.Item_Type__c == 'M (Multipack)'),NOT(mat.instance.Item_Type__c == 'D (Display Vehicle)'))}"/> <!-- USST-2977 -->
+                                                                <!--<apex:outputLabel value="{!mat.sysgenNo}" />-->
+                                                                <apex:outputLabel value="{!mat.sysgenNo}" rendered="{!AND(NOT(mat.isExistingRecord),NOT(mat.instance.Item_Type__c == 'M (Multipack)'),NOT(mat.instance.Item_Type__c == 'D (Display Vehicle)'))}"/> <!-- USST-2977 -->
+                                                                <apex:outputLabel value="{!mat.instance.SGENNO__c}" rendered="{!AND(mat.isExistingRecord,NOT(mat.instance.Item_Type__c == 'M (Multipack)'),NOT(mat.instance.Item_Type__c == 'D (Display Vehicle)'))}"/> <!-- USST-2977 -->
+                                                            </apex:column> 
+                                                            <!--<apex:column headerValue="Material Format"> 
+<apex:outputField value="{!mat.instance.Format_Description__c}"/>
+</apex:column>-->
+                                                            <apex:column headerValue="Label Code"> 
+                                                                <apex:inputField value="{!mat.instance.Label_Code__c}" style="width:100px;" rendered="{!NOT(mat.isExistingRecord)}" >
+                                                                    <apex:actionSupport event="onchange" reRender="MasterContainerPanel" action="{!setSubLabelCode}" status="ajaxStatus" >
+                                                                        <apex:param value="{!materialIndexPath2}" name="materialIndex2" assignTo="{!materialIndex}" />
+                                                                        <apex:param value="{!2}" name="bomDepth2" assignTo="{!selectedMaterialLevel}" />
+                                                                    </apex:actionSupport>
+                                                                </apex:inputfield>
+                                                                <apex:outputField value="{!mat.instance.Label_Code__c}" rendered="{!mat.isExistingRecord}"/>
+                                                            </apex:column>
+                                                            <apex:column headerValue="Sub-Label Code">
+                                                                <apex:inputField value="{!mat.instance.Sub_Label_Code_Lookup__c}" style="width:100px;" rendered="{!NOT(mat.isExistingRecord)}" >
+                                                                    <apex:actionSupport event="onchange" reRender="MasterContainerPanel"/>
+                                                                </apex:inputField>
+                                                                <apex:outputField value="{!mat.instance.Sub_Label_Code_Lookup__c}" rendered="{!mat.isExistingRecord}"/>
+                                                            </apex:column>
+                                                            <apex:column headerValue="Territory"> 
+                                                                <apex:outputField value="{!mat.instance.Territory__c}" />
+                                                            </apex:column>
+                                                        </apex:pageBlockTable>
+                                                    </apex:outputpanel>                                     
+                                                </apex:outputPanel>
+                                            </apex:outputPanel>
+                                            
+                                            <apex:outputPanel id="inlinetablesec1" rendered="{!NOT(material2.isCollapsed)}" layout="block" styleClass="nbcu_rw_table_child clearfix">
+                                                <!-- Level 2: Components -->
+                                                <apex:outputPanel rendered="{!material2.childComponents.size > 0}">
+                                                    <apex:outputPanel >
+                                                        <apex:pageBlockTable value="{!material2.childComponents}" var="comp">
+                                                            <apex:column headerValue="Material Description">
+                                                                <apex:inputField value="{!comp.instance.Name}" style="width:360px;" rendered="{!NOT(comp.isExistingRecord)}"/>
+                                                                <apex:outputField value="{!comp.instance.Name}" rendered="{!comp.isExistingRecord}"/>
+                                                            </apex:column>
+                                                            <apex:column headerValue="Material Number" >
+                                                                <apex:outputField value="{!comp.instance.Material_Number__c}"/>
+                                                            </apex:column>
+                                                            <apex:column headerValue="MPM" rendered="{!showMPM}">
+                                                                <apex:inputField value="{!comp.instance.MPM_Issue__c}" style="width:100px;" rendered="{!NOT(comp.isExistingRecord)}"/>
+                                                                <apex:outputField value="{!comp.instance.MPM_Issue__c}" rendered="{!comp.isExistingRecord}"/>
+                                                            </apex:column>
+                                                            <!--<apex:column headerValue="Sales Plan Grp" rendered="{!showMPM}"> 
+<apex:inputField value="{!comp.instance.Sales_Planning_Group__c}" style="width:70px;" rendered="{!NOT(comp.isExistingRecord)}">
+</apex:inputField>   
+<apex:outputField value="{!comp.instance.Sales_Planning_Group__c}" rendered="{!comp.isExistingRecord}"/>
+</apex:column>-->
+                                                            <!--<apex:column headerValue="Sub-Format" rendered="{!showMPM}"> 
+<apex:inputField value="{!comp.instance.Subformat__c}" style="width:50px;" rendered="{!NOT(comp.isExistingRecord)}">
+</apex:inputField>   
+<apex:outputField value="{!comp.instance.Subformat__c}" rendered="{!comp.isExistingRecord}"/>
+</apex:column>-->
+                                                            <apex:column headerValue="Component Type">
+                                                                <apex:outputField value="{!comp.instance.Component_Type__c}"/>
+                                                            </apex:column>
+                                                            
+                                                            <apex:column headerValue="Label Code"> 
+                                                                <!--<apex:inputField value="{!comp.instance.Label_Code__c}" style="width:auto;" rendered="{!NOT(comp.isExistingRecord)}" />
+<apex:outputField value="{!comp.instance.Label_Code__c}" rendered="{!comp.isExistingRecord}"/>-->
+                                                                <apex:outputField value="{!comp.instance.Label_Code__c}" />
+                                                            </apex:column>
+                                                            <apex:column headerValue="Territory"> 
+                                                                <apex:outputField value="{!comp.instance.Territory__c}"/>
+                                                            </apex:column>
+                                                            <apex:column headerValue="Link">                                        
+                                                                <apex:inputField value="{!comp.instance.Association_Required__c}"/>
+                                                            </apex:column>
+                                                        </apex:pageBlockTable>
+                                                    </apex:outputPanel>
+                                                </apex:outputPanel>
+                                                
+                                                <!-- Level 3 -->
+                                                <apex:outputPanel id="panel3rdLevel">
+                                                    <apex:variable var="l3Index" value="{!0}" />
+                                                    <apex:repeat value="{!material2.childIns.Data}" var="material3" id="repeatLevel3">
+                                                        <!-- Level 3: FERTs -->
+                                                        <apex:variable var="materialIndexPath3" value="{!TEXT(l1Index) + ';' + TEXT(l2Index) + ';' + TEXT(l3Index)}" />
+                                                        <apex:outputPanel layout="block" >
+                                                            <apex:outputPanel layout="block" styleClass="nbcu_rw_table_parent clearfix" >
+                                                                <!-- FERT Details -->
+                                                                <apex:outputPanel styleclass="nbcu_tableset">
+                                                                    
+                                                                    <apex:outputpanel id="plusimage3" style="display:{!if(material3.isCollapsed,"block","none")};" styleclass="nbcu_exapnd_collapse">
+                                                                        <apex:image url="{!$Resource.Chevron_Right_Purple}" >
+                                                                            <apex:actionSupport event="onclick" reRender="MasterContainer" action="{!sectionCollapseExpand}" status="ajaxStatus" oncomplete="clickNbcuButtonSet();">
+                                                                                <apex:param value="{!materialIndexPath3}" name="materialIndex3" assignTo="{!materialIndex}" />
+                                                                                <apex:param value="{!3}" name="bomDepth3" assignTo="{!selectedMaterialLevel}" />
+                                                                            </apex:actionSupport>
+                                                                        </apex:image>
+                                                                    </apex:outputpanel>
+                                                                    <apex:outputpanel id="minusimage3" style="display:{!if(material3.isCollapsed,"none","block")};" styleclass="nbcu_exapnd_collapse">
+                                                                        <apex:image url="{!$Resource.Chevron_Down_Purple}" >
+                                                                            <apex:actionSupport event="onclick" reRender="MasterContainer" action="{!sectionCollapseExpand}" status="ajaxStatus" oncomplete="clickNbcuButtonSet();">
+                                                                                <apex:param value="{!materialIndexPath3}" name="materialIndex3" assignTo="{!materialIndex}" />
+                                                                                <apex:param value="{!3}" name="bomDepth3" assignTo="{!selectedMaterialLevel}" />
+                                                                            </apex:actionSupport>
+                                                                        </apex:image>
+                                                                    </apex:outputpanel>
+                                                                    
+                                                                    <apex:outputpanel styleClass="nbcu_table_rw">
+                                                                        <apex:pageBlockTable value="{!material3}" var="mat">
+                                                                            <apex:column headerValue="Material Description" style="width:365px;"> 
+                                                                                <apex:inputField value="{!mat.instance.Name}" style="width:360px;" rendered="{!NOT(mat.isExistingRecord)}">
+                                                                                </apex:inputField>   
+                                                                                <apex:outputField value="{!mat.instance.Name}" rendered="{!mat.isExistingRecord}"/>
+                                                                            </apex:column>
+                                                                            <apex:column headerValue="Material Number" >
+                                                                                <apex:outputField value="{!mat.instance.Material_Number__c}" />
+                                                                            </apex:column>
+                                                                            <apex:column headerValue="MPM" rendered="{!showMPM}"> 
+                                                                                <apex:inputField value="{!mat.instance.MPM_Issue__c}" style="width:100px;" rendered="{!NOT(mat.isExistingRecord)}">
+                                                                                </apex:inputField>   
+                                                                                <apex:outputField value="{!mat.instance.MPM_Issue__c}" rendered="{!mat.isExistingRecord}"/>
+                                                                            </apex:column>
+                                                                            <apex:column headerValue="Sales Plan Grp" rendered="{!showMPM}"> 
+                                                                                <apex:inputField value="{!mat.instance.Sales_Planning_Group__c}" style="width:70px;" rendered="{!NOT(mat.isExistingRecord)}">
+                                                                                </apex:inputField>   
+                                                                                <apex:outputField value="{!mat.instance.Sales_Planning_Group__c}" rendered="{!mat.isExistingRecord}"/>
+                                                                            </apex:column>
+                                                                            <!--<apex:column headerValue="Sub-Format" rendered="{!showMPM}"> 
+<apex:inputField value="{!mat.instance.Subformat__c}" style="width:50px;" rendered="{!NOT(mat.isExistingRecord)}">
+</apex:inputField>   
+<apex:outputField value="{!mat.instance.Subformat__c}" rendered="{!mat.isExistingRecord}"/>
+</apex:column>-->
+                                                                            <apex:column headerValue="Title/SGENNO">
+                                                                                <apex:outputField value="{!mat.instance.Title__c}" rendered="{!AND(NOT(mat.instance.Item_Type__c == 'M (Multipack)'),NOT(mat.instance.Item_Type__c == 'D (Display Vehicle)'))}"/> <!-- USST-2977 -->
+                                                                                <!--<apex:outputLabel value="{!mat.sysgenNo}" />-->
+                                                                                <apex:outputLabel value="{!mat.sysgenNo}" rendered="{!AND(NOT(mat.isExistingRecord),NOT(mat.instance.Item_Type__c == 'M (Multipack)'),NOT(mat.instance.Item_Type__c == 'D (Display Vehicle)'))}"/> <!-- USST-2977 -->
+                                                                                <apex:outputLabel value="{!mat.instance.SGENNO__c}" rendered="{!AND(mat.isExistingRecord,NOT(mat.instance.Item_Type__c == 'M (Multipack)'),NOT(mat.instance.Item_Type__c == 'D (Display Vehicle)'))}"/> <!-- USST-2977 -->
+                                                                            </apex:column> 
+                                                                            <!--<apex:column headerValue="Material Format"> 
+<apex:outputField value="{!mat.instance.Format_Description__c}"/>
+</apex:column>-->
+                                                                            <apex:column headerValue="Label Code"> 
+                                                                                <apex:inputField value="{!mat.instance.Label_Code__c}" style="width:100px;" rendered="{!NOT(mat.isExistingRecord)}" >
+                                                                                    <apex:actionSupport event="onchange" reRender="MasterContainerPanel" action="{!setSubLabelCode}" status="ajaxStatus" >
+                                                                                        <apex:param value="{!materialIndexPath3}" name="materialIndex3" assignTo="{!materialIndex}" />
+                                                                                        <apex:param value="{!3}" name="bomDepth3" assignTo="{!selectedMaterialLevel}" />
+                                                                                    </apex:actionSupport>
+                                                                                </apex:inputField>
+                                                                                <apex:outputField value="{!mat.instance.Label_Code__c}" rendered="{!mat.isExistingRecord}"/>
+                                                                            </apex:column>
+                                                                            <apex:column headerValue="Sub-Label Code">
+                                                                                <apex:inputField value="{!mat.instance.Sub_Label_Code_Lookup__c}" style="width:100px;" rendered="{!NOT(mat.isExistingRecord)}" >
+                                                                                    <apex:actionSupport event="onchange" reRender="MasterContainerPanel"/>
+                                                                                </apex:inputField>
+                                                                                <apex:outputField value="{!mat.instance.Sub_Label_Code_Lookup__c}" rendered="{!mat.isExistingRecord}"/>
+                                                                            </apex:column>
+                                                                            <apex:column headerValue="Territory"> 
+                                                                                <apex:outputField value="{!mat.instance.Territory__c}" />
+                                                                            </apex:column>
+                                                                        </apex:pageBlockTable>
+                                                                    </apex:outputpanel>
+                                                                </apex:outputPanel>
+                                                            </apex:outputPanel>
+                                                            
+                                                            <apex:outputpanel id="inlinetablesec2" rendered="{!NOT(material3.isCollapsed)}"  layout="block" styleClass="nbcu_rw_table_child clearfix">
+                                                                <!-- Level 3: Components -->
+                                                                <apex:outputPanel rendered="{!material3.childComponents.size > 0}">
+                                                                    <apex:outputPanel >
+                                                                        <apex:pageBlockTable value="{!material3.childComponents}" var="comp">
+                                                                            <apex:column headerValue="Material Description">
+                                                                                <apex:inputField value="{!comp.instance.Name}" style="width:360px;" rendered="{!NOT(comp.isExistingRecord)}"/>
+                                                                                <apex:outputField value="{!comp.instance.Name}" rendered="{!comp.isExistingRecord}"/>
+                                                                            </apex:column>
+                                                                            <apex:column headerValue="Material Number" >
+                                                                                <apex:outputField value="{!comp.instance.Material_Number__c}"/>
+                                                                            </apex:column>
+                                                                            <apex:column headerValue="MPM" rendered="{!showMPM}">
+                                                                                <apex:inputField value="{!comp.instance.MPM_Issue__c}" style="width:100px;" rendered="{!NOT(comp.isExistingRecord)}"/>
+                                                                                <apex:outputField value="{!comp.instance.MPM_Issue__c}" rendered="{!comp.isExistingRecord}"/>
+                                                                            </apex:column>
+                                                                            <!--<apex:column headerValue="Sales Plan Grp" rendered="{!showMPM}"> 
+<apex:inputField value="{!comp.instance.Sales_Planning_Group__c}" style="width:70px;" rendered="{!NOT(comp.isExistingRecord)}">
+</apex:inputField>   
+<apex:outputField value="{!comp.instance.Sales_Planning_Group__c}" rendered="{!comp.isExistingRecord}"/>
+</apex:column>-->
+                                                                            <!--<apex:column headerValue="Sub-Format" rendered="{!showMPM}"> 
+<apex:inputField value="{!comp.instance.Subformat__c}" style="width:50px;" rendered="{!NOT(comp.isExistingRecord)}">
+</apex:inputField>   
+<apex:outputField value="{!comp.instance.Subformat__c}" rendered="{!comp.isExistingRecord}"/>
+</apex:column>-->
+                                                                            <apex:column headerValue="Component Type">
+                                                                                <apex:outputField value="{!comp.instance.Component_Type__c}"/>
+                                                                            </apex:column>
+                                                                            
+                                                                            <apex:column headerValue="Label Code"> 
+                                                                                <!--<apex:inputField value="{!comp.instance.Label_Code__c}" style="width:auto;" rendered="{!NOT(comp.isExistingRecord)}" />
+<apex:outputField value="{!comp.instance.Label_Code__c}" rendered="{!comp.isExistingRecord}"/>-->
+                                                                                <apex:outputField value="{!comp.instance.Label_Code__c}" />
+                                                                            </apex:column>
+                                                                            <apex:column headerValue="Territory"> 
+                                                                                <apex:outputField value="{!comp.instance.Territory__c}"/>
+                                                                            </apex:column>
+                                                                            <apex:column headerValue="Link">                                        
+                                                                                <apex:inputField value="{!comp.instance.Association_Required__c}"/>
+                                                                            </apex:column>
+                                                                        </apex:pageBlockTable>
+                                                                    </apex:outputPanel>
+                                                                </apex:outputPanel>
+                                                                
+                                                                <!-- Level 4 -->
+                                                                <apex:outputPanel id="panel4thLevel">
+                                                                    <apex:variable var="l4Index" value="{!0}" />
+                                                                    <apex:repeat value="{!material3.childIns.Data}" var="material4" id="repeatLevel4">
+                                                                        <!-- Level 4: FERTs -->
+                                                                        <apex:variable var="materialIndexPath4" value="{!TEXT(l1Index) + ';' + TEXT(l2Index) + ';' + TEXT(l3Index) + ';' + TEXT(l4Index)}"/>
+                                                                        <apex:outputPanel layout="block" >
+                                                                            <apex:outputPanel layout="block" styleClass="nbcu_rw_table_parent clearfix" >
+                                                                                <!-- FERT Details -->
+                                                                                <apex:outputPanel styleclass="nbcu_tableset">
+                                                                                    
+                                                                                    <apex:outputpanel id="plusimage4" style="display:{!if(material4.isCollapsed,"block","none")};" styleclass="nbcu_exapnd_collapse">
+                                                                                        <apex:image url="{!$Resource.Chevron_Right_Yellow}" >
+                                                                                            <apex:actionSupport event="onclick" reRender="MasterContainer" action="{!sectionCollapseExpand}" status="ajaxStatus" oncomplete="clickNbcuButtonSet();">
+                                                                                                <apex:param value="{!materialIndexPath4}" name="materialIndex4" assignTo="{!materialIndex}" />
+                                                                                                <apex:param value="{!4}" name="bomDepth4" assignTo="{!selectedMaterialLevel}" />
+                                                                                            </apex:actionSupport>
+                                                                                        </apex:image>
+                                                                                    </apex:outputpanel>
+                                                                                    <apex:outputpanel id="minusimage4" style="display:{!if(material4.isCollapsed,"none","block")};" styleclass="nbcu_exapnd_collapse">
+                                                                                        <apex:image url="{!$Resource.Chevron_Down_Yellow}">
+                                                                                            <apex:actionSupport event="onclick" reRender="MasterContainer" action="{!sectionCollapseExpand}" status="ajaxStatus" oncomplete="clickNbcuButtonSet();">
+                                                                                                <apex:param value="{!materialIndexPath4}" name="materialIndex4" assignTo="{!materialIndex}" />
+                                                                                                <apex:param value="{!4}" name="bomDepth4" assignTo="{!selectedMaterialLevel}" />
+                                                                                            </apex:actionSupport>
+                                                                                        </apex:image>
+                                                                                    </apex:outputpanel>
+                                                                                    
+                                                                                    <apex:outputpanel styleClass="nbcu_table_rw">
+                                                                                        <apex:pageBlockTable value="{!material4}" var="mat">
+                                                                                            <apex:column headerValue="Material Description" style="width:365px;"> 
+                                                                                                <apex:inputField value="{!mat.instance.Name}" style="width:360px;" rendered="{!NOT(mat.isExistingRecord)}">
+                                                                                                </apex:inputField>   
+                                                                                                <apex:outputField value="{!mat.instance.Name}" rendered="{!mat.isExistingRecord}"/>
+                                                                                            </apex:column>
+                                                                                            <apex:column headerValue="Material Number" >
+                                                                                                <apex:outputField value="{!mat.instance.Material_Number__c}" />
+                                                                                            </apex:column>
+                                                                                            <apex:column headerValue="MPM" rendered="{!showMPM}"> 
+                                                                                                <apex:inputField value="{!mat.instance.MPM_Issue__c}" style="width:100px;" rendered="{!NOT(mat.isExistingRecord)}">
+                                                                                                </apex:inputField>   
+                                                                                                <apex:outputField value="{!mat.instance.MPM_Issue__c}" rendered="{!mat.isExistingRecord}"/>
+                                                                                            </apex:column>
+                                                                                            <apex:column headerValue="Sales Plan Grp" rendered="{!showMPM}"> 
+                                                                                                <apex:inputField value="{!mat.instance.Sales_Planning_Group__c}" style="width:70px;" rendered="{!NOT(mat.isExistingRecord)}">
+                                                                                                </apex:inputField>   
+                                                                                                <apex:outputField value="{!mat.instance.Sales_Planning_Group__c}" rendered="{!mat.isExistingRecord}"/>
+                                                                                            </apex:column>
+                                                                                            <!--<apex:column headerValue="Sub-Format" rendered="{!showMPM}"> 
+<apex:inputField value="{!mat.instance.Subformat__c}" style="width:50px;" rendered="{!NOT(mat.isExistingRecord)}">
+</apex:inputField>   
+<apex:outputField value="{!mat.instance.Subformat__c}" rendered="{!mat.isExistingRecord}"/>
+</apex:column>-->
+                                                                                            <apex:column headerValue="Title/SGENNO">
+                                                                                                <apex:outputField value="{!mat.instance.Title__c}" rendered="{!AND(NOT(mat.instance.Item_Type__c == 'M (Multipack)'),NOT(mat.instance.Item_Type__c == 'D (Display Vehicle)'))}"/> <!-- USST-2977 -->
+                                                                                                <!--<apex:outputLabel value="{!mat.sysgenNo}" />-->
+                                                                                                <apex:outputLabel value="{!mat.sysgenNo}" rendered="{!AND(NOT(mat.isExistingRecord),NOT(mat.instance.Item_Type__c == 'M (Multipack)'),NOT(mat.instance.Item_Type__c == 'D (Display Vehicle)'))}"/> <!-- USST-2977 -->
+                                                                                                <apex:outputLabel value="{!mat.instance.SGENNO__c}" rendered="{!AND(mat.isExistingRecord,NOT(mat.instance.Item_Type__c == 'M (Multipack)'),NOT(mat.instance.Item_Type__c == 'D (Display Vehicle)'))}"/> <!-- USST-2977 -->
+                                                                                            </apex:column> 
+                                                                                            <!--<apex:column headerValue="Material Format"> 
+<apex:outputField value="{!mat.instance.Format_Description__c}"/>
+</apex:column>-->
+                                                                                            <apex:column headerValue="Label Code"> 
+                                                                                                <apex:inputField value="{!mat.instance.Label_Code__c}" style="width:100px;" rendered="{!NOT(mat.isExistingRecord)}" >
+                                                                                                    <apex:actionSupport event="onchange" reRender="MasterContainerPanel" action="{!setSubLabelCode}" status="ajaxStatus" >
+                                                                                                        <apex:param value="{!materialIndexPath4}" name="materialIndex4" assignTo="{!materialIndex}" />
+                                                                                                        <apex:param value="{!4}" name="bomDepth4" assignTo="{!selectedMaterialLevel}" />
+                                                                                                    </apex:actionSupport>
+                                                                                                </apex:inputField>
+                                                                                                <apex:outputField value="{!mat.instance.Label_Code__c}" rendered="{!mat.isExistingRecord}"/>
+                                                                                            </apex:column>
+                                                                                            <apex:column headerValue="Sub-Label Code">
+                                                                                                <apex:inputField value="{!mat.instance.Sub_Label_Code_Lookup__c}" style="width:100px;" rendered="{!NOT(mat.isExistingRecord)}">
+                                                                                                    <apex:actionSupport event="onchange" reRender="MasterContainerPanel"/>
+                                                                                                </apex:inputField>
+                                                                                                <apex:outputField value="{!mat.instance.Sub_Label_Code_Lookup__c}" rendered="{!mat.isExistingRecord}"/>
+                                                                                            </apex:column>
+                                                                                            <apex:column headerValue="Territory"> 
+                                                                                                <apex:outputField value="{!mat.instance.Territory__c}" />
+                                                                                            </apex:column>
+                                                                                        </apex:pageBlockTable>
+                                                                                    </apex:outputpanel>
+                                                                                </apex:outputPanel>
+                                                                            </apex:outputPanel>
+                                                                            
+                                                                            <!-- Level 4: Components -->
+                                                                            <apex:outputpanel id="inlinetablesec3" rendered="{!NOT(material4.isCollapsed)}" layout="block" styleClass="nbcu_rw_table_child clearfix">
+                                                                                <apex:outputPanel rendered="{!material4.childComponents.size > 0}">                                                
+                                                                                    <apex:outputPanel >
+                                                                                        <apex:pageBlockTable value="{!material4.childComponents}" var="comp">
+                                                                                            <apex:column headerValue="Material Description">
+                                                                                                <apex:inputField value="{!comp.instance.Name}" style="width:360px;" rendered="{!NOT(comp.isExistingRecord)}"/>
+                                                                                                <apex:outputField value="{!comp.instance.Name}" rendered="{!comp.isExistingRecord}"/>
+                                                                                            </apex:column>
+                                                                                            <apex:column headerValue="Material Number" >
+                                                                                                <apex:outputField value="{!comp.instance.Material_Number__c}"/>
+                                                                                            </apex:column>
+                                                                                            <apex:column headerValue="MPM" rendered="{!showMPM}">
+                                                                                                <apex:inputField value="{!comp.instance.MPM_Issue__c}" style="width:100px;" rendered="{!NOT(comp.isExistingRecord)}"/>
+                                                                                                <apex:outputField value="{!comp.instance.MPM_Issue__c}" rendered="{!comp.isExistingRecord}"/>
+                                                                                            </apex:column>
+                                                                                            <!--<apex:column headerValue="Sales Plan Grp" rendered="{!showMPM}"> 
+<apex:inputField value="{!comp.instance.Sales_Planning_Group__c}" style="width:70px;" rendered="{!NOT(comp.isExistingRecord)}">
+</apex:inputField>   
+<apex:outputField value="{!comp.instance.Sales_Planning_Group__c}" rendered="{!comp.isExistingRecord}"/>
+</apex:column>-->
+                                                                                            <!--<apex:column headerValue="Sub-Format" rendered="{!showMPM}"> 
+<apex:inputField value="{!comp.instance.Subformat__c}" style="width:50px;" rendered="{!NOT(comp.isExistingRecord)}">
+</apex:inputField>   
+<apex:outputField value="{!comp.instance.Subformat__c}" rendered="{!comp.isExistingRecord}"/>
+</apex:column>-->
+                                                                                            <apex:column headerValue="Component Type">
+                                                                                                <apex:outputField value="{!comp.instance.Component_Type__c}"/>
+                                                                                            </apex:column>
+                                                                                            
+                                                                                            <apex:column headerValue="Label Code"> 
+                                                                                                <!--<apex:inputField value="{!comp.instance.Label_Code__c}" style="width:auto;" rendered="{!NOT(comp.isExistingRecord)}" />
+<apex:outputField value="{!comp.instance.Label_Code__c}" rendered="{!comp.isExistingRecord}"/>-->
+                                                                                                <apex:outputField value="{!comp.instance.Label_Code__c}" />
+                                                                                            </apex:column>
+                                                                                            <apex:column headerValue="Territory"> 
+                                                                                                <apex:outputField value="{!comp.instance.Territory__c}"/>
+                                                                                            </apex:column>
+                                                                                            <apex:column headerValue="Link">                                        
+                                                                                                <apex:inputField value="{!comp.instance.Association_Required__c}"/>
+                                                                                            </apex:column>
+                                                                                        </apex:pageBlockTable>
+                                                                                    </apex:outputPanel>
+                                                                                </apex:outputPanel>
+                                                                                
+                                                                                
+                                                                            </apex:outputpanel>
+                                                                            <apex:variable var="l4Index" value="{!(l4Index + 1)}" />
+                                                                        </apex:outputpanel>
+                                                                    </apex:repeat>
+                                                                    <!--Pagination for level 4-->
+                                                                    <apex:outputPanel layout="block" id="opBtn4" rendered="{!IF(material3.childIns.numberOfPages > 1, TRUE,FALSE)}" style="height:16px;background-color:#E09100;padding: 5px 10px 0px 10px;margin-top:2px;">
+                                                                        <div style="color:white;float:left;width:45%;">
+                                                                            <span><b>Page #: {!material3.childIns.currentPageNumber} of {!material3.childIns.numberOfPages} &nbsp; &nbsp;  Record Count: {!material3.childIns.numberOfRecords}</b></span>
+                                                                        </div>            
+                                                                        <div style="float:left;margin-top: -4px;">
+                                                                            <apex:panelGrid columns="4" id="pnlGrid">
+                                                                                <apex:commandLink action="{!material3.childIns.firstPage}" rendered="{!material3.childIns.DisablePrevious}" reRender="panel4thLevel, panel3rdLevel, panel2ndLevel, panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">First</apex:commandlink>
+                                                                                <apex:outputText value="First" rendered="{!NOT(material3.childIns.DisablePrevious)}" style="color:white"></apex:outputText>
+                                                                                
+                                                                                <apex:commandLink action="{!material3.childIns.previousPage}" rendered="{!material3.childIns.DisablePrevious}" reRender="panel4thLevel, panel3rdLevel, panel2ndLevel, panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">Previous</apex:commandlink>
+                                                                                <apex:outputText value="Previous" rendered="{!NOT(material3.childIns.DisablePrevious)}" style="color:white"></apex:outputText>
+                                                                                
+                                                                                <apex:commandLink action="{!material3.childIns.nextPage}" rendered="{!material3.childIns.DisableNext}" reRender="panel4thLevel, panel3rdLevel, panel2ndLevel, panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">Next</apex:commandlink>
+                                                                                <apex:outputText value="Next" rendered="{!NOT(material3.childIns.DisableNext)}" style="color:white"></apex:outputText>
+                                                                                
+                                                                                <apex:commandLink action="{!material3.childIns.lastPage}" rendered="{!material3.childIns.DisableNext}" reRender="panel4thLevel, panel3rdLevel, panel2ndLevel, panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">Last</apex:commandlink>
+                                                                                <apex:outputText value="Last" rendered="{!NOT(material3.childIns.DisableNext)}" style="color:white"></apex:outputText>
+                                                                            </apex:panelGrid>            
+                                                                        </div>
+                                                                    </apex:outputPanel>
+                                                                </apex:outputPanel>
+                                                                <!--Pagination for level 4 ends-->
+                                                                
+                                                            </apex:outputpanel>
+                                                            <apex:variable var="l3Index" value="{!(l3Index + 1)}" />
+                                                        </apex:outputpanel>
+                                                    </apex:repeat>
+                                                    <!--Pagination for level 3-->
+                                                    <apex:outputPanel layout="block" id="opBtn3" rendered="{!IF(material2.childIns.numberOfPages > 1, TRUE,FALSE)}" style="height:16px;background-color:#7581BA;padding: 5px 10px 0px 10px;margin-top:2px;margin-bottom:7px;">
+                                                        <div style="color:white;float:left;width:45%;">
+                                                            <span ><b>Page #: {!material2.childIns.currentPageNumber} of {!material2.childIns.numberOfPages} &nbsp; &nbsp;  Record Count: {!material2.childIns.numberOfRecords}</b></span>
+                                                        </div>            
+                                                        <div style="float:left;margin-top: -4px;">
+                                                            <apex:panelGrid columns="4" id="pnlGrid">                                                    
+                                                                <apex:commandLink action="{!material2.childIns.firstPage}" rendered="{!material2.childIns.DisablePrevious}" reRender="panel3rdLevel, panel2ndLevel, panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">First</apex:commandlink>
+                                                                <apex:outputText value="First" rendered="{!NOT(material2.childIns.DisablePrevious)}" style="color:white"></apex:outputText>
+                                                                
+                                                                <apex:commandLink action="{!material2.childIns.previousPage}" rendered="{!material2.childIns.DisablePrevious}" reRender="panel3rdLevel, panel2ndLevel, panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">Previous</apex:commandlink>
+                                                                <apex:outputText value="Previous" rendered="{!NOT(material2.childIns.DisablePrevious)}" style="color:white"></apex:outputText>
+                                                                
+                                                                <apex:commandLink action="{!material2.childIns.nextPage}" rendered="{!material2.childIns.DisableNext}" reRender="panel3rdLevel, panel2ndLevel, panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">Next</apex:commandlink>
+                                                                <apex:outputText value="Next" rendered="{!NOT(material2.childIns.DisableNext)}" style="color:white"></apex:outputText>
+                                                                
+                                                                <apex:commandLink action="{!material2.childIns.lastPage}" rendered="{!material2.childIns.DisableNext}" reRender="panel3rdLevel, panel2ndLevel, panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">Last</apex:commandlink>
+                                                                <apex:outputText value="Last" rendered="{!NOT(material2.childIns.DisableNext)}" style="color:white"></apex:outputText>
+                                                            </apex:panelGrid>            
+                                                        </div>
+                                                    </apex:outputPanel> 
+                                                </apex:outputPanel>
+                                                <!--Pagination for level 3 ends-->
+                                                
+                                            </apex:outputPanel>
+                                            <apex:variable var="l2Index" value="{!(l2Index + 1)}" />
+                                        </apex:outputpanel>
+                                    </apex:repeat>
+                                    <!--Pagination for level 2-->
+                                    <apex:outputPanel layout="block" id="opBtn2" rendered="{!IF(material.childIns.numberOfPages > 1, TRUE,FALSE)}" style="height:16px;background-color:#9BB063;padding: 5px 10px 0px 10px;margin-top:2px;">
+                                        <div style="color:white;float:left;width:45%;">
+                                            <span ><b>Page #: {!material.childIns.currentPageNumber} of {!material.childIns.numberOfPages} &nbsp; &nbsp;  Record Count: {!material.childIns.numberOfRecords}</b></span>
+                                        </div>            
+                                        <div style="float:left;margin-top: -4px;">
+                                            <apex:panelGrid columns="4" id="pnlGrid">
+                                                <apex:commandLink action="{!material.childIns.firstPage}" rendered="{!material.childIns.DisablePrevious}" reRender="panel2ndLevel, panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">First</apex:commandlink>
+                                                <apex:outputText value="First" rendered="{!NOT(material.childIns.DisablePrevious)}" style="color:white;"></apex:outputText>
+                                                
+                                                <apex:commandLink action="{!material.childIns.previousPage}" rendered="{!material.childIns.DisablePrevious}" reRender="panel2ndLevel, panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">Previous</apex:commandlink>
+                                                <apex:outputText value="Previous" rendered="{!NOT(material.childIns.DisablePrevious)}" style="color:white;"></apex:outputText>
+                                                
+                                                <apex:commandLink action="{!material.childIns.nextPage}" rendered="{!material.childIns.DisableNext}" reRender="panel2ndLevel, panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">Next</apex:commandlink>
+                                                <apex:outputText value="Next" rendered="{!NOT(material.childIns.DisableNext)}" style="color:white;"></apex:outputText>
+                                                
+                                                <apex:commandLink action="{!material.childIns.lastPage}" rendered="{!material.childIns.DisableNext}" reRender="panel2ndLevel, panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">Last</apex:commandlink>
+                                                <apex:outputText value="Last" rendered="{!NOT(material.childIns.DisableNext)}" style="color:white;"></apex:outputText>
+                                            </apex:panelGrid>            
+                                        </div>
+                                    </apex:outputPanel> 
+                                </apex:outputPanel>
+                                <!--Pagination for level 2 ends-->
+                                
+                            </apex:outputPanel>
+                            <apex:variable var="l1Index" value="{!(l1Index + 1)}" />
+                        </apex:outputpanel>
+                    </apex:repeat>
+                    <!--Pagination for level 1-->
+                    <apex:outputPanel layout="block" id="opBtn1" rendered="{!IF(rootIns.numberOfPages > 1, TRUE,FALSE)}" style="height:16px;background-color:#E38D84;padding: 5px 10px 0px 10px;margin-top:2px;">
+                        <div style="color:white;float:left;width:45%;">
+                            <span><b>Page #: {!rootIns.currentPageNumber} of {!rootIns.numberOfPages} &nbsp;&nbsp;  Record Count: {!rootIns.numberofRecords}</b></span>
+                        </div>            
+                        <div style="float:left;margin-top: -4px;">
+                            <apex:panelGrid columns="4" id="pnlGrid">
+                                <!--<apex:selectList value="{!rootIns.currentPageNumber}" size="1" title="Select Page">
+<apex:selectOptions value="{!rootIns.PageList}"></apex:selectOptions>
+<apex:actionSupport event="onchange" action="{!rootIns.updatePaginationCounter}" reRender="MasterContainerPanel" status="ajaxStatus"/>
+</apex:selectList>-->
+                                
+                                <apex:commandLink action="{!rootIns.firstPage}" rendered="{!rootIns.DisablePrevious}" reRender="panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">First</apex:commandlink>
+                                <apex:outputText value="First" rendered="{!NOT(rootIns.DisablePrevious)}" style="color:white;"></apex:outputText>
+                                
+                                <apex:commandLink action="{!rootIns.previousPage}" rendered="{!rootIns.DisablePrevious}" reRender="panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">Previous</apex:commandlink>
+                                <apex:outputText value="Previous" rendered="{!NOT(rootIns.DisablePrevious)}" style="color:white;"></apex:outputText>
+                                
+                                <apex:commandLink action="{!rootIns.nextPage}" rendered="{!rootIns.DisableNext}" reRender="panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">Next</apex:commandlink>
+                                <apex:outputText value="Next" rendered="{!NOT(rootIns.DisableNext)}" style="color:white;"></apex:outputText>
+                                
+                                <apex:commandLink action="{!rootIns.lastPage}" rendered="{!rootIns.DisableNext}" reRender="panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">Last</apex:commandlink>
+                                <apex:outputText value="Last" rendered="{!NOT(rootIns.DisableNext)}" style="color:white;"></apex:outputText>
+                            </apex:panelGrid>            
+                        </div>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+                <!--Pagination for level 1 ends-->
+                
+            </apex:pageBlock>
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>

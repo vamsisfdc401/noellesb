@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>Orders__c</entityName>
+    <fieldName>Status__c</fieldName>
+    <masterLabel>Promo Order Approval Path</masterLabel>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;The Promo Order has been approved and will be Submitted to SAP shortly&lt;/p&gt;</info>
+        <picklistValueName>Approved</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>__MASTER__</recordTypeName>
+</PathAssistant>

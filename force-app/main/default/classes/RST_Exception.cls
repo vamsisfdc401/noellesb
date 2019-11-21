@@ -1,0 +1,1 @@
+public  class RST_Exception extends Exception {}

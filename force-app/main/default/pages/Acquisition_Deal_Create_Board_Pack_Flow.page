@@ -1,0 +1,9 @@
+<apex:page standardController="Acquisition_Deal__c" >
+<!-- Add custom css style if you have one
+    <apex:stylesheet value="{!URLFOR($Resource.StylesSfOne,'styles.css')}" />
+-->  
+<!-- uncomment below when you have the flow ready  -->  
+    <flow:interview name="Acquisition_Deal_Create_New_Boardpack" finishLocation="/{!Acquisition_Deal__c.Id}" >
+        <apex:param name="inputAcquisitionDeal" value="{!Acquisition_Deal__c}"/>
+    </flow:interview>
+</apex:page>

@@ -1,0 +1,50 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <aura:attribute name="loadModal" type="Boolean" default="false"/>
+    <aura:attribute name="currentStep" type="Integer" default="1"/>
+    <aura:attribute name="LMSId" type="String" access="global"/>
+    <aura:attribute name="loadWithoutBtnClick" type="Boolean" default="false" access="global"/>
+    
+    <aura:registerEvent name="appEvent" type="c:LMSProduct_IPSave"/>
+    <aura:handler event="c:LMSProduct_IPSave" action="{!c.handleEvent}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> 
+    
+    <lightning:card title="Actions">
+    	<center>
+        	<lightning:button variant="brand" label="Associate Products/IPs" onclick="{! c.openmodal }"/>
+        </center>
+    </lightning:card>
+    
+    <aura:if isTrue="{!v.loadModal}">
+        <div role="dialog" tabindex="-1" aria-labelledby="header43" aura:id="Modalbox" class="slds-modal">
+            <div class="slds-modal__container1">
+                <lightning:spinner aura:id="mySpinner" variant="brand" size="large"/>
+                <div class="slds-modal__header">
+                    <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close" onclick="{!c.closeModal}">
+                        <lightning:button label="X"/>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="header43" class="slds-text-heading--medium">Associate Products/IPs</h2>
+                </div>
+                <div class="slds-modal__content slds-p-around--medium">
+                    <div>
+                        <c:GBSProduct_IPSelectionComponent LMSId="{!v.recordId}"/>
+                    </div>
+                </div>
+                <div class="slds-modal__footer">
+                    <aura:if isTrue="{!v.currentStep == 1}">
+                    	<lightning:button variant="brand" label="Save &amp; Exit" onclick="{! c.saveProducts }"/>
+                        <lightning:button variant="brand" label="Next" onclick="{! c.goToStep2 }"/> 
+                        <lightning:button variant="brand" label="Cancel" onclick="{! c.closeModal }"/>
+                    </aura:if>
+                    <aura:if isTrue="{!v.currentStep == 2}">
+                    	<lightning:button variant="brand" label="Back" onclick="{! c.goToStep1 }"/>
+                        <lightning:button variant="brand" label="Save" onclick="{! c.saveIPs }"/> 
+                        <lightning:button variant="brand" label="Cancel" onclick="{! c.closeModal }"/>
+                    </aura:if>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slds-backdrop " aura:id="Modalbackdrop"></div>
+    </aura:if>
+</aura:component>

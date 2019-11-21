@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>DGF_Update_End_Date</fullName>
+        <description>DFOR-53</description>
+        <field>End_Date__c</field>
+        <formula>IF(ISBLANK(End_Date__c), Promotion__r.End_Date__c ,End_Date__c)</formula>
+        <name>DGF Update End Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>DGF_Update_Start_Date</fullName>
+        <description>DFOR-53</description>
+        <field>Start_Date__c</field>
+        <formula>IF( ISBLANK(Start_Date__c), Promotion__r.Start_Date__c ,Start_Date__c)</formula>
+        <name>DGF Update Start Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>DGF Popuate Promotion Account Dates</fullName>
+        <actions>
+            <name>DGF_Update_End_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>DGF_Update_Start_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>DFOR-53</description>
+        <formula>Promotion__c !=NULL &amp;&amp; ( ISBLANK(Start_Date__c) || ISBLANK(End_Date__c) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

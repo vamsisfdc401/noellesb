@@ -1,0 +1,14 @@
+<aura:component implements="flexipage:availableForAllPageTypes" controller="TSA_AppSettingController" extends="c:Base">
+    <aura:attribute name="appInactiveMsg" type="String" default=""/>
+    <aura:handler name="init" value="this" action="{!c.doInit}"/>
+
+	<aura:if isTrue="{!v.appInactiveMsg != ''}">
+	<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_offline" role="alert">
+  		<span class="slds-assistive-text">WARNING</span>
+         <span class="slds-icon_container slds-icon-utility-offline slds-m-right_large" title="Description of icon when needed">
+           <lightning:icon iconName="utility:error" alternativeText="Error!" variant="error"/>
+        </span>       
+        <h2 class="slds-text-title_bold">{!v.appInactiveMsg}. Submission to SAP is not available at this time.  Please try again later.</h2>
+	</div>
+</aura:if>    
+</aura:component>

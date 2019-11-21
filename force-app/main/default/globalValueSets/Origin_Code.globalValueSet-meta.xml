@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>010 - Universal Pictures</fullName>
+        <default>false</default>
+        <label>010 - Universal Pictures</label>
+    </customValue>
+    <customValue>
+        <fullName>011 - Universal UIP (BV International) Acquisitions</fullName>
+        <default>false</default>
+        <label>011 - Universal UIP (BV International) Acquisitions</label>
+    </customValue>
+    <customValue>
+        <fullName>012 - Do Not Use - Old UPI</fullName>
+        <default>false</default>
+        <label>012 - Do Not Use - Old UPI</label>
+    </customValue>
+    <customValue>
+        <fullName>013 - Do Not Use - UPIE Local Video</fullName>
+        <default>false</default>
+        <label>013 - Do Not Use - UPIE Local Video</label>
+    </customValue>
+    <customValue>
+        <fullName>014 - UHEP</fullName>
+        <default>false</default>
+        <label>014 - UHEP</label>
+    </customValue>
+    <customValue>
+        <fullName>019 - UPIE CEFTA UPVP Owned Titles</fullName>
+        <default>false</default>
+        <label>019 - UPIE CEFTA UPVP Owned Titles</label>
+    </customValue>
+    <customValue>
+        <fullName>020 - UPI Central Acquisitions</fullName>
+        <default>false</default>
+        <label>020 - UPI Central Acquisitions</label>
+    </customValue>
+    <customValue>
+        <fullName>022 - DreamWorks</fullName>
+        <default>false</default>
+        <label>022 - DreamWorks</label>
+    </customValue>
+    <customValue>
+        <fullName>023 - LionsGate</fullName>
+        <default>false</default>
+        <label>023 - LionsGate</label>
+    </customValue>
+    <customValue>
+        <fullName>024 - Flixmix</fullName>
+        <default>false</default>
+        <label>024 - Flixmix</label>
+    </customValue>
+    <customValue>
+        <fullName>025 - Focus Features</fullName>
+        <default>false</default>
+        <label>025 - Focus Features</label>
+    </customValue>
+    <customValue>
+        <fullName>026 - Working Title Films</fullName>
+        <default>false</default>
+        <label>026 - Working Title Films</label>
+    </customValue>
+    <customValue>
+        <fullName>027 - Direct To Video</fullName>
+        <default>false</default>
+        <label>027 - Direct To Video</label>
+    </customValue>
+    <customValue>
+        <fullName>031 - Working Title Television</fullName>
+        <default>false</default>
+        <label>031 - Working Title Television</label>
+    </customValue>
+    <customValue>
+        <fullName>033 - StudioCanal (TV)</fullName>
+        <default>false</default>
+        <label>033 - StudioCanal (TV)</label>
+    </customValue>
+    <customValue>
+        <fullName>036 - Screen Media</fullName>
+        <default>false</default>
+        <label>036 - Screen Media</label>
+    </customValue>
+    <customValue>
+        <fullName>037 - Senator Films</fullName>
+        <default>false</default>
+        <label>037 - Senator Films</label>
+    </customValue>
+    <customValue>
+        <fullName>038 - External Network</fullName>
+        <default>false</default>
+        <label>038 - External Network</label>
+    </customValue>
+    <customValue>
+        <fullName>039 - Made for USA</fullName>
+        <default>false</default>
+        <label>039 - Made for USA</label>
+    </customValue>
+    <customValue>
+        <fullName>041 - First Run</fullName>
+        <default>false</default>
+        <label>041 - First Run</label>
+    </customValue>
+    <customValue>
+        <fullName>042 - Acquired Library TV</fullName>
+        <default>false</default>
+        <label>042 - Acquired Library TV</label>
+    </customValue>
+    <customValue>
+        <fullName>043 - Consumer Products</fullName>
+        <default>false</default>
+        <label>043 - Consumer Products</label>
+    </customValue>
+    <customValue>
+        <fullName>044 - PolyGram Television</fullName>
+        <default>false</default>
+        <label>044 - PolyGram Television</label>
+    </customValue>
+    <customValue>
+        <fullName>045 - DIC/Mommy &amp; Me</fullName>
+        <default>false</default>
+        <label>045 - DIC/Mommy &amp; Me</label>
+    </customValue>
+    <customValue>
+        <fullName>047 - Focus Features International</fullName>
+        <default>false</default>
+        <label>047 - Focus Features International</label>
+    </customValue>
+    <customValue>
+        <fullName>048 - Third Party TV Distribution</fullName>
+        <default>false</default>
+        <label>048 - Third Party TV Distribution</label>
+    </customValue>
+    <customValue>
+        <fullName>049 - Revolution Studios</fullName>
+        <default>false</default>
+        <label>049 - Revolution Studios</label>
+    </customValue>
+    <customValue>
+        <fullName>050 - Internal Network</fullName>
+        <default>false</default>
+        <label>050 - Internal Network</label>
+    </customValue>
+    <customValue>
+        <fullName>051 - Alliance Atlantis</fullName>
+        <default>false</default>
+        <label>051 - Alliance Atlantis</label>
+    </customValue>
+    <customValue>
+        <fullName>052 - Artisan</fullName>
+        <default>false</default>
+        <label>052 - Artisan</label>
+    </customValue>
+    <customValue>
+        <fullName>053 - Odeon</fullName>
+        <default>false</default>
+        <label>053 - Odeon</label>
+    </customValue>
+    <customValue>
+        <fullName>054 - Remstar</fullName>
+        <default>false</default>
+        <label>054 - Remstar</label>
+    </customValue>
+    <customValue>
+        <fullName>056 - Nelvana</fullName>
+        <default>false</default>
+        <label>056 - Nelvana</label>
+    </customValue>
+    <customValue>
+        <fullName>057 - Miscellaneous (Canada Home Video)</fullName>
+        <default>false</default>
+        <label>057 - Miscellaneous (Canada Home Video)</label>
+    </customValue>
+    <customValue>
+        <fullName>058 - Ficel Marketing</fullName>
+        <default>false</default>
+        <label>058 - Ficel Marketing</label>
+    </customValue>
+    <customValue>
+        <fullName>059 - ThinkFilm</fullName>
+        <default>false</default>
+        <label>059 - ThinkFilm</label>
+    </customValue>
+    <customValue>
+        <fullName>060 - TIQ</fullName>
+        <default>false</default>
+        <label>060 - TIQ</label>
+    </customValue>
+    <customValue>
+        <fullName>061 - ThinkFilm - Being Julia</fullName>
+        <default>false</default>
+        <label>061 - ThinkFilm - Being Julia</label>
+    </customValue>
+    <customValue>
+        <fullName>062 - FPL-Sports</fullName>
+        <default>false</default>
+        <label>062 - FPL-Sports</label>
+    </customValue>
+    <customValue>
+        <fullName>063 - Rogue Pictures</fullName>
+        <default>false</default>
+        <label>063 - Rogue Pictures</label>
+    </customValue>
+    <customValue>
+        <fullName>066 - Morgan Creek</fullName>
+        <default>false</default>
+        <label>066 - Morgan Creek</label>
+    </customValue>
+    <customValue>
+        <fullName>067 - Pepsi-Co</fullName>
+        <default>false</default>
+        <label>067 - Pepsi-Co</label>
+    </customValue>
+    <customValue>
+        <fullName>068 - Mattel, Inc.</fullName>
+        <default>false</default>
+        <label>068 - Mattel, Inc.</label>
+    </customValue>
+    <customValue>
+        <fullName>070 - Spyglass Entertainment Int&#39;l</fullName>
+        <default>false</default>
+        <label>070 - Spyglass Entertainment Int&#39;l</label>
+    </customValue>
+    <customValue>
+        <fullName>071 - UPIT Paramount Theatrical</fullName>
+        <default>false</default>
+        <label>071 - UPIT Paramount Theatrical</label>
+    </customValue>
+    <customValue>
+        <fullName>074 - Warner</fullName>
+        <default>false</default>
+        <label>074 - Warner</label>
+    </customValue>
+    <customValue>
+        <fullName>078 - Broadway Video</fullName>
+        <default>false</default>
+        <label>078 - Broadway Video</label>
+    </customValue>
+    <customValue>
+        <fullName>079 - Great Road North</fullName>
+        <default>false</default>
+        <label>079 - Great Road North</label>
+    </customValue>
+    <customValue>
+        <fullName>080 - Made for Sci-Fi</fullName>
+        <default>false</default>
+        <label>080 - Made for Sci-Fi</label>
+    </customValue>
+    <customValue>
+        <fullName>081 - Made for Bravo</fullName>
+        <default>false</default>
+        <label>081 - Made for Bravo</label>
+    </customValue>
+    <customValue>
+        <fullName>086 - External Cable</fullName>
+        <default>false</default>
+        <label>086 - External Cable</label>
+    </customValue>
+    <customValue>
+        <fullName>087 - Made for Other</fullName>
+        <default>false</default>
+        <label>087 - Made for Other</label>
+    </customValue>
+    <customValue>
+        <fullName>089 - FPL-Bravo</fullName>
+        <default>false</default>
+        <label>089 - FPL-Bravo</label>
+    </customValue>
+    <customValue>
+        <fullName>091 - TV-Made For Digital Media</fullName>
+        <default>false</default>
+        <label>091 - TV-Made For Digital Media</label>
+    </customValue>
+    <customValue>
+        <fullName>093 - Intl Studios AR Single Territ OpCo Owned</fullName>
+        <default>false</default>
+        <label>093 - Intl Studios AR Single Territ OpCo Owned</label>
+    </customValue>
+    <customValue>
+        <fullName>094 - UPIE-CEFTA-UCSP</fullName>
+        <default>false</default>
+        <label>094 - UPIE-CEFTA-UCSP</label>
+    </customValue>
+    <customValue>
+        <fullName>095 - Sobini Films</fullName>
+        <default>false</default>
+        <label>095 - Sobini Films</label>
+    </customValue>
+    <customValue>
+        <fullName>143 - Summit Ent</fullName>
+        <default>false</default>
+        <label>143 - Summit Ent</label>
+    </customValue>
+    <customValue>
+        <fullName>145 - Spyglass Entertainment Worldwide</fullName>
+        <default>false</default>
+        <label>145 - Spyglass Entertainment Worldwide</label>
+    </customValue>
+    <customValue>
+        <fullName>146 - Equinoxe</fullName>
+        <default>false</default>
+        <label>146 - Equinoxe</label>
+    </customValue>
+    <customValue>
+        <fullName>147 - THRESHOLD</fullName>
+        <default>false</default>
+        <label>147 - THRESHOLD</label>
+    </customValue>
+    <customValue>
+        <fullName>148 - MOSTLY GHOSTLY PRODUCTIONS</fullName>
+        <default>false</default>
+        <label>148 - MOSTLY GHOSTLY PRODUCTIONS</label>
+    </customValue>
+    <customValue>
+        <fullName>149 - Relativity (Rogue)</fullName>
+        <default>false</default>
+        <label>149 - Relativity (Rogue)</label>
+    </customValue>
+    <customValue>
+        <fullName>150 - Bleeker Street</fullName>
+        <default>false</default>
+        <label>150 - Bleeker Street</label>
+    </customValue>
+    <customValue>
+        <fullName>152 - Picturehouse</fullName>
+        <default>false</default>
+        <label>152 - Picturehouse</label>
+    </customValue>
+    <customValue>
+        <fullName>153 - TVA Films</fullName>
+        <default>false</default>
+        <label>153 - TVA Films</label>
+    </customValue>
+    <customValue>
+        <fullName>154 - Laika</fullName>
+        <default>false</default>
+        <label>154 - Laika</label>
+    </customValue>
+    <customValue>
+        <fullName>155 - Kroft Entertainment Inc.</fullName>
+        <default>false</default>
+        <label>155 - Kroft Entertainment Inc.</label>
+    </customValue>
+    <customValue>
+        <fullName>156 - Pokeman USA Inc.</fullName>
+        <default>false</default>
+        <label>156 - Pokeman USA Inc.</label>
+    </customValue>
+    <customValue>
+        <fullName>159 - On Tour Productions Inc.</fullName>
+        <default>false</default>
+        <label>159 - On Tour Productions Inc.</label>
+    </customValue>
+    <customValue>
+        <fullName>160 - Cepia LLC</fullName>
+        <default>false</default>
+        <label>160 - Cepia LLC</label>
+    </customValue>
+    <customValue>
+        <fullName>163 - Open Roads Film, LLC</fullName>
+        <default>false</default>
+        <label>163 - Open Roads Film, LLC</label>
+    </customValue>
+    <customValue>
+        <fullName>167 - USHV Local Distribution Deals</fullName>
+        <default>false</default>
+        <label>167 - USHV Local Distribution Deals</label>
+    </customValue>
+    <customValue>
+        <fullName>170 - UPIP Local All Rights Multi Terr USCP</fullName>
+        <default>false</default>
+        <label>170 - UPIP Local All Rights Multi Terr USCP</label>
+    </customValue>
+    <customValue>
+        <fullName>173 - Cross Creek Production LLC</fullName>
+        <default>false</default>
+        <label>173 - Cross Creek Production LLC</label>
+    </customValue>
+    <customValue>
+        <fullName>175 - UPIE - Film Acqs UCSP</fullName>
+        <default>false</default>
+        <label>175 - UPIE - Film Acqs UCSP</label>
+    </customValue>
+    <customValue>
+        <fullName>176 - Legendary Pictures (Gross)</fullName>
+        <default>false</default>
+        <label>176 - Legendary Pictures (Gross)</label>
+    </customValue>
+    <customValue>
+        <fullName>177 - Legendary Pictures (Net)</fullName>
+        <default>false</default>
+        <label>177 - Legendary Pictures (Net)</label>
+    </customValue>
+    <customValue>
+        <fullName>179 - Hit Entertainment</fullName>
+        <default>false</default>
+        <label>179 - Hit Entertainment</label>
+    </customValue>
+    <customValue>
+        <fullName>180 - UPIE Local Distribution</fullName>
+        <default>false</default>
+        <label>180 - UPIE Local Distribution</label>
+    </customValue>
+    <customValue>
+        <fullName>194 - USHE CA-Elevation Pictures</fullName>
+        <default>false</default>
+        <label>194 - USHE CA-Elevation Pictures</label>
+    </customValue>
+    <customValue>
+        <fullName>197 - USHE Paramount Video Distr</fullName>
+        <default>false</default>
+        <label>197 - USHE Paramount Video Distr</label>
+    </customValue>
+    <customValue>
+        <fullName>198 - FUNimation Productions, Ltd.</fullName>
+        <default>false</default>
+        <label>198 - FUNimation Productions, Ltd.</label>
+    </customValue>
+    <customValue>
+        <fullName>212 - UCP GENERAL TELEVISON OTHER</fullName>
+        <default>false</default>
+        <label>212 - UCP GENERAL TELEVISON OTHER</label>
+    </customValue>
+    <customValue>
+        <fullName>216 - Universal Cable Productions - SyFy</fullName>
+        <default>false</default>
+        <label>216 - Universal Cable Productions - SyFy</label>
+    </customValue>
+    <customValue>
+        <fullName>217 - Universal Cable Production - USA</fullName>
+        <default>false</default>
+        <label>217 - Universal Cable Production - USA</label>
+    </customValue>
+    <customValue>
+        <fullName>218 - Universal Cable Productions - External</fullName>
+        <default>false</default>
+        <label>218 - Universal Cable Productions - External</label>
+    </customValue>
+    <customValue>
+        <fullName>224 - NBC SPORT-SPECIALS</fullName>
+        <default>false</default>
+        <label>224 - NBC SPORT-SPECIALS</label>
+    </customValue>
+    <customValue>
+        <fullName>232 - VERSUS - Original Programming</fullName>
+        <default>false</default>
+        <label>232 - VERSUS - Original Programming</label>
+    </customValue>
+    <customValue>
+        <fullName>274 - Focus Misc. Distribution Deals</fullName>
+        <default>false</default>
+        <label>274 - Focus Misc. Distribution Deals</label>
+    </customValue>
+    <customValue>
+        <fullName>278 - D Films Corp.</fullName>
+        <default>false</default>
+        <label>278 - D Films Corp.</label>
+    </customValue>
+    <customValue>
+        <fullName>279 - Cinedigm Entertainment Corp.</fullName>
+        <default>false</default>
+        <label>279 - Cinedigm Entertainment Corp.</label>
+    </customValue>
+    <customValue>
+        <fullName>288 - Aviron Pictures LLC</fullName>
+        <default>false</default>
+        <label>288 - Aviron Pictures LLC</label>
+    </customValue>
+    <customValue>
+        <fullName>289 - STX Financing LLC</fullName>
+        <default>false</default>
+        <label>289 - STX Financing LLC</label>
+    </customValue>
+    <customValue>
+        <fullName>290 - Dreamworks Gross (2016)</fullName>
+        <default>false</default>
+        <label>290 - Dreamworks Gross (2016)</label>
+    </customValue>
+    <customValue>
+        <fullName>294 - Broad Green Pictures</fullName>
+        <default>false</default>
+        <label>294 - Broad Green Pictures</label>
+    </customValue>
+    <customValue>
+        <fullName>296 - Kids &amp; Family Production</fullName>
+        <default>false</default>
+        <label>296 - Kids &amp; Family Production</label>
+    </customValue>
+    <customValue>
+        <fullName>386 - Pure Flix Entertainment LLC</fullName>
+        <default>false</default>
+        <label>386 - Pure Flix Entertainment LLC</label>
+    </customValue>
+    <customValue>
+        <fullName>405 - UPIE - Local Video Only Single Territory</fullName>
+        <default>false</default>
+        <label>405 - UPIE - Local Video Only Single Territory</label>
+    </customValue>
+    <customValue>
+        <fullName>422 - SCI FI - ACQUIRED FILM-EXTERNAL</fullName>
+        <default>false</default>
+        <label>422 - SCI FI - ACQUIRED FILM-EXTERNAL</label>
+    </customValue>
+    <customValue>
+        <fullName>452 - BRAVO - Original Series-External</fullName>
+        <default>false</default>
+        <label>452 - BRAVO - Original Series-External</label>
+    </customValue>
+    <customValue>
+        <fullName>489 - CHILLER - ORIGINAL MOVIE / MINIS-EXTERNAL</fullName>
+        <default>false</default>
+        <label>489 - CHILLER - ORIGINAL MOVIE / MINIS-EXTERNAL</label>
+    </customValue>
+    <customValue>
+        <fullName>503 - SCI FI - ORIGINAL SERIES-EXTERNAL</fullName>
+        <default>false</default>
+        <label>503 - SCI FI - ORIGINAL SERIES-EXTERNAL</label>
+    </customValue>
+    <customValue>
+        <fullName>505 - UPIE Local AR Single Territory OpCo Owned</fullName>
+        <default>false</default>
+        <label>505 - UPIE Local AR Single Territory OpCo Owned</label>
+    </customValue>
+    <customValue>
+        <fullName>517 - Sparrowhawk Distribution</fullName>
+        <default>false</default>
+        <label>517 - Sparrowhawk Distribution</label>
+    </customValue>
+    <customValue>
+        <fullName>614 - MSNBC - SPECIALS</fullName>
+        <default>false</default>
+        <label>614 - MSNBC - SPECIALS</label>
+    </customValue>
+    <customValue>
+        <fullName>654 - GKIDS</fullName>
+        <default>false</default>
+        <label>654 - GKIDS</label>
+    </customValue>
+    <customValue>
+        <fullName>656 - Mill Creek Entertainment LLC</fullName>
+        <default>false</default>
+        <label>656 - Mill Creek Entertainment LLC</label>
+    </customValue>
+    <customValue>
+        <fullName>657 - Moonstone Entertainment</fullName>
+        <default>false</default>
+        <label>657 - Moonstone Entertainment</label>
+    </customValue>
+    <customValue>
+        <fullName>658 - Well Go USA Entertainment</fullName>
+        <default>false</default>
+        <label>658 - Well Go USA Entertainment</label>
+    </customValue>
+    <customValue>
+        <fullName>660 - The Film Arcade</fullName>
+        <default>false</default>
+        <label>660 - The Film Arcade</label>
+    </customValue>
+    <customValue>
+        <fullName>661 - United Front Entertainment</fullName>
+        <default>false</default>
+        <label>661 - United Front Entertainment</label>
+    </customValue>
+    <customValue>
+        <fullName>712 - TLMD- Telemundo Novela Movies</fullName>
+        <default>false</default>
+        <label>712 - TLMD- Telemundo Novela Movies</label>
+    </customValue>
+    <customValue>
+        <fullName>720 - TLMD-Mun2 Orig/Internal: Variety</fullName>
+        <default>false</default>
+        <label>720 - TLMD-Mun2 Orig/Internal: Variety</label>
+    </customValue>
+    <customValue>
+        <fullName>772 - TLMD- Made for TLMD Network/Ext Studio: Novelas</fullName>
+        <default>false</default>
+        <label>772 - TLMD- Made for TLMD Network/Ext Studio: Novelas</label>
+    </customValue>
+    <customValue>
+        <fullName>775 - TLMD- Made for TLMD Network/Int Studio: Novelas</fullName>
+        <default>false</default>
+        <label>775 - TLMD- Made for TLMD Network/Int Studio: Novelas</label>
+    </customValue>
+    <customValue>
+        <fullName>781 - TLMD-Studio Development</fullName>
+        <default>false</default>
+        <label>781 - TLMD-Studio Development</label>
+    </customValue>
+    <customValue>
+        <fullName>797 - TLMD- Corp Dom Digital EST</fullName>
+        <default>false</default>
+        <label>797 - TLMD- Corp Dom Digital EST</label>
+    </customValue>
+    <customValue>
+        <fullName>800 - UPIE-Film Acqs-UPVP</fullName>
+        <default>false</default>
+        <label>800 - UPIE-Film Acqs-UPVP</label>
+    </customValue>
+    <customValue>
+        <fullName>805 - UPIE Local All Rights Single Territ UCSP</fullName>
+        <default>false</default>
+        <label>805 - UPIE Local All Rights Single Territ UCSP</label>
+    </customValue>
+    <customValue>
+        <fullName>820 - USHE NET DIST DEALS</fullName>
+        <default>false</default>
+        <label>820 - USHE NET DIST DEALS</label>
+    </customValue>
+    <customValue>
+        <fullName>840 - Reveille TVP</fullName>
+        <default>false</default>
+        <label>840 - Reveille TVP</label>
+    </customValue>
+    <customValue>
+        <fullName>841 - 1st Run Productions</fullName>
+        <default>false</default>
+        <label>841 - 1st Run Productions</label>
+    </customValue>
+    <customValue>
+        <fullName>846 - UMSI-UCSP Owned for Stat</fullName>
+        <default>false</default>
+        <label>846 - UMSI-UCSP Owned for Stat</label>
+    </customValue>
+    <customValue>
+        <fullName>852 - Carnival External Terrestrial</fullName>
+        <default>false</default>
+        <label>852 - Carnival External Terrestrial</label>
+    </customValue>
+    <customValue>
+        <fullName>855 - Matchbox Pictures</fullName>
+        <default>false</default>
+        <label>855 - Matchbox Pictures</label>
+    </customValue>
+    <customValue>
+        <fullName>857 - UMSI - WTTV Internal Terrestrial</fullName>
+        <default>false</default>
+        <label>857 - UMSI - WTTV Internal Terrestrial</label>
+    </customValue>
+    <customValue>
+        <fullName>901 - Universal Television General</fullName>
+        <default>false</default>
+        <label>901 - Universal Television General</label>
+    </customValue>
+    <customValue>
+        <fullName>902 - General Theatrical</fullName>
+        <default>false</default>
+        <label>902 - General Theatrical</label>
+    </customValue>
+    <masterLabel>Origin Code</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

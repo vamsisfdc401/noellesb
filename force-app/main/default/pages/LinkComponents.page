@@ -1,0 +1,120 @@
+<!--*****************************************************************************************
+Page Name: LinkComponents
+Purpose: For linking materials 
+******************************************************************************************
+Version         DateModified         ModifiedBy               Change
+1.0             31/08/2016           Mohit Goyal              Initial Development
+******************************************************************************************-->
+<apex:page controller="LinkComponentsController" title="Link Components">
+
+    <style>
+    .popupBackground {
+        background-color: black;
+        opacity: 0.20;
+        filter: alpha(opacity=20);
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 2;
+    }
+    </style>
+    
+    <apex:form >   
+        <apex:pageBlock mode="mainDetail">  
+        <apex:sectionHeader subtitle="Link Components" /> 
+            <apex:pagemessages ></apex:pagemessages>    
+            <apex:actionStatus id="ajaxStatus">
+                <apex:facet name="start">
+                    <div class="popupBackground" style="z-index:1001;" layout="block">&nbsp;</div>
+                    <div style="position:fixed;top:40%;left:50%;z-index:1002">
+                        <div style="padding:14px 10px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;border:1px solid #1288FF;background-color:#F5F5F5;margin-left:-100px;vertical-align:top;">
+                            <table>
+                                <tr valign="bottom">
+                                    <td><img src="/img/loading.gif" width="25" height="25" /> &nbsp;</td>
+                                    <td><span style="font-weight:bold;font-color:#1288FF;font-size:14px;">Processing...</span></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </apex:facet>
+            </apex:actionStatus>
+            <!--Release Details-->
+            <apex:outputPanel rendered="{!showReleaseSection}">
+                <apex:pageBlockSection id="pgSectionNewRelease" title="Release Information" collapsible="false" > 
+                    <apex:outputField value="{!releaseDetails.Name}"/>                
+                    <apex:outputField value="{!releaseDetails.Title__c}" />                          
+                    <apex:outputField value="{!releaseDetails.Street_Date__c}" />              
+                    <apex:outputField value="{!releaseDetails.Brand_Group__c}"/>               
+                    <apex:outputField value="{!releaseDetails.Territory__c}"/>
+                    <apex:outputField value="{!releaseDetails.Project_Type__c}" />                          
+                    <apex:outputField value="{!releaseDetails.Promotion_Name_Abbreviation__c}"/>  
+                </apex:pageBlockSection> 
+                <hr style="border-bottom:2px solid black;"/>
+            </apex:outputPanel>
+            
+            <apex:outputPanel id="opFERTDetails">
+                <apex:variable value="{!0}" var="rowNumber"/>                
+                <apex:repeat value="{!lstParentWrapper}" var="mt">                    
+                    <apex:pageBlockSection columns="2">
+                        <!--output panel for ROH-->
+                        <apex:outputPanel >
+                        <h1><U>Link From</U></h1>
+                            <apex:pageBlockTable value="{!mt}" var="m" >
+                                <apex:column headerValue="Component Description" style="width:400px;">
+                                    <apex:outputField value="{!m.matDetails.Name}"/>
+                                </apex:column> 
+                                <apex:column headerValue="Component Type">
+                                    <apex:outputField value="{!m.matDetails.Component_Type__c}"/>
+                                </apex:column>                               
+                                <!--<apex:column headerValue="Wizard Format">
+                                    <apex:outputField value="{!m.matDetails.Format_Description__c }"/>
+                                </apex:column>    -->                            
+                            </apex:pageBlockTable>
+                        </apex:outputPanel>  
+                        
+                        <!--output panel for FERTs-->
+                        <apex:outputPanel >
+                        <h1><U>Link To</U></h1>
+                            <apex:pageBlockTable value="{!mt.lstChildWrapper}" var="mat">                            
+                                <apex:column style="width:50px;">   
+                                    <apex:facet name="header"> 
+                                        <apex:inputCheckbox value="{!mt.selectALL}" title="Select ALL">           
+                                            <apex:actionSupport event="onclick" reRender="opFERTDetails" action="{!setSelection}" status="ajaxStatus"> 
+                                                <apex:param value="{!rowNumber}" name="rowNum" assignTo="{!rowNum}" />
+                                            </apex:actionSupport>           
+                                        </apex:inputCheckbox>
+                                    </apex:facet>   
+                                                                                              
+                                    <apex:inputCheckbox value="{!mat.selected}">
+                                        <apex:actionSupport event="onclick" reRender="opFERTDetails" action="{!setSelectALL}" status="ajaxStatus"> 
+                                               <apex:param value="{!rowNumber}" name="rowNum" assignTo="{!rowNum}" />
+                                         </apex:actionSupport>
+                                    </apex:inputCheckbox>
+                                </apex:column>
+                                
+                                <apex:column headerValue="Material Description" style="width:400px;">
+                                    <apex:outputField value="{!mat.matDetails.Name}"/>
+                                </apex:column>
+                                
+                                <apex:column headerValue="Wizard Format">
+                                    <apex:outputField value="{!mat.matDetails.Format_Description__c }"/>
+                                </apex:column>
+                            </apex:pageBlockTable>
+                        </apex:outputPanel>
+                    </apex:pageBlockSection>
+                    <apex:variable var="rowNumber" value="{!rowNumber+ 1}" />
+                </apex:repeat> 
+                
+                <div align="center">
+                    <apex:commandLink target="_blank" value="Request Wizard" styleClass="btn" style="text-decoration:none;padding:4px;" action="{!openRequestWizard}"/>
+                    <apex:commandButton value="Create" action="{!submit}" />
+                    <apex:commandButton value="Cancel" action="{!cancel}" />
+                </div>
+            </apex:outputPanel>
+            
+        </apex:pageBlock>        
+    </apex:form> 
+   
+</apex:page>

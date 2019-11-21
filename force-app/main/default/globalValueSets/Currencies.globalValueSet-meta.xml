@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>US Dollar</fullName>
+        <default>false</default>
+        <label>US Dollar</label>
+    </customValue>
+    <customValue>
+        <fullName>GB Pound</fullName>
+        <default>false</default>
+        <label>GB Pound</label>
+    </customValue>
+    <customValue>
+        <fullName>EU Euro</fullName>
+        <default>false</default>
+        <label>EU Euro</label>
+    </customValue>
+    <masterLabel>Currencies</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

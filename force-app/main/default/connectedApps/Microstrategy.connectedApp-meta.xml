@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>Shahrzad.aslanzadeh@nbcuni.com</contactEmail>
+    <infoUrl>https://login.salesforce.com/</infoUrl>
+    <label>Microstrategy</label>
+    <oauthConfig>
+        <callbackUrl>https://hedwmstrqa.inbcu.com/microstrategy/asp/Main.aspx?evt=3172&amp;src=Main.aspx.3172</callbackUrl>
+        <consumerKey>3MVG9jBOyAOWY5bW2ldeqQWvO4Cbq9uKNwgtCUIVDcx7ZYfE1xQApUYpJBZugwqArnb6AKmmsrTNYo8e5a0SP</consumerKey>
+        <isAdminApproved>true</isAdminApproved>
+        <scopes>Basic</scopes>
+        <scopes>Api</scopes>
+        <scopes>Web</scopes>
+        <scopes>Full</scopes>
+        <scopes>Chatter</scopes>
+        <scopes>CustomApplications</scopes>
+        <scopes>RefreshToken</scopes>
+        <scopes>OpenID</scopes>
+        <scopes>CustomPermissions</scopes>
+        <scopes>Wave</scopes>
+    </oauthConfig>
+    <profileName>AccTracker Accountant</profileName>
+    <profileName>AccTracker Approver</profileName>
+    <profileName>System Administrator</profileName>
+    <profileName>Limited Administrator</profileName>
+    <profileName>Custom System Administrator</profileName>
+    <startUrl>https://login.salesforce.com/</startUrl>
+</ConnectedApp>

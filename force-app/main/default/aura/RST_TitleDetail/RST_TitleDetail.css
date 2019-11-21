@@ -1,0 +1,109 @@
+/* FILTER ACCORDION */
+.THIS .filterAccordion {
+    margin: 10px 0 15px 0;
+}
+.THIS .filterAccordion .slds-grid { 
+    width: 100%;
+}
+.THIS .filterAccordion .slds-grid .slds-col {
+    background: #eee;
+    padding: 20px;
+    min-height: 99px;
+}
+.THIS .headline {
+    width: 100%;
+}
+.THIS label.slds-form-element__label.slds-m-right_xxx-small {
+    display: none;
+}
+.THIS .filterAccordion p {
+    margin-bottom: 8px;
+}
+.THIS .slds-gutters {
+    margin: 0;
+}
+
+
+
+/* TABLE HEADER */
+.THIS header.slds-card__header.slds-grid {
+    width: 50%;
+    float: right;
+    margin: 0;
+    padding: 0;
+}
+
+.THIS [lightning-radio-group_radio-group-host] {
+    display: inline-block;
+    margin-left: 15px;
+    border-left: 1px solid #ddd;
+    padding-left: 15px;
+}
+.THIS button.nbcu-btn.dark.download {
+    float: right;
+    margin-top: 8px;
+}
+
+.THIS label.slds-radio_button__label {
+    border-radius: 0;
+    border: none;
+}
+.THIS .slds-radio_button-group, 
+.THIS .slds-radio_button:first-child>.slds-radio_button__label,  
+.THIS .slds-radio--button:first-child>.slds-radio_button__label,
+.THIS .slds-radio_button:last-child>.slds-radio_button__label{
+    border-radius: 0;
+}
+.THIS .slds-radio_button [type=radio]:checked+.slds-radio_button__label {
+    background: #400095;
+}
+.THIS table th p {
+    white-space: pre;
+    float: left;
+}
+
+/* ---- TITLE TABLE STYLES ---- */
+
+.THIS .sort_button {
+    font-weight: 900;
+    padding: 0 5px;
+    float: right;
+    position: relative;
+    background: transparent;
+    border: none;
+    top: -7px;
+}
+.THIS .titles {
+    margin: 0 0;
+}
+
+/* Title Table Body */
+
+.THIS .title_info {
+    width:200px;
+}
+
+/* ---- PLAY WEEK TABLE ---- */
+.THIS .lockPlayWeek {
+    padding: 15px 0 0 0;
+}
+.THIS .playweek_info{
+    width: 100%;
+}
+.THIS .selected {
+    background-color: #eee;
+}
+    
+
+
+@media screen and (max-width: 1625px) {
+    .THIS .tableWrapper {
+        overflow-y: scroll;
+        max-height: 500px;
+        overflow-x: scroll;
+    }
+    .THIS table.titles {
+        min-width: 1625px;
+    }
+    
+}

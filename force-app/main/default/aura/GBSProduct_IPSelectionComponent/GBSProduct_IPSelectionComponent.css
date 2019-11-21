@@ -1,0 +1,29 @@
+.THIS .pageHeader {
+	padding: 1rem !important;
+}
+.THIS .divHeader {
+    margin: -12px 0px 5px 5px;
+    background: white;
+    width: 110px;
+    font-size: initial; 
+}
+.THIS .divHeaderRight {
+    margin: 0px 0px 0px 5px;
+    font-size: initial; 
+}
+.THIS .leftBox {
+    display: block;
+    -webkit-margin-start: 2px;
+    -webkit-margin-end: 2px;
+    -webkit-padding-before: 0.35em;
+    -webkit-padding-start: 0.75em;
+    -webkit-padding-end: 0.75em;
+    -webkit-padding-after: 0.625em;
+    min-width: -webkit-min-content;
+    border-width: 2px;
+    border-style: groove;
+    border-color: threedface;
+    border-image: initial;
+    border: 1px solid red;
+    width: 49%;
+}

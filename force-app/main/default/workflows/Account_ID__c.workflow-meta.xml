@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>DGF_Update_Unique_text_on_Account_ID</fullName>
+        <description>DFOR-388</description>
+        <field>Unique_text__c</field>
+        <formula>IF(Account__c!=NULL,Account__c,&quot;&quot;)&amp;IF(Product__c!=NULL,&quot;-&quot;&amp;Product__c,&quot;&quot;)&amp; 
+IF(TEXT(Territory__c)!=NULL,&quot;-&quot;&amp;TEXT(Territory__c),&quot;&quot;)&amp;IF(TEXT(Resolution__c)!=NULL,&quot;-&quot;&amp;TEXT(Resolution__c),&quot;&quot;)&amp;IF(TEXT(Platform__c)!=NULL,&quot;-&quot;&amp;TEXT(Platform__c),&quot;&quot;)&amp; IF(Vendor_ID__c!=NULL,&quot;-&quot;&amp;Vendor_ID__c,&quot;&quot;)</formula>
+        <name>DGF Update Unique text on Account ID</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>DGF Uniqueness Check on Account ID</fullName>
+        <actions>
+            <name>DGF_Update_Unique_text_on_Account_ID</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>DFOR-388</description>
+        <formula>Account__c !=NULL ||  Product__c !=NULL || TEXT( Territory__c )!=NULL || TEXT( Platform__c )!=NULL || TEXT( Resolution__c )!=NULL</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

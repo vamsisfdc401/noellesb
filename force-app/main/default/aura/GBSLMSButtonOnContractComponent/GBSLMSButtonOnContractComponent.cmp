@@ -1,0 +1,35 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global" controller="GBSLMSButtonOnContractController" >
+    <!--Attributes for storing values -->
+    <aura:attribute name="LMS" type="LMS__c" default="{'sobjectType':'LMS__c'}"/>
+    <div class="slds-modal__container1" style="width: 111%;margin-left: -5%;">
+        <div class="slds-modal__header">
+            <h2 id="header43" class="slds-text-heading--medium">{!$Label.c.GBS_New_LMS}</h2>
+        </div>
+        <div class="slds-modal__content slds-p-around--medium">
+            <div class="slds-form--stacked slds-p-around--medium slds-m-bottom--x-small">
+                <div class="slds-form-element">
+                    <lightning:recordEditForm aura:id="recordViewForm" objectApiName="LMS__c">  
+                        <div class="slds-form-element__control">						                 
+                            <lightning:inputField fieldName="Factory__c" aura:id='factory'/>
+                            <lightning:textarea name="myTextArea" value="" label="Notes" maxlength="300" aura:id='notes'/>
+                            <lightning:inputField fieldName="Trade_Office__c" aura:id='tradeOffice'/>
+                            <label style="float: right;"><b>* {!$Label.c.GBS_Subcontracted_Factory}</b></label>
+                            <lightning:inputField fieldName="Primary_Factory__c" variant="label-hidden" aura:id='primaryFactory'/> 
+                            <label style="float: right;"><b>* {!$Label.c.GBS_Distribution_Only}</b></label>
+                            <lightning:inputField fieldName="Distributing_Company__c" aura:id='distributingCompany'/>
+                            <span class="slds-hide slds-required" aura:id="errorMessageDistributingCompany">{!$Label.c.GBS_Factory_Licensee_Required}</span>
+                        </div>
+                    </lightning:recordEditForm>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <!-- Buttons on the Page -->
+    <div class="slds-modal__footer" style="margin-bottom: -2%; padding: 10px 5px 10px 0px;">
+        <lightning:button class="slds-m-top_small" variant="brand" type="submit" label="Save" onclick="{!c.save}"/>
+        <lightning:button class="slds-m-top_small" variant="brand" type="button" label="Save &amp; Select Products/IPs" onclick="{!c.navigatetoComp}"/>
+        <lightning:button class="slds-m-top_small" variant="brand" type="button" label="Cancel" onclick="{!c.cancel}"/> 
+    </div>
+    
+</aura:component>

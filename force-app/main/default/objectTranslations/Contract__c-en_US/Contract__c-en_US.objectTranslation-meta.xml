@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Contract</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Contracts</value>
+    </caseValues>
+    <layouts>
+        <layout>GBS Contract Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>GBS PC Contract Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Legal Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Local Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>RSG Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Create LMS Primary Factory --></label>
+        <name>Create_LMS_Primary_Factory</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Email --></label>
+        <name>Email</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Contract --></label>
+        <name>LMS_Contract</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New LMS --></label>
+        <name>New_LMS</name>
+    </quickActions>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

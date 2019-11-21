@@ -1,0 +1,299 @@
+<aura:component implements="force:lightningQuickActionWithoutHeader,flexipage:availableForRecordHome,force:hasRecordId" 
+                access="global" controller="DGF_PricingTiersSelection" >
+    <aura:html tag="style">
+        
+        .cuf-content {
+            padding: 0 0rem !important;
+        }
+        .slds-p-around--medium {
+            padding: 1rem !important;
+        }    
+        
+        .slds-modal__content{
+            height:unset !important;
+            max-height:unset !important;
+        }
+        .slds-modal__container{
+            max-width: 95rem !important;
+            width:95% !important;
+        }
+        .toastMessage.forceActionsText{
+             white-space : pre-line !important;
+        }
+         
+}
+
+</aura:html>
+    <aura:attribute name="ptRecords" type="DGF_PricingTiersSelection.PTierRecords[]"></aura:attribute>
+    <aura:attribute name="ptNewRecords" type="DGF_PricingTiersSelection.PTierRecords" default="{}"></aura:attribute>
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="selectedPType" type="String" />
+    <aura:attribute name="profileMatch" type="Boolean" />
+    <aura:attribute name="today" type="Date" default=""/>
+    
+    <aura:attribute name="record" type="Object"
+                    description="The record object to be displayed"/>
+    <aura:attribute name="DTRecord" type="Object"
+                    description="A simplified view record object to be displayed"/>
+    <aura:attribute name="recordError" type="String"
+                    description="An error message bound to force:recordData"/>
+    
+    <aura:attribute name="noProducts" type="Boolean" default="false"/>
+    <aura:attribute name="showError" type="Boolean" default="false"/>
+    <aura:attribute name= "message" description= "Message content, can be HTML"
+                   	type= "String" default= "Message from MessageComponent.cmp"/>
+	<aura:attribute name= "messageType"
+               		description= "Message type, can be error/warning/info/success"
+                   	type= "String" default= "info"/>
+    
+    <force:recordData aura:id="record"
+                      layoutType="FULL"
+                      recordId="{!v.recordId}"
+                      targetError="{!v.recordError}"
+                      targetRecord="{!v.record}"
+                      targetFields="{!v.DTRecord}"
+                      mode="VIEW"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.getpricingTierList}"></aura:handler>
+    	<aura:if isTrue="{!v.showError}">		
+            <div class="{!'slds-notify slds-notify_alert slds-theme–alert-texture slds-theme_' + v.messageType}">
+                <lightning:icon iconName="{!'utility:'+ v.messageType}" size="medium"
+                                
+                                alternativeText="{!v.messageType}" Class="slds-button slds-button_icon slds-button_icon-inverse"/>&nbsp;
+                &nbsp;
+                <span class="slds-text-body–regular" style="white-space: pre-line;text-align: left;">
+                    <aura:unescapedHtml value="{!v.message}"/>
+                </span>
+                 <div class="slds-notify__close">
+                     <lightning:icon iconName="{!'utility:close'}" class="slds-button slds-button_icon slds-button_icon-inverse" size="small" />
+                </div>
+            </div>
+            <br/>
+            <br/>
+    	</aura:if>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-1 slds-large-size_5-of-12">
+                	<div class="row">
+                        <div class="slds-form slds-form_horizontal">
+                          <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-text-title_bold" for="input-id-01">Pricing Type</label>
+                            <div class="slds-form-element__control">
+                            	<ui:inputSelect class="single" aura:id="input-id-01" change="{!c.onSingleSelectChange}">
+                                    <!--<ui:inputSelectOption text="Original" value="true"/>
+                                    <ui:inputSelectOption text="Reprice" />-->
+                                </ui:inputSelect>
+                            </div>
+                          </div>
+                        </div>
+                        <!--<p class="title">Pricing Type</p>-->
+                        
+                    </div> 
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-large-size_5-of-12" style="padding-left: 45px;">
+                    <div class="slds-form slds-form_horizontal">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-text-title_bold" for="expdate">Price Effective Date</label>
+                            <div class="slds-form-element__control">
+                                <ui:inputDate aura:id="expdate" class="field" value="{!v.today}" displayDatePicker="true" />
+                            </div>
+                        </div>
+                    </div>
+                	
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-large-size_2-of-12">
+                    <div class="slds-float_right">
+                        <aura:if isTrue="{!!v.noProducts}">
+                            <aura:if isTrue="{!v.profileMatch}">
+                                <lightning:button label="Save"
+                                                  
+                                                  iconPosition="left"
+                                                  variant="brand"
+                                                  onclick="{!c.processSlctd}">
+                                </lightning:button>
+                            </aura:if>
+                        </aura:if>
+                    </div>
+                </div>
+            </div>
+    		<div class="slds-grid">
+                <div class="slds-col slds-size_1-of-1 slds-large-size_5-of-12">
+                    <div class="row">
+                        <div class="slds-form slds-form_horizontal">
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label slds-text-title_bold" for="Oc">Original Category :</label>
+                                <div class="slds-form-element__control">
+                                    <ui:outputText aura:id="Oc" value="{!v.DTRecord.Initial_Pricing_Tier__c}"/>
+                                </div>
+							</div>
+                        </div>
+                        <!--<p class="title">Pricing Type</p>-->
+                        
+                    </div> 
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-large-size_5-of-12" style="padding-left: 45px;">
+                    <div class="row">
+                        <div class="slds-form slds-form_horizontal">
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label slds-text-title_bold" for="TB"> # of Titles:</label>
+                                <div class="slds-form-element__control">
+                                    <ui:outputText aura:id="TB" value="{!v.DTRecord.of_Titles_in_Bundle__c}"/>
+                                </div>
+							</div>
+                        </div>
+                        <!--<p class="title">Pricing Type</p>-->
+                        
+                    </div> 
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-large-size_2-of-12">
+                    &nbsp;
+                </div>
+    		</div>
+            <!--<table class="slds-table slds-table-=bordered slds-table-=striped slds-table-=cell-buffer slds-table-=fixed-layout">-->
+    <div class="slds-scrollable">
+    	<table class="slds-table slds-table_bordered slds-table_col-bordered slds-no-row-hover" 
+                   style="border: 1px solid rgb(221, 219, 218)">
+                <thead>
+                    <tr class="slds-text-heading--label">
+                        
+                        <th scope="row" colspan="2" class="slds-text-align--right"></th>
+                        <th scope="row" colspan="6" class="slds-text-align--center">
+                            <div class="slds-truncate slds-text-title_bold" title="US">US</div></th>
+                        <th scope="row" colspan="6" class="slds-text-align--center">
+                            <div class="slds-truncate slds-text-title_bold" title="CA">CA</div></th>
+                    </tr>
+                    <tr class="slds-text-heading--label">
+                        <th scope="row" style="width: 50px;" class="slds-text-align--right">
+                            <!--<ui:inputCheckbox aura:id="cbox" class="cBox" change="{!c.selectAll}"/>-->
+                        </th>
+                        <!--<th scope="row" style="width: 150px;"><div class="slds-truncate" title="ID">ID</div></th>-->
+                        <th scope="row" ><div class="slds-truncate slds-text-title_bold" titile="NAME">Choose Pricing Tier</div></th>
+                        <th scope="row" ><div class="slds-truncate slds-text-title_bold " title="SD WSP"><p style="word-spacing: 4px;">SD WSP </p></div></th>
+                        <th scope="row" ><div class="slds-truncate slds-text-title_bold" title="SD SRP"><p style="word-spacing: 8px;">SD SRP</p></div></th>
+                        <th scope="row" ><div class="slds-truncate slds-text-title_bold" title="HD WSP"><p style="word-spacing: 4px;">HD WSP</p></div></th>
+                        <th scope="row" ><div class="slds-truncate slds-text-title_bold" title="HD SRP"> <p style="word-spacing: 8px;">HD SRP </p></div></th>
+                        <th scope="row" ><div class="slds-truncate slds-text-title_bold" title="UHD WSP">UHD WSP</div></th>
+                        <th scope="row" ><div class="slds-truncate slds-text-title_bold" title="UHD SRP">UHD SRP</div></th>
+                        <th scope="row"><div class="slds-truncate slds-text-title_bold" title="SD WSP"><p style="word-spacing: 8px;">SD WSP</p></div></th>
+                        <th scope="row"><div class="slds-truncate slds-text-title_bold" title="SD SRP"><p style="word-spacing: 6px;">SD  SRP</p></div></th>
+                        <th scope="row"><div class="slds-truncate slds-text-title_bold" title="HD WSP"><p style="word-spacing: 8px;">HD WSP</p></div></th>
+                        <th scope="row"><div class="slds-truncate slds-text-title_bold" title="HD SRP"><p style="word-spacing: 6px;">HD SRP</p></div></th>
+                        <th scope="row"><div class="slds-truncate slds-text-title_bold" title="UHD WSP">UHD WSP</div></th>
+                        <th scope="row"><div class="slds-truncate slds-text-title_bold" title="UHD SRP">UHD SRP</div></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.ptRecords}" var="pt">
+                        <aura:if isTrue="{!pt.ptId != 'Temp'}">
+                            <tr class="{! pt.isCreated ? ' tier-one   ' : 
+              							pt.isSelected  ? ' tier-two   ': ''}">
+                                <td class="slds-text-align--right">
+                                    <aura:if isTrue="{!(pt.isCreated == false)}">
+                                    	<ui:inputCheckbox aura:id="cboxRow" text="{!pt.ptId}" 
+                                                      value="{!pt.isSelected}" 
+                                                      class="cBox" 
+                                                      change="{!c.onCheckboxChange}"
+                                                      />
+                                    </aura:if>
+                                </td>
+                                <!--<th><div class="slds-truncate">{!pt.ptId}</div></th> -->
+                                <td style="width: 250px;"><div class="slds-truncate">{!pt.ptName}</div></td>
+                                <!--================================US=====-->
+                                <td><div class="slds-truncate">
+                                    <ui:outputCurrency format="$##,##,###,###.00" value="{!pt.uSSDWSP}"/>
+                                    </div></td> 
+                                <td><div class="slds-truncate">
+                                    <ui:outputCurrency format="$##,##,###,###.00" value="{!pt.uSSDSRP}"/>   
+                                    </div></td>
+                                <td><div class="slds-truncate">
+                                    <ui:outputCurrency format="$##,##,###,###.00" value="{!pt.uSHDWSP}"/>   
+                                    </div></td>
+                                <td><div class="slds-truncate">
+                                    <ui:outputCurrency format="$##,##,###,###.00" value="{!pt.uSHDSRP}"/>
+                                    </div></td>
+                                <td><div class="slds-truncate">
+                                    <ui:outputCurrency format="$##,##,###,###.00" value="{!pt.uSUHDWSP}"/>
+                                    </div></td>
+                                <td><div class="slds-truncate">
+                                    <ui:outputCurrency format="$##,##,###,###.00" value="{!pt.uSUHDSRP}"/>
+                                    </div></td>
+                                <!--================================CA=====-->
+                                <td><div class="slds-truncate">
+                                    <ui:outputCurrency format="$##,##,###,###.00" value="{!pt.cASDWSP}"/>
+                                    </div></td> 
+                                <td><div class="slds-truncate">
+                                    <ui:outputCurrency format="$##,##,###,###.00" value="{!pt.cASDSRP}"/>
+                                    </div></td>
+                                <td><div class="slds-truncate">
+                                    <ui:outputCurrency format="$##,##,###,###.00" value="{!pt.cAHDWSP}"/>
+                                    </div></td>
+                                <td><div class="slds-truncate">
+                                    <ui:outputCurrency format="$##,##,###,###.00" value="{!pt.cAHDSRP}"/>
+                                    </div></td>
+                                <td><div class="slds-truncate">
+                                    <ui:outputCurrency format="$##,##,###,###.00" value="{!pt.cAUHDWSP}"/>    
+                                    </div></td>
+                                <td><div class="slds-truncate">
+                                    <ui:outputCurrency format="$##,##,###,###.00" value="{!pt.cAUHDSRP}"/>    
+                                    </div></td>
+                            </tr>
+                         <aura:set attribute="else">
+                            <tr class="{! pt.isSelected  ? ' tier-two   ': ''}">
+                                <td class="slds-text-align--right">
+                                    <ui:inputCheckbox aura:id="cboxRow" text="{!pt.ptId}" 
+                                                      value="{!pt.isSelected}" 
+                                                      class="cBox" 
+                                                      change="{!c.onCheckboxChange}"
+                                                      />
+                                </td>
+                                <td style="width: 250px;">
+                                    <div class="slds-truncate">
+                                        <ui:outputText value="{!pt.ptName}"/>
+                                    </div></td>
+                                <!--================================US=====-->
+                                <td style="padding: 0.5px 1.5px;"><div   class="slds-truncate"  >
+                                    <ui:inputNumber format=".00" value="{!pt.uSSDWSP}"/>
+                                    </div></td> 
+                                <td style="padding: 0.5px 1.5px;"><div  class="slds-truncate">
+                                    <ui:inputNumber format=".00" value="{!pt.uSSDSRP}"/>   
+                                    </div></td>
+                                <td style="padding: 0.5px 1.5px;"><div    class="slds-truncate">
+                                    <ui:inputNumber format=".00" value="{!pt.uSHDWSP}"/>   
+                                    </div></td>
+                                <td style="padding: 0.5px 1.5px;"><div    class="slds-truncate">
+                                    <ui:inputNumber format=".00" value="{!pt.uSHDSRP}"/>
+                                    </div></td>
+                                <td style="padding: 0.5px 1.5px;"><div    class="slds-truncate">
+                                    <ui:inputNumber format=".00" value="{!pt.uSUHDWSP}"/>
+                                    </div></td>
+                                <td style="padding: 0.5px 1.5px;"><div    class="slds-truncate">
+                                    <ui:inputNumber format=".00" value="{!pt.uSUHDSRP}"/>
+                                    </div></td>
+                                <!--================================CA=====-->
+                                <td style="padding: 0.5px 1.5px;"><div class="slds-truncate">
+                                    <ui:inputNumber format=".00" value="{!pt.cASDWSP}"/>
+                                    </div></td> 
+                                <td style="padding: 0.5px 1.5px;"><div class="slds-truncate">
+                                    <ui:inputNumber format=".00" value="{!pt.cASDSRP}"/>
+                                    </div></td>
+                                <td style="padding: 0.5px 1.5px;"><div class="slds-truncate">
+                                    <ui:inputNumber format=".00" value="{!pt.cAHDWSP}"/>
+                                    </div></td>
+                                <td style="padding: 0.5px 1.5px;"><div class="slds-truncate">
+                                    <ui:inputNumber format=".00" value="{!pt.cAHDSRP}"/>
+                                    </div></td>
+                                <td style="padding: 0.5px 1.5px;"><div class="slds-truncate">
+                                    <ui:inputNumber format=".00" value="{!pt.cAUHDWSP}"/>    
+                                    </div></td>
+                                <td style="padding: 0.5px 1.5px;"><div class="slds-truncate">
+                                    <ui:inputNumber format=".00" value="{!pt.cAUHDSRP}"/>    
+                                    </div></td>
+                            </tr>
+                            </aura:set> 
+            			</aura:if>
+                    </aura:iteration>
+                    	
+                    
+                </tbody>
+            </table>
+         </div>        
+</aura:component>

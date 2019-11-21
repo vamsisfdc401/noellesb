@@ -1,0 +1,16 @@
+<apex:page standardController="Acquisition_Deal__c" extensions="AcquisitionDealApprovalHandler" action="{!submitAndProcessApprovalRequest}">
+  <!--<script>
+    if () {
+     
+    }
+    else {
+    alert('The following fields are required to drive the approval workflow: Acq Deal Level, Genre and MG ');  
+    }
+    
+ </script>-->
+<apex:form >
+<apex:pageMessages ></apex:pageMessages>
+<!--<apex:outputLabel value="The deal has been submitted for approval successfully, please click the link below to return to the deal!" rendered="{!allMandatoryFieldsPresent}" style="margin-left: 20px;"/>--> 
+<apex:commandButton value="Return to Deal" action="{!returnToDeal}" style="margin-left: 20px;"/>
+</apex:form>
+</apex:page>

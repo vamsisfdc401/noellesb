@@ -1,0 +1,5 @@
+<apex:page standardController="Workflow__c" sidebar="false" showHeader="false">
+	<GBLite:EmbedComponent baseGridUrl="{!$Page.GBLite__Grid}" />
+
+	<iframe id="gridFrame" scrolling="auto" height="480" width="100%" frameborder="0" src="{!gridPage}gname=GBS PE Contact Information&fpf=Licensee__c&fpv={!Workflow__c.Licensee__c}&sbb=1&sh=0&ssb=0&sfname=default"></iframe>
+</apex:page>

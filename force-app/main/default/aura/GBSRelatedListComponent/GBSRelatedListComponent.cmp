@@ -1,0 +1,80 @@
+<aura:component controller="GBSRelatedListComponentController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="parentFieldAPIName" type="String" access="global"/>
+    <aura:attribute name="childObjectAPIName" type="String" access="global"/>
+    <aura:attribute name="parentObjAPIName" type="String" access="global"/>
+    <aura:attribute name="lookupFieldAPINameOnChildObject" type="String" access="global"/>
+    <aura:attribute name="resultSet" type="Contract_Agent_Contact__c[]"/>
+    <aura:attribute name="childData" type="Contract_Agent_Contact__c[]"/>
+    <aura:attribute name="mycolumns" type="List"/>
+    <aura:attribute name="showViewAllLink" type="boolean"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <div style="border: solid 1px lightgrey;">
+        
+        <div class="slds-card__header slds-grid" style="padding-left: 10px;" data-aura-rendered-by="6090:0">
+            <header class="slds-media slds-media--center slds-has-flexi-truncate" data-aura-rendered-by="6091:0">
+                <div class="slds-media__figure" data-aura-rendered-by="6092:0">
+                    <div class="extraSmall forceEntityIcon" style="background-color: #e36ee3" data-aura-rendered-by="157:4294;a" data-aura-class="forceEntityIcon">
+                        <span data-aura-rendered-by="160:4294;a" class="uiImage" data-aura-class="uiImage">
+                            <img data-aura-rendered-by="158:4294;a" src="/img/icon/t4v35/custom/custom71_120.png" class="icon " alt="Contract Agent Contacts" title="Contract Agent Contacts"/>
+                        </span>
+                    </div>
+                </div>
+                <div class="slds-media__body" data-aura-rendered-by="6093:0">
+                    <h2 id="header_6083:0" data-aura-rendered-by="6094:0">
+                        <a class="slds-card__header-link baseCard__header-title-container" style="padding:8px;" data-aura-rendered-by="3070:0" href="{!'/lightning/r/' + v.childData[0].Contract__c + '/related/Contract_Agent_Contacts__r/view'}">
+                            <span class="slds-text-heading--small slds-truncate slds-m-right--xx-small" title="Contract Agent Contacts" data-aura-rendered-by="6096:0">Contract Agent Contacts</span>
+                            <span class="slds-text-heading--small slds-shrink-none slds-m-right--xx-small" title="{!'('+v.childData.length+')'}" data-aura-rendered-by="1:4558;a"> {!'('+v.childData.length+')'}</span>
+                        </a>
+                    </h2>
+                </div>
+            </header>
+        </div>
+        <!--Contact List Table-->
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer" role="grid">      
+            <thead>  
+                <tr class="slds-text-title--caps">
+                    <th scope="col">
+                        <div class="slds-truncate" title="Name">Name</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Account">Account</div>
+                    </th>
+                     
+                    <th scope="col">
+                        <div class="slds-truncate" title="Phone">Phone</div>
+                    </th>
+                     
+                    <th scope="col">
+                        <div class="slds-truncate" title="Email">Email</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>        
+                <aura:iteration items="{!v.childData}" var="con" indexVar="indx">
+                    <aura:if isTrue="{!indx &lt; 5}">
+                        <tr>
+                            <th scope="row">
+                                <div class="slds-truncate" title="{!con.Contact__r.Name}"><a href="{!'/'+con.Contact__c}">{!con.Contact__r.Name}</a></div>
+                            </th>
+                            <td>
+                                <div class="slds-truncate" title="{!con.Contact__r.Account.Name}"><a href="{!'/'+con.Contact__r.AccountId}">{!con.Contact__r.Account.Name}</a></div>
+                            </td>
+                            <th scope="row">
+                                <div class="slds-truncate" title="{!con.Contact__r.Phone}">{!con.Contact__r.Phone}</div>
+                            </th>
+                            <td>
+                                <div class="slds-truncate" title="{!con.Contact__r.Email}">{!con.Contact__r.Email}</div>
+                            </td>
+                        </tr>
+                    </aura:if>
+                </aura:iteration>
+                <tr>
+                    <td colspan="4">
+                        <center><a href="{!'/lightning/r/' + v.childData[0].Contract__c + '/related/Contract_Agent_Contacts__r/view'}">View All</a></center>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</aura:component>

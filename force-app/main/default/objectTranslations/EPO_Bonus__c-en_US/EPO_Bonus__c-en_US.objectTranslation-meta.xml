@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Bonus</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Bonus</value>
+    </caseValues>
+    <layouts>
+        <layout>DGF EPO Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- EPO &amp; Bonus Detail --></label>
+            <section>EPO &amp; Bonus Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Notes --></label>
+            <section>Notes</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>DGF Film Bonus Layout</layout>
+        <sections>
+            <label><!-- Bonus Accounts --></label>
+            <section>Bonus Accounts</section>
+        </sections>
+        <sections>
+            <label><!-- Bonus Detail --></label>
+            <section>Bonus Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>DGF TV Bonus Layout</layout>
+        <sections>
+            <label><!-- Bonus Accounts --></label>
+            <section>Bonus Accounts</section>
+        </sections>
+        <sections>
+            <label><!-- Bonus Detail --></label>
+            <section>Bonus Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>EPO &amp; Bonus Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

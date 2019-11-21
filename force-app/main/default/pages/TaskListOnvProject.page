@@ -1,0 +1,104 @@
+<!--*****************************************************************************************
+Page Name: TaskListOnvProject
+Purpose: for displaying task records in list view on v-project record
+******************************************************************************************
+Version         DateModified         ModifiedBy               Change
+1.0             21/10/2016           Mohit                    Initial Development
+******************************************************************************************-->
+<apex:page standardController="v_Project_Request__c" extensions="TaskListOnvProjectExtension">
+    
+    <apex:form >    
+        <apex:pagemessages id="errorMsg"></apex:pagemessages>
+        
+        <apex:pageBlock id="pgBlck" mode="edit">
+            <apex:pageBlockTable id="pgBlckTbl" value="{!lstTaskToDisplay}" var="task">
+                
+                <apex:column headerValue="Action" style="width:90px;">
+                    <apex:commandLink value="Save" action="{!updateTask}" rerender="pgBlckTbl,pgBlck,opBtn,errorMsg" style="color:#015ba7;text-decoration:none;" target="_parent">
+                        <apex:param value="{!task.ID}" name="recordID" assignTo="{!recordID}" />
+                    </apex:commandLink>                     
+                    <apex:outputText style="color:#015ba7">&nbsp;|&nbsp;</apex:outputText>                    
+                    <apex:commandLink value="Close" action="{!closeTask}" rerender="pgBlckTbl,pgBlck,opBtn,errorMsg" style="color:#015ba7;text-decoration:none;">
+                        <apex:param value="{!task.ID}" name="recordID" assignTo="{!recordID}" />
+                    </apex:commandLink>
+                </apex:column>
+                
+                <apex:column >
+                    <apex:facet name="header" >
+                        <apex:commandLink value="Subject" action="{!toggleSort}" rerender="pgBlckTbl,pgBlck,opBtn,errorMsg">
+                            <apex:param name="sortField" value="Subject"  assignTo="{!sortField}"/>                                
+                            <apex:outputPanel rendered="{!BEGINS(sortField,'Subject')}">
+                                &nbsp;<apex:image value="{!IF(sortDirection = 'DESC','/img/arrowDown.gif','/img/arrowUp.gif')}"/>
+                            </apex:outputPanel>                              
+                        </apex:commandLink>
+                    </apex:facet>
+                    <apex:outputField value="{!task.Subject}"/>                                                  
+                </apex:column>
+                
+                <apex:column >
+                    <apex:facet name="header" >
+                        <apex:commandLink value="Activity Description" action="{!toggleSort}" rerender="pgBlckTbl,pgBlck,opBtn,errorMsg">
+                            <apex:param name="sortField" value="Activity_Description__c"  assignTo="{!sortField}"/>                                
+                            <apex:outputPanel rendered="{!BEGINS(sortField,'Activity_Description__c')}">
+                                &nbsp;<apex:image value="{!IF(sortDirection = 'DESC','/img/arrowDown.gif','/img/arrowUp.gif')}"/>
+                            </apex:outputPanel>                              
+                        </apex:commandLink>
+                    </apex:facet>
+                    <apex:outputField value="{!task.Activity_Description__c}"/>                                                  
+                </apex:column>
+                
+                <apex:column >
+                    <apex:facet name="header" >
+                        <apex:commandLink value="Priority" action="{!toggleSort}" rerender="pgBlckTbl,pgBlck,opBtn,errorMsg">
+                            <apex:param name="sortField" value="Priority"  assignTo="{!sortField}"/>                                
+                            <apex:outputPanel rendered="{!BEGINS(sortField,'Priority')}">
+                                &nbsp;<apex:image value="{!IF(sortDirection = 'DESC','/img/arrowDown.gif','/img/arrowUp.gif')}"/>
+                            </apex:outputPanel>                              
+                        </apex:commandLink>
+                    </apex:facet>
+                    <apex:outputField value="{!task.Priority}"/>                                                  
+                </apex:column>
+                
+                <apex:column >
+                    <apex:facet name="header" >
+                        <apex:commandLink value="Status" action="{!toggleSort}" rerender="pgBlckTbl,pgBlck,opBtn,errorMsg">
+                            <apex:param name="sortField" value="Status"  assignTo="{!sortField}"/>                                
+                            <apex:outputPanel rendered="{!BEGINS(sortField,'Status')}">
+                                &nbsp;<apex:image value="{!IF(sortDirection = 'DESC','/img/arrowDown.gif','/img/arrowUp.gif')}"/>
+                            </apex:outputPanel>                              
+                        </apex:commandLink>
+                    </apex:facet>
+                    <apex:inputField value="{!task.Status}"/>                                                  
+                </apex:column>
+                
+                <apex:column >
+                    <apex:facet name="header" >
+                        <apex:commandLink value="Assigned To" action="{!toggleSort}" rerender="pgBlckTbl,pgBlck,opBtn,errorMsg">
+                            <apex:param name="sortField" value="Owner.Name"  assignTo="{!sortField}"/>                                
+                            <apex:outputPanel rendered="{!BEGINS(sortField,'Owner.Name')}">
+                                &nbsp;<apex:image value="{!IF(sortDirection = 'DESC','/img/arrowDown.gif','/img/arrowUp.gif')}"/>
+                            </apex:outputPanel>                              
+                        </apex:commandLink>
+                    </apex:facet>
+                    <apex:inputField value="{!task.Owner.Name}"/>                                                  
+                </apex:column>
+                
+            </apex:pageBlockTable>        
+        </apex:pageBlock>
+        
+        <apex:outputPanel id="opBtn">
+            <div align="left;">
+                <p style="margin-bottom:-22px"><b>Page Number: {!pageNumber} <br/>  Total Number of records: {!totalSize}</b></p>
+            </div>            
+            <center>
+                <apex:panelGrid columns="4" id="pnlGrid">
+                    <apex:commandLink action="{!first}" rendered="{!DisablePrevious}" style="color:blue">First</apex:commandlink>
+                    <apex:commandLink action="{!previous}" rendered="{!DisablePrevious}" style="color:blue">Previous</apex:commandlink>
+                    <apex:commandLink action="{!next}" rendered="{!DisableNext}" style="color:blue">Next</apex:commandlink>
+                    <apex:commandLink action="{!last}" rendered="{!DisableNext}" style="color:blue">Last</apex:commandlink>
+                </apex:panelGrid>            
+            </center>
+        </apex:outputPanel>
+        
+    </apex:form>
+</apex:page>

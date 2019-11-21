@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Acquisition Deal</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Acquisition Deals</value>
+    </caseValues>
+    <layouts>
+        <layout>Acquisition Deal Admin Layout</layout>
+        <sections>
+            <label><!-- Attachments --></label>
+            <section>Attachments</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Deal Level --></label>
+            <section>Deal Level</section>
+        </sections>
+        <sections>
+            <label><!-- Deal Rating --></label>
+            <section>Deal Rating</section>
+        </sections>
+        <sections>
+            <label><!-- Draft Deadlines --></label>
+            <section>Draft Deadlines</section>
+        </sections>
+        <sections>
+            <label><!-- Fulfilment Management --></label>
+            <section>Fulfilment Management</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Summary Board Pack Information --></label>
+            <section>Summary Board Pack Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Acquisition Deal Layout</layout>
+        <sections>
+            <label><!-- Attachments --></label>
+            <section>Attachments</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Deal Level --></label>
+            <section>Deal Level</section>
+        </sections>
+        <sections>
+            <label><!-- Deal Rating --></label>
+            <section>Deal Rating</section>
+        </sections>
+        <sections>
+            <label><!-- Draft Deadlines --></label>
+            <section>Draft Deadlines</section>
+        </sections>
+        <sections>
+            <label><!-- Fulfilment Management --></label>
+            <section>Fulfilment Management</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Summary Board Pack Information --></label>
+            <section>Summary Board Pack Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Approver Layout</layout>
+        <sections>
+            <label><!-- Approval Rights &amp; Other Conditions --></label>
+            <section>Approval Rights &amp; Other Conditions</section>
+        </sections>
+        <sections>
+            <label><!-- Attachments --></label>
+            <section>Attachments</section>
+        </sections>
+        <sections>
+            <label><!-- Commercial Rationale --></label>
+            <section>Commercial Rationale</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Deal Level --></label>
+            <section>Deal Level</section>
+        </sections>
+        <sections>
+            <label><!-- Deal Rating --></label>
+            <section>Deal Rating</section>
+        </sections>
+        <sections>
+            <label><!-- Digital Comps --></label>
+            <section>Digital Comps</section>
+        </sections>
+        <sections>
+            <label><!-- Distribution Fee Deal --></label>
+            <section>Distribution Fee Deal</section>
+        </sections>
+        <sections>
+            <label><!-- Dropbox --></label>
+            <section>Dropbox</section>
+        </sections>
+        <sections>
+            <label><!-- Executive Summary --></label>
+            <section>Executive Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Financials --></label>
+            <section>Financials</section>
+        </sections>
+        <sections>
+            <label><!-- Financials cont&apos;d --></label>
+            <section>Financials cont&#39;d</section>
+        </sections>
+        <sections>
+            <label><!-- Further Information on Licensed Rights / Deal Structure --></label>
+            <section>Further Information on Licensed Rights / Deal Structure</section>
+        </sections>
+        <sections>
+            <label><!-- Holdbacks --></label>
+            <section>Holdbacks</section>
+        </sections>
+        <sections>
+            <label><!-- Key Dates --></label>
+            <section>Key Dates</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Options Approvers Summary --></label>
+            <section>Options Approvers Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Options Header --></label>
+            <section>Options Header</section>
+        </sections>
+        <sections>
+            <label><!-- Origination &amp; Marketing Costs --></label>
+            <section>Origination &amp; Marketing Costs</section>
+        </sections>
+        <sections>
+            <label><!-- Other Comps --></label>
+            <section>Other Comps</section>
+        </sections>
+        <sections>
+            <label><!-- Other Financial Terms --></label>
+            <section>Other Financial Terms</section>
+        </sections>
+        <sections>
+            <label><!-- P&amp;L Assumptions --></label>
+            <section>P&amp;L Assumptions</section>
+        </sections>
+        <sections>
+            <label><!-- P&amp;L Assumptions Approvers Summary --></label>
+            <section>P&amp;L Assumptions Approvers Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Payment Terms --></label>
+            <section>Payment Terms</section>
+        </sections>
+        <sections>
+            <label><!-- Physical Comps --></label>
+            <section>Physical Comps</section>
+        </sections>
+        <sections>
+            <label><!-- Primary Rights &amp; Royalties --></label>
+            <section>Primary Rights &amp; Royalties</section>
+        </sections>
+        <sections>
+            <label><!-- Primary Terms --></label>
+            <section>Primary Terms</section>
+        </sections>
+        <sections>
+            <label><!-- Primary Terms Approver Summary --></label>
+            <section>Primary Terms Approver Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Reason if not confirmed by TV --></label>
+            <section>Reason if not confirmed by TV</section>
+        </sections>
+        <sections>
+            <label><!-- Release Conditions --></label>
+            <section>Release Conditions</section>
+        </sections>
+        <sections>
+            <label><!-- Secondary Rights &amp; Royalties --></label>
+            <section>Secondary Rights &amp; Royalties</section>
+        </sections>
+        <sections>
+            <label><!-- TV Forecast --></label>
+            <section>TV Forecast</section>
+        </sections>
+        <sections>
+            <label><!-- Term --></label>
+            <section>Term</section>
+        </sections>
+        <sections>
+            <label><!-- Term Header --></label>
+            <section>Term Header</section>
+        </sections>
+        <sections>
+            <label><!-- Territories, Term &amp; Options --></label>
+            <section>Territories, Term &amp; Options</section>
+        </sections>
+        <sections>
+            <label><!-- Universal Recoupable Costs --></label>
+            <section>Universal Recoupable Costs</section>
+        </sections>
+        <sections>
+            <label><!-- Universal Recoupable Costs cont. --></label>
+            <section>Universal Recoupable Costs cont.</section>
+        </sections>
+        <sections>
+            <label><!-- genre --></label>
+            <section>genre</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>New Acquisition Deal Layout</layout>
+        <sections>
+            <label><!-- Attachments --></label>
+            <section>Attachments</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Deal Level --></label>
+            <section>Deal Level</section>
+        </sections>
+        <sections>
+            <label><!-- Deal Rating --></label>
+            <section>Deal Rating</section>
+        </sections>
+        <sections>
+            <label><!-- Draft Deadlines --></label>
+            <section>Draft Deadlines</section>
+        </sections>
+        <sections>
+            <label><!-- Fulfilment Management --></label>
+            <section>Fulfilment Management</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Standardized Deal Checklist --></label>
+            <section>Standardized Deal Checklist</section>
+        </sections>
+        <sections>
+            <label><!-- Summary Board Pack Information --></label>
+            <section>Summary Board Pack Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>New Approver Layout</layout>
+        <sections>
+            <label><!-- Approval Rights &amp; Other Conditions --></label>
+            <section>Approval Rights &amp; Other Conditions</section>
+        </sections>
+        <sections>
+            <label><!-- Attachments --></label>
+            <section>Attachments</section>
+        </sections>
+        <sections>
+            <label><!-- Commercial Rationale --></label>
+            <section>Commercial Rationale</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Deal Level --></label>
+            <section>Deal Level</section>
+        </sections>
+        <sections>
+            <label><!-- Deal Rating --></label>
+            <section>Deal Rating</section>
+        </sections>
+        <sections>
+            <label><!-- Digital Comps --></label>
+            <section>Digital Comps</section>
+        </sections>
+        <sections>
+            <label><!-- Distribution Fee Deal --></label>
+            <section>Distribution Fee Deal</section>
+        </sections>
+        <sections>
+            <label><!-- Dropbox --></label>
+            <section>Dropbox</section>
+        </sections>
+        <sections>
+            <label><!-- Executive Summary --></label>
+            <section>Executive Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Financials --></label>
+            <section>Financials</section>
+        </sections>
+        <sections>
+            <label><!-- Financials cont&apos;d --></label>
+            <section>Financials cont&#39;d</section>
+        </sections>
+        <sections>
+            <label><!-- Forecast Sources --></label>
+            <section>Forecast Sources</section>
+        </sections>
+        <sections>
+            <label><!-- Further Information on Licensed Rights / Deal Structure --></label>
+            <section>Further Information on Licensed Rights / Deal Structure</section>
+        </sections>
+        <sections>
+            <label><!-- Holdbacks --></label>
+            <section>Holdbacks</section>
+        </sections>
+        <sections>
+            <label><!-- Key Dates --></label>
+            <section>Key Dates</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Options Approvers Summary --></label>
+            <section>Options Approvers Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Options Header --></label>
+            <section>Options Header</section>
+        </sections>
+        <sections>
+            <label><!-- Origination &amp; Marketing Costs --></label>
+            <section>Origination &amp; Marketing Costs</section>
+        </sections>
+        <sections>
+            <label><!-- Other --></label>
+            <section>Other</section>
+        </sections>
+        <sections>
+            <label><!-- Other Comps --></label>
+            <section>Other Comps</section>
+        </sections>
+        <sections>
+            <label><!-- Other Financial Terms --></label>
+            <section>Other Financial Terms</section>
+        </sections>
+        <sections>
+            <label><!-- Others --></label>
+            <section>Others</section>
+        </sections>
+        <sections>
+            <label><!-- P&amp;L Assumptions --></label>
+            <section>P&amp;L Assumptions</section>
+        </sections>
+        <sections>
+            <label><!-- P&amp;L Assumptions Approvers Summary --></label>
+            <section>P&amp;L Assumptions Approvers Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Payment Terms --></label>
+            <section>Payment Terms</section>
+        </sections>
+        <sections>
+            <label><!-- Physical Comps --></label>
+            <section>Physical Comps</section>
+        </sections>
+        <sections>
+            <label><!-- Primary Rights &amp; Royalties --></label>
+            <section>Primary Rights &amp; Royalties</section>
+        </sections>
+        <sections>
+            <label><!-- Primary Terms --></label>
+            <section>Primary Terms</section>
+        </sections>
+        <sections>
+            <label><!-- Primary Terms Approver Summary --></label>
+            <section>Primary Terms Approver Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Release Conditions --></label>
+            <section>Release Conditions</section>
+        </sections>
+        <sections>
+            <label><!-- Secondary Rights &amp; Royalties --></label>
+            <section>Secondary Rights &amp; Royalties</section>
+        </sections>
+        <sections>
+            <label><!-- Standardized Deal Checklist --></label>
+            <section>Standardized Deal Checklist</section>
+        </sections>
+        <sections>
+            <label><!-- Term --></label>
+            <section>Term</section>
+        </sections>
+        <sections>
+            <label><!-- Term Header --></label>
+            <section>Term Header</section>
+        </sections>
+        <sections>
+            <label><!-- Territories, Term &amp; Options --></label>
+            <section>Territories, Term &amp; Options</section>
+        </sections>
+        <sections>
+            <label><!-- Universal Recoupable Costs --></label>
+            <section>Universal Recoupable Costs</section>
+        </sections>
+        <sections>
+            <label><!-- Universal Recoupable Costs cont. --></label>
+            <section>Universal Recoupable Costs cont.</section>
+        </sections>
+        <sections>
+            <label><!-- genre --></label>
+            <section>genre</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Read All User Layout</layout>
+        <sections>
+            <label><!-- Attachments --></label>
+            <section>Attachments</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Deal Level --></label>
+            <section>Deal Level</section>
+        </sections>
+        <sections>
+            <label><!-- Deal Rating --></label>
+            <section>Deal Rating</section>
+        </sections>
+        <sections>
+            <label><!-- Draft Deadlines --></label>
+            <section>Draft Deadlines</section>
+        </sections>
+        <sections>
+            <label><!-- Fulfilment Management --></label>
+            <section>Fulfilment Management</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Summary Board Pack Information --></label>
+            <section>Summary Board Pack Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Signed Acquisition Deal Layout</layout>
+        <sections>
+            <label><!-- Attachments --></label>
+            <section>Attachments</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Deal Level --></label>
+            <section>Deal Level</section>
+        </sections>
+        <sections>
+            <label><!-- Deal Rating --></label>
+            <section>Deal Rating</section>
+        </sections>
+        <sections>
+            <label><!-- Draft Deadlines --></label>
+            <section>Draft Deadlines</section>
+        </sections>
+        <sections>
+            <label><!-- Fulfilment Management --></label>
+            <section>Fulfilment Management</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Summary Board Pack Information --></label>
+            <section>Summary Board Pack Information</section>
+        </sections>
+        <sections>
+            <label><!-- Title Context --></label>
+            <section>Title Context</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Standard User Layout</layout>
+        <sections>
+            <label><!-- + Payment Terms --></label>
+            <section>+ Payment Terms</section>
+        </sections>
+        <sections>
+            <label><!-- Attachments --></label>
+            <section>Attachments</section>
+        </sections>
+        <sections>
+            <label><!-- Cast and Directors --></label>
+            <section>Cast and Directors</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Deal Level --></label>
+            <section>Deal Level</section>
+        </sections>
+        <sections>
+            <label><!-- Digital Comps --></label>
+            <section>Digital Comps</section>
+        </sections>
+        <sections>
+            <label><!-- Distribution Fee Deal --></label>
+            <section>Distribution Fee Deal</section>
+        </sections>
+        <sections>
+            <label><!-- Financial Summary --></label>
+            <section>Financial Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Fulfilment Management --></label>
+            <section>Fulfilment Management</section>
+        </sections>
+        <sections>
+            <label><!-- Further Information on Licensed Rights / Deal Structure --></label>
+            <section>Further Information on Licensed Rights / Deal Structure</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Options --></label>
+            <section>Options</section>
+        </sections>
+        <sections>
+            <label><!-- Origination &amp; Marketing Costs --></label>
+            <section>Origination &amp; Marketing Costs</section>
+        </sections>
+        <sections>
+            <label><!-- Other Comps --></label>
+            <section>Other Comps</section>
+        </sections>
+        <sections>
+            <label><!-- Physical Comps --></label>
+            <section>Physical Comps</section>
+        </sections>
+        <sections>
+            <label><!-- Primary Rights &amp; Royalties --></label>
+            <section>Primary Rights &amp; Royalties</section>
+        </sections>
+        <sections>
+            <label><!-- Primary Terms --></label>
+            <section>Primary Terms</section>
+        </sections>
+        <sections>
+            <label><!-- Release Conditions --></label>
+            <section>Release Conditions</section>
+        </sections>
+        <sections>
+            <label><!-- Release Date Strategy --></label>
+            <section>Release Date Strategy</section>
+        </sections>
+        <sections>
+            <label><!-- Risk &amp; Compliance --></label>
+            <section>Risk &amp; Compliance</section>
+        </sections>
+        <sections>
+            <label><!-- Secondary Rights &amp; Royalties --></label>
+            <section>Secondary Rights &amp; Royalties</section>
+        </sections>
+        <sections>
+            <label><!-- Title Context --></label>
+            <section>Title Context</section>
+        </sections>
+        <sections>
+            <label><!-- Ultimate TVD Breakdown --></label>
+            <section>Ultimate TVD Breakdown</section>
+        </sections>
+        <sections>
+            <label><!-- Ultimates --></label>
+            <section>Ultimates</section>
+        </sections>
+        <sections>
+            <label><!-- Universal Recoupable Costs --></label>
+            <section>Universal Recoupable Costs</section>
+        </sections>
+        <sections>
+            <label><!-- genre --></label>
+            <section>genre</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Compare Versions --></label>
+        <name>Compare_Versions</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Clone This Deal --></label>
+        <name>Create_New_Deal_Alike</name>
+    </quickActions>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

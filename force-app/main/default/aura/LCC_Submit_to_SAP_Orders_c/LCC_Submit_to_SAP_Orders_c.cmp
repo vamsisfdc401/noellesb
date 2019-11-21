@@ -1,0 +1,11 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader"  access="global" controller="SimpleServerSideController">
+    
+    <aura:attribute name="ThresholdValue" type="Decimal" default="1"/>
+    <aura:handler 	name="init" value="{!this}" action="{!c.doInit}"/>
+    <lightning:card title="Are you sure you want to submit?">
+        <aura:set attribute="footer">
+            <lightning:button onclick="{!c.accept}" label="Yes"/>
+            <lightning:button onclick="{!c.cancel}" label="No" variant="Brand"/>
+        </aura:set>
+    </lightning:card>
+</aura:component>

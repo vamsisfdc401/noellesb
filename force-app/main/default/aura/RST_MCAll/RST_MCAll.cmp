@@ -1,0 +1,9 @@
+<aura:component implements="flexipage:availableForAllPageTypes" description="Market Capacity All" access="global">
+	<h2>Market Capacity - All Weeks</h2>
+    <a class="slds-button nbcu-btn dark margin" 
+       target="_blank" 
+       href="{!$Label.c.RST_MCAllURL}">View Report</a>
+    
+    
+    
+</aura:component>

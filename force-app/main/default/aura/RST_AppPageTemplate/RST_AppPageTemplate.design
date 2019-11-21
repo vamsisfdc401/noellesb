@@ -1,0 +1,8 @@
+<design:component label="RST App Page Template">
+    <flexipage:template >
+        <!-- The default width for the "left" region is "MEDIUM". In tablets,
+        the width is "SMALL" -->
+        <flexipage:region name="header" defaultWidth="LARGE" />
+            <flexipage:region name="main" defaultWidth="LARGE" />
+       </flexipage:template>
+</design:component>

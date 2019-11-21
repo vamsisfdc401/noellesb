@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>Broad_Green_Label_Code_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Broad Green Label Code Share</label>
+        <sharedTo>
+            <role>Broad_Green</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>94 - BROAD GREEN</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Cinedigm_Label_Code_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Cinedigm Label Code Share</label>
+        <sharedTo>
+            <role>Cinedigm</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>88 - Cinedigm</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Deal_Sharing_Rule_25_Label_Code</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Deal_Sharing_Rule_25_Label_Code</label>
+        <sharedTo>
+            <role>UPHE_Biz_Comm</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>25 - Amazon Content Services</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Deal_Sharing_Rule_25_Label_Codes</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Deal_Sharing_Rule_25_Label_Code</label>
+        <sharedTo>
+            <role>UPHE_Sales_and_Marketing</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>25 - Amazon Content Services</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Deal_Sharing_Rule_26_Label_Code</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Deal_Sharing_Rule_26_Label_Code</label>
+        <sharedTo>
+            <role>UPHE_Biz_Comm</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>26 - WTA</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Deal_Sharing_Rule_26_Label_Codes</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Deal_Sharing_Rule_26_Label_Codes</label>
+        <sharedTo>
+            <role>UPHE_Sales_and_Marketing</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>26 - WTA</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Deal_Sharing_Rule_34_Film_Arcade</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Deal_Sharing_Rule_34_Film Arcade</label>
+        <sharedTo>
+            <role>UPHE_Brand</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>34 - Film Arcade</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Deal_Sharing_Rule_41_Label_Code</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Deal_Sharing_Rule_41_Label_Code</label>
+        <sharedTo>
+            <role>UPHE_Biz_Comm</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>41 - GREENWICH ENTERTAINMENT</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Deal_Sharing_Rule_41_Label_Codes</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Deal_Sharing_Rule_41_Label_Code</label>
+        <sharedTo>
+            <role>UPHE_Sales_and_Marketing</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>41 - GREENWICH ENTERTAINMENT</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Deal_Sharing_Rule_43_Label_Code</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Deal Sharing Rule 43 Label Code</label>
+        <sharedTo>
+            <role>UPHE_Biz_Comm</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>43 - UPHE ACQ NET DEALS</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Deal_Sharing_Rule_43_Label_Codes</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Deal Sharing Rule 43 Label Codes</label>
+        <sharedTo>
+            <role>UPHE_Sales_and_Marketing</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>43 - UPHE ACQ NET DEALS</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Deal_Sharing_Rule_46_Label_Code</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Deal_Sharing_Rule_46_Label_Code</label>
+        <sharedTo>
+            <role>UPHE_Biz_Comm</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>46 - DREAMWORKS ANIMATION</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Deal_Sharing_Rule_52_Label_Code</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Deal_Sharing_Rule_52_Label_Code</label>
+        <sharedTo>
+            <role>UPHE_Biz_Comm</role>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>52 - 9 Story Media</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>81 - ENTERTAINMENT ONE,35 - ELEVATION US</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Deal_Sharing_Rule_52_Label_Codes</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Deal_Sharing_Rule_52_Label_Code</label>
+        <sharedTo>
+            <role>UPHE_Sales_and_Marketing</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>52 - 9 Story Media</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Deal_Sharing_Rule_86_Label_Code</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Deal_Sharing_Rule_86_Label_Code</label>
+        <sharedTo>
+            <role>UPHE_Biz_Comm</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>86 – SHOUT! Factory</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Deals_access_to_UPHE_Sales_and_Marketing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Giving access to Deals with below label codes to UPHE Sales and Marketing Role.</description>
+        <label>Deals access to UPHE Sales and Marketing</label>
+        <sharedTo>
+            <role>UPHE_Sales_and_Marketing</role>
+        </sharedTo>
+        <booleanFilter>1</booleanFilter>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>88 - Cinedigm,89 - FUNIMATION,59 - Paramount</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Elevation_Label_Code_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Elevation Label Code Share</label>
+        <sharedTo>
+            <role>Elevation</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>32 - ELEVATION CANADA</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Film_Arcade_Label_Code_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Film Arcade Label Code Share</label>
+        <sharedTo>
+            <role>Film_Arcade</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>34 - Film Arcade</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Label_CodeEQUALS89_FUNIMATION</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Label CodeEQUALS89 - FUNIMATION</label>
+        <sharedTo>
+            <role>G1200</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>89 - FUNIMATION</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Mill_Creek_Label_Code_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Mill Creek Label Code Share</label>
+        <sharedTo>
+            <role>Dreamworks</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>46 - DREAMWORKS ANIMATION</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Moonstone_Label_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Moonstone Label Share</label>
+        <sharedTo>
+            <role>Moonstone_Entertainment</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>33 - Moonstone Entertainment</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Paramount_Label_Code_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Paramount Label Code Share</label>
+        <sharedTo>
+            <role>Paramount</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>59 - Paramount</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Remstar_Label_Code_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Remstar Label Code Share</label>
+        <sharedTo>
+            <role>Remstar</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>23 - Remstar</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Sony_Label_Code_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Sony Label Code Share</label>
+        <sharedTo>
+            <role>Sony_Pictures</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>95 - SONY PICTURES</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UPHE_Amazon</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>UPHE Amazon</label>
+        <sharedTo>
+            <role>UPHE_Amazon</role>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>45 - PICTUREHOUSE,43 - UPHE ACQ NET DEALS,41 - GREENWICH ENTERTAINMENT,24 - PURE FLIX,16 - Broadway,33 - Moonstone Entertainment,34 - Film Arcade,36 - NEON RATED LLC,25 - Amazon Content Services,26 - WTA,44 - GKIDS</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>52 - 9 Story Media,63 - Family Home Entertainment,46 - DREAMWORKS ANIMATION,55 - Open Road Films,57 - BLEECKER STREET,58 - HiT Entertainment,61 - Universal Pictures,62 - Focus</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>64 - STX FINANCING LLC,91 - AVIRON PICTURES,71 - Dark Harvest,80 - WELL GO</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>81 - ENTERTAINMENT ONE,35 - ELEVATION US</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UPHE_Best_Buy</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>UPHE Best Buy</label>
+        <sharedTo>
+            <role>UPHE_BestBuy</role>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>45 - PICTUREHOUSE,43 - UPHE ACQ NET DEALS,41 - GREENWICH ENTERTAINMENT,24 - PURE FLIX,16 - Broadway,33 - Moonstone Entertainment,34 - Film Arcade,36 - NEON RATED LLC,25 - Amazon Content Services,26 - WTA,44 - GKIDS</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>52 - 9 Story Media,63 - Family Home Entertainment,46 - DREAMWORKS ANIMATION,64 - STX FINANCING LLC,49 - PBS,55 - Open Road Films,57 - BLEECKER STREET,58 - HiT Entertainment,61 - Universal Pictures,62 - Focus</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>88 - Cinedigm,89 - FUNIMATION,91 - AVIRON PICTURES,86 – SHOUT! Factory,71 - Dark Harvest,80 - WELL GO</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>81 - ENTERTAINMENT ONE,35 - ELEVATION US</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UPHE_Canada</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>UPHE Canada</label>
+        <sharedTo>
+            <role>UPHE_Canada</role>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>12 - Nelvana,23 - Remstar,24 - PURE FLIX,16 - Broadway,17 - Great North Road,34 - Film Arcade,19 - Canada&#39;s Walk of Fame,38 - United Front Entertainment,20 - Alliance Films,26 - WTA</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>52 - 9 Story Media,43 - UPHE ACQ NET DEALS,46 - DREAMWORKS ANIMATION,41 - GREENWICH ENTERTAINMENT,49 - PBS,58 - HiT Entertainment,59 - Paramount,61 - Universal Pictures,44 - GKIDS,62 - Focus</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>63 - Family Home Entertainment,88 - Cinedigm,89 - FUNIMATION,91 - AVIRON PICTURES,94 - BROAD GREEN,68 - Screen Media,70 - Lions Gate,86 – SHOUT! Factory,78 - D Films,80 - WELL GO</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>81 - ENTERTAINMENT ONE,35 - ELEVATION US</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UPHE_Channels_1</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>UPHE Channels 1</label>
+        <sharedTo>
+            <role>UPHE_Channels_1</role>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>45 - PICTUREHOUSE,43 - UPHE ACQ NET DEALS,41 - GREENWICH ENTERTAINMENT,24 - PURE FLIX,16 - Broadway,33 - Moonstone Entertainment,34 - Film Arcade,36 - NEON RATED LLC,25 - Amazon Content Services,26 - WTA,44 - GKIDS</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>52 - 9 Story Media,63 - Family Home Entertainment,46 - DREAMWORKS ANIMATION,49 - PBS,55 - Open Road Films,57 - BLEECKER STREET,58 - HiT Entertainment,61 - Universal Pictures,62 - Focus</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>64 - STX FINANCING LLC,91 - AVIRON PICTURES,71 - Dark Harvest,80 - WELL GO</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>81 - ENTERTAINMENT ONE,35 - ELEVATION US</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UPHE_Channels_2</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>UPHE Channels 2</label>
+        <sharedTo>
+            <role>UPHE_Channels_2</role>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>45 - PICTUREHOUSE,43 - UPHE ACQ NET DEALS,41 - GREENWICH ENTERTAINMENT,24 - PURE FLIX,16 - Broadway,33 - Moonstone Entertainment,34 - Film Arcade,36 - NEON RATED LLC,25 - Amazon Content Services,26 - WTA,44 - GKIDS</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>52 - 9 Story Media,46 - DREAMWORKS ANIMATION,49 - PBS,55 - Open Road Films,57 - BLEECKER STREET,58 - HiT Entertainment</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>63 - Family Home Entertainment,64 - STX FINANCING LLC,91 - AVIRON PICTURES,71 - Dark Harvest,61 - Universal Pictures,62 - Focus</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>81 - ENTERTAINMENT ONE,35 - ELEVATION US</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UPHE_Channels_3</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>UPHE Channels 3</label>
+        <sharedTo>
+            <role>UPHE_Channels_3</role>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>45 - PICTUREHOUSE,43 - UPHE ACQ NET DEALS,41 - GREENWICH ENTERTAINMENT,24 - PURE FLIX,16 - Broadway,33 - Moonstone Entertainment,34 - Film Arcade,36 - NEON RATED LLC,25 - Amazon Content Services,26 - WTA,44 - GKIDS</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>52 - 9 Story Media,63 - Family Home Entertainment,46 - DREAMWORKS ANIMATION,64 - STX FINANCING LLC,55 - Open Road Films,57 - BLEECKER STREET,58 - HiT Entertainment,61 - Universal Pictures,62 - Focus</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>71 - Dark Harvest,91 - AVIRON PICTURES</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>81 - ENTERTAINMENT ONE,35 - ELEVATION US</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UPHE_Label_Code_46_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>UPHE_Label_Code_46_Share</label>
+        <sharedTo>
+            <role>UPHE_Brand</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>46 - DREAMWORKS ANIMATION,41 - GREENWICH ENTERTAINMENT,25 - Amazon Content Services,26 - WTA</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UPHE_Label_Code_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>UPHE Label Code Share</label>
+        <sharedTo>
+            <role>UPHE_Brand</role>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3</booleanFilter>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>,45 - PICTUREHOUSE,63 - Family Home Entertainment,87 - JOINT CORR/MULTI-STUDIO,64 - STX FINANCING LLC,55 - Open Road Films,24 - PURE FLIX,57 - BLEECKER STREET,58 - HiT Entertainment,61 - Universal Pictures,62 - Focus,80 - WELL GO,44 - GKIDS</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>,52 - 9 Story Media,43 - UPHE ACQ NET DEALS,36 - NEON RATED LLC</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>81 - ENTERTAINMENT ONE,35 - ELEVATION US</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UPHE_WalTar</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>UPHE WalTar</label>
+        <sharedTo>
+            <role>UPHE_WalTar</role>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>43 - UPHE ACQ NET DEALS,41 - GREENWICH ENTERTAINMENT,24 - PURE FLIX,16 - Broadway,33 - Moonstone Entertainment,34 - Film Arcade,36 - NEON RATED LLC,25 - Amazon Content Services,26 - WTA</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>45 - PICTUREHOUSE,52 - 9 Story Media,46 - DREAMWORKS ANIMATION,49 - PBS,55 - Open Road Films,57 - BLEECKER STREET,58 - HiT Entertainment,44 - GKIDS</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>63 - Family Home Entertainment,64 - STX FINANCING LLC,89 - FUNIMATION,91 - AVIRON PICTURES,71 - Dark Harvest,61 - Universal Pictures,62 - Focus,80 - WELL GO</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>81 - ENTERTAINMENT ONE,35 - ELEVATION US</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>United_Front_Label_Code_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>United Front Label Code Share</label>
+        <sharedTo>
+            <role>United_Front_Entertainment</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>38 - United Front Entertainment</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Well_Go_Label_Code_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Well Go Label Code Share</label>
+        <sharedTo>
+            <role>Well_Go</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Label_Code__c</field>
+            <operation>equals</operation>
+            <value>80 - WELL GO</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingOwnerRules>
+        <fullName>Master_Data_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Master Data Share</label>
+        <sharedTo>
+            <role>UPHE_Domestic_Operations</role>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>UPHE_Domestic_Operations</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Third_party_Deals_access_to_UPHE_Sales_and_Marketing_1</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Giving G1200 deals access to UPHE Sales and Marketing Role.</description>
+        <label>Third party Deals access to UPHE Sales and Marketing 1</label>
+        <sharedTo>
+            <role>UPHE_Sales_and_Marketing</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>G1200</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Third_party_Deals_access_to_UPHE_Sales_and_Marketing_2</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Giving WellGo deals access to UPHE Sales and Marketing Role.</description>
+        <label>Third party Deals access to UPHE Sales and Marketing 2</label>
+        <sharedTo>
+            <role>UPHE_Sales_and_Marketing</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>Well_Go</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Third_party_Deals_access_to_UPHE_Sales_and_Marketing_3</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Giving Paramount deals access to UPHE Sales and Marketing Role.</description>
+        <label>Third party Deals access to UPHE Sales and Marketing 3</label>
+        <sharedTo>
+            <role>UPHE_Sales_and_Marketing</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>Paramount</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>UPHE_Cust_Service_Role_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>UPHE Cust Service Role Share</label>
+        <sharedTo>
+            <role>UPHE_Customer_Service</role>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>UPHE_Domestic_Operations</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

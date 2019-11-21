@@ -1,0 +1,6 @@
+<design:component>
+	<design:attribute name="parentFieldAPIName" label="Field API Name of the Parent to get child records of it"/>
+    <design:attribute name="childObjectAPIName" label="child Object API Name"/>
+    <design:attribute name="parentObjAPIName" label="parent Object API Name"/>
+    <design:attribute name="lookupFieldAPINameOnChildObject" label="lookup Field API Name On Child Object"/>
+</design:component>

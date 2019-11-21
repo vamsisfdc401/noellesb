@@ -1,0 +1,145 @@
+<!--*****************************************************************************************
+Component Name: DGF_ClonePromotionComponent
+Purpose: For Deep cloning promotion
+******************************************************************************************
+Version         DateModified         ModifiedBy               Change
+1.0             06/19/2017           Mohit			 	      Initial Development
+******************************************************************************************-->
+<aura:component implements="force:hasRecordID,force:lightningQuickActionWithoutHeader" controller="DGF_ClonePromotionComponentController" >    
+    <aura:attribute name="recordId" type="Id"/> 
+    <aura:attribute name="clonedPromotion" type="Promotion__c" default="{ 'sobjectType' : 'Promotion__c' }"/>
+    <aura:attribute name="clonedPromotionForTPR" type="Promotion__c" default="{ 'sobjectType' : 'Promotion__c' }"/>
+    <aura:attribute name="promotionTerritory" type="string"/>
+    <aura:attribute name="promotionFilmOrTv" type="string"/>
+    <aura:attribute name="promotionType" type="string"/>
+    <aura:attribute name="promotionUSPlatformOffering" type="string"/>
+    <aura:attribute name="promotionCAPlatformOffering" type="string"/>
+    <aura:attribute name="CodeError" type="string"  description="use for display no record found message"/>
+    <aura:attribute name="isCloneProcess" type="boolean" default="false"  description="to identify if user trying to clone or add a promotion"/>
+    <aura:attribute name="isCodeError" type="boolean" default="false" description="use for display no record found message"/> 
+    <aura:attribute name="showSpinner" type="boolean" default="false" description="use for displaying or hiding spinner"/>  
+    <aura:attribute name="isAccountPromotion" type="boolean" default="false" description="use to render fields and picklist value"/> 
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>	 
+    
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}" />
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}" /> 
+    
+    <style>
+        .forceStyle .viewport .oneHeader.slds-global-header_container {z-index:0}
+    </style>    
+    
+    <force:outputField aura:id="tprofferingOP" value="{!v.clonedPromotion.National_Offering_TPR__c}" class="slds-hide" />   
+    
+    <div class="slds-m-around--small">
+        <div role="dialog" tabindex="-1" aria-labelledby="header99" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- ###### MODAL BOX HEADER Part Start From Here ######-->
+                <div class="slds-modal__header">
+                    <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close" onclick="{!c.gotoURL}">
+                        X
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="header99" class="slds-text-heading--medium">Clone Promotion</h2>
+                </div>
+                <!--###### MODAL BOX BODY Part Start From Here ######-->
+                <div class="slds-modal__content slds-p-around--medium" >
+                    <div class="{!v.showSpinner ? 'slds-spinner_container slds-show' : 'slds-spinner_container slds-hide'}" style="z-index:5">
+                        <div class="slds-spinner--brand slds-spinner slds-spinner--large"  role="status">
+                            <span class="slds-assistive-text">Loading</span>
+                            <div class="slds-spinner__dot-a" ></div>
+                            <div class="slds-spinner__dot-b" ></div>
+                        </div>
+                    </div>
+                    
+                    <aura:if isTrue="{!v.isCodeError}">
+                        <ui:message title="Error" severity="error" closable="false">        
+                            {!v.CodeError}   
+                        </ui:message>
+                    </aura:if> 
+                    
+                    <!--Section for promotion dates-->
+                    <h3 class="slds-section-title--divider slds-text-title_caps">Promotion Dates</h3>
+                    <div class="slds-form slds-form_stacked">           
+                        <div class="slds-form-element slds-form-element__control slds-container_medium slds-p-top_x-small">                
+                            <ui:inputDate aura:id="startDateField" label="Start Date" class="slds-input" value="{!v.clonedPromotion.Start_Date__c}" displayDatePicker="true"/>
+                        </div>            
+                        <div class="slds-form-element slds-form-element__control slds-container_medium slds-p-top_x-small slds-m-bottom_medium">
+                            <ui:inputDate aura:id="endDateField" label="End Date" class="slds-input" value="{!v.clonedPromotion.End_Date__c}" displayDatePicker="true"/>                
+                        </div>  
+                    </div>        
+                    
+                    <!--Section for summary-->
+                    <h3 class="slds-section-title--divider slds-text-title_caps">Summary</h3>        
+                    <div class="slds-form slds-form_stacked">            
+                        <div class="slds-form-element slds-form-element__control slds-container_medium slds-p-top_x-small ">
+                            <ui:inputText class="slds-input" label="Promotion Name" value="{!v.clonedPromotion.Name}" required="true"/>                
+                        </div>
+                        
+                        <div class="slds-form-element slds-form-element__control slds-container_medium slds-p-top_x-small">                
+                            <ui:inputSelect aura:id="selectTerritory" label="Territory" multiple="true" class="slds-input" value="{!v.promotionTerritory}" change="{!c.onTerritoryChange}" updateOn="change" >
+                                <ui:inputSelectOption text="US" label="US" />
+                                <ui:inputSelectOption text="CA" label="CA"/>
+                            </ui:inputSelect>
+                        </div>            
+                        
+                        <div class="slds-form-element slds-form-element__control slds-container_medium slds-p-top_x-small "> 
+                            <ui:inputSelect aura:id="selectFilmTv" label="Film/TV" multiple="true" class="slds-input" value="{!v.promotionFilmOrTv}" change="{!c.onFilmTvChange}" updateOn="change" >
+                                <ui:inputSelectOption text="Film" label="Film" />
+                                <ui:inputSelectOption text="TV" label="TV"/>
+                            </ui:inputSelect>
+                        </div>
+                        
+                        <div class="slds-form-element slds-form-element__control slds-container_medium slds-p-top_x-small ">
+                            <ui:inputSelect aura:id="selectPromotionType" label="Promotion Type" multiple="true" class="slds-input" value="{!v.promotionType}" change="{!c.onPromotionTypeChange}" updateOn="change" >
+                                <ui:inputSelectOption text="TPR" label="TPR" />
+                                <ui:inputSelectOption text="Collection" label="Collection"/>
+                                <!--<ui:inputSelectOption text="Free Episode" label="Free Episode" class="{!v.isAccountPromotion ? 'slds-hide' : 'slds-show'}"/>-->
+                            </ui:inputSelect>
+                        </div>
+                        
+                        <div class="{!v.isAccountPromotion ? 'slds-form-element slds-form-element__control slds-container_medium slds-p-top_x-small slds-show' : 'slds-hide'}">
+                            <label class="slds-form-element__label slds-text-title" for="inputTPR">National Offering TPR</label>
+                            <!--<ui:outputText value="{!v.clonedPromotion.National_Offering_TPR__r.Name}" />-->
+                            
+                            <force:inputField aura:id="inputTPR" value="{!v.clonedPromotionForTPR.National_Offering_TPR__c}" />
+                        </div>
+                        
+                        <div class="slds-form-element slds-form-element__control slds-container_medium slds-p-top_x-small">
+                            <ui:inputSelect aura:id="selectUSPlatformOffering" label="US Platform Offering" multiple="true" class="slds-input" value="{!v.promotionUSPlatformOffering}" change="{!c.onUSPlatformOfferingChange}" updateOn="change" >
+                                <ui:inputSelectOption text="EST" label="EST" />
+                                <ui:inputSelectOption text="VOD" label="VOD"/>
+                            </ui:inputSelect>
+                        </div>
+                        
+                        <div class="slds-form-element slds-form-element__control slds-container_medium slds-p-top_x-small slds-m-bottom_medium">                
+                            <ui:inputSelect aura:id="selectCAPlatformOffering" label="CA Platform Offering" multiple="true" class="slds-input" value="{!v.promotionCAPlatformOffering}" change="{!c.onCAPlatformOfferingChange}" updateOn="change" >
+                                <ui:inputSelectOption text="EST" label="EST" />
+                                <ui:inputSelectOption text="VOD" label="VOD"/>
+                            </ui:inputSelect>                
+                        </div>
+                        
+                    </div>      
+                    
+                    <!--Section for summary-->
+                    <h3 class="slds-section-title--divider slds-text-title_caps">Comments</h3>   
+                    <div class="slds-form slds-form_stacked">            
+                        <div class="slds-form-element slds-form-element__control slds-container_medium slds-p-top_x-small">
+                            <ui:inputTextArea class="slds-input" label="Tags" value="{!v.clonedPromotion.Tags__c}" rows="2"/>                
+                        </div>
+                        <div class="slds-form-element slds-form-element__control slds-container_medium slds-p-top_x-small">
+                            <ui:inputTextArea class="slds-input" label="Comments" value="{!v.clonedPromotion.Comments__c}" rows="2"/>                
+                        </div>
+                    </div>   
+                </div>
+                <!--###### MODAL BOX FOOTER Part Start From Here ######-->
+                <div class="slds-modal__footer">
+                    <button type="button" class="slds-button slds-button--neutral" onclick="{!c.gotoURL}">Cancel</button>                    
+                    <button type="button" class="slds-button slds-button--brand" onclick="{!c.saveRecordDetails}">Save</button>
+                </div>
+            </div>
+        </div>
+        <div class="slds-backdrop slds-backdrop--open"></div>
+        
+    </div>
+    
+</aura:component>

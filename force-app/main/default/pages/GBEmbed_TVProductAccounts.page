@@ -1,0 +1,5 @@
+<apex:page standardController="Product__c" sidebar="false" showHeader="false">
+    <GBLite:EmbedComponent baseGridUrl="{!$Page.GBLite__Grid}" />
+
+    <iframe id="gridFrame" scrolling="auto" height="480" width="100%" frameborder="0" src="{!gridPage}gname=Product Accounts&fpf=Product__c&fpv={!Product__c.id}&sbb=1&sh=0&ssb=0&sfname=default"></iframe>
+</apex:page>

@@ -1,0 +1,62 @@
+<!--*****************************************************************************************
+Page Name: MaterialApprovalError
+Purpose: Inline VF Displaying the list of mandatory fields for submitting the material ...
+******************************************************************************************
+Version         DateModified         ModifiedBy               Change
+1.0             14/10/2016           Durgesh Choubey          Initial Development
+******************************************************************************************-->
+
+<apex:page standardController="Material__c" extensions="MaterialApprovalErrorHandler">
+ 
+<apex:form >
+<apex:outputPanel id="refresh" rendered="true">
+ <apex:outputPanel id="refresh1" rendered="{!refreshPage}">
+  <script>
+   window.top.location='/{!Material__c.id}';
+  </script>
+ </apex:outputPanel>
+</apex:outputPanel>
+<apex:pageBlock id="pb" mode="edit">
+<table width="100%">
+<tr>
+<td valign="top"> 
+<apex:pageBlockTable value="{!matFieldName}" var="mt" width="20%">
+      <apex:column headerValue="Material Fields">
+         {!mt}
+      </apex:column>
+</apex:pageBlockTable>
+</td>
+<td valign="top"> 
+<apex:pageBlockTable value="{!valuationFieldName}" var="vl" width="30%">
+      <apex:column headerValue="Valuation Fields">
+         {!vl}
+      </apex:column>
+</apex:pageBlockTable>
+</td>
+<td valign="top">
+<apex:pageBlockTable value="{!classificationFieldName}" var="cl" width="30%">
+      <apex:column headerValue="Classification Fields">
+         {!cl}
+      </apex:column>
+</apex:pageBlockTable> 
+</td>
+<td valign="top">
+<apex:pageBlockTable value="{!plantFieldName}" var="pl" width="30%">
+      <apex:column headerValue="Plant Fields">
+         {!pl}
+      </apex:column>
+</apex:pageBlockTable> 
+</td>
+<td valign="top">
+<apex:pageBlockTable value="{!SaleFieldName}" var="sl" width="30%">
+      <apex:column headerValue="Sales Fields">
+         {!sl}
+      </apex:column>
+</apex:pageBlockTable> 
+</td>
+</tr>
+</table>
+</apex:pageBlock> 
+</apex:form>
+ 
+</apex:page>

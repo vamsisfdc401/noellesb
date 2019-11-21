@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingOwnerRules>
+        <fullName>All_View_Role_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>UPHE Public Role Share</label>
+        <sharedTo>
+            <roleAndSubordinates>UPHE_Domestic_Operations</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>UPHE_Domestic_Operations</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>DD_Share</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>DD Share</label>
+        <sharedTo>
+            <role>UPHE_Digital</role>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>UPHE_Domestic_Operations</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Share_LAQ_Titles_with_Upper_Management_Team</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Share LAQ Titles with Upper Management Team</label>
+        <sharedTo>
+            <roleAndSubordinates>Upper_Management_Team</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>EVP_Acquisitions</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Share_Titles_in_LAQ_Team</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Share Titles across all team members in the LAQ ( (EVP Acquisition and subordinates)</description>
+        <label>Share Titles in LAQ Team</label>
+        <sharedTo>
+            <roleAndSubordinates>EVP_Acquisitions</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>EVP_Acquisitions</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Third_party_Titles_access_to_UPHE_Sales_and_Marketing_1</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Giving G1200 titles access to UPHE Sales and Marketing Role.</description>
+        <label>Third party Titles access to UPHE Sales and Marketing 1</label>
+        <sharedTo>
+            <role>UPHE_Sales_and_Marketing</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>G1200</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Third_party_Titles_access_to_UPHE_Sales_and_Marketing_2</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Giving WellGo titles access to UPHE Sales and Marketing Role.</description>
+        <label>Third party Titles access to UPHE Sales and Marketing 2</label>
+        <sharedTo>
+            <role>UPHE_Sales_and_Marketing</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>Well_Go</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Third_party_Titles_access_to_UPHE_Sales_and_Marketing_3</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Giving Paramount titles access to UPHE Sales and Marketing Role.</description>
+        <label>Third party Titles access to UPHE Sales and Marketing 3</label>
+        <sharedTo>
+            <role>UPHE_Sales_and_Marketing</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>Paramount</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>UPHE_Domestic_Write_Share</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>UPHE Domestic Write Share</label>
+        <sharedTo>
+            <role>UPHE_Domestic_Operations</role>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>UPHE_Domestic_Operations</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

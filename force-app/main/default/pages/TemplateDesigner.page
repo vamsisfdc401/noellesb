@@ -1,0 +1,154 @@
+<!--*****************************************************************************************
+Page Name: TemplateDesigner
+Purpose: This is the second page of Material Template wizard. It helps to design the materials in the template.
+******************************************************************************************
+Version         DateModified         ModifiedBy               Change
+1.0             10/03/2017           Suman                    Initial Development
+******************************************************************************************-->
+<apex:page standardController="Material_Template__c" extensions="TemplateWizardController" title="Template Designer" tabStyle="Material_Template__c" docType="html-5.0">
+    <style type="text/css">
+        .popupBackground{
+            background-color:black;
+            opacity: 0.20;
+            filter: alpha(opacity = 20);
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 2;
+        }
+        
+    </style>
+    
+    <!-- Action Status: Processing Overlay -->
+    <apex:actionStatus id="wait" >
+        <apex:facet name="start" >
+            <div class="popupBackground" style="z-index:1001;" layout="block">&nbsp;</div>
+            <div style="position:fixed;top:40%;left:50%;z-index:1002">
+                <div style="padding:14px 10px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;border:1px solid #1288FF;background-color:#F5F5F5;margin-left:-100px;vertical-align:top;">
+                    <table>
+                        <tr valign="bottom"><td><img src="/img/loading.gif" width="25" height ="25" /> &nbsp;</td>
+                        <td><span style="font-weight:bold;font-color:#1288FF;font-size:14px;">Processing...</span></td></tr>
+                    </table>
+                </div> 
+            </div>                   
+        </apex:facet>
+    </apex:actionStatus>
+    
+    <apex:sectionHeader title="Template Design" subtitle="{!template.Template_Name__c}" />
+    <apex:pageMessages id="pgMsg" />
+    
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Back" action="{!redirectSecondToFirstPage}"/>
+                <apex:commandButton value="Save & Review" action="{!saveNavigateReviewPage}"/>
+                <apex:commandButton value="Save & New" action="{!saveNRepeatPage}"/>
+                <!--<apex:commandButton value="Review" action="{!redirectSecondToThirdPage}"/>-->
+                <apex:commandButton value="Cancel" action="{!cancel}" immediate="true"/>
+            </apex:pageBlockButtons>
+            
+            <!-- Following block shows the Material Detail form -->
+            <apex:pageBlockSection title="Material Information" collapsible="false" id="materialSection">
+                <apex:outputField value="{!curMatDetail.Item_Type__c}"/>
+                <apex:inputField value="{!curMatDetail.Item_Code__c}"/>
+                <apex:inputField value="{!curMatDetail.Format__c}"/>
+                <apex:inputField value="{!curMatDetail.Retailer_Rental__c}"/>
+                <apex:inputField value="{!curMatDetail.Subformat__c}" rendered="{!isParamountUser}" /> <!-- USST-2783 -->
+                <apex:inputField value="{!curMatDetail.Sales_Planning_Group__c}" rendered="{!isParamountUser}" /> <!-- USST-2783 -->
+                <apex:pageBlockSectionItem helpText="This field reflects the quantity of the current FERT BOM structure (including child components).">
+                    <apex:outputLabel value="Quantity"></apex:outputLabel>
+                    <apex:input value="{!curMatQty}" type="number" html-min="1" />
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            
+            <!-- Following block displays associated child components table -->
+            <apex:outputPanel id="componentsSection">
+            <apex:pageBlockSection columns="1" id="componentsSection2" collapsible="false">
+                <apex:facet name="header">
+                    <apex:outputPanel >
+                        <span style="font-weight:bold; font-size:1.1em;">Associated Components</span>
+                        <apex:outputPanel style="padding-left:30px;">
+                            <apex:commandLink action="{!addComponent}" status="wait" reRender="componentsSection, materialSection" styleClass="btn" style="text-decoration:none;font-size:12px;">
+                                <span><apex:image id="AddImgN" value="{!$Resource.Add}" width="6"/></span>
+                                <apex:outputText >New Component</apex:outputText>
+                            </apex:commandLink>
+                            <apex:commandLink action="{!addExistingComponent}" status="wait" reRender="componentsSection, materialSection" styleClass="btn" style="text-decoration:none;font-size:12px;">
+                                <span><apex:image id="AddImgE" value="{!$Resource.Add}" width="6"/></span>
+                                <apex:outputText >Existing Component</apex:outputText>
+                            </apex:commandLink>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:facet>
+                <apex:variable var="compIndexPath" value="{!0}" />
+                <apex:pageBlockTable value="{!associatedComponents}" var="comp" id="compTable">
+                    <apex:column headerValue="Component Type">
+                        <apex:inputField value="{!comp.instance.Component_Type__c}" rendered="{!NOT(comp.isExisting)}"/>
+                    </apex:column>
+                    <apex:column headerValue="Existing Component">
+                        <apex:inputField value="{!comp.instance.Existing_Component__c}" rendered="{!comp.isExisting}">
+                            <apex:actionSupport event="onchange" reRender="componentsSection" action="{!fetchCompDetails}" status="wait">
+                                <apex:param value="{!compIndexPath}" name="compIndex" assignTo="{!compIndex}" />
+                            </apex:actionSupport>
+                        </apex:inputField>
+                    </apex:column>
+                    <apex:column headerValue="Material Number" value="{!comp.matNumber}" rendered="{!NOT(isPHEUser)}" />
+                    <apex:column headerValue="Is Existing">
+                        <apex:inputCheckbox value="{!comp.isExisting}" disabled="true"/>
+                    </apex:column>
+                    <apex:column headerValue="Action">
+                        <apex:commandLink onclick="deleteComponent({!(comp.instance.Id != null)}, '{!compIndexPath}'); return false;">
+                            <span style="padding-right:5px;"><apex:image id="RemoveImage" value="{!$Resource.Remove}" width="12" title="Remove"/></span>
+                            <apex:outputText >Remove</apex:outputText>
+                        </apex:commandLink>
+                        <apex:variable var="compIndexPath" value="{!(compIndexPath + 1)}" />
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+            </apex:outputPanel>
+        </apex:pageBlock>
+        
+        <apex:actionFunction name="removeComponent" action="{!removeComponent}" reRender="componentsSection" status="wait">
+            <apex:param value="" id="compIndex" name="compIndex" assignTo="{!compIndex}" />
+        </apex:actionFunction>
+    </apex:form>
+    
+    <script>
+        function deleteComponent(isExistingComponent, compIndex)
+        {
+            if(isExistingComponent && confirm("Are you sure?"))
+                removeComponent(compIndex);
+            else if(!isExistingComponent)
+                removeComponent(compIndex);
+        }
+    </script>
+    
+    <apex:pageBlock mode="maindetail" rendered="{!totalMaterials > 0}">
+        <apex:pageBlockSection title="Template Record ({!totalMaterials})" columns="1">
+            <apex:pageBlockTable value="{!sortedMaterials}" var="mat">
+                <apex:column headerValue="Format" value="{!mat.instance.Format__c}"/>
+                <apex:column headerValue="Item Type" value="{!mat.instance.Item_Type__c}"/>
+                <apex:column headerValue="Item Code" value="{!mat.instance.Item_Code__c}"/>
+                <apex:column headerValue="Retailer/Rental" value="{!mat.instance.Retailer_Rental__c}"/>
+                <apex:column headerValue="Quantity" value="{!mat.instance.Quantity__c}"/>
+                <apex:column headerValue="Subformat" value="{!mat.instance.Subformat__c}" rendered="{!isParamountUser}" /> <!-- USST-2783 -->
+                <apex:column headerValue="Sales Planning Group" value="{!mat.instance.Sales_Planning_Group__c}" rendered="{!isParamountUser}" /> <!-- USST-2783 -->
+                <apex:column headerValue="Component Type">
+                    <apex:repeat value="{!mat.sortedComponentList}" var="comp">
+                        <apex:outputPanel layout="block" rendered="{!NOT(comp.isExisting)}">
+                            {!comp.instance.Component_Type__c}
+                        </apex:outputPanel>
+                    </apex:repeat>
+                </apex:column>
+                <apex:column headerValue="Existing Component">
+                    <apex:repeat value="{!mat.sortedComponentList}" var="comp">
+                        <apex:outputPanel layout="block" rendered="{!comp.isExisting}">
+                            <apex:outputLink value="/{!comp.instance.Existing_Component__c}" target="_blank">{!comp.compName}</apex:outputLink>
+                        </apex:outputPanel>
+                    </apex:repeat>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:page>

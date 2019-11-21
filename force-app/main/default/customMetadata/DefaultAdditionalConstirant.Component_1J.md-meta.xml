@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Component__c</label>
+    <protected>false</protected>
+    <values>
+        <field>Aspect_Ratio__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Brand_Group__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Checking_Else__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Component_Type__c</field>
+        <value xsi:type="xsd:string">O-CARD</value>
+    </values>
+    <values>
+        <field>Format_Description__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Format__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Item_Code__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Item_Type__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Label_Code__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Material_Type__c</field>
+        <value xsi:type="xsd:string">ROH</value>
+    </values>
+    <values>
+        <field>Old_Material_No__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Plant__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Priorty__c</field>
+        <value xsi:type="xsd:double">1.0</value>
+    </values>
+    <values>
+        <field>Project_Type__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Selection_Reference_Number__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Territory__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Title_Source__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Value__c</field>
+        <value xsi:type="xsd:string">a0k360000089H3P</value>
+    </values>
+</CustomMetadata>

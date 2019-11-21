@@ -9,4 +9,8 @@
     <tabs>standard-OtherUserProfile</tabs>
     <tabs>standard-CollaborationGroup</tabs>
     <tabs>standard-File</tabs>
+    <tabs>Getting_Started</tabs>
+    <tabs>Shipping_Address__c</tabs>
+    <tabs>Accountant_Location__c</tabs>
+    <tabs>Props_Tracker__c</tabs>
 </CustomApplication>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>UBD</fullName>
+        <default>true</default>
+        <label>UBD</label>
+    </customValue>
+    <customValue>
+        <fullName>Parks</fullName>
+        <default>false</default>
+        <label>Parks</label>
+    </customValue>
+    <customValue>
+        <fullName>USJ</fullName>
+        <default>false</default>
+        <label>USJ</label>
+    </customValue>
+    <customValue>
+        <fullName>Craftsy</fullName>
+        <default>false</default>
+        <label>Craftsy</label>
+    </customValue>
+    <customValue>
+        <fullName>USHE</fullName>
+        <default>false</default>
+        <label>USHE</label>
+    </customValue>
+    <customValue>
+        <fullName>NBC Retail</fullName>
+        <default>false</default>
+        <label>NBC Retail</label>
+    </customValue>
+    <customValue>
+        <fullName>UPIE</fullName>
+        <default>false</default>
+        <label>UPIE</label>
+    </customValue>
+    <customValue>
+        <fullName>Bravo</fullName>
+        <default>false</default>
+        <label>Bravo</label>
+    </customValue>
+    <customValue>
+        <fullName>NBC TV</fullName>
+        <default>false</default>
+        <label>NBC TV</label>
+    </customValue>
+    <customValue>
+        <fullName>DWA TV</fullName>
+        <default>false</default>
+        <label>DWA TV</label>
+    </customValue>
+    <customValue>
+        <fullName>Sprout</fullName>
+        <default>false</default>
+        <label>Sprout</label>
+    </customValue>
+    <customValue>
+        <fullName>Green is Universal</fullName>
+        <default>false</default>
+        <label>Green is Universal</label>
+    </customValue>
+    <customValue>
+        <fullName>Geneon</fullName>
+        <default>false</default>
+        <label>Geneon</label>
+    </customValue>
+    <customValue>
+        <fullName>UPIB (Brazil)</fullName>
+        <default>false</default>
+        <label>UPIB (Brazil)</label>
+    </customValue>
+    <customValue>
+        <fullName>UPIC (China)</fullName>
+        <default>false</default>
+        <label>UPIC (China)</label>
+    </customValue>
+    <customValue>
+        <fullName>UPIL (London)</fullName>
+        <default>false</default>
+        <label>UPIL (London)</label>
+    </customValue>
+    <customValue>
+        <fullName>UPIM (Mexico)</fullName>
+        <default>false</default>
+        <label>UPIM (Mexico)</label>
+    </customValue>
+    <customValue>
+        <fullName>UPI</fullName>
+        <default>false</default>
+        <label>UPI</label>
+    </customValue>
+    <customValue>
+        <fullName>Fandango</fullName>
+        <default>false</default>
+        <label>Fandango</label>
+    </customValue>
+    <description>Business Units for GBS</description>
+    <masterLabel>GBS Universal Business Units</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

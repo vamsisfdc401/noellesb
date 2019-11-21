@@ -1,0 +1,8 @@
+.THIS h3 {
+    font-size: 15px;
+    margin: 15px 0 0;
+    border-bottom: 1px solid #DCDBDA;
+    display: table;
+    padding: 5px;
+    min-width: 230px;
+}

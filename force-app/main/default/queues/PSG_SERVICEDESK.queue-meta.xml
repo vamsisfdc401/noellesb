@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>true</doesSendEmailToMembers>
+    <email>vamsi.marala@nbcuni.com</email>
+    <name>PSG SERVICEDESK</name>
+    <queueMembers>
+        <users>
+            <user>vamsi.marala@nbcuni.com</user>
+            <user>xiaoyue.zhang@nbcuni.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>

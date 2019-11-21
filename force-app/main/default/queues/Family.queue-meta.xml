@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Family</name>
+    <queueMembers>
+        <users>
+            <user>ana.rodriguez@nbcuni.com</user>
+            <user>brand3.test@nbcuni.com.prd</user>
+            <user>caye.bohn@nbcuni.com</user>
+            <user>christina.kalaydjian@nbcuni.com</user>
+            <user>elnaz.janfaza@nbcuni.com</user>
+            <user>hilary.taylor@nbcuni.com</user>
+            <user>jamie.ruiz@nbcuni.com</user>
+            <user>jasmine.perez@nbcuni.com</user>
+            <user>mandy.smith@nbcuni.com</user>
+            <user>savannah.flynn@nbcuni.com</user>
+            <user>toni.metoyer@nbcuni.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Material__c</sobjectType>
+    </queueSobject>
+</Queue>

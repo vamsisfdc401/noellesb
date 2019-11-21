@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Shipping Receipt</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Shipping Receipts</value>
+    </caseValues>
+    <layouts>
+        <layout>shipping receipt Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Production --></label>
+            <section>Production</section>
+        </sections>
+        <sections>
+            <label><!-- Receipt Description --></label>
+            <section>Receipt Description</section>
+        </sections>
+        <sections>
+            <label><!-- Shipping address --></label>
+            <section>Shipping address</section>
+        </sections>
+        <sections>
+            <label><!-- Special Instruction --></label>
+            <section>Special Instruction</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

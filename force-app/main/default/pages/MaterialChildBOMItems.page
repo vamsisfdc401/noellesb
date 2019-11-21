@@ -1,0 +1,22 @@
+<!-- This page is to show child BOM items Related lis on the Parent Material view. REL-160 by Ashok -->
+<apex:page standardController="Material__c" extensions="MaterialChildBOMItemsController">
+        <apex:pageBlock title="BOM Components with Text" id="BOMId" >
+            <apex:facet name="header">
+                 <div class="pbTitle" style="padding-left:5px; padding-top:5px;">
+                <img src="/img/icon/box24.png" class="relatedListIcon" style="width:24px; display:block; margin-left:0;" />
+                 <h3 class="mainTitle">&nbsp;BOM Components with Text</h3>
+                </div>
+            </apex:facet>
+            <apex:pageBlockTable value="{!BOMItems}" var="b">
+                <apex:column value="{!b.Component_Number__c}"/>
+                <apex:column value="{!b.Material_Component__r.Name}"    />
+                <apex:column value="{!b.Valid_To__c}"/>
+                <apex:column value="{!b.BOM_Item_Text_1__c}"/>
+                <apex:column value="{!b.BOM_Item_Text_2__c}"/>
+           </apex:pageBlockTable>
+            <apex:outputpanel rendered="{!BOMItems.size== 0}">
+                        No records to display.
+            </apex:outputpanel>
+        </apex:pageBlock>
+
+</apex:page>

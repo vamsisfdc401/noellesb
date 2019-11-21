@@ -6,6 +6,924 @@
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <label>Service Console</label>
     <navType>Console</navType>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>Brand User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>CAR General Users</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>CAR Vendor Community User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>carVendor Profile</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>Chatter External User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>Chatter Free User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>ContractManager</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>Chatter Moderator User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>Customer Community Plus Login User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>Customer Community User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>DD Account User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>DD Business Intelligence User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>DD Finance User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>DD Marketing User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>DD Ops User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>DD Product User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>DD Read Only</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>Force.com - App Subscription User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>FT Account Management</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>GBS Core</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>Guest License User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>Limited Administrator</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>MarketingProfile</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>Master Data Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>Platform Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>Platform API</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>Platform Read Only</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>Premier Support User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>Promo Order Salesforce Platform User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>ReadOnly</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>RST User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>SAFE API User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>SolutionManager</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>StandardAul</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>Standard</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>Third Party User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>UPHE CG Approver</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>UPHE CG Full User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>UPHE CG Read All User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>UPHE CG Standard User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>UPHE LA Approver</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Price_Protection_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Price_Protection</recordType>
+        <type>Flexipage</type>
+        <profile>UPHE Sales Users</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>LAQ_Read_All_User_Home_Page_Layout</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>UPHE CG Read All User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>Brand User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>CAR General Users</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>CAR Vendor Community User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>carVendor Profile</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>Chatter External User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>Chatter Free User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>ContractManager</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>Chatter Moderator User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>Customer Community Plus Login User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>Customer Community User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>DD Account User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>DD Business Intelligence User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>DD Finance User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>DD Marketing User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>DD Ops User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>DD Product User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>DD Read Only</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>Force.com - App Subscription User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>FT Account Management</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>GBS Core</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>Guest License User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>Limited Administrator</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>MarketingProfile</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>Master Data Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>Platform Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>Platform API</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>Platform Read Only</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>Premier Support User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>Promo Order Salesforce Platform User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>ReadOnly</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>RST User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>SAFE API User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>SolutionManager</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>StandardAul</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>Third Party User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>UPHE CG Approver</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>UPHE CG Full User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>Standard</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>UPHE CG Read All User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>UPHE CG Standard User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>UPHE LA Approver</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Case_Shipping_Issues_Grid_Buddy_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.Shipping_Issues</recordType>
+        <type>Flexipage</type>
+        <profile>UPHE Sales Users</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Platform API</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Limited Administrator</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>LAQ_Full_User_Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>UPHE CG Standard User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>LAQ_Full_User_Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>UPHE CG Full User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>LAQ_Full_User_Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>UPHE CG Approver</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>LAQ_LA_Approver</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>UPHE LA Approver</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>LAQ_Read_All_User_Home_Page_Layout</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Brand User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>GBS_Core_Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>GBS Core</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>LAQ_Read_All_User_Home_Page_Layout</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Case Mgmt-Brand</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>DD Account User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>DD Business Intelligence User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>DD Finance User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>DD Marketing User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>DD Ops User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>DD Product User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>DD Read Only</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
     <setupExperience>service</setupExperience>
     <tabs>standard-Case</tabs>
     <tabs>standard-Contact</tabs>
@@ -13,9 +931,21 @@
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
     <tabs>standard-home</tabs>
+    <tabs>Shipping_Address__c</tabs>
+    <tabs>Accountant_Location__c</tabs>
+    <tabs>Props_Tracker__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>LightningService_UtilityBar</utilityBar>
     <workspaceConfig>
+        <mappings>
+            <tab>Accountant_Location__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Props_Tracker__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Shipping_Address__c</tab>
+        </mappings>
         <mappings>
             <tab>standard-Account</tab>
         </mappings>

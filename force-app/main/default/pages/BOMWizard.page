@@ -1,0 +1,833 @@
+<!--*****************************************************************************************
+Page Name: BOMWizard
+Purpose: VF page that facilitates creation/deletion of materials/components and can be 
+submitted for approval
+******************************************************************************************
+Version         DateModified         ModifiedBy               Change
+1.0                                                      Initial Development
+******************************************************************************************-->
+
+<apex:page controller="BOMWizardController" docType="html-5.0" sidebar="false" id="thePage">
+    <apex:outputPanel html-class="opTop">
+        <style type="text/css">
+               <!--USST - 2831 & USST-2834 begin -->
+            <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" />
+            <apex:includeScript value="https://ajax.microsoft.com/ajax/jquery.validate/1.6/jquery.validate.min.js"/>
+               <!--USST - 2831 & USST-2834 end -->
+            
+            .bPageBlock .detailList tr td, .bPageBlock .detailList tr th, .hoverDetail .bPageBlock .detailList tr td, .hoverDetail .bPageBlock .detailList tr th {
+            
+            }       
+            
+            body .bPageBlock .pbBody .pbSubheader  {
+            border-style: none;
+            }
+            
+            body .bDetailBlock.bPageBlock .pbBody .pbSubheader, body.FindSimilarOppsSearchUi .bPageBlock .pbBody .pbSubheader {
+            background-color: #F5F5F5;
+            }
+            
+            
+            .pbBody table > tr { }
+             <!--USST - 2831 & USST-2834 - Col style width changed -->
+            .colstyle {width: 12%}
+            .colstyle:first-child {width:23%}
+            .colstyle:nth-child(2) {width: 12%}
+            .colstyle:nth-child(3) {width: 1%}
+            .colstyle:nth-child(4) {width: 10%} 
+            .colstyle:nth-child(5) input[type='text'] {width: 60px;}
+            .colstyle:nth-child(5), .colstyle:nth-child(5) {width: 6%}
+            .colstyle:nth-child(7) {width: 8%}
+            .colstyle:last-child {width: 5%}
+            .nbcu-bom-long-text { border-top: 1px solid lightgray; border-bottom: 1px solid lightgray; padding: 5px 0; margin: 5px 0; }            
+            .textbold{font-weight: bold; padding-left: 10px; background-color:#F5F5F5;}
+            
+            body .bPageBlock .detailList tr td, body .bPageBlock .detailList tr th, body table.list tr td, body table.list tr th, body .hoverDetail .bPageBlock .detailList tr td, body .hoverDetail .bPageBlock .detailList tr th {
+            border-color: #FFFFFF; 
+            border-collapse: collapse;  
+   
+            }
+             <!--USST - 2831 & USST-2834 begin  To hide date hyperlink-->
+         span.dateInput span.dateFormat{
+                       display:none;
+                        }
+             <!--USST - 2831 & USST-2834 end -->
+            
+            .popupBackground {
+                background-color: black;
+                opacity: 0.20;
+                filter: alpha(opacity=20);
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                z-index: 2;
+            }
+        </style>
+        <script>
+        var listManagementPage;
+        function openListManagementPage(territory, isExistingRecord, itemType, bomStatus, hasDChainFR)
+        {
+            if((itemType != 'D (Display Vehicle)' && bomStatus != null && (('{!$Profile.Name}' != 'Master Data Admin' && bomStatus != 'Draft' && bomStatus != 'Sent Back') || ('{!$Profile.Name}' == 'Master Data Admin' && bomStatus != 'Draft' && bomStatus != 'In Progress' && bomStatus != 'Sent Back'))) || 
+               (itemType == 'D (Display Vehicle)' && isExistingRecord && (hasDChainFR == null || !hasDChainFR)))
+            {
+                if(itemType != 'D (Display Vehicle)')
+                    alert('Material/Component can only be added in material having BOM Status as Draft'+('{!$Profile.Name}' == 'Master Data Admin'?' or In Progress':'')+'.Please reach out to Planning to make any further updates.');
+                else
+                    alert('Display Vehicle should have D-Chain Spec \'FR\' to add child FERT material.');
+            }
+            else
+            {
+                listManagementPage = PopupCenter('/apex/WizardListManagementComponent?source=wizard&territory='+territory+'&from=bomWizard', 'Material Search', 900, 500);
+                var winClosed = setInterval(function () {
+                    try{
+                        if (listManagementPage.closed) {
+                            //alert('Called from child');
+                            clearInterval(winClosed);
+                            selectedMat(); //Call your function here
+                            //alert('Call Ended');
+                        }
+                    }
+                    catch(e){alert(e);}
+                }, 100);
+            }
+        }
+        function openFERTListManagementPage(territory, isExistingRecord, itemType, bomStatus, hasDChainFR)
+        {
+            if((itemType != 'D (Display Vehicle)' && bomStatus != null && (('{!$Profile.Name}' != 'Master Data Admin' && bomStatus != 'Draft' && bomStatus != 'Sent Back') || ('{!$Profile.Name}' == 'Master Data Admin' && bomStatus != 'Draft' && bomStatus != 'In Progress' && bomStatus != 'Sent Back'))) || 
+               (itemType == 'D (Display Vehicle)' && isExistingRecord && (hasDChainFR == null || !hasDChainFR)))
+            {
+                if(itemType != 'D (Display Vehicle)')
+                    alert('Material/Component can only be added in material having BOM Status as Draft'+('{!$Profile.Name}' == 'Master Data Admin'?' or In Progress':'')+'.Please reach out to Planning to make any further updates.');
+                else
+                    alert('Display Vehicle should have D-Chain Spec \'FR\' to add child FERT material.');
+            }
+            else
+            {
+                listManagementPage = PopupCenter('/apex/WizardListManagementComponent?source=wizard&matType=FERT&territory='+territory+'&from=bomWizard', 'Material Search', 900, 500);
+                var winClosed = setInterval(function () {
+                    try{
+                        if (listManagementPage.closed) {from=
+                            //alert('Called from child');
+                            clearInterval(winClosed);
+                            selectedMat(); //Call your function here
+                            //alert('Call Ended');
+                        }
+                    }
+                    catch(e){alert(e);}
+                }, 100);
+            }
+        }
+        
+        //Added below code to clone BOM -REL-10
+         function openListManagementPageForClone(territory, isExistingRecord, itemType, bomStatus, hasDChainFR ,isClone,matID)
+        {
+              if(isClone=='true'){
+                //alert(isClone);
+                listManagementPage = PopupCenter('/apex/WizardListManagementComponent?source=wizard&territory='+territory+'&from=bomWizard&isClone='+isClone+'&matID='+matID+'&matType=FERT', 'Material Search', 1200, 400);
+                    var winClosed = setInterval(function () {
+                        try{
+                            if (listManagementPage.closed) {
+                                //alert('Called from child');
+                                clearInterval(winClosed);
+                                selectedMat(); //Call your function here
+                                //alert('Call Ended');
+                            }
+                        }
+                        catch(e){alert(e);}
+                    }, 100);
+           }
+            
+            
+        }
+        
+        function PopupCenter(url, title, w, h) {
+            // Fixes dual-screen position                         Most browsers      Firefox
+            var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+            var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+            
+            var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+            var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+            
+            var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+            var top = ((height / 2) - (h / 2)) + dualScreenTop + 150;
+            var newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+            
+            // Puts focus on the newWindow
+            if (window.focus) {
+                newWindow.focus();
+            }
+            return newWindow;
+        }
+        
+        function setFocusOnLoad() {}
+        </script>
+        
+        <script>
+        function switchMenu(obj,obj1,obj2) 
+        {
+            var el = document.getElementById(obj);    
+            
+            
+            if ( el.style.display != 'none' ) {
+                el.style.display = 'none';
+            }
+            else {
+                el.style.display = '';
+            }
+            
+            var e2 = document.getElementById(obj1);                                       
+            if ( e2.style.display != 'none' ) {
+                e2.style.display = 'none';
+            }
+            else {
+                e2.style.display = '';
+            }
+            
+            var e3 = document.getElementById(obj2);                                       
+            if ( e2.style.display != 'none' ) {
+                e3.style.display = 'none';
+            }
+            else {
+                e3.style.display = '';
+            }        
+        }
+        </script>
+        
+        <!--USST - 2831 & USST-2834 to show/hide purple chevrons and avoid special char on BOM text 1 &2-->
+        <script>   
+            function Show(id1,id2,id3)
+            {
+                document.getElementById(id1).setAttribute("style","display:block;");
+                document.getElementById(id2).setAttribute("style","display:none;");
+                document.getElementById(id3).setAttribute("style","display:block;");
+                
+            }
+            
+             function Hide(id1,id2,id3)
+            {
+                document.getElementById(id1).setAttribute("style","display:none;");
+                document.getElementById(id2).setAttribute("style","display:block;");
+                document.getElementById(id3).setAttribute("style","display:none;");
+            }
+        
+        
+        
+           function CheckItemcat(id1,id2,id3,id4,id5,id6,id7)
+            {
+                
+                
+                var itemcategory =  document.getElementById(id1);
+                   var itemcategoryvalue = itemcategory.value;
+                               
+                   if ( itemcategoryvalue == 'L'|| itemcategoryvalue == 'N'  ) {
+                       
+                        document.getElementById(id2).setAttribute("style","display:block;");
+                        document.getElementById(id3).setAttribute("style","display:none;");
+                        document.getElementById(id4).setAttribute("style","display:block;");
+                     }
+                else {
+                        document.getElementById(id2).setAttribute("style","display:none;");
+                        document.getElementById(id3).setAttribute("style","display:none;");
+                        document.getElementById(id4).setAttribute("style","display:none;");
+                        document.getElementById(id5).value ='';
+                        document.getElementById(id6).value='';
+                        document.getElementById(id7).value='';
+                 }
+           } 
+           
+         
+        function inputLimiter(e) {
+            
+            
+                var k = e.which || e.keyCode;
+                var s = String.fromCharCode(k);
+                return !/^[\\\{\\}\\[\]\\?\-\+\=\<\\>\|~`#@%^*]$/i.test(s);
+        
+        } 
+        
+        </script>
+      <!--USST - 2831 & USST-2834 begin , validate Valid To date -->   
+    <script>
+        function validateDate(id1,id2)
+            {
+            try
+                {
+                    var validFrom = new Date(document.getElementById(id1).value);
+                    var validTo = new Date(document.getElementById(id2).value);
+                    var tomorrow = new Date();
+                    tomorrow.setDate(tomorrow.getDate() + 1);
+                    if(validTo < tomorrow || validTo.value <= validFrom.value )
+                    
+                        {
+                            alert("Invalid Valid To date!");
+                            document.getElementById(id2).value ='';
+                            return false;
+                         }
+                    return true;
+                }
+            catch(e)
+                {
+                alert(e);
+                return false;
+                }
+         }
+    </script> 
+        
+        
+        
+        
+        <apex:sectionHeader title="BOM Wizard" />
+        <apex:pageMessages id="pgMsg"></apex:pageMessages>
+        <!--Action status tag used to show ajax status-->
+        <apex:actionStatus id="ajaxStatus">
+            <apex:facet name="start">
+                <div class="popupBackground" style="z-index:1001;" layout="block">&nbsp;</div>
+                <div style="position:fixed;top:40%;left:50%;z-index:1002">
+                    <div style="padding:14px 10px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;border:1px solid #1288FF;background-color:#F5F5F5;margin-left:-100px;vertical-align:top;">
+                        <table>
+                            <tr valign="bottom">
+                                <td><img src="/img/loading.gif" width="25" height="25" /> &nbsp;</td>
+                                <td><span style="font-weight:bold;font-color:#1288FF;font-size:14px;">Processing...</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </apex:facet>
+        </apex:actionStatus>
+        
+        <apex:form id="theForm">
+            
+            <apex:actionFunction name="selectedMat" action="{!getSelectedMat}" reRender="MasterContainerPanel, pgMsg" status="ajaxStatus"/>
+            <apex:outputPanel id="MasterContainerPanel" rendered="{!renderPage}">
+                <apex:pageBlock id="MasterContainer" mode="MainDetail">
+                    <apex:pageBlockButtons >
+                        <apex:commandButton value="Save" action="{!saveMaterial}"/>
+                        <apex:commandButton value="Submit For Approval" action="{!submitForApproval}" rendered="{!AND(NOT(materialDetails.BOM_Status__c == 'Pending Final Approval'),NOT(rootMat.Material_Number__c==''))}"/>
+                        <!--REL-10 cloneBom Button will be visible only on Original materials of type 'M' and 'S'  Additional changes related to Selection Version. Additional code added for REL-185-->
+                        <apex:commandButton value="Clone BOM" action="{!isChanged}" reRender="pgMsg" rendered="{!NOT(materialDetails.Item_Type__c=='D (Display Vehicle)') && (materialDetails.Material_Type__c=='FERT') && (materialDetails.Selection_Version__c=='000')}" onComplete = "openListManagementPageForClone('{!materialDetails.Territory__c}', true, '{!materialDetails.Item_Type__c}', '{!materialDetails.BOM_Status__c}', {!(materialDetails.Count_Sales_for_D_Chain_Status__c != null && materialDetails.Count_Sales_for_D_Chain_Status__c > 0)},'true','{!materialDetails.id}');"/>
+                        <apex:commandButton value="Submit To SAP" action="{!sendDirectToSap}" onclick="if(confirm('Are you sure?'))return true;else return false;" rendered="{!AND(OR(NOT(materialDetails.BOM_Status__c == 'Pending Final Approval'),u.Master_Data__c == true),NOT(rootMat.Material_Number__c==''))}"/>
+                        <apex:commandButton value="Cancel" action="{!Cancel}"/>
+                    </apex:pageBlockButtons>
+                    
+                    <apex:pageBlockSection title="BOM Header" collapsible="False" >
+                        <apex:outputField value="{!materialDetails.BOM_Status__c}"/>
+                        <apex:outputField value="{!materialDetails.Plant__c}"/>
+                        <apex:outputField value="{!materialDetails.BOM_SAP_Status__c}"/>
+                        <apex:inputField value="{!materialDetails.BOM_Usage__c}"/>
+                        <apex:outputField value="{!materialDetails.PIR_Created__c}" rendered="{!OR(materialDetails.Territory__c == 'US',materialDetails.Territory__c == 'US & CDN')}"/>
+                        <apex:outputField value="{!materialDetails.Canada_PIR_Flag__c}" rendered="{!OR(materialDetails.Territory__c == 'CDN',materialDetails.Territory__c == 'US & CDN')}"/>
+                        <apex:inputField value="{!materialDetails.Valid_From__c}" rendered="{!NOT(materialDetails.Material_Status__c == 'Processed in SAP')}"/>
+                        <apex:outputField value="{!materialDetails.Valid_From__c}" rendered="{!materialDetails.Material_Status__c == 'Processed in SAP'}"/>
+                        <apex:inputField value="{!materialDetails.Brand_Group__c}" label="Group"/>
+                        <apex:outputField value="{!materialDetails.Label_Code__c}"/>
+                        <!--RE-14 Adding Sales field to BomHeader --Start-->
+                        <apex:outputText value=""/>
+                        <apex:inputField value="{!salesDetails.Material_Group_2__c}"/>
+                        <apex:outputText value=""/>
+                        <apex:inputField value="{!salesDetails.Material_Group_5__c}"/>
+                        <!--RE-14 Adding Sales field to BomHeader --end-->
+                        <!--<apex:outputField value="{!materialDetails.Old_Material_No__c}" rendered="{!u.profile.Name == 'Master Data Admin'}" />-->
+                    </apex:pageBlockSection>                
+                    
+                    <br/>
+                    
+                   <!-- <apex:outputPanel style="width:23%; float:right;">
+                        <apex:commandLink reRender="MasterContainer, pgMsg" status="ajaxStatus" onClick="openListManagementPage('{!materialDetails.Territory__c}', true, '{!materialDetails.Item_Type__c}', '{!materialDetails.BOM_Status__c}', {!(materialDetails.Count_Sales_for_D_Chain_Status__c != null && materialDetails.Count_Sales_for_D_Chain_Status__c > 0)});">
+                            <span style="padding-left:10px;padding-right:4px;"><apex:image id="AddImg2" value="{!$Resource.Add}" width="12"/></span>
+                            <apex:outputText ><b>Add Existing Component</b></apex:outputText>
+                            <apex:param value="{!1}" name="bomDepth1" assignTo="{!selectedMaterialLevel}"/>
+                            <apex:param value="COMPONENT" name="materialType1" assignTo="{!materialType}" />
+                        </apex:commandLink>
+                        <apex:commandLink reRender="MasterContainer, pgMsg" status="ajaxStatus" onClick="openFERTListManagementPage('{!materialDetails.Territory__c}', true, '{!materialDetails.Item_Type__c}', '{!materialDetails.BOM_Status__c}', {!(materialDetails.Count_Sales_for_D_Chain_Status__c != null && materialDetails.Count_Sales_for_D_Chain_Status__c > 0)});">
+                            <span style="padding-left:5px;padding-right:4px;"><apex:image id="AddImg3" value="{!$Resource.Add}" width="12"/></span>
+                            <apex:outputText ><b>Add Existing Material</b></apex:outputText>
+                            <apex:param value="{!1}" name="bomDepth1" assignTo="{!selectedMaterialLevel}"/>
+                            <apex:param value="FERT" name="materialType1" assignTo="{!materialType}" />
+                        </apex:commandLink>
+                    </apex:outputPanel>-->
+                    
+                    <div style="width:99%;padding-top:10px;">
+                        <div style="float:left;">
+                            <div style="width:20px;height:20px;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;background-color:#E38D84;float:left;">&nbsp;</div><div style="float:left;padding: 5px;font-weight:bold;">First level</div>
+                            <div style="width:20px;height:20px;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;background-color:#9BB063;float:left;">&nbsp;</div><div style="float:left;padding: 5px;font-weight:bold;">Second level</div>
+                            <div style="width:20px;height:20px;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;background-color:#7581BA;float:left;">&nbsp;</div><div style="float:left;padding: 5px;font-weight:bold;">Third level</div>
+                             <!--USST - 2831 & USST-2834 begin commented out 4th level and added purple one-->
+                            <!--   <div style="width:20px;height:20px;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;background-color:#E09100;float:left;">&nbsp;</div><div style="float:left;padding: 5px;font-weight:bold;">Fourth level</div> -->
+                            <div style="width:20px;height:20px;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;background-color:#7030A0;float:left;">&nbsp;</div><div style="float:left;padding: 5px;font-weight:bold;">BoM Item Text &amp; Valid To Date</div>
+                             <!--USST - 2831 & USST-2834 end -->
+                        </div>
+                        <div style="float:right;padding-top:5px;">
+                            <apex:commandLink reRender="MasterContainer, pgMsg" status="ajaxStatus" onClick="openListManagementPage('{!materialDetails.Territory__c}', true, '{!materialDetails.Item_Type__c}', '{!materialDetails.BOM_Status__c}', {!(materialDetails.Count_Sales_for_D_Chain_Status__c != null && materialDetails.Count_Sales_for_D_Chain_Status__c > 0)});">
+                                <span style="padding-left:10px;padding-right:4px;"><apex:image id="AddImg2" value="{!$Resource.Add}" width="12"/></span>
+                                <apex:outputText ><b>Add Existing Component</b></apex:outputText>
+                                <apex:param value="{!1}" name="bomDepth1" assignTo="{!selectedMaterialLevel}"/>
+                                <apex:param value="COMPONENT" name="materialType1" assignTo="{!materialType}" />
+                            </apex:commandLink>
+                            <apex:commandLink reRender="MasterContainer, pgMsg" status="ajaxStatus" onClick="openFERTListManagementPage('{!materialDetails.Territory__c}', true, '{!materialDetails.Item_Type__c}', '{!materialDetails.BOM_Status__c}', {!(materialDetails.Count_Sales_for_D_Chain_Status__c != null && materialDetails.Count_Sales_for_D_Chain_Status__c > 0)});">
+                                <span style="padding-left:5px;padding-right:4px;"><apex:image id="AddImg3" value="{!$Resource.Add}" width="12"/></span>
+                                <apex:outputText ><b>Add Existing Material</b></apex:outputText>
+                                <apex:param value="{!1}" name="bomDepth1" assignTo="{!selectedMaterialLevel}"/>
+                                <apex:param value="FERT" name="materialType1" assignTo="{!materialType}" />
+                            </apex:commandLink>
+                        </div>
+                    </div>
+                    
+                    <br/><br/>
+                     <!--USST - 2831 & USST-2834 - Columns changed to 10  -->
+                    <apex:panelGrid rules="all" frame="border" columns="10" width="100%" columnClasses="colstyle" styleClass="textbold" cellpadding="5 px">
+                        <apex:outputText value="Material Description" /> 
+                        <apex:outputText value="Material Number" />
+                        <apex:outputText value="" />        <!--USST - 2831 & USST-2834 New empty column for purple chevrons -->
+                        <apex:outputText value="Old Material No." />
+                        <apex:outputText value="Item Qty" />    
+                        <apex:outputText value="Item Category" /> 
+                        <apex:outputText value="Label code" /> 
+                        <apex:outputText value="BOM Status" /> 
+                        <apex:outputText value="Valid From" />
+                       <apex:outputText value="Remove" />                              
+                    </apex:panelGrid>
+
+                    <apex:variable var="l1Index" value="{!0}" />
+                    <apex:outputPanel id="panel1stLevel">
+                    <apex:repeat value="{!rootIns.Data}" var="material" id="repeatLevel">
+                        <apex:variable var="materialIndexPath1" value="{!TEXT(l1Index)}" />
+                        <!-- Level 1: FERTs -->
+                        <apex:outputPanel >
+                            <!-- FERT Details -->
+                            <apex:outputPanel style="width:100%; float:left;">                                
+                                <apex:repeat value="{!material}" var="mat">
+                                    <apex:panelGrid columns="11" width="100%" columnClasses="colstyle" cellspacing="0" cellpadding="5 px">
+                                        <apex:outputPanel >                                         
+                                            <apex:outputpanel id="plusimage1" style="display:{!if(mat.isCollapsed,"inline","none")};" >
+                                                <apex:image url="{!$Resource.Chevron_Right_Pink}">
+                                                    <apex:actionSupport event="onclick" reRender="MasterContainer" action="{!sectionCollapseExpand}" status="ajaxStatus" oncomplete="clickNbcuButtonSet();">
+                                                        <apex:param value="{!materialIndexPath1}" name="materialIndex1" assignTo="{!materialIndex}" />
+                                                        <apex:param value="{!1}" name="bomDepth1" assignTo="{!selectedMaterialLevel}" />
+                                                    </apex:actionSupport>                                   
+                                                </apex:image>
+                                            </apex:outputpanel>
+                                            <apex:outputpanel id="minusimage1" style="display:{!if(mat.isCollapsed,"none","inline")};" >
+                                                <apex:image url="{!$Resource.Chevron_Down_Pink}">
+                                                    <apex:actionSupport event="onclick" reRender="panel1stLevel" action="{!sectionCollapseExpand}" status="ajaxStatus" oncomplete="clickNbcuButtonSet();">
+                                                    </apex:actionSupport>                                                   
+                                                </apex:image>
+                                            </apex:outputpanel>&nbsp;
+                                            
+                                            <apex:outputLink value="/{!mat.instance.id}" target="_blank" style="color:blue;">{!mat.instance.Name}</apex:outputLink> 
+                                        </apex:outputPanel>                                        
+                                        <apex:outputText value="{!mat.instance.Material_Number__c}" rendered="{!mat.isExistingRecord}" style="color:blue;"/> 
+                                         
+                                        <!--USST - 2831 & USST-2834 begin -->
+                                       <apex:outputPanel >
+                                        <apex:outputpanel id="BOMimage1plus" rendered="{!NOT(showAllBOMTextLevel1)}">
+                                                <apex:image url="{!$Resource.Chevron_Right_DarkPurple}" width="12" title="Expand all BOM Text and Valid To at this level">
+                                                    <apex:actionSupport event="onclick" reRender="panel1stLevel" action="{!BOMsectionCollapseExpand}" status="ajaxStatus" oncomplete="clickNbcuButtonSet();">
+                                                        <apex:param value="{!1}" name="bomDepth1" assignTo="{!selectedMaterialLevel}" />
+                                                    </apex:actionSupport>                                   
+                                                </apex:image>
+                                            </apex:outputpanel>
+                                        
+                                         <apex:outputpanel id="BOMimage1minus" rendered="{!showAllBOMTextLevel1}" >
+                                                <apex:image url="{!$Resource.Chevron_Down_DarkPurple}" width="12" title="Collapse all BOM Text and Valid To at this level.">
+                                                    <apex:actionSupport event="onclick" reRender="panel1stLevel" action="{!BOMsectionCollapseExpand}" status="ajaxStatus" oncomplete="clickNbcuButtonSet();">
+                                                        <apex:param value="{!1}" name="bomDepth1" assignTo="{!selectedMaterialLevel}" />
+                                                    </apex:actionSupport>                                                   
+                                                </apex:image>
+                                            </apex:outputpanel>
+                                         </apex:outputPanel>
+                                        <!--USST - 2831 & USST-2834 end -->
+                                        
+                                        <apex:outputText value="{!mat.instance.Old_Material_Load__c}"  style="color:blue;"/> 
+                                        <apex:outputText value="NA" style="font-weight: bold;color:blue;"/>
+                                        <apex:outputText value="NA" style="font-weight: bold;color:blue;"/>
+                                        <apex:outputText value="{!mat.instance.Label_Code__c}" style="color:blue;"/>
+                                        <apex:outputText value="{!mat.instance.BOM_Status__c}" style="color:blue;" />
+                                        <apex:outputText value="NA" style="font-weight: bold;color:blue;"/> 
+                                        <apex:outputText value="NA" style="font-weight: bold;color:blue;"/>
+                                    </apex:panelGrid>                                
+                                </apex:repeat>
+                            </apex:outputPanel>
+                        </apex:outputPanel>                       
+                        
+                        <apex:outputPanel id="inlinetablesec" rendered="{!NOT(material.isCollapsed)}" >
+                            <!-- Level 1: Components -->
+                            <apex:outputPanel rendered="{!material.childComponents.size > 0}">
+                                <apex:outputPanel style="width:100%; float:left;">
+                                    <apex:variable value="{!0}" var="rowNumComp"/>                                    
+                                    <apex:repeat value="{!material.childComponents}" var="comp" >
+                                         <!--USST - 2831 & USST-2834 -Columns changed to 10 -->
+                                        <apex:panelGrid columns="10" width="100%" columnClasses="colstyle" cellspacing="0" cellpadding="5 px">
+                                            <apex:outputLink value="/{!comp.instance.ID}" target="_blank" style="padding-left: 1cm;">{!comp.instance.Name}</apex:outputLink>
+                                            <apex:outputField value="{!comp.instance.Material_Number__c}" />
+                                           <!--USST - 2831 & USST-2834 begin -->
+                                            <apex:outputPanel >
+                                                <apex:outputpanel id="BOMplusimageComp1" style="display:{!IF(AND(NOT(showAllBOMTextLevel1),OR(comp.bmItm.Item_Category__c == 'L', comp.bmItm.Item_Category__c == 'N')),"inline","none")}"  onclick="Show('{!$Component.BOMTextpanel1}','{!$Component.BOMplusimageComp1}','{!$Component.BOMminusimageComp1}')"  >
+                                                   <apex:image url="{!$Resource.ChevronArrow_Right_DarkPurple}" width="8" >
+                                                   </apex:image>
+                                                </apex:outputpanel>
+                                            
+                                                <apex:outputpanel id="BOMminusimageComp1" style="display:{!IF(OR(comp.bmItm.Item_Category__c != 'L', comp.bmItm.Item_Category__c != 'N'),"none","inline")}"      onclick="Hide('{!$Component.BOMTextpanel1}','{!$Component.BOMplusimageComp1}','{!$Component.BOMminusimageComp1}')"  >
+                                                   <apex:image url="{!$Resource.ChevronArrow_Down_DarkPurple}" width="8" >
+                                                   </apex:image>
+                                                </apex:outputpanel>
+                                            </apex:outputPanel>
+                                           <!--USST - 2831 & USST-2834 end -->  
+                                            <apex:outputText value="{!comp.instance.Old_Material_Load__c}" />    
+                                            <apex:inputField value="{!comp.bmItm.BOM_Quantity__c}" />
+                                            <apex:inputField id="itemcat1" value="{!comp.bmItm.Item_Category__c}" onchange="CheckItemcat('{!$Component.itemcat1}','{!$Component.BOMTextpanel1}','{!$Component.BOMplusimageComp1}','{!$Component.BOMminusimageComp1}','{!$Component.Bomtext1}','{!$Component.Bomtext2}','{!$Component.ValidTo1}')" /> 
+                                            <apex:outputField value="{!comp.instance.Label_Code__c}"/>
+                                            <apex:outputField value="{!comp.instance.BOM_Status__c}"  />
+                                             <!--USST - 2831 & USST-2834 valid from is made read only -->
+                                            <apex:outputField id="ValidFrom1" value="{!comp.bmItm.Valid_From__c}" />
+                                            <!--<apex:outputField value="{!comp.bmItm.Valid_From__c}" rendered="{!comp.instance.Material_Status__c == 'Processed in SAP'}"/>-->
+                                            <apex:commandLink action="{!deleteBOMItem}" reRender="MasterContainer, pgMsg" status="ajaxStatus" rendered="{!comp.isNew}">
+                                                <span style="padding-left:5px;padding-right:4px;"><apex:image id="RemoveImage" value="{!$Resource.Remove}" width="12" /></span>
+                                                <apex:param name="rowNumComp" value="{!rowNumComp}" assignTo="{!rowNumComp}"/>
+                                                <apex:param name="type" value="Component" assignTo="{!type}"/>
+                                                <apex:param name="bomID" value="{!comp.bmItm.id}" assignTo="{!bomID}"/>
+                                            </apex:commandLink>  
+                                            <apex:commandLink action="{!deleteBOMItem}" reRender="MasterContainer, pgMsg" status="ajaxStatus" rendered="{!NOT(comp.isNew)}">
+                                                <span style="padding-left:5px;padding-right:4px;"><apex:image id="RemoveBOMFERT" value="{!$Resource.Remove}" width="12" /></span>
+                                                <apex:param name="rowNumComp" value="{!rowNumComp}" assignTo="{!rowNumComp}"/>
+                                                <apex:param name="type" value="Component" assignTo="{!type}"/>
+                                                <apex:param name="bomID" value="{!comp.bmItm.id}" assignTo="{!bomID}"/>
+                                            </apex:commandLink>  
+                                        </apex:panelGrid>  
+                                         <!--USST - 2831 & USST-2834 begin -->
+                                       <apex:outputpanel id="BOMTextpanel1" style="display:{!if(AND(showAllBOMTextLevel1,OR(comp.bmItm.Item_Category__c == 'L', comp.bmItm.Item_Category__c == 'N')),"inline","none")};" >
+                                            <apex:panelGrid columns="3" width="40%"  cellspacing="0" cellpadding="5 px" > 
+                                                <apex:inputtext id="Bomtext1" title="Bom Item text 1" value="{!comp.bmItm.BOM_Item_Text_1__c}" style="width: 300px;margin:0 1cm 0" onkeypress="return inputLimiter(event);"  />
+                                                <apex:outputLabel >Valid To</apex:outputLabel>
+                                               <apex:inputField id="ValidTo1" styleClass="dateFormat" value="{!comp.bmItm.Valid_To__c}"  onchange="validateDate('{!$Component.ValidFrom1}','{!$Component.ValidTo1}')"/>   
+                                               <apex:inputtext id="Bomtext2" title="Bom Item text 2" value="{!comp.bmItm.BOM_Item_Text_2__c}" style="width: 300px;margin:0 1cm 0" onkeypress="return inputLimiter(event);" /> 
+                                           </apex:panelGrid>
+                                        </apex:outputpanel>   
+                                         <!--USST - 2831 & USST-2834 end -->
+                                  <apex:variable var="rowNumComp" value="{!rowNumComp + 1}"/>                                 
+                                    </apex:repeat>
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                            
+                            <!--Level 2 starts here-->
+                            <apex:variable value="{!0}" var="rowNumFERT2"/>
+                            <apex:variable var="l2Index" value="{!0}" />
+                            <apex:outputPanel id="panel2ndLevel">
+                            <apex:repeat value="{!material.childIns.Data}" var="material2" id="repeatLevel2">
+                                 <apex:variable var="materialIndexPath2" value="{!TEXT(l1Index) + ';' + TEXT(l2Index)}" />
+                                <!-- Level 2: FERTs -->
+                                <apex:outputPanel >
+                                    <!-- FERT Details -->
+                                    <apex:outputPanel style="width:100%; float:left;">                                        
+                                        <apex:repeat value="{!material2}" var="mat">
+                                             <!--USST - 2831 & USST-2834 columns changed to 10 -->
+                                            <apex:panelGrid columns="10" width="100%" columnClasses="colstyle" cellspacing="0" cellpadding="5 px">                                                
+                                                <apex:outputPanel >
+                                                    <apex:outputpanel id="plusimage2" style="display:{!if(mat.isCollapsed,"inline","none")};padding-left: 1cm;" styleclass="nbcu_exapnd_collapse">
+                                                        <apex:image url="{!$Resource.Chevron_Right_Green}" >
+                                                            <apex:actionSupport event="onclick" reRender="MasterContainer" action="{!sectionCollapseExpand}" status="ajaxStatus" oncomplete="clickNbcuButtonSet();">
+                                                                <apex:param value="{!materialIndexPath2}" name="materialIndex2" assignTo="{!materialIndex}" />
+                                                                <apex:param value="{!2}" name="bomDepth2" assignTo="{!selectedMaterialLevel}" />
+                                                            </apex:actionSupport>                                               
+                                                        </apex:image>
+                                                    </apex:outputpanel>
+                                                    <apex:outputpanel id="minusimage2" style="display:{!if(mat.isCollapsed,"none","inline")};padding-left: 1cm;" styleclass="nbcu_exapnd_collapse">
+                                                        <apex:image url="{!$Resource.Chevron_Down_Green}" >
+                                                            <apex:actionSupport event="onclick" reRender="MasterContainer" action="{!sectionCollapseExpand}" status="ajaxStatus" oncomplete="clickNbcuButtonSet();">
+                                                                <apex:param value="{!materialIndexPath2}" name="materialIndex2" assignTo="{!materialIndex}" />
+                                                                <apex:param value="{!2}" name="bomDepth2" assignTo="{!selectedMaterialLevel}" />
+                                                            </apex:actionSupport>                                               
+                                                        </apex:image>
+                                                    </apex:outputpanel>&nbsp;
+                                                    
+                                                    <apex:outputLink value="/{!mat.instance.ID}" target="_blank" style="color:blue;">{!mat.instance.Name}</apex:outputLink>
+                                                </apex:outputPanel>
+                                                <apex:outputText value="{!mat.instance.Material_Number__c}" style="color:blue;"/>    
+                                                 <!--USST - 2831 & USST-2834 begin -->
+                                                <apex:outputPanel >
+                                                     <apex:outputpanel id="BOMimage2plus" rendered="{!NOT(showAllBOMTextLevel2)}">
+                                                            <apex:image url="{!$Resource.Chevron_Right_DarkPurple}" width="12" title="Expand all BOM Text and Valid To at this level">
+                                                                <apex:actionSupport event="onclick" reRender="panel2ndLevel" action="{!BOMsectionCollapseExpand}" status="ajaxStatus" oncomplete="clickNbcuButtonSet();">
+                                                                    <apex:param value="{!2}" name="bomDepth2" assignTo="{!selectedMaterialLevel}" />
+                                                                </apex:actionSupport>                                   
+                                                            </apex:image>
+                                                     </apex:outputpanel>
+                                        
+                                                    <apex:outputpanel id="BOMimage2minus" rendered="{!showAllBOMTextLevel2}" >
+                                                            <apex:image url="{!$Resource.Chevron_Down_DarkPurple}" width="12" title="Collapse all BOM Text and Valid To at this level">
+                                                                <apex:actionSupport event="onclick" reRender="panel2ndLevel" action="{!BOMsectionCollapseExpand}" status="ajaxStatus" oncomplete="clickNbcuButtonSet();">
+                                                                    <apex:param value="{!2}" name="bomDepth2" assignTo="{!selectedMaterialLevel}" />
+                                                                </apex:actionSupport>                                                   
+                                                            </apex:image>
+                                                    </apex:outputpanel>
+                                                </apex:outputPanel>
+                                        <!--USST - 2831 & USST-2834 end -->
+                                                
+                                                <apex:outputText value="{!mat.instance.Old_Material_Load__c}"   style="color:blue;"/>
+                                                <apex:inputField value="{!mat.bmItm.BOM_Quantity__c}" style="color:blue;"/> 
+                                                <apex:inputField value="{!mat.bmItm.Item_Category__c}"  style="color:blue;"/> 
+                                                <apex:outputText value="{!mat.instance.Label_Code__c}" style="color:blue;"/>
+                                                <apex:outputText value="{!mat.instance.BOM_Status__c}" style="color:blue;"/>
+                                                <!--USST - 2831 & USST-2834 valid from is made read only -->
+                                                <apex:outputField value="{!mat.bmItm.Valid_From__c}" style="color:blue;"/>
+                                                <!--<apex:outputField value="{!mat.bmItm.Valid_From__c}" style="color:blue;" rendered="{!mat.instance.Material_Status__c == 'Processed in SAP'}"/>-->
+                                                <apex:commandLink action="{!deleteBOMItem}" reRender="MasterContainer, pgMsg" status="ajaxStatus" rendered="{!mat.isNew}">
+                                                    <span style="padding-left:5px;padding-right:4px;"><apex:image id="RemoveImage" value="{!$Resource.Remove}" width="12" /></span>
+                                                    <apex:param name="rowNumFERT2" value="{!rowNumFERT2}" assignTo="{!rowNumberFERT}"/>
+                                                    <apex:param name="type" value="FERT" assignTo="{!type}"/>
+                                                    <apex:param name="bomID" value="{!mat.bmItm.id}" assignTo="{!bomID}"/>
+                                                </apex:commandLink>
+                                                <apex:commandLink action="{!deleteBOMItem}" reRender="MasterContainer, pgMsg" status="ajaxStatus" rendered="{!NOT(mat.isNew)}">
+                                                    <span style="padding-left:5px;padding-right:4px;"><apex:image id="RemoveBOM" value="{!$Resource.Remove}" width="12" /></span>
+                                                    <apex:param name="rowNumFERT2" value="{!rowNumFERT2}" assignTo="{!rowNumberFERT}"/>
+                                                    <apex:param name="type" value="FERT" assignTo="{!type}"/>
+                                                    <apex:param name="bomID" value="{!mat.bmItm.id}" assignTo="{!bomID}"/>
+                                                </apex:commandLink>                               
+                                            </apex:panelGrid>
+                                            <apex:variable var="rowNumFERT2" value="{!(rowNumFERT2 + 1)}"/>
+                                                                                    
+                                        </apex:repeat>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                
+                                <apex:outputPanel id="inlinetablesec1" rendered="{!NOT(material2.isCollapsed)}">                                    
+                                    <!--Level 2 Components-->
+                                    <apex:outputPanel rendered="{!AND(material2.childComponents.size > 0 , material.instance.Label_Code__c = '87 - JOINT CORR/MULTI-STUDIO' , material.instance.Material_Type__c = 'FERT')}">                            
+                                        <apex:outputPanel style="width:100%; float:left;">
+                                            <apex:variable value="{!0}" var="rowNumComp2"/>
+                                            <apex:repeat value="{!material2.childComponents}" var="comp" >
+                                                 <!--USST - 2831 & USST-2834 columns changed to 10 -->
+                                                <apex:panelGrid columns="10" width="100%" columnClasses="colstyle" cellspacing="0" cellpadding="5 px">
+                                                    <apex:outputLink value="/{!comp.instance.ID}" target="_blank" style="padding-left: 1.7cm;">{!comp.instance.Name}</apex:outputLink>
+                                                    <apex:outputField value="{!comp.instance.Material_Number__c}" />
+                                                     <!--USST - 2831 & USST-2834 begin -->
+                                                    <apex:outputPanel >
+                                                        <apex:outputpanel id="BOMplusimageComp2" style="display:{!IF(AND(NOT(showAllBOMTextLevel2),OR(comp.bmItm.Item_Category__c == 'L', comp.bmItm.Item_Category__c == 'N')),"inline","none")}"  onclick="Show('{!$Component.BOMTextpanel2}','{!$Component.BOMplusimageComp2}','{!$Component.BOMminusimageComp2}')"  >
+                                                            <apex:image url="{!$Resource.ChevronArrow_Right_DarkPurple}" width="8" >
+                                                            </apex:image>
+                                                        </apex:outputpanel>
+                                            
+                                                        <apex:outputpanel id="BOMminusimageComp2" style="display:{!IF(OR(comp.bmItm.Item_Category__c != 'L', comp.bmItm.Item_Category__c != 'N'),"none","inline")}"      onclick="Hide('{!$Component.BOMTextpanel2}','{!$Component.BOMplusimageComp2}','{!$Component.BOMminusimageComp2}')"  >
+                                                            <apex:image url="{!$Resource.ChevronArrow_Down_DarkPurple}" width="8" >
+                                                            </apex:image>
+                                                        </apex:outputpanel>
+                                                    </apex:outputPanel>
+                                                     <!--USST - 2831 & USST-2834 end -->
+                                                    <apex:outputText value="{!comp.instance.Old_Material_Load__c}" />
+                                                    <apex:inputField value="{!comp.bmItm.BOM_Quantity__c}"/>
+                                                    <apex:inputField id="itemcat2" value="{!comp.bmItm.Item_Category__c}"  onchange="CheckItemcat('{!$Component.itemcat2}','{!$Component.BOMTextpanel2}','{!$Component.BOMplusimageComp2}','{!$Component.BOMminusimageComp2}','{!$Component.Bomitemtext1}','{!$Component.Bomitemtext2}','{!$Component.ValidTo2}')"  /> 
+                                                    <apex:outputField value="{!comp.instance.Label_Code__c}"/>
+                                                    <apex:outputField value="{!comp.instance.BOM_Status__c}"  />
+                                                     <!--USST - 2831 & USST-2834 Valid from is made read only and removed today hyperlink -->
+                                                    <apex:outputField id="ValidFrom2" styleClass="dateFormat" value="{!comp.bmItm.Valid_From__c}"/>
+                                                    <!--<apex:outputField value="{!comp.bmItm.Valid_From__c}" rendered="{!comp.instance.Material_Status__c == 'Processed in SAP'}"/> -->
+                                                    <apex:commandLink action="{!deleteBOMItem}" reRender="MasterContainer, pgMsg" status="ajaxStatus" rendered="{!comp.isNew}">
+                                                        <span style="padding-left:5px;padding-right:4px;"><apex:image id="RemoveImage" value="{!$Resource.Remove}" width="12" /></span>
+                                                        <apex:param name="rowNumComp" value="{!rowNumComp2}" assignTo="{!rowNumComp}"/>
+                                                        <apex:param name="type" value="Component" assignTo="{!type}"/>
+                                                        <apex:param name="bomID" value="{!comp.bmItm.id}" assignTo="{!bomID}"/>
+                                                        <apex:param value="{!2}" name="bomDepth2" assignTo="{!selectedMaterialLevel}" />
+                                                    </apex:commandLink>  
+                                                    <apex:commandLink action="{!deleteBOMItem}" reRender="MasterContainer, pgMsg" status="ajaxStatus" rendered="{!NOT(comp.isNew)}">
+                                                        <span style="padding-left:5px;padding-right:4px;"><apex:image id="RemoveBOMFERT" value="{!$Resource.Remove}" width="12" /></span>
+                                                        <apex:param name="rowNumComp" value="{!rowNumComp2}" assignTo="{!rowNumComp}"/>
+                                                        <apex:param name="type" value="Component" assignTo="{!type}"/>
+                                                        <apex:param name="bomID" value="{!comp.bmItm.id}" assignTo="{!bomID}"/>
+                                                        <apex:param value="{!2}" name="bomDepth2" assignTo="{!selectedMaterialLevel}" />
+                                                    </apex:commandLink>                                   
+                                                </apex:panelGrid>  
+                                                 <!--USST - 2831 & USST-2834 begin -->
+                                                <apex:outputpanel id="BOMTextpanel2" style="display:{!if(AND(showAllBOMTextLevel2,OR(comp.bmItm.Item_Category__c == 'L', comp.bmItm.Item_Category__c == 'N')),"inline","none")};" >
+                                                     <apex:panelGrid columns="3" width="40%"  cellspacing="0" cellpadding="5 px" > 
+                                                        <apex:inputField id="Bomitemtext1" value="{!comp.bmItm.BOM_Item_Text_1__c}" style="width: 300px;margin:0 1.7cm 0" onkeypress="return inputLimiter(event);"/>
+                                                        <apex:outputLabel >Valid To</apex:outputLabel>
+                                                        <apex:inputField id="ValidTo2" styleClass="dateFormat" value="{!comp.bmItm.Valid_To__c}" onchange="validateDate('{!$Component.ValidFrom2}','{!$Component.ValidTo2}')" />   
+                                                        <apex:inputField id="Bomitemtext2" value="{!comp.bmItm.BOM_Item_Text_2__c}" style="width: 300px;margin:0 1.7cm 0" onkeypress="return inputLimiter(event);"/> 
+                                                    </apex:panelGrid>
+                                                </apex:outputpanel>   
+                                                 <!--USST - 2831 & USST-2834 end -->
+                                                <apex:variable var="rowNumComp2" value="{!rowNumComp2 + 1}"/>                                 
+                                            </apex:repeat>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>    
+                                    
+                                    <!--Level 3 starts here-->                                    
+                                    <apex:variable value="{!0}" var="rowNumFERT3"/>
+                                    <apex:variable var="l3Index" value="{!0}" />
+                                    <apex:outputPanel id="panel3rdLevel">
+                                    <apex:repeat value="{!material2.childIns.Data}" var="material3" id="repeatLevel3">
+                                        <apex:variable var="materialIndexPath3" value="{!TEXT(l1Index) + ';' + TEXT(l2Index) + ';' + TEXT(l3Index)}" />
+                                        <!-- Level 3: FERTs -->
+                                        <apex:outputPanel rendered="{!AND(material.instance.Label_Code__c = '87 - JOINT CORR/MULTI-STUDIO' , material.instance.Material_Type__c = 'FERT')}">
+                                            <apex:outputPanel >
+                                                <!-- FERT Details -->
+                                                <apex:outputPanel style="width:100%; float:left;">
+                                                    <apex:repeat value="{!material3}" var="mat">     
+                                                         <!--USST - 2831 & USST-2834 colonumns changed to 10 -->
+                                                        <apex:panelGrid columns="10" width="100%" columnClasses="colstyle" cellspacing="0" cellpadding="5 px">
+                                                            <apex:outputPanel >
+                                                                <apex:outputpanel id="plusimage3" style="display:{!if(mat.isCollapsed,"inline","none")};padding-left: 1.7cm;" styleclass="nbcu_exapnd_collapse">
+                                                                        <apex:image url="{!$Resource.Chevron_Right_Purple}" >
+                                                                            <apex:actionSupport event="onclick" reRender="MasterContainer" action="{!sectionCollapseExpand}" status="ajaxStatus" oncomplete="clickNbcuButtonSet();">
+                                                                                <apex:param value="{!materialIndexPath3}" name="materialIndex3" assignTo="{!materialIndex}" />
+                                                                                <apex:param value="{!3}" name="bomDepth3" assignTo="{!selectedMaterialLevel}" />
+                                                                            </apex:actionSupport>
+                                                                        </apex:image>
+                                                                    </apex:outputpanel>
+                                                                    <apex:outputpanel id="minusimage3" style="display:{!if(mat.isCollapsed,"none","inline")};padding-left: 1.7cm;" styleclass="nbcu_exapnd_collapse">
+                                                                        <apex:image url="{!$Resource.Chevron_Down_Purple}" >
+                                                                            <apex:actionSupport event="onclick" reRender="MasterContainer" action="{!sectionCollapseExpand}" status="ajaxStatus" oncomplete="clickNbcuButtonSet();">
+                                                                                <apex:param value="{!materialIndexPath3}" name="materialIndex3" assignTo="{!materialIndex}" />
+                                                                                <apex:param value="{!3}" name="bomDepth3" assignTo="{!selectedMaterialLevel}" />
+                                                                            </apex:actionSupport>
+                                                                        </apex:image>
+                                                                    </apex:outputpanel> &nbsp;
+                                                                
+                                                                <apex:outputLink value="/{!mat.instance.ID}" target="_blank" style="color:blue;">{!mat.instance.Name}</apex:outputLink>
+                                                            </apex:outputPanel>                                                            
+                                                            <apex:outputText value="{!mat.instance.Material_Number__c}" style="color:blue;"/> 
+                                                          
+                                                            <apex:outputPanel > </apex:outputPanel>                                                          
+                                                            
+
+                                                            
+                                                            
+                                                            <apex:outputText value="{!mat.instance.Old_Material_Load__c}"   style="color:blue;"/>
+                                                            <apex:inputField value="{!mat.bmItm.BOM_Quantity__c}" style="color:blue;"/> 
+                                                            <apex:inputField value="{!mat.bmItm.Item_Category__c}"  style="color:blue;"/> 
+                                                            <apex:outputText value="{!mat.instance.Label_Code__c}" style="color:blue;"/>
+                                                            <apex:outputText value="{!mat.instance.BOM_Status__c}" style="color:blue;"/>
+                                                            <!--USST - 2831 & USST-2834 Valid from is made read only and removed today hyperlink -->
+                                                            <apex:outputField value="{!mat.bmItm.Valid_From__c}" style="color:blue;"/>
+                                                            <!--<apex:outputField value="{!mat.bmItm.Valid_From__c}" style="color:blue;" rendered="{!mat.instance.Material_Status__c == 'Processed in SAP'}"/> -->
+                                                            <apex:commandLink action="{!deleteBOMItem}" reRender="MasterContainer, pgMsg" status="ajaxStatus" rendered="{!mat.isNew}">
+                                                                <span style="padding-left:5px;padding-right:4px;"><apex:image id="RemoveImage" value="{!$Resource.Remove}" width="12" /></span>
+                                                                <apex:param name="rowNumFERT" value="{!rowNumFERT3}" assignTo="{!rowNumberFERT}"/>
+                                                                <apex:param name="type" value="FERT" assignTo="{!type}"/>
+                                                                <apex:param name="bomID" value="{!mat.bmItm.id}" assignTo="{!bomID}"/>
+                                                            </apex:commandLink>
+                                                            <apex:commandLink action="{!deleteBOMItem}" reRender="MasterContainer, pgMsg" status="ajaxStatus" rendered="{!NOT(mat.isNew)}">
+                                                                <span style="padding-left:5px;padding-right:4px;"><apex:image id="RemoveBOM" value="{!$Resource.Remove}" width="12" /></span>
+                                                                <apex:param name="rowNumFERT" value="{!rowNumFERT3}" assignTo="{!rowNumberFERT}"/>
+                                                                <apex:param name="type" value="FERT" assignTo="{!type}"/>
+                                                                <apex:param name="bomID" value="{!mat.bmItm.id}" assignTo="{!bomID}"/>
+                                                            </apex:commandLink>                   
+                                                        </apex:panelGrid>  
+                                                        <apex:variable var="rowNumFERT3" value="{!rowNumFERT3 + 1}"/>                                       
+                                                    </apex:repeat>
+                                                </apex:outputPanel>
+                                            </apex:outputPanel>
+                                            <apex:variable var="l3Index" value="{!(l3Index + 1)}" />
+                                        </apex:outputPanel>                                        
+                                        <apex:outputPanel id="inlinetablesec2" style="display:'';">
+                                        </apex:outputpanel>   
+                                        
+                                    </apex:repeat> <!--Repeat Ends For Level 3-->                                    
+                                    <!--Level 3 Ends here-->
+                                    <br clear="all"/>
+                                               <!--Pagination for level 3-->
+                                                    <apex:outputPanel layout="block" id="opBtn3" rendered="{!IF(material2.childIns.numberOfPages > 1, TRUE,FALSE)}" style="height:16px;background-color:#7581BA;padding: 5px 10px 0px 10px;margin-top:2px;margin-bottom:10px;">
+                                                        <div style="color:white;float:left;width:45%;">
+                                                            <span ><b>Page #: {!material2.childIns.currentPageNumber} of {!material2.childIns.numberOfPages} &nbsp; &nbsp;  Record Count: {!material2.childIns.numberOfRecords}</b></span>
+                                                        </div>            
+                                                        <div style="float:left;margin-top: -4px;">
+                                                            <apex:panelGrid columns="4" id="pnlGrid">                                                    
+                                                                <apex:commandLink action="{!material2.childIns.firstPage}" rendered="{!material2.childIns.DisablePrevious}" reRender="panel3rdLevel, panel2ndLevel, panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">First</apex:commandlink>
+                                                                <apex:outputText value="First" rendered="{!NOT(material2.childIns.DisablePrevious)}" style="color:white"></apex:outputText>
+                                                                
+                                                                <apex:commandLink action="{!material2.childIns.previousPage}" rendered="{!material2.childIns.DisablePrevious}" reRender="panel3rdLevel, panel2ndLevel, panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">Previous</apex:commandlink>
+                                                                <apex:outputText value="Previous" rendered="{!NOT(material2.childIns.DisablePrevious)}" style="color:white"></apex:outputText>
+                                                                
+                                                                <apex:commandLink action="{!material2.childIns.nextPage}" rendered="{!material2.childIns.DisableNext}" reRender="panel3rdLevel, panel2ndLevel, panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">Next</apex:commandlink>
+                                                                <apex:outputText value="Next" rendered="{!NOT(material2.childIns.DisableNext)}" style="color:white"></apex:outputText>
+                                                                
+                                                                <apex:commandLink action="{!material2.childIns.lastPage}" rendered="{!material2.childIns.DisableNext}" reRender="panel3rdLevel, panel2ndLevel, panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">Last</apex:commandlink>
+                                                                <apex:outputText value="Last" rendered="{!NOT(material2.childIns.DisableNext)}" style="color:white"></apex:outputText>
+                                                            </apex:panelGrid>            
+                                                        </div>
+                                                    </apex:outputPanel> 
+                                                </apex:outputPanel>
+                                                <!--Pagination for level 3 ends-->
+                                    <apex:variable var="l2Index" value="{!(l2Index + 1)}" />
+                                </apex:outputPanel> <!--Second Panel Ends-->
+                            </apex:repeat> <!--Level 2 repeat ends-->
+                            <!--Level 2 Ends here-->   
+                            <br clear="all"/>
+                                       <!--Pagination for level 2-->
+                                    <apex:outputPanel layout="block" id="opBtn2" rendered="{!IF(material.childIns.numberOfPages > 1, TRUE,FALSE)}" style="height:16px;background-color:#9BB063;padding: 5px 10px 0px 10px;margin-top:2px;">
+                                        <div style="color:white;float:left;width:45%;">
+                                            <span ><b>Page #: {!material.childIns.currentPageNumber} of {!material.childIns.numberOfPages} &nbsp; &nbsp;  Record Count: {!material.childIns.numberOfRecords}</b></span>
+                                        </div>            
+                                        <div style="float:left;margin-top: -4px;">
+                                            <apex:panelGrid columns="4" id="pnlGrid">
+                                                <apex:commandLink action="{!material.childIns.firstPage}" rendered="{!material.childIns.DisablePrevious}" reRender="panel2ndLevel, panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">First</apex:commandlink>
+                                                <apex:outputText value="First" rendered="{!NOT(material.childIns.DisablePrevious)}" style="color:white;"></apex:outputText>
+                                                
+                                                <apex:commandLink action="{!material.childIns.previousPage}" rendered="{!material.childIns.DisablePrevious}" reRender="panel2ndLevel, panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">Previous</apex:commandlink>
+                                                <apex:outputText value="Previous" rendered="{!NOT(material.childIns.DisablePrevious)}" style="color:white;"></apex:outputText>
+                                                
+                                                <apex:commandLink action="{!material.childIns.nextPage}" rendered="{!material.childIns.DisableNext}" reRender="panel2ndLevel, panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">Next</apex:commandlink>
+                                                <apex:outputText value="Next" rendered="{!NOT(material.childIns.DisableNext)}" style="color:white;"></apex:outputText>
+                                                
+                                                <apex:commandLink action="{!material.childIns.lastPage}" rendered="{!material.childIns.DisableNext}" reRender="panel2ndLevel, panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">Last</apex:commandlink>
+                                                <apex:outputText value="Last" rendered="{!NOT(material.childIns.DisableNext)}" style="color:white;"></apex:outputText>
+                                            </apex:panelGrid>            
+                                        </div>
+                                    </apex:outputPanel> 
+                                </apex:outputPanel>
+                                <!--Pagination for level 2 ends-->
+                            
+                            <apex:variable var="l1Index" value="{!(l1Index + 1)}" />
+                        </apex:outputPanel> <!--First Panel Ends-->
+                    </apex:repeat>       <!--Level 1 Repeat -->
+                    <br clear="all"/>
+                               <!--Pagination for level 1-->
+                    <apex:outputPanel layout="block" id="opBtn1" rendered="{!IF(rootIns.numberOfPages > 1, TRUE,FALSE)}" style="height:16px;background-color:#E38D84;padding: 5px 10px 0px 10px;margin-top:2px;">
+                        <div style="color:white;float:left;width:45%;">
+                            <span><b>Page #: {!rootIns.currentPageNumber} of {!rootIns.numberOfPages} &nbsp;&nbsp;  Record Count: {!rootIns.numberofRecords}</b></span>
+                        </div>            
+                        <div style="float:left;margin-top: -4px;">
+                            <apex:panelGrid columns="4" id="pnlGrid">
+                                <apex:commandLink action="{!rootIns.firstPage}" rendered="{!rootIns.DisablePrevious}" reRender="panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">First</apex:commandlink>
+                                <apex:outputText value="First" rendered="{!NOT(rootIns.DisablePrevious)}" style="color:white;"></apex:outputText>
+                                
+                                <apex:commandLink action="{!rootIns.previousPage}" rendered="{!rootIns.DisablePrevious}" reRender="panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">Previous</apex:commandlink>
+                                <apex:outputText value="Previous" rendered="{!NOT(rootIns.DisablePrevious)}" style="color:white;"></apex:outputText>
+                                
+                                <apex:commandLink action="{!rootIns.nextPage}" rendered="{!rootIns.DisableNext}" reRender="panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">Next</apex:commandlink>
+                                <apex:outputText value="Next" rendered="{!NOT(rootIns.DisableNext)}" style="color:white;"></apex:outputText>
+                                
+                                <apex:commandLink action="{!rootIns.lastPage}" rendered="{!rootIns.DisableNext}" reRender="panel1stLevel" status="ajaxStatus" oncomplete="clickNbcuButtonSet();" style="color:white;font-weight:bold;">Last</apex:commandlink>
+                                <apex:outputText value="Last" rendered="{!NOT(rootIns.DisableNext)}" style="color:white;"></apex:outputText>
+                            </apex:panelGrid>            
+                        </div>
+                    </apex:outputPanel>                    
+                </apex:outputPanel>
+                <!--Pagination for level 1 ends-->  
+                    
+                </apex:pageBlock>
+                <hr/>
+
+                   
+            </apex:outputPanel>
+            <!-- re-positioning below output panel into this form tag. Earlier this was inside another form tag below tbom section USST-2591 -->
+            <apex:outputPanel id="BOMLongTextPanel" rendered="{!renderPage}">
+                <div class="nbcu-bom-long-text-container">
+                    <h3 class="nbcu-title">BOM Long Text</h3>
+                    <div class="nbcu-bom-long-text">
+                        <div>  
+                            <apex:inputField value="{!materialDetails.BOM_Long_Text__c}" style="width:100%;"/> <!-- removed onblur event -->
+                        </div>
+                    </div>
+                </div>
+                <!-- <apex:actionFunction name="loadBomLongText" reRender="BOMLongTextPanel" status="ajaxStatus" /> commented for USST-2591 --> 
+            </apex:outputPanel>
+        </apex:form>
+        <c:tbomItemsView parentId="{!materialDetails.Id}" allowCreate="false" allowEdit="false" allowDelete="false" columns="Item_Category__c, BOM_Function__c" rendered="{!renderPage}" />
+         
+        
+        
+        <apex:relatedList subject="{!materialDetails.ID}" list="ActivityHistories" rendered="{!AND(u.profile.Name == 'Master Data Admin', renderPage)}" />
+    </apex:outputPanel>
+</apex:page>

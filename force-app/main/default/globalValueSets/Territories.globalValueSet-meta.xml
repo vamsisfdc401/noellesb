@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Worldwide</fullName>
+        <default>false</default>
+        <label>Worldwide</label>
+    </customValue>
+    <customValue>
+        <fullName>Austrailasia</fullName>
+        <default>false</default>
+        <label>Austrailasia</label>
+    </customValue>
+    <customValue>
+        <fullName>Benelux</fullName>
+        <default>false</default>
+        <label>Benelux</label>
+    </customValue>
+    <customValue>
+        <fullName>Brazil</fullName>
+        <default>false</default>
+        <label>Brazil</label>
+    </customValue>
+    <customValue>
+        <fullName>Canada</fullName>
+        <default>false</default>
+        <label>Canada</label>
+    </customValue>
+    <customValue>
+        <fullName>Caribbean Basin</fullName>
+        <default>false</default>
+        <label>Caribbean Basin</label>
+    </customValue>
+    <customValue>
+        <fullName>China</fullName>
+        <default>false</default>
+        <label>China</label>
+    </customValue>
+    <customValue>
+        <fullName>Eastern Europe &amp; Baltics</fullName>
+        <default>false</default>
+        <label>Eastern Europe &amp; Baltics</label>
+    </customValue>
+    <customValue>
+        <fullName>France</fullName>
+        <default>false</default>
+        <label>France</label>
+    </customValue>
+    <customValue>
+        <fullName>GAS</fullName>
+        <default>false</default>
+        <label>GAS</label>
+    </customValue>
+    <customValue>
+        <fullName>India</fullName>
+        <default>false</default>
+        <label>India</label>
+    </customValue>
+    <customValue>
+        <fullName>Italy</fullName>
+        <default>false</default>
+        <label>Italy</label>
+    </customValue>
+    <customValue>
+        <fullName>Japan</fullName>
+        <default>false</default>
+        <label>Japan</label>
+    </customValue>
+    <customValue>
+        <fullName>Mexico</fullName>
+        <default>false</default>
+        <label>Mexico</label>
+    </customValue>
+    <customValue>
+        <fullName>Middle East</fullName>
+        <default>false</default>
+        <label>Middle East</label>
+    </customValue>
+    <customValue>
+        <fullName>Russia</fullName>
+        <default>false</default>
+        <label>Russia</label>
+    </customValue>
+    <customValue>
+        <fullName>S.Africa</fullName>
+        <default>false</default>
+        <label>S.Africa</label>
+    </customValue>
+    <customValue>
+        <fullName>S.Korea</fullName>
+        <default>false</default>
+        <label>S.Korea</label>
+    </customValue>
+    <customValue>
+        <fullName>Scandinavia</fullName>
+        <default>false</default>
+        <label>Scandinavia</label>
+    </customValue>
+    <customValue>
+        <fullName>Spain</fullName>
+        <default>false</default>
+        <label>Spain</label>
+    </customValue>
+    <customValue>
+        <fullName>Portugal</fullName>
+        <default>false</default>
+        <label>Portugal</label>
+    </customValue>
+    <customValue>
+        <fullName>Rest of Africa (East and West)</fullName>
+        <default>false</default>
+        <label>Rest of Africa (East and West)</label>
+    </customValue>
+    <customValue>
+        <fullName>Rest of Asia (not including India, China and Japan)</fullName>
+        <default>false</default>
+        <label>Rest of Asia (not including India, China and Japan)</label>
+    </customValue>
+    <customValue>
+        <fullName>Rest of Latin America (not including Brazil and Mexico)</fullName>
+        <default>false</default>
+        <label>Rest of Latin America (not including Brazil and Mexico)</label>
+    </customValue>
+    <customValue>
+        <fullName>Russia &amp; CIS</fullName>
+        <default>false</default>
+        <label>Russia &amp; CIS</label>
+    </customValue>
+    <customValue>
+        <fullName>UK &amp; Eire</fullName>
+        <default>false</default>
+        <label>UK &amp; Eire</label>
+    </customValue>
+    <customValue>
+        <fullName>US</fullName>
+        <default>false</default>
+        <label>US</label>
+    </customValue>
+    <description>Global list of Territories</description>
+    <masterLabel>Territories</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

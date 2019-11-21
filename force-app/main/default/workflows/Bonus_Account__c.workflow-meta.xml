@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>DGF_Update_Bonus_Account_Dates</fullName>
+        <description>DFOR-50</description>
+        <field>Start_Date__c</field>
+        <formula>Bonus__r.Start_Date__c</formula>
+        <name>DGF Update Bonus Account Dates</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>DGF Populate Bonus Account Dates</fullName>
+        <actions>
+            <name>DGF_Update_Bonus_Account_Dates</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>DFOR-50</description>
+        <formula>Bonus__c !=NULL &amp;&amp; ( ISBLANK(Start_Date__c)  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

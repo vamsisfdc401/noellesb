@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Workflow</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Workflows</value>
+    </caseValues>
+    <layouts>
+        <layout>Application Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Audit Layout</layout>
+        <sections>
+            <label><!-- Alert Notifications --></label>
+            <section>Alert Notifications</section>
+        </sections>
+        <sections>
+            <label><!-- Audit Results --></label>
+            <section>Audit Results</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Factory --></label>
+            <section>Factory</section>
+        </sections>
+        <sections>
+            <label><!-- Finding Follow Up --></label>
+            <section>Finding Follow Up</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Partner Exemption Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Notes --></label>
+            <section>Notes</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Waiver Layout</layout>
+        <sections>
+            <label><!-- Audit Report --></label>
+            <section>Audit Report</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Workflow Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Factory Email --></label>
+        <name>Factory_Email</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Licensee Email --></label>
+        <name>Licensee_Email</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Send Workflow Email --></label>
+        <name>Send_Workflow_Email</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Update Action Status --></label>
+        <name>Update_Action_Status</name>
+    </quickActions>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

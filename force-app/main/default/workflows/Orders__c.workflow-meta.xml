@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Email_alt_new</fullName>
+        <description>POP Customer Ops User need ability to be notified when an overnight order is placed</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>POP_Promo_Order_Approvers</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Promo_CaseMgmt_Emails/Promo_Overnight</template>
+    </alerts>
+    <alerts>
+        <fullName>Promo_Order_Pending_Approval</fullName>
+        <ccEmails>srikrishnachaitanya.ramadugu@nbcuni.com</ccEmails>
+        <description>Promo Order Pending Approval</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>POP_Promo_Order_Approvers</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Promo_CaseMgmt_Emails/Promo_Order_Pending_Approval</template>
+    </alerts>
+    <alerts>
+        <fullName>Promo_Order_Pending_Approval_7_Day</fullName>
+        <description>Promo Order Pending Approval 7 Day</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>POP_Promo_Order_Approvers</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Promo_CaseMgmt_Emails/Approver_Email_Template_week</template>
+    </alerts>
+    <alerts>
+        <fullName>Promo_Order_Request_Approved</fullName>
+        <description>Promo Order Request Approved</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Promo_CaseMgmt_Emails/Promo_Order_Record_Created_Approved</template>
+    </alerts>
+    <alerts>
+        <fullName>Promo_Order_Request_Rejected</fullName>
+        <description>Promo Order Request Rejected</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>POP_Promo_Order_Approvers</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Promo_CaseMgmt_Emails/Promo_Order_Record_Rejected</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Approve_the_Request</fullName>
+        <field>Status__c</field>
+        <literalValue>Order Submitted</literalValue>
+        <name>Approve the Request</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Ask_for_Approvals</fullName>
+        <field>Status__c</field>
+        <literalValue>Pending Approval</literalValue>
+        <name>Ask for Approvals</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_Approver_asked_on</fullName>
+        <field>Approver_asked_on__c</field>
+        <formula>NOW()</formula>
+        <name>Populate Approver asked on</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Promo_Expedited_Approved</fullName>
+        <field>Expedited_Approved__c</field>
+        <literalValue>1</literalValue>
+        <name>Promo - Expedited Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Promo_Expedited_Rejected</fullName>
+        <field>Expedited_Approved__c</field>
+        <literalValue>0</literalValue>
+        <name>Promo - Expedited Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Promo_Integration_Status_Update</fullName>
+        <description>Updates Promo Order Integration Status Update to &quot;N&quot;</description>
+        <field>pop_integration_status__c</field>
+        <literalValue>N</literalValue>
+        <name>Promo Integration Status Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Status_to_Draft</fullName>
+        <field>Status__c</field>
+        <literalValue>Draft</literalValue>
+        <name>Set Status to Draft</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_PO_to_Order_ID</fullName>
+        <description>Updating PO # to Order ID</description>
+        <field>Order_Reference_PO__c</field>
+        <formula>Name</formula>
+        <name>Update PO# to Order ID</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>Approval Pending 7 days</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>Orders__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Pending Approval</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Promo_Order_Pending_Approval_7_Day</name>
+                <type>Alert</type>
+            </actions>
+            <timeLength>7</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Promo Order PO Update to Order ID</fullName>
+        <actions>
+            <name>Update_PO_to_Order_ID</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Orders__c.Order_Reference_PO__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <description>Updates Order Reference/PO # on Promo Order to the Order ID when the field is left blank</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Shipping Conditions</fullName>
+        <actions>
+            <name>Email_alt_new</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Orders__c.Shipping_Conditions__c</field>
+            <operation>equals</operation>
+            <value>Z3,Z4,Z2</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

@@ -1,0 +1,22 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global" controller="UploadOrderMaterialsController" extends="c:Base">
+    
+    <aura:attribute name="recordId" type="Id" default="a3H1D0000000E15UAE"/>
+    <aura:attribute name="fileName" type="String" default="No File Selected.." />
+    
+    <aura:handler name="init" value="this" action="{!c.doInit}"/>
+    
+    <lightning:card title="Promo Material Upload">
+      
+        <aura:set attribute="footer">
+            <lightning:button value="Upload" name="Upload" Title="Upload" label="Upload" onclick="{!c.processCSV}"/>
+            <lightning:button variant="Brand" value="Cancel" name="Cancel" Title="Cancel" label="Cancel" onclick="{!c.cancel}"/>
+            
+        </aura:set>
+        <lightning:input aura:id="fileId" onchange="{!c.handleFilesChange}" accept=".csv" type="file" name="file" label="Upload Attachment" multiple="false"/>
+        <div class="slds-text-body_small slds-text-color_error">{!v.fileName} </div>
+        <span id="Waitspinner" style="display:none">
+            <ui:spinner />
+        </span>
+    </lightning:card>
+    
+</aura:component>

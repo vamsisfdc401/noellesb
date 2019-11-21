@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Universal Pictures</name>
+    <queueMembers>
+        <users>
+            <user>angela.fei@nbcuni.com</user>
+            <user>annie.tung@nbcuni.com</user>
+            <user>christina.kalaydjian@nbcuni.com</user>
+            <user>collette.hamamah1@nbcuni.com</user>
+            <user>erika.cortez1@nbcuni.com</user>
+            <user>jennifer.li@nbcuni.com</user>
+            <user>laurisa.sanchez@nbcuni.com</user>
+            <user>natalie.koppen@nbcuni.com</user>
+            <user>nate.cohn@nbcuni.com</user>
+            <user>toni.metoyer@nbcuni.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Material__c</sobjectType>
+    </queueSobject>
+</Queue>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Price Protection cases UPHE Credit</name>
+    <queueMembers>
+        <users>
+            <user>anaheed.aharonian@nbcuni.com</user>
+            <user>jennifer.zopko@nbcuni.com</user>
+            <user>lucia.celis@nbcuni.com</user>
+            <user>sherley.gonzalez@nbcuni.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>

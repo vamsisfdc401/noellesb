@@ -1,0 +1,40 @@
+.THIS .bo {
+    width:90px;
+}
+.THIS .decay{
+    width:100px;
+}
+.THIS.pw_header > div{
+    text-align: left !important;
+    text-transform: uppercase;
+    padding: 10px 0 10px 4px !important;
+    background: #D4DBDE;
+    border-right: 1px solid #eee;
+    font-size: 12px;
+}
+.THIS.pw_grid {
+    display: inline-grid;
+    grid-template-columns: 65px repeat(9, 140px);
+    grid-auto-flow: dense;
+    grid-gap: 0px;
+    background: white;
+}
+.THIS.pw_grid > div {
+    border-bottom: 1px solid #ddd;
+    padding:5px;
+    text-align: left;
+}
+.THIS.pw_grid input{
+    color:#333;
+    text-align: left;
+    
+}
+.THIS.week_num {
+    background-color: #fff;
+}
+.THIS.locked{
+    background-color: #ccc;
+}
+.THIS.user{
+    background: #aa9bc4;
+}

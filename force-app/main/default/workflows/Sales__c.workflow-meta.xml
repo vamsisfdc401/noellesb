@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Update_CIRF_CDN_D_Chain_Spec</fullName>
+        <field>CIRF_CDN_D_Chain_Spec__c</field>
+        <formula>IF( ISPICKVAL(Territory__c,&#39;CDN&#39;),
+	IF( ISPICKVAL(Sales_Org__c, &#39;V800 - Canada Home Video&#39;), 
+		TEXT(D_Chain_Spec__c), 
+		Material__r.CIRF_CDN_D_Chain_Spec__c
+	),
+	IF( ISPICKVAL(Material__r.Territory__c,&#39;US &amp; CDN&#39;),
+		Material__r.CIRF_CDN_D_Chain_Spec__c,
+		&#39;&#39;
+	)
+)</formula>
+        <name>Update CIRF CDN D Chain Spec</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <targetObject>Material__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_CIRF_US_D_Chain_Spec</fullName>
+        <field>CIRF_US_D_Chain_Spec__c</field>
+        <formula>IF( ISPICKVAL(Territory__c,&#39;US&#39;),
+	IF( ISPICKVAL(Sales_Org__c, &#39;V100 - US Home Video&#39;), 
+		TEXT(D_Chain_Spec__c), 
+		Material__r.CIRF_US_D_Chain_Spec__c
+	),
+	IF( ISPICKVAL(Material__r.Territory__c,&#39;US &amp; CDN&#39;),
+		Material__r.CIRF_US_D_Chain_Spec__c,
+		&#39;&#39;
+	)
+)</formula>
+        <name>Update CIRF US D Chain Spec</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <targetObject>Material__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Original_Reprice_Date</fullName>
+        <field>Original_Reprice_Date__c</field>
+        <name>Update Original Reprice Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>CIRF_Pull D Chain Spec</fullName>
+        <actions>
+            <name>Update_CIRF_CDN_D_Chain_Spec</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_CIRF_US_D_Chain_Spec</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>OR( AND( ISCHANGED(D_Chain_Spec__c), TEXT( Material__r.Material_Type__c ) = &quot;FERT&quot; ), AND ( ISNEW(), TEXT( Material__r.Material_Type__c ) = &quot;FERT&quot; ) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Original Reprice Date to null</fullName>
+        <actions>
+            <name>Update_Original_Reprice_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>Material__r.RecordType.Name  &lt;&gt; &#39;Update&#39;</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Sales Org Date fields</fullName>
+        <active>false</active>
+        <description>Update Sales Org Date fields from linked Materials Release object</description>
+        <formula>Material__c  &lt;&gt; Null</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>

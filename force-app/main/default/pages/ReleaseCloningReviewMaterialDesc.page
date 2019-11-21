@@ -1,0 +1,524 @@
+<!--*****************************************************************************************
+Page Name: ReleaseCloning
+Purpose: This Page is responsible to handle all the Deep Cloning stories
+******************************************************************************************
+Version         DateModified         ModifiedBy               Change
+1.0             09/09/2016           Suman                    Initial Development
+******************************************************************************************-->
+<apex:page title="Clone {!objectName}" tabStyle="Release_Material__c" controller="ReleaseCloningController">
+    <style>
+        .popupBackground{
+            background-color:black;
+            opacity: 0.20;
+            filter: alpha(opacity = 20);
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 2;
+        }
+    
+        body .bPageBlock .pbBody .pbSubheader  {
+            border-style: none;
+        }
+        
+        body .bDetailBlock.bPageBlock .pbBody .pbSubheader, body.FindSimilarOppsSearchUi .bPageBlock .pbBody .pbSubheader {
+            background-color: #F5F5F5;
+        }
+        
+        
+        
+        .colstyle {width: 12%}
+        .colstyle:first-child {width:23%}
+        .colstyle:nth-child(2) {width: 19.5%}
+        .colstyle:nth-child(3) {width: 18%}
+        .colstyle:nth-child(4) {width: 7.5%}
+        .colstyle:nth-child(5) {width: 17.8%}
+        
+        .textbold{font-weight: bold; padding-left: 10px; background-color:#F5F5F5; }  
+        
+        .btnStyle {    text-decoration:none;    padding:4px;    } 
+        
+        body .bPageBlock .detailList tr td, body .bPageBlock .detailList tr th, body table.list tr td, body table.list tr th, body .hoverDetail .bPageBlock .detailList tr td, body .hoverDetail .bPageBlock .detailList tr th {
+            border-color: #FFFFFF; 
+            border-collapse: collapse;            
+        }
+        
+        .rowStyle{
+            border-top: 2px solid #000000;
+        }                    
+    </style>
+    
+    <apex:sectionHeader title="{!objectName}" subtitle="Clone {!objectName}"/>
+    <apex:pageMessages id="pgMsg"></apex:pageMessages>
+    
+    <script>
+        function saveReleaseSetup()
+        {
+            var selectedMatIds = getSelectedMaterials();
+            if(selectedMatIds.length > 0)
+                save(selectedMatIds);
+            else
+                alert('Please choose atleast one material to be cloned.');
+        }
+    </script>
+    
+    <apex:actionStatus id="ajaxStatus" >
+        <apex:facet name="start" >
+            <div class="popupBackground" style="z-index:1001;" layout="block">&nbsp;</div>
+            <div style="position:fixed;top:40%;left:50%;z-index:1002">
+                <div style="padding:14px 10px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;border:1px solid #1288FF;background-color:#F5F5F5;margin-left:-100px;vertical-align:top;">
+                    <table>
+                        <tr valign="bottom"><td><img src="/img/loading.gif" width="25" height ="25" /> &nbsp;</td>
+                        <td><span style="font-weight:bold;font-color:#1288FF;font-size:14px;">Processing...</span></td></tr>
+                    </table>
+                </div> 
+            </div>                   
+        </apex:facet>
+    </apex:actionStatus>
+    
+    <apex:form rendered="{!NOT(shouldShowPage)}">
+        <center><apex:commandButton value="Cancel" action="{!cancel}"/></center>
+    </apex:form>
+    
+    <apex:form rendered="{!shouldShowPage}">
+        <apex:actionFunction name="showChildItems" action="{!fetchChildItems}" reRender="DestinationSectionPanel, ExistingMaterialsPanel, tableContainer2, savecancelPanel" status="ajaxStatus"/>
+        <apex:actionFunction name="showReleasePanel" action="{!showReleasePanel}" reRender="DestinationSectionPanel,savecancelPanel" status="ajaxStatus"/>
+        <apex:actionFunction name="save" action="{!save}" reRender="pgMsg" status="ajaxStatus">
+            <apex:param name="selectedMatIds" id="selectedMatIds" assignTo="{!selectedMaterialIds}" value=""/>
+        </apex:actionFunction>
+        <apex:actionFunction name="hasDifferentTerritory" action="{!hasDifferentTerritory}" reRender="pgMsg, DestinationSectionPanel, tableContainer2" status="ajaxStatus"/>
+        
+        <apex:pageBlock mode="maindetail" >
+            <apex:pageBlockButtons location="top" >
+                <apex:outputPanel id="savecancelPanel">
+                    <apex:commandButton value="< Back" action="{!backToReleaseCloning}" status="ajaxStatus" />
+                    <apex:commandButton value="Save" action="{!save}" reRender="pgMsg, ScriptPanel" status="ajaxStatus" />
+                    <!--<input type="button" value="Save" onclick="saveReleaseSetup()" class="btn"/>-->
+                    <apex:commandButton value="Cancel" action="{!cancel}"/>
+                </apex:outputPanel>    
+            </apex:pageBlockButtons>
+            
+            <apex:pageBlockSection title="Release Information" rendered="{!AND(createNew, NOT(createStandAloneMaterial))}" columns="1" collapsible="false">
+                <apex:outputField value="{!newRelease.name}" />
+                <apex:outputField value="{!newRelease.Brand_Group__c}" />
+                <apex:outputField value="{!newRelease.Project_Type__c}" />
+                <apex:outputField value="{!newRelease.Street_Date__c}" />
+                <apex:outputField value="{!newRelease.Territory__c}"/>
+                <apex:outputField value="{!newRelease.Promotion_Name_Abbreviation__c}"/>
+            </apex:pageBlockSection>
+            
+            <div style="float:right;">
+                <div style="width:20px;height:20px;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;background-color:#E38D84;float:left;">&nbsp;</div><div style="float:left;padding:       5px;font-weight:bold;">First level</div>
+                <div style="width:20px;height:20px;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;background-color:#9BB063;float:left;">&nbsp;</div><div style="float:left;padding: 5px;font-weight:bold;">Second level</div>
+                <div style="width:20px;height:20px;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;background-color:#7581BA;float:left;">&nbsp;</div><div style="float:left;padding: 5px;font-weight:bold;">Third level</div>
+                <div style="width:20px;height:20px;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;background-color:#E09100;float:left;">&nbsp;</div><div style="float:left;padding: 5px;font-weight:bold;">Fourth level</div>
+            </div>
+            
+            <apex:outputPanel id="tableContainer2">
+                <apex:outputPanel rendered="{!showMaterialTreePanel}">
+                    <apex:panelGrid frame="border" rules="ALL"  columns="6" width="100%" columnClasses="colstyle" styleClass="textbold" cellpadding="5 px">
+                        <apex:outputText value="Material Description"  /> 
+                        <apex:outputText value="Material Number" /> 
+                        <apex:outputText value="Material Status" />
+                        <apex:outputText value="MPM" rendered="{!showPHEFields}" />  
+                        <apex:outputText value="Sales Plan Grp" rendered="{!showPHEFields}" />
+                        <apex:outputText value="Sub-Format" rendered="{!showPHEFields}" />                  
+                    </apex:panelGrid>     
+                    <hr/>   
+                                    
+                    <!-- BOM Hierarchy Configuration -->
+                    <apex:outputPanel id="panel1stLevel">
+                    <apex:variable var="l1Index" value="{!0}" />
+                    <apex:repeat value="{!rootIns.Data}" var="material" id="repeatLevel1">
+                        <apex:variable var="materialIndexPath1" value="{!TEXT(l1Index)}" />
+                        <!-- Level 1: FERTs -->
+                            <apex:outputPanel >
+                                <!-- FERT Details -->
+                                <apex:outputPanel style="width:100%; float:left; cursor:pointer">
+                                    <apex:repeat value="{!material}" var="mat" >
+                                        <apex:panelGrid columns="6" width="100%" columnClasses="colstyle" cellspacing="0" cellpadding="5 px" rendered="{!mat.isSelected}">
+                                            <apex:outputPanel >
+                                                <apex:outputPanel style="padding-right:2px;" >
+                                                    <!-- Collapsible-->
+                                                    <apex:outputpanel id="plusimage1" style="display:{!if(mat.isCollapsed,"inline","none")};" styleclass="nbcu_exapnd_collapse">
+                                                        <apex:image url="{!$Resource.Chevron_Right_Pink}">
+                                                            <apex:actionSupport event="onclick" reRender="tableContainer2" action="{!sectionCollapseExpand}" status="ajaxStatus" >
+                                                                <apex:param value="{!materialIndexPath1}" name="materialIndex1" assignTo="{!materialIndex}" />
+                                                                <apex:param value="{!1}" name="bomDepth1" assignTo="{!selectedMaterialLevel}" />
+                                                            </apex:actionSupport>                                   
+                                                        </apex:image>
+                                                    </apex:outputpanel>
+                                                    <apex:outputpanel id="minusimage1" style="display:{!if(mat.isCollapsed,"none","inline")};" styleclass="nbcu_exapnd_collapse">
+                                                        <apex:image url="{!$Resource.Chevron_Down_Pink}" >
+                                                            <apex:actionSupport event="onclick" reRender="tableContainer2" action="{!sectionCollapseExpand}" status="ajaxStatus" >
+                                                                <apex:param value="{!materialIndexPath1}" name="materialIndex1" assignTo="{!materialIndex}" />
+                                                                <apex:param value="{!1}" name="bomDepth1" assignTo="{!selectedMaterialLevel}" />
+                                                            </apex:actionSupport>                                            
+                                                        </apex:image>
+                                                    </apex:outputpanel>
+                                                </apex:outputpanel>
+                                                <!--<apex:inputCheckbox value="{!mat.isSelected}"/>-->
+                                                <apex:inputField value="{!mat.instance.Name}" style="width:300px;color:blue;" rendered="{!mat.isSelected}" />
+                                            </apex:outputPanel>
+                                            <apex:outputField value="{!mat.instance.Material_Number__c}"  rendered="{!mat.isSelected}"/>
+                                            <!--<apex:outputField value="{!mat.instance.UPC__c}" rendered="{!mat.isSelected}"/>-->
+                                            <apex:outputField value="{!mat.instance.Material_Status__c}"  rendered="{!mat.isSelected}"/> 
+                                            <apex:inputField value="{!mat.instance.MPM_Issue__c}" style="width:100px;"  rendered="{!AND(mat.isSelected,showPHEFields)}"/>
+                                            <apex:inputField value="{!mat.instance.Sales_Planning_Group__c}"   rendered="{!AND(mat.isSelected,showPHEFields)}"/>
+                                            <apex:inputField value="{!mat.instance.Subformat__c}"   rendered="{!AND(mat.isSelected,showPHEFields)}"/>                           
+                                        </apex:panelGrid>                                
+                                    </apex:repeat>
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                            <!-- Level 1: Components -->
+                            <apex:outputPanel id="inlinetablesec" rendered="{!NOT(material.isCollapsed)}"  layout="block" >
+                                <apex:outputPanel style="width:100%; float:left; collapsible:true" >
+                                    <apex:variable value="{!0}" var="componentIndex5"/>
+                                    <apex:repeat value="{!material.childComponents}" var="comp" >
+                                        <apex:panelGrid columns="6" width="100%" columnClasses="colstyle" cellspacing="0" cellpadding="5 px" rendered="{!comp.isSelected}">
+                                            <apex:outputPanel >
+                                                <!--<apex:inputCheckbox value="{!comp.isSelected}"/>-->
+                                                <apex:outputLink value="/{!comp.instance.ID}" target="_blank" style="color:black;padding-left:24px;" rendered="{!comp.isSelected}">{!comp.instance.Name}</apex:outputLink>
+                                            </apex:outputPanel>
+                                            <apex:outputField value="{!comp.instance.Material_Number__c}"  rendered="{!comp.isSelected}"/>
+                                            <!--<apex:outputField value="{!comp.instance.UPC__c}" rendered="{!comp.isSelected}"/>-->
+                                            <apex:outputField value="{!comp.instance.Material_Status__c}" rendered="{!comp.isSelected}"/> 
+                                            <apex:outputField value="{!comp.instance.MPM_Issue__c}" rendered="{!AND(comp.isSelected,showPHEFields)}"/>
+                                            <apex:outputField value="{!comp.instance.Sales_Planning_Group__c}" rendered="{!AND(comp.isSelected,showPHEFields)}"/>
+                                            <apex:outputField value="{!comp.instance.Subformat__c}" rendered="{!AND(comp.isSelected,showPHEFields)}"/>                                
+                                        </apex:panelGrid>                                
+                                    </apex:repeat>
+                                </apex:outputPanel>
+                            <!--<hr class="rowStyle"/>-->
+                            <!-- Level 2 -->
+                            <apex:outputPanel id="panel2ndLevel">
+                            <apex:variable var="l2Index" value="{!0}" />
+                            <apex:repeat value="{!material.childIns.Data}" var="material2" id="repeatLevel2">
+                                <apex:variable var="materialIndexPath2" value="{!TEXT(l1Index) + ';' + TEXT(l2Index)}" />
+                                <!-- Level 2: FERTs -->
+                                    <apex:outputPanel >
+                                        <!-- FERT Details -->
+                                        <apex:outputPanel style="width:100%; float:left;">
+                                            <apex:repeat value="{!material2}" var="mat">
+                                                <apex:outputPanel style="height: 0px;" rendered="{!mat.isSelected}">
+                                                <apex:panelGrid columns="6" width="100%" columnClasses="colstyle" cellspacing="0" cellpadding="5 px" rendered="{!mat.isSelected}" style="{!IF(mat.isSelected, '', 'margin:0 !important;')}">
+                                                    <apex:outputPanel >
+                                                            <!--Collapsible-->
+                                                            <apex:outputPanel style="padding-right:2px;">
+                                                                <apex:outputpanel id="plusimage2" style="display:{!if(mat.isCollapsed,"inline","none")};padding-left:20px;" >
+                                                                    <apex:image url="{!$Resource.Chevron_Right_Green}" >
+                                                                        <apex:actionSupport event="onclick" reRender="tableContainer2" action="{!sectionCollapseExpand}" status="ajaxStatus" >
+                                                                            <apex:param value="{!materialIndexPath2}" name="materialIndex2" assignTo="{!materialIndex}" />
+                                                                            <apex:param value="{!2}" name="bomDepth2" assignTo="{!selectedMaterialLevel}" />
+                                                                        </apex:actionSupport>                                               
+                                                                    </apex:image>
+                                                                </apex:outputpanel>
+                                                                <apex:outputpanel id="minusimage2" style="display:{!if(mat.isCollapsed,"none","inline")};padding-left:20px;" >
+                                                                    <apex:image url="{!$Resource.Chevron_Down_Green}" >
+                                                                        <apex:actionSupport event="onclick" reRender="tableContainer2" action="{!sectionCollapseExpand}" status="ajaxStatus" >
+                                                                            <apex:param value="{!materialIndexPath2}" name="materialIndex2" assignTo="{!materialIndex}" />
+                                                                            <apex:param value="{!2}" name="bomDepth2" assignTo="{!selectedMaterialLevel}" />
+                                                                        </apex:actionSupport>                                               
+                                                                    </apex:image>
+                                                                </apex:outputpanel>
+                                                            </apex:outputPanel>
+                                                        <!--<apex:inputCheckbox value="{!mat.isSelected}"/>-->
+                                                        <apex:outputLink value="/{!mat.instance.ID}" target="_blank" style="color:blue;" rendered="{!mat.isSelected}">{!mat.instance.Name}</apex:outputLink>
+                                                    </apex:outputPanel>
+                                                    <apex:outputField value="{!mat.instance.Material_Number__c}" rendered="{!mat.isSelected}"/>
+                                                    <!--<apex:outputField value="{!mat.instance.UPC__c}" rendered="{!mat.isSelected}"/>-->
+                                                    <apex:outputField value="{!mat.instance.Material_Status__c}" rendered="{!mat.isSelected}"/>   
+                                                    <apex:outputField value="{!mat.instance.MPM_Issue__c}" rendered="{!AND(mat.isSelected,showPHEFields)}"/>
+                                                    <apex:outputField value="{!mat.instance.Sales_Planning_Group__c}" rendered="{!AND(mat.isSelected,showPHEFields)}"/>
+                                                    <apex:outputField value="{!mat.instance.Subformat__c}" rendered="{!AND(mat.isSelected,showPHEFields)}"/>                               
+                                                </apex:panelGrid>                                
+                                                </apex:outputPanel>
+                                            </apex:repeat>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
+                                    <!-- Level 2: Components -->
+                                    <apex:outputPanel id="inlinetablesec1" rendered="{!NOT(material2.isCollapsed)}" layout="block">
+                                        <apex:outputPanel style="width:100%; float:left;">
+                                            <apex:repeat value="{!material2.childComponents}" var="comp" >
+                                                <apex:outputPanel style="height: 0px;" rendered="{!comp.isSelected}">
+                                                <apex:panelGrid columns="6" width="100%" columnClasses="colstyle" cellspacing="0" cellpadding="5 px" rendered="{!comp.isSelected}" style="{!IF(comp.isSelected, '', 'margin:0 !important;')}">
+                                                    <apex:outputPanel >
+                                                        <!--<apex:inputCheckbox value="{!comp.isSelected}"/>-->
+                                                        <apex:outputLink value="/{!comp.instance.ID}" target="_blank" style="color:black;padding-left:39px;" rendered="{!comp.isSelected}">{!comp.instance.Name}</apex:outputLink>
+                                                    </apex:outputPanel>
+                                                    <apex:outputField value="{!comp.instance.Material_Number__c}" rendered="{!comp.isSelected}"/>
+                                                    <!--<apex:outputField value="{!comp.instance.UPC__c}" rendered="{!comp.isSelected}"/>-->
+                                                    <apex:outputField value="{!comp.instance.Material_Status__c}" rendered="{!comp.isSelected}"/>     
+                                                    <apex:outputField value="{!comp.instance.MPM_Issue__c}" rendered="{!AND(comp.isSelected,showPHEFields)}"/>
+                                                    <apex:outputField value="{!comp.instance.Sales_Planning_Group__c}" rendered="{!AND(comp.isSelected,showPHEFields)}"/>
+                                                    <apex:outputField value="{!comp.instance.Subformat__c}" rendered="{!AND(comp.isSelected,showPHEFields)}"/>                              
+                                                </apex:panelGrid>  
+                                                </apex:outputPanel>                              
+                                            </apex:repeat>
+                                        </apex:outputPanel>
+                                    <!--<hr class="rowStyle"/>-->
+                                    
+                                    <!-- Level 3 -->
+                                    <apex:outputPanel id="panel3rdLevel">
+                                    <apex:variable var="l3Index" value="{!0}" />
+                                    <apex:repeat value="{!material2.childIns.Data}" var="material3" id="repeatLevel3">
+                                        <apex:variable var="materialIndexPath3" value="{!TEXT(l1Index) + ';' + TEXT(l2Index) + ';' + TEXT(l3Index)}" />
+                                        <!-- Level 3: FERTs -->
+                                            <apex:outputPanel >
+                                                <!-- FERT Details -->
+                                                <apex:outputPanel style="width:100%; float:left;">                                                
+                                                    <apex:repeat value="{!material3}" var="mat" >
+                                                        <apex:outputPanel style="height: 0px;" rendered="{!mat.isSelected}">
+                                                        <apex:panelGrid columns="6" width="100%" columnClasses="colstyle" cellspacing="0" cellpadding="5 px" rendered="{!mat.isSelected}">
+                                                            <apex:outputPanel >
+                                                                <!--Collapsible-->
+                                                                <apex:outputPanel style="padding-right:2px;">
+                                                                    <apex:outputpanel id="plusimage3" style="display:{!if(mat.isCollapsed,"inline","none")};padding-left:35px;" >
+                                                                        <apex:image url="{!$Resource.Chevron_Right_Purple}" >
+                                                                            <apex:actionSupport event="onclick" reRender="tableContainer2" action="{!sectionCollapseExpand}" status="ajaxStatus" >
+                                                                                <apex:param value="{!materialIndexPath3}" name="materialIndex3" assignTo="{!materialIndex}" />
+                                                                                <apex:param value="{!3}" name="bomDepth3" assignTo="{!selectedMaterialLevel}" />
+                                                                            </apex:actionSupport>
+                                                                        </apex:image>
+                                                                    </apex:outputpanel>
+                                                                    <apex:outputpanel id="minusimage3" style="display:{!if(mat.isCollapsed,"none","inline")};padding-left:35px;">
+                                                                        <apex:image url="{!$Resource.Chevron_Down_Purple}" >
+                                                                            <apex:actionSupport event="onclick" reRender="tableContainer2" action="{!sectionCollapseExpand}" status="ajaxStatus">
+                                                                                <apex:param value="{!materialIndexPath3}" name="materialIndex3" assignTo="{!materialIndex}" />
+                                                                                <apex:param value="{!3}" name="bomDepth3" assignTo="{!selectedMaterialLevel}" />
+                                                                            </apex:actionSupport>
+                                                                        </apex:image>
+                                                                    </apex:outputpanel>
+                                                                </apex:outputPanel>
+                                                                <!--<apex:inputCheckbox value="{!mat.isSelected}"/>-->
+                                                                <apex:outputLink value="/{!mat.instance.ID}" target="_blank" style="color:blue;" rendered="{!mat.isSelected}">{!mat.instance.Name}</apex:outputLink>
+                                                            </apex:outputPanel>
+                                                            <apex:outputField value="{!mat.instance.Material_Number__c}" rendered="{!mat.isSelected}"/>
+                                                            <!--<apex:outputField value="{!mat.instance.UPC__c}" rendered="{!mat.isSelected}"/>-->
+                                                            <apex:outputField value="{!mat.instance.Material_Status__c}" rendered="{!mat.isSelected}"/> 
+                                                            <apex:outputField value="{!mat.instance.MPM_Issue__c}" rendered="{!AND(mat.isSelected,showPHEFields)}"/>
+                                                            <apex:outputField value="{!mat.instance.Sales_Planning_Group__c}" rendered="{!AND(mat.isSelected,showPHEFields)}"/>
+                                                            <apex:outputField value="{!mat.instance.Subformat__c}" rendered="{!AND(mat.isSelected,showPHEFields)}"/>                                  
+                                                        </apex:panelGrid>                                
+                                                        </apex:outputPanel>
+                                                    </apex:repeat>
+                                                </apex:outputPanel>
+                                            </apex:outputPanel>
+                                            <!-- Level 3: Components -->
+                                            <apex:outputPanel id="inlinetablesec2" rendered="{!NOT(material3.isCollapsed)}" layout="block" >
+                                                <apex:outputPanel style="width:100%; float:left;">                                               
+                                                    <apex:repeat value="{!material3.childComponents}" var="comp" >
+                                                        <apex:outputPanel style="height: 0px;" rendered="{!comp.isSelected}">
+                                                        <apex:panelGrid columns="6" width="100%" columnClasses="colstyle" cellspacing="0" cellpadding="5 px" rendered="{!comp.isSelected}">
+                                                            <apex:outputPanel >
+                                                                <!--<apex:inputCheckbox value="{!comp.isSelected}"/>-->
+                                                                <apex:outputLink value="/{!comp.instance.ID}" target="_blank" style="color:black;padding-left:54px;" rendered="{!comp.isSelected}">{!comp.instance.Name}</apex:outputLink>
+                                                            </apex:outputPanel>
+                                                            <apex:outputField value="{!comp.instance.Material_Number__c}" rendered="{!comp.isSelected}"/>
+                                                            <!--<apex:outputField value="{!comp.instance.UPC__c}" rendered="{!comp.isSelected}"/>-->
+                                                            <apex:outputField value="{!comp.instance.Material_Status__c}" rendered="{!comp.isSelected}"/>    
+                                                            <apex:outputField value="{!comp.instance.MPM_Issue__c}" rendered="{!AND(comp.isSelected,showPHEFields)}"/>
+                                                            <apex:outputField value="{!comp.instance.Sales_Planning_Group__c}" rendered="{!AND(comp.isSelected,showPHEFields)}"/>
+                                                            <apex:outputField value="{!comp.instance.Subformat__c}" rendered="{!AND(comp.isSelected,showPHEFields)}"/>                             
+                                                        </apex:panelGrid>
+                                                        </apex:outputPanel>
+                                                    </apex:repeat>
+                                                </apex:outputPanel>
+                                            <!--<hr class="rowStyle"/>-->
+                                            
+                                            <!-- Level 4 -->
+                                            <apex:outputPanel id="panel4thLevel">
+                                            <apex:variable var="l4Index" value="{!0}" />
+                                            <apex:repeat value="{!material3.childIns.Data}" var="material4" id="repeatLevel4">
+                                                <apex:variable var="materialIndexPath4" value="{!TEXT(l1Index) + ';' + TEXT(l2Index) + ';' + TEXT(l3Index) + ';' + TEXT(l4Index)}" />
+                                                <!-- Level 4: FERTs -->
+                                                    <apex:outputPanel >
+                                                        <!-- FERT Details -->
+                                                        <apex:outputPanel style="width:100%; float:left;">                                                        
+                                                            <apex:repeat value="{!material4}" var="mat" >
+                                                                <apex:outputPanel style="height: 0px;" rendered="{!mat.isSelected}">
+                                                                <apex:panelGrid columns="6" width="100%" columnClasses="colstyle" cellspacing="0" cellpadding="5 px">
+                                                                    <apex:outputPanel >
+                                                                        <!--Collapsible-->
+                                                                        <apex:outputPanel style="padding-right:2px;" >
+                                                                            <apex:outputpanel id="plusimage4" style="display:{!if(mat.isCollapsed,"inline","none")};padding-left:50px;" >
+                                                                                <apex:image url="{!$Resource.Chevron_Right_Yellow}" >
+                                                                                    <apex:actionSupport event="onclick" reRender="tableContainer2" action="{!sectionCollapseExpand}" status="ajaxStatus">
+                                                                                        <apex:param value="{!materialIndexPath4}" name="materialIndex4" assignTo="{!materialIndex}" />
+                                                                                        <apex:param value="{!4}" name="bomDepth4" assignTo="{!selectedMaterialLevel}" />
+                                                                                    </apex:actionSupport>
+                                                                                </apex:image>
+                                                                            </apex:outputpanel>
+                                                                            <apex:outputpanel id="minusimage4" style="display:{!if(mat.isCollapsed,"none","inline")};padding-left:50px;" >
+                                                                                <apex:image url="{!$Resource.Chevron_Down_Yellow}">
+                                                                                    <apex:actionSupport event="onclick" reRender="tableContainer2" action="{!sectionCollapseExpand}" status="ajaxStatus" >
+                                                                                        <apex:param value="{!materialIndexPath4}" name="materialIndex4" assignTo="{!materialIndex}" />
+                                                                                        <apex:param value="{!4}" name="bomDepth4" assignTo="{!selectedMaterialLevel}" />
+                                                                                    </apex:actionSupport>
+                                                                                </apex:image>
+                                                                            </apex:outputpanel>
+                                                                        </apex:outputPanel>
+                                                                        <!--<apex:inputCheckbox value="{!mat.isSelected}"/>-->
+                                                                        <apex:outputLink value="/{!mat.instance.ID}" target="_blank" style="color:blue;" rendered="{!mat.isSelected}">{!mat.instance.Name}</apex:outputLink>
+                                                                    </apex:outputPanel>
+                                                                    <apex:outputField value="{!mat.instance.Material_Number__c}" rendered="{!mat.isSelected}"/>
+                                                                    <!--<apex:outputField value="{!mat.instance.UPC__c}" rendered="{!mat.isSelected}"/>-->
+                                                                    <apex:outputField value="{!mat.instance.Material_Status__c}" rendered="{!mat.isSelected}"/>  
+                                                                    <apex:outputField value="{!mat.instance.MPM_Issue__c}" rendered="{!AND(mat.isSelected,showPHEFields)}"/>
+                                                                    <apex:outputField value="{!mat.instance.Sales_Planning_Group__c}" rendered="{!AND(mat.isSelected,showPHEFields)}"/>
+                                                                    <apex:outputField value="{!mat.instance.Subformat__c}" rendered="{!AND(mat.isSelected,showPHEFields)}"/>                               
+                                                                </apex:panelGrid>
+                                                                </apex:outputPanel>                                
+                                                            </apex:repeat>
+                                                        </apex:outputPanel>
+                                                    </apex:outputPanel>
+                                                    <!-- Level 4: Components -->
+                                                    <apex:outputPanel id="inlinetablesec3" rendered="{!NOT(material4.isCollapsed)}"  layout="block">
+                                                        <apex:outputPanel style="width:100%; float:left;">                                                        
+                                                            <apex:repeat value="{!material4.childComponents}" var="comp"  >
+                                                                <apex:outputPanel style="height: 0px;" rendered="{!comp.isSelected}">
+                                                                <apex:panelGrid columns="6" width="100%" columnClasses="colstyle" cellspacing="0" cellpadding="5 px">
+                                                                    <apex:outputPanel >
+                                                                        <!--<apex:inputCheckbox value="{!comp.isSelected}"/>-->
+                                                                        <apex:outputLink value="/{!comp.instance.ID}" target="_blank" style="color:black;padding-left:69px;" rendered="{!comp.isSelected}">{!comp.instance.Name}</apex:outputLink>
+                                                                    </apex:outputPanel>
+                                                                    <apex:outputField value="{!comp.instance.Material_Number__c}" rendered="{!comp.isSelected}"/>
+                                                                    <!--<apex:outputField value="{!comp.instance.UPC__c}" rendered="{!comp.isSelected}"/>-->
+                                                                    <apex:outputField value="{!comp.instance.Material_Status__c}" rendered="{!comp.isSelected}" /> 
+                                                                    <apex:outputField value="{!comp.instance.MPM_Issue__c}" rendered="{!AND(comp.isSelected,showPHEFields)}"/>
+                                                                    <apex:outputField value="{!comp.instance.Sales_Planning_Group__c}" rendered="{!AND(comp.isSelected,showPHEFields)}"/>
+                                                                    <apex:outputField value="{!comp.instance.Subformat__c}" rendered="{!AND(comp.isSelected,showPHEFields)}"/>                                  
+                                                                </apex:panelGrid> 
+                                                                </apex:outputPanel>
+                                                            </apex:repeat>
+                                                        </apex:outputPanel>
+                                                    </apex:outputPanel>
+                                                    <apex:variable var="l4Index" value="{!(l4Index + 1)}" />
+                                            </apex:repeat>
+                                            <!--Pagination for level 4-->
+                                            <apex:outputPanel layout="block" id="opBtn4" rendered="{!IF(material3.childIns.numberOfPages > 1, TRUE,FALSE)}" style="height:16px;background-color:#E09100;padding: 5px 10px 0px 10px;margin-top:2px;">
+                                                <div style="color:white;float:left;width:45%;">
+                                                    <span><b>Page #: {!material3.childIns.currentPageNumber} of {!material3.childIns.numberOfPages} &nbsp; &nbsp;  Record Count: {!material3.childIns.numberOfRecords}</b></span>
+                                                </div>            
+                                                <div style="float:left;margin-top: -4px;">
+                                                    <apex:panelGrid columns="4" id="pnlGrid">
+                                                        <apex:commandLink action="{!material3.childIns.firstPage}" rendered="{!material3.childIns.DisablePrevious}" reRender="panel4thLevel, panel3rdLevel, panel2ndLevel, panel1stLevel" status="ajaxStatus" style="color:white;font-weight:bold;">First</apex:commandlink>
+                                                        <apex:outputText value="First" rendered="{!NOT(material3.childIns.DisablePrevious)}" style="color:white"></apex:outputText>
+                                                        
+                                                        <apex:commandLink action="{!material3.childIns.previousPage}" rendered="{!material3.childIns.DisablePrevious}" reRender="panel4thLevel, panel3rdLevel, panel2ndLevel, panel1stLevel" status="ajaxStatus" style="color:white;font-weight:bold;">Previous</apex:commandlink>
+                                                        <apex:outputText value="Previous" rendered="{!NOT(material3.childIns.DisablePrevious)}" style="color:white"></apex:outputText>
+                                                        
+                                                        <apex:commandLink action="{!material3.childIns.nextPage}" rendered="{!material3.childIns.DisableNext}" reRender="panel4thLevel, panel3rdLevel, panel2ndLevel, panel1stLevel" status="ajaxStatus" style="color:white;font-weight:bold;">Next</apex:commandlink>
+                                                        <apex:outputText value="Next" rendered="{!NOT(material3.childIns.DisableNext)}" style="color:white"></apex:outputText>
+                                                        
+                                                        <apex:commandLink action="{!material3.childIns.lastPage}" rendered="{!material3.childIns.DisableNext}" reRender="panel4thLevel, panel3rdLevel, panel2ndLevel, panel1stLevel" status="ajaxStatus" style="color:white;font-weight:bold;">Last</apex:commandlink>
+                                                        <apex:outputText value="Last" rendered="{!NOT(material3.childIns.DisableNext)}" style="color:white"></apex:outputText>
+                                                    </apex:panelGrid>            
+                                                </div>
+                                            </apex:outputPanel>                     
+                                        </apex:outputPanel>  
+                                        </apex:outputPanel> 
+                                        <apex:variable var="l3Index" value="{!(l3Index + 1)}" />                                        
+                                    </apex:repeat>
+                                    <!--Pagination for level 3-->
+                                    <apex:outputPanel layout="block" id="opBtn3" rendered="{!IF(material2.childIns.numberOfPages > 1, TRUE,FALSE)}" style="height:16px;background-color:#7581BA;padding: 5px 10px 0px 10px;margin-top:2px;margin-bottom:10px;">
+                                        <div style="color:white;float:left;width:45%;">
+                                            <span ><b>Page #: {!material2.childIns.currentPageNumber} of {!material2.childIns.numberOfPages} &nbsp; &nbsp;  Record Count: {!material2.childIns.numberOfRecords}</b></span>
+                                        </div>            
+                                        <div style="float:left;margin-top: -4px;">
+                                            <apex:panelGrid columns="4" id="pnlGrid">                                                    
+                                                <apex:commandLink action="{!material2.childIns.firstPage}" rendered="{!material2.childIns.DisablePrevious}" reRender="panel3rdLevel, panel2ndLevel, panel1stLevel" status="ajaxStatus" style="color:white;font-weight:bold;">First</apex:commandlink>
+                                                <apex:outputText value="First" rendered="{!NOT(material2.childIns.DisablePrevious)}" style="color:white"></apex:outputText>
+                                                
+                                                <apex:commandLink action="{!material2.childIns.previousPage}" rendered="{!material2.childIns.DisablePrevious}" reRender="panel3rdLevel, panel2ndLevel, panel1stLevel" status="ajaxStatus" style="color:white;font-weight:bold;">Previous</apex:commandlink>
+                                                <apex:outputText value="Previous" rendered="{!NOT(material2.childIns.DisablePrevious)}" style="color:white"></apex:outputText>
+                                                
+                                                <apex:commandLink action="{!material2.childIns.nextPage}" rendered="{!material2.childIns.DisableNext}" reRender="panel3rdLevel, panel2ndLevel, panel1stLevel" status="ajaxStatus" style="color:white;font-weight:bold;">Next</apex:commandlink>
+                                                <apex:outputText value="Next" rendered="{!NOT(material2.childIns.DisableNext)}" style="color:white"></apex:outputText>
+                                                
+                                                <apex:commandLink action="{!material2.childIns.lastPage}" rendered="{!material2.childIns.DisableNext}" reRender="panel3rdLevel, panel2ndLevel, panel1stLevel" status="ajaxStatus" style="color:white;font-weight:bold;">Last</apex:commandlink>
+                                                <apex:outputText value="Last" rendered="{!NOT(material2.childIns.DisableNext)}" style="color:white"></apex:outputText>
+                                            </apex:panelGrid>            
+                                        </div>
+                                    </apex:outputPanel> 
+                                </apex:outputPanel>
+                                </apex:outputPanel>
+                                <apex:variable var="l2Index" value="{!(l2Index + 1)}" />
+                            </apex:repeat>
+                            <!--Pagination for level 2-->
+                            <apex:outputPanel layout="block" id="opBtn2" rendered="{!IF(AND(material.childIns.numberOfPages > 1), TRUE,FALSE)}" style="height:16px;background-color:#9BB063;padding: 5px 10px 0px 10px;margin-top:2px;">
+                                <div style="color:white;float:left;width:45%;">
+                                    <span ><b>Page #: {!material.childIns.currentPageNumber} of {!material.childIns.numberOfPages} &nbsp; &nbsp;  Record Count: {!material.childIns.numberOfRecords}</b></span>
+                                </div>            
+                                <div style="float:left;margin-top: -4px;">
+                                    <apex:panelGrid columns="4" id="pnlGrid">
+                                        <apex:commandLink action="{!material.childIns.firstPage}" rendered="{!material.childIns.DisablePrevious}" reRender="panel2ndLevel, panel1stLevel" status="ajaxStatus" style="color:white;font-weight:bold;">First</apex:commandlink>
+                                        <apex:outputText value="First" rendered="{!NOT(material.childIns.DisablePrevious)}" style="color:white;"></apex:outputText>
+                                        
+                                        <apex:commandLink action="{!material.childIns.previousPage}" rendered="{!material.childIns.DisablePrevious}" reRender="panel2ndLevel, panel1stLevel" status="ajaxStatus" style="color:white;font-weight:bold;">Previous</apex:commandlink>
+                                        <apex:outputText value="Previous" rendered="{!NOT(material.childIns.DisablePrevious)}" style="color:white;"></apex:outputText>
+                                        
+                                        <apex:commandLink action="{!material.childIns.nextPage}" rendered="{!material.childIns.DisableNext}" reRender="panel2ndLevel, panel1stLevel" status="ajaxStatus" style="color:white;font-weight:bold;">Next</apex:commandlink>
+                                        <apex:outputText value="Next" rendered="{!NOT(material.childIns.DisableNext)}" style="color:white;"></apex:outputText>
+                                        
+                                        <apex:commandLink action="{!material.childIns.lastPage}" rendered="{!material.childIns.DisableNext}" reRender="panel2ndLevel, panel1stLevel" status="ajaxStatus" style="color:white;font-weight:bold;">Last</apex:commandlink>
+                                        <apex:outputText value="Last" rendered="{!NOT(material.childIns.DisableNext)}" style="color:white;"></apex:outputText>
+                                    </apex:panelGrid>            
+                                </div>
+                            </apex:outputPanel> 
+                        </apex:outputPanel>
+                        </apex:outputPanel>
+                        <hr class="rowStyle" style="display:{!if(material.isSelected,"block","none")};"/>
+                        <apex:variable var="l1Index" value="{!(l1Index + 1)}" />
+                    </apex:repeat>
+                    <!--Pagination for level 1-->
+                    <apex:outputPanel layout="block" id="opBtn1" rendered="{!IF(rootIns.numberOfPages > 1, TRUE,FALSE)}" style="height:16px;background-color:#E38D84;padding: 5px 10px 0px 10px;margin-top:2px;">
+                        <div style="color:white;float:left;width:45%;">
+                            <span><b>Page #: {!rootIns.currentPageNumber} of {!rootIns.numberOfPages} &nbsp;&nbsp;  Record Count: {!rootIns.numberofRecords}</b></span>
+                        </div>            
+                        <div style="float:left;margin-top: -4px;">
+                            <apex:panelGrid columns="4" id="pnlGrid">
+                                <apex:commandLink action="{!rootIns.firstPage}" rendered="{!rootIns.DisablePrevious}" reRender="panel1stLevel" status="ajaxStatus" style="color:white;font-weight:bold;">First</apex:commandlink>
+                                <apex:outputText value="First" rendered="{!NOT(rootIns.DisablePrevious)}" style="color:white;"></apex:outputText>
+                                
+                                <apex:commandLink action="{!rootIns.previousPage}" rendered="{!rootIns.DisablePrevious}" reRender="panel1stLevel" status="ajaxStatus" style="color:white;font-weight:bold;">Previous</apex:commandlink>
+                                <apex:outputText value="Previous" rendered="{!NOT(rootIns.DisablePrevious)}" style="color:white;"></apex:outputText>
+                                
+                                <apex:commandLink action="{!rootIns.nextPage}" rendered="{!rootIns.DisableNext}" reRender="panel1stLevel" status="ajaxStatus" style="color:white;font-weight:bold;">Next</apex:commandlink>
+                                <apex:outputText value="Next" rendered="{!NOT(rootIns.DisableNext)}" style="color:white;"></apex:outputText>
+                                
+                                <apex:commandLink action="{!rootIns.lastPage}" rendered="{!rootIns.DisableNext}" reRender="panel1stLevel" status="ajaxStatus" style="color:white;font-weight:bold;">Last</apex:commandlink>
+                                <apex:outputText value="Last" rendered="{!NOT(rootIns.DisableNext)}" style="color:white;"></apex:outputText>
+                            </apex:panelGrid>            
+                        </div>
+                    </apex:outputPanel>                    
+                </apex:outputPanel>    
+                </apex:outputPanel>
+            </apex:outputPanel>
+        </apex:pageBlock>
+    </apex:form>
+    
+    <apex:form >
+        <apex:actionFunction name="save2" action="{!save2}" status="ajaxStatus"/>
+        <apex:outputPanel id="ScriptPanel">
+            <apex:outputPanel rendered="{!AND(isSaveCalled, NOT(foundException))}">
+                <script>
+                    save2();
+                </script>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!AND(isSaveCalled, NOT(foundException))}">
+                <div class="popupBackground" style="z-index:1001;" layout="block">&nbsp;</div>
+                <div style="position:fixed;top:40%;left:50%;z-index:1002">
+                    <div style="padding:14px 10px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;border:1px solid #1288FF;background-color:#F5F5F5;margin-left:-100px;vertical-align:top;">
+                        <table>
+                            <tr valign="bottom"><td><img src="/img/loading.gif" width="25" height ="25" /> &nbsp;</td>
+                            <td><span style="font-weight:bold;font-color:#1288FF;font-size:14px;">Processing...</span></td></tr>
+                        </table>
+                    </div> 
+                </div>
+            </apex:outputPanel>
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>

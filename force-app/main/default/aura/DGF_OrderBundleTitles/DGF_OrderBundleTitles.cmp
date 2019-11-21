@@ -1,0 +1,74 @@
+<aura:component controller="DGF_OrderOfBundleTitlesController" implements="force:lightningQuickActionWithoutHeader,force:hasRecordID" >
+	 
+    <aura:attribute name="releaseRecordId" type="Id" description="record id of release"/>
+    <aura:attribute name="isCodeError" type="boolean" default="false" description="use for display no record found message"/>
+    <aura:attribute name="showSpinner" type="boolean" default="false" description="use for displaying or hiding spinner"/>
+    <aura:attribute name="CodeError" type="string"  description="use for display no record found message"/>
+    <aura:attribute name="changeInOrder" type="boolean"  description="use for display no record found message"/>
+    <aura:attribute name="searchKeyword" type="String" description="use for store user search input"/>  
+    
+   	 <aura:attribute name="selectedTitles" type="String" access="global"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}" />
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}" />
+    <aura:attribute name="Spinner" type="boolean" default="false"/>
+     <aura:attribute name="isNotProductUser" type="boolean" default="true" description="to check if user is product user or not"/>
+    
+	<aura:attribute name="listOptions" type="List" default="[]"/>
+	<aura:attribute name="defaultOptions" type="List" default="[]"/>
+	<aura:attribute name="requiredOptions" type="List" default="[]"/>
+ 
+    <aura:if isTrue="{!v.isCodeError}">
+        <ui:message title="" severity="warning" closable="false">        
+            <aura:unescapedHtml value="{!v.CodeError}" />  
+        </ui:message>
+     </aura:if>
+     
+     <div class="slds">     
+     	<aura:if isTrue="{!v.Spinner}">
+                    <div class="slds-spinner_container">
+					  	<div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+						  <span class="slds-assistive-text">Loading</span>
+						  <div class="slds-spinner__dot-a"></div>
+						  <div class="slds-spinner__dot-b"></div>
+						</div>
+					</div>
+        		</aura:if> 
+     </div>
+     
+     <aura:if isTrue="{!v.isNotProductUser}">
+        <ui:message title="Info" severity="info" >        
+            Only product user can set Order of Titles.  
+        </ui:message>
+        
+        <aura:set attribute="else">
+     
+		     <div class="slds-form--inline slds-m-bottom--small">
+		                    <div class="slds-form-element ">
+		                        <label class="slds-form-element__label slds-text-title_caps" for="search">Search for titles</label>
+		                        <div class="slds-form-element__control">
+		                            <ui:inputText aura:id="searchId" class="slds-input" value="{!v.searchKeyword}" required="true" placeholder="Type here..."/>
+		                        </div>
+		                    </div>
+		                    <div class="slds-form-element">
+		                        <button aura:id="btnSearchId" type="button" onclick="{!c.Search}" class="slds-button slds-button--brand">Search</button>
+		                    </div>                                      
+		      </div>
+		      
+		    <lightning:dualListbox aura:id="selectOptions" name=""  label="" 
+		                           sourceLabel="Available Titles" 
+		                           selectedLabel="Selected Titles" 
+		                           options="{! v.listOptions }"
+		                           value="{! v.defaultOptions }"
+		                           requiredOptions="{! v.requiredOptions }"
+		                           onchange="{!c.handleChange}"/>
+		    <br></br>
+		    
+		    <div style="float:right;">        
+		            <ui:button class="slds-button slds-button_neutral" label="Cancel" press="{!c.cancel}"/>
+		            <button class="{!v.changeInOrder ? 'slds-button slds-button_brand' : 'slds-hide'}" onclick="{!c.SaveOrderTitle}">Save Order</button>
+		        </div>
+		        
+		</aura:set>
+    </aura:if>
+</aura:component>

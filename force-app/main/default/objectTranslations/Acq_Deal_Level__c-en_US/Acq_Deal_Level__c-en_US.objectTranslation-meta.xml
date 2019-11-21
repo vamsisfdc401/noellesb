@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Acq Deal Level</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Acq Deal Levels</value>
+    </caseValues>
+    <layouts>
+        <layout>Acq Deal Level Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Process timeline --></label>
+            <section>Process timeline</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,26 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <article class="slds-card slds-card_boundary forceBaseCard" aria-describedby="pendingApprovalCardHeader_683:0" data-aura-rendered-by="696:0" data-aura-class="forceBaseCard">
+        <div class="slds-card__header slds-grid" data-aura-rendered-by="698:0">
+            <header class="slds-media slds-media--center slds-has-flexi-truncate" data-aura-rendered-by="700:0">
+                <!--render facet: 702:0-->
+                <div class="slds-media__body" data-aura-rendered-by="705:0">
+                    <h2 class="header-title-container" id="pendingApprovalCardHeader_683:0" data-aura-rendered-by="706:0"><span class="slds-text-heading--small slds-truncate" title="Custom Links" data-aura-rendered-by="707:0">Custom Links</span></h2></div>
+            </header>
+        </div>
+        <div class="slds-card__body slds-card__body--inner" data-aura-rendered-by="712:0">
+            <div class="cardMessageContainer" data-aura-rendered-by="3:467;a">
+                <ul class="slds-grid slds-page-header__detail-row">
+                    <li class="slds-form-element slds-size_1-of-2">
+                        <p ><a href="https://nbcu.service-now.com/nav_to.do?uri=%2Fcom.glideapp.servicecatalog_cat_item_view.do%3Fsysparm_id%3D03e71f586f269100e904f00dba3ee443%26sysparm_link_parent%3De15706fc0a0a0aa7007fc21e1ab70c2f%26sysparm_groupSYSID%3Db9bce124dba9320408eef9a61d961909" target="_blank">Open A Service Request</a></p>
+                        <br/>
+                        <p ><a href="http://iam.inbcu.com/idm/user/main.jsp" target="_blank">Request Salesforce Access</a></p>
+                        <br/>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="slds-card__footer" data-aura-rendered-by="714:0">
+            <!--render facet: 691:0-->
+        </div>
+    </article>
+</aura:component>

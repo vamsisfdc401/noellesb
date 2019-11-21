@@ -1,0 +1,39 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" controller="TSA_UploadMaterialsController3" extends="c:Base">
+	
+    <aura:attribute name="recordId" type="Id" default="a2S1F0000003KizUAE"/>
+    <aura:attribute name="fileName" type="String" default="" />
+    <aura:attribute name="error" type="String" default="" />
+    
+    <aura:attribute name="record" type="Object"/>
+    <aura:attribute name="simpleRecord" type="Object"/>
+    <aura:attribute name="recordError" type="String"/>
+    
+    <force:recordData aura:id="recordLoader"
+      recordId="{!v.recordId}"
+      fields = "Name, Status__c"
+      targetFields="{!v.simpleRecord}"
+      targetError="{!v.recordError}"
+      />
+
+    
+    <aura:if isTrue="{!v.simpleRecord.Status__c == 'Draft'}">
+        <div class="slds-box slds-theme--default" style="font-weight:bold!important">
+            <label class="slds-text-title_bold"  for="fileId">FILE UPLOAD</label> 
+            <lightning:input aura:id="fileId" class="slds-align_absolute-center"  onchange="{!c.handleFilesChange}" accept=".csv" type="file" name="file" multiple="false"/>
+            <div class="slds-text-title slds-text-color_error slds-m-bottom_medium" >{!v.fileName}</div>
+            <aura:if isTrue="{!v.fileName != ''}">
+            	<lightning:button class="slds-m-left_large" value="Upload" name="Upload" Title="Upload" label="Upload" onclick="{!c.processCSV}"/>
+        	</aura:if>
+        </div>
+        <span id="Waitspinner" style="display:none">
+            <ui:spinner />
+        </span>
+    </aura:if>
+    
+    <aura:if isTrue="{!v.simpleRecord.Status__c != 'Draft'}">
+    	<div class="slds-p-horizontal--small">
+            <p class="slds-text-heading--small">
+                <lightning:formattedText title="Message" value="NOT ALLOWED:  This Trade Spend Authorization has already been submitted to and/or processed in SAP." /></p>
+        </div>   
+    </aura:if>
+</aura:component>

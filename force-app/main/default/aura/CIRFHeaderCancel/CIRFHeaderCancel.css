@@ -1,0 +1,7 @@
+.THIS .slds-select_container:after{
+    display : none;
+}
+
+.THIS .slds-select_container:before{
+    display : none;
+}

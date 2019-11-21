@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Case_Material_Set_Record_Type_PP</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>Price_Protection_Case</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>Case Material Set Record Type - PP</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Case_Material_Set_Record_Type_SI</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>Shipping_Issues</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>Case Material Set Record Type - SI</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>PP_Set_External_Id</fullName>
+        <field>ExternalId__c</field>
+        <formula>CASESAFEID(Case__c) + &quot;-&quot; +  PP_Material_Description__r.Material_Description__r.Material_Number__c</formula>
+        <name>PP - Set External Id</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>SI_Set_External_Id</fullName>
+        <field>ExternalId__c</field>
+        <formula>CASESAFEID(Case__c) + &quot;-&quot; +  Material_Description__r.Material_Number__c + &quot;-&quot; + TEXT (Issue_Type__c) + &quot;-&quot; + Text(Resolution_Request__c)</formula>
+        <name>SI - Set External Id</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>PP - Set External Id</fullName>
+        <actions>
+            <name>PP_Set_External_Id</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Price Protection</value>
+        </criteriaItems>
+        <description>Populate the External Id field for the Price Protection Case Materials</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>SI - Set External Id</fullName>
+        <actions>
+            <name>SI_Set_External_Id</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>PO Discrepancies</value>
+        </criteriaItems>
+        <description>Populate the External Id field for the Shipping Issue Case Materials</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Set Record Type - PP</fullName>
+        <actions>
+            <name>Case_Material_Set_Record_Type_PP</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Price Protection</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Set Record Type - SI</fullName>
+        <actions>
+            <name>Case_Material_Set_Record_Type_SI</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>PO Discrepancies</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>

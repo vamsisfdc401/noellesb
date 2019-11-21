@@ -1,0 +1,65 @@
+.THIS .title_detail .slds-p-around_small:first-child {
+    width:230px;
+}
+.THIS .sort_button {
+    font-weight: 900;
+    padding: 0 5px;
+    float: right;
+    position: relative;
+    background: transparent;
+    border: none;
+    top: -7px;
+}
+
+/* FILTER ACCORDION */
+.THIS .filterAccordion {
+    margin: 10px 0 15px 0;
+}
+.THIS .filterAccordion .slds-grid { 
+    width: 100%;
+}
+.THIS .filterAccordion .slds-grid .slds-col {
+    background: #eee;
+    padding: 20px;
+    margin-top: 15px;
+}
+.THIS label.slds-form-element__label.slds-m-right_xxx-small {
+    display: none;
+}
+.THIS .filterAccordion p {
+    margin-bottom: 8px;
+}
+.THIS header.slds-card__header.slds-grid {
+    width: 50%;
+    float: right;
+    margin: 0;
+    padding: 0;
+}
+.THIS .nbcu-btn.pdf, 
+.THIS .nbcu-btn.csv {
+    float: right;
+    margin-left: 5px;
+}
+
+/* PLAY WEEKS TABLE*/
+.THIS table.playweeks td {
+    background: white !important;
+    border-bottom: 1px solid #eee;
+}
+
+.THIS .selected {
+    background-color: #eee;
+}
+
+
+@media screen and (max-width: 1260px) {
+    .THIS .tableWrapper {
+        overflow-y: scroll;
+        max-height: 500px;
+        overflow-x: scroll;
+    }
+    .THIS table.weeks {
+        min-width: 1260px;
+    }
+    
+}

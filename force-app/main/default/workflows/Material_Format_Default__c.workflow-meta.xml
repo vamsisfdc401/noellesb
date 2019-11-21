@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Set_Format_Key_Unique_Check</fullName>
+        <field>Format_Key_Unique__c</field>
+        <formula>TEXT(Format_Key__c)</formula>
+        <name>Set Format Key Unique Check</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>Set Material Format Default Unique Check</fullName>
+        <actions>
+            <name>Set_Format_Key_Unique_Check</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>true</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

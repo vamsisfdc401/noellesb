@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingOwnerRules>
+        <fullName>UPHE_CG_Full_User</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Provides access to the UPHE CG Full User profile to see PT, Financials, Comps and Risk and Compliance</description>
+        <label>UPHE CG Full User</label>
+        <sharedTo>
+            <group>UPHE_CG_Full_User</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>UPHE_CG_Full_User</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

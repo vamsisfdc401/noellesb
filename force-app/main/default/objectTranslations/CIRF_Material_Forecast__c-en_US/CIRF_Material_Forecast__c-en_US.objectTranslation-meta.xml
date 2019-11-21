@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CIRF Material Forecast</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>CIRF Material Forecasts</value>
+    </caseValues>
+    <layouts>
+        <layout>CIRF Material Forecast Layout</layout>
+        <sections>
+            <label><!-- CIRF Information --></label>
+            <section>CIRF Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

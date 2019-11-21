@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>false</allowRecall>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>CaseNumber</field>
+        <field>Subject</field>
+        <field>TotalCost__c</field>
+        <field>TotalUnits__c</field>
+        <field>Owner</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>derek.horeis@nbcuni.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>Run this rule for when the Sold To Code is in 
+25186
+26009
+25217</description>
+        <entryCriteria>
+            <booleanFilter>1</booleanFilter>
+            <criteriaItems>
+                <field>Case.CM_Sold_To__c</field>
+                <operation>equals</operation>
+                <value>25186,26009,25217</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Seek Approval for Target, Best Buy Sales VP</label>
+        <name>Sold_To_25186_25217_Sales_VP</name>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>jean.benoit@nbcuni.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>Run this rule for when the Sold to Code is in
+25008
+25010
+26026
+25861
+25021
+25022
+25722
+25961
+25092
+25104
+25954
+26000</description>
+        <entryCriteria>
+            <booleanFilter>1</booleanFilter>
+            <criteriaItems>
+                <field>Case.CM_Sold_To__c</field>
+                <operation>equals</operation>
+                <value>25008,25010,26026,25861,25021,25022,25722,25961,25092,25104,25954,26000</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Seek Approval for All CDN Sales VP</label>
+        <name>Sold_To_25205_25206_25221_25226_25394_Sales_VP</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>john.sudlow@nbcuni.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>Run this rule for when the Sold to Code is in
+25171
+25405
+25176
+25212
+25199
+25181
+25222
+25187
+25166
+25524
+25199</description>
+        <entryCriteria>
+            <booleanFilter>1</booleanFilter>
+            <criteriaItems>
+                <field>Case.CM_Sold_To__c</field>
+                <operation>equals</operation>
+                <value>25171,25405,25176,25212,25199,25181,25222,25187,25166,25524</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Seek Approval for Costco US, Ingram US Sales VP</label>
+        <name>Sold_To_25008_25010_25021_25022_25024_25027_25028_25032_25092_25104_25374_25375</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>paul.barcelos@nbcuni.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>Run this rule for when the Sold to Code is in:
+25198</description>
+        <entryCriteria>
+            <booleanFilter>1</booleanFilter>
+            <criteriaItems>
+                <field>Case.CM_Sold_To__c</field>
+                <operation>equals</operation>
+                <value>25198</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Seek Approval for Amazon US Sales VP</label>
+        <name>Sold_To_25158_25162_25166_25171_25176_25179_25181_25187_25199_25212_25222_25225</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>louis.greth@nbcuni.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>Sold To:
+25205
+25221</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Case.CM_Sold_To__c</field>
+                <operation>equals</operation>
+                <value>25205,25221</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Seek Approval for Walmart US &amp; Sam&#39;s Club US Sales VP Approval</label>
+        <name>Sold_To_25198_Sales_VP</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>mark.lewis@nbcuni.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>Run this flow to seek US EVP Sales approval for Claims &gt; 250,000</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Case.TotalCost__c</field>
+                <operation>greaterThan</operation>
+                <value>&quot;USD 250,000&quot;</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Territory__c</field>
+                <operation>equals</operation>
+                <value>US</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Seek Approval for US Claim &gt; $250k Sales SVP</label>
+        <name>US_Claim_250k</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>john.melluso@nbcuni.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>Run this to get EVP Sales approval for CDN Claims &gt; $250k</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Case.TotalCost__c</field>
+                <operation>greaterThan</operation>
+                <value>&quot;USD 250,000&quot;</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Territory__c</field>
+                <operation>equals</operation>
+                <value>CDN</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Seek Approval for CDN Claim &gt; $250k Sales SVP</label>
+        <name>CDN_Claim_250k</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>joel.everman@nbcuni.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>Always seek approval from Finance Director</description>
+        <label>Seek Approval from UPHE Finance Director</label>
+        <name>Seek_Approval_from_Finance_Director</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>damon.tritt@nbcuni.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>Seek approval for Claims &gt; $500K from Finance VP</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Case.TotalCost__c</field>
+                <operation>greaterThan</operation>
+                <value>&quot;USD 500,000&quot;</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Seek Approval for Claim &gt; $500K Finance VP</label>
+        <name>Claim_500K</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>brent.baker@nbcuni.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>Seek approval from CFO for claims greater than $1 million</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Case.TotalCost__c</field>
+                <operation>greaterThan</operation>
+                <value>&quot;USD 1,000,000&quot;</value>
+            </criteriaItems>
+        </entryCriteria>
+        <label>Seek Approval for Claim &gt; $1M CFO</label>
+        <name>Claim_1M</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <description>Rule Set for UPHE Flow</description>
+    <emailTemplate>Promo_CaseMgmt_Emails/Price_Protection_Case_Ask_for_Approval</emailTemplate>
+    <enableMobileDeviceAccess>true</enableMobileDeviceAccess>
+    <entryCriteria>
+        <criteriaItems>
+            <field>Case.RecordType</field>
+            <operation>equals</operation>
+            <value>Price Protection</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Studio_Partner__c</field>
+            <operation>equals</operation>
+            <value>UPHE,Elevation,PBS</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Status</field>
+            <operation>equals</operation>
+            <value>New,Rejected</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.CM_Sold_To__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.TotalUnits__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </criteriaItems>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>CM_Integration_Status_Update_to_N</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Price_Protection_Case_Approved</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>SI_Case_Approved</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>Price_Protection_Case_Rejected</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>SI_Case_Rejected</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <initialSubmissionActions>
+        <action>
+            <name>SI_Case_Pending_Approval</name>
+            <type>FieldUpdate</type>
+        </action>
+    </initialSubmissionActions>
+    <label>Price Protection Cases - Universal</label>
+    <recordEditability>AdminOnly</recordEditability>
+    <showApprovalHistory>false</showApprovalHistory>
+</ApprovalProcess>

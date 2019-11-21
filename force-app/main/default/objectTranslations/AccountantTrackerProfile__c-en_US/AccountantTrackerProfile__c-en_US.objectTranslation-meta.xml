@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>AccountantTrackerProfile</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>AccountantTrackerProfiles</value>
+    </caseValues>
+    <layouts>
+        <layout>AccountantTrackerProfile Layout</layout>
+        <sections>
+            <label><!-- Attachments --></label>
+            <section>Attachments</section>
+        </sections>
+        <sections>
+            <label><!-- Current Project Information --></label>
+            <section>Current Project Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Future Project --></label>
+            <section>Future Project</section>
+        </sections>
+        <sections>
+            <label><!-- General Information --></label>
+            <section>General Information</section>
+        </sections>
+        <sections>
+            <label><!-- Work Experince --></label>
+            <section>Work Experince</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Confidential Comment Layout</layout>
+        <sections>
+            <label><!-- Attachments --></label>
+            <section>Attachments</section>
+        </sections>
+        <sections>
+            <label><!-- Confidential Comment --></label>
+            <section>Confidential Comment</section>
+        </sections>
+        <sections>
+            <label><!-- Current Project Infomration --></label>
+            <section>Current Project Infomration</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Future Project --></label>
+            <section>Future Project</section>
+        </sections>
+        <sections>
+            <label><!-- General Information --></label>
+            <section>General Information</section>
+        </sections>
+        <sections>
+            <label><!-- Work Experience --></label>
+            <section>Work Experience</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

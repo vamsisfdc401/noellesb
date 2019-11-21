@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>MD_User_Template_Access</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>This rule provides view only access to all MD/Planning users for all  templates.</description>
+        <label>MD User Template Access</label>
+        <sharedTo>
+            <role>UPHE_Domestic_Operations</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Template_Name__c</field>
+            <operation>notEqual</operation>
+            <value/>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingOwnerRules>
+        <fullName>Brand_User_Template_Access</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Brand User Template Access</label>
+        <sharedTo>
+            <role>UPHE_Domestic_Operations</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>UPHE_Domestic_Operations</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Paramount_User_Template_Access</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>This rule provides view only access to all Paramount users for all Paramount templates.</description>
+        <label>Paramount User Template Access</label>
+        <sharedTo>
+            <role>Paramount</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>Paramount</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

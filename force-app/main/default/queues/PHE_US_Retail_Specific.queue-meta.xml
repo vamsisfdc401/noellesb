@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>PHE - US Retail Specific</name>
+    <queueMembers>
+        <users>
+            <user>andrew_nguyen@paramount.com</user>
+            <user>darcy_tillis@paramount.com</user>
+            <user>david_gonzalez@paramount.com</user>
+            <user>erika_custer@paramount.com</user>
+            <user>jim_halkett@paramount.com</user>
+            <user>jocelyn_estrada@paramount.com</user>
+            <user>kristen_hermanson@paramount.com</user>
+            <user>lauren_mclaren@paramount.com</user>
+            <user>luci_anassian@paramount.com</user>
+            <user>ryan_rosales@paramount.com</user>
+            <user>shane_sullivan@paramount.com.prod</user>
+            <user>steve_hora@paramount.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Material__c</sobjectType>
+    </queueSobject>
+</Queue>

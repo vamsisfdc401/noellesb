@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Set_Material_Item_Type_Key_Default_Uniqu</fullName>
+        <field>Item_Type_Key_Unique__c</field>
+        <formula>TEXT( Item_Type_Key__c )</formula>
+        <name>Set Material Item Type Key Default Uniqu</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>Set Material Item Type Default Unique</fullName>
+        <actions>
+            <name>Set_Material_Item_Type_Key_Default_Uniqu</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>true</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

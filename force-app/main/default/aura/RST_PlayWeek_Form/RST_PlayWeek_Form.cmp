@@ -1,0 +1,23 @@
+<aura:component>
+    <aura:attribute name="pwId" type="Id"/>
+
+    <lightning:recordEditForm
+            onsuccess="{!c.handleSuccess}"
+            recordId="{!v.pwId}"
+            objectApiName="RST_Play_Week__c">
+        <lightning:messages />
+
+
+        <ul class="slds-list_horizontal">
+            <li class="week_info">week <lightning:outputField fieldName="RST_Play_Week__c"  variant="label-hidden"/></li>
+            <li class="week_info"><lightning:outputField fieldName="Week_Date__c" variant="label-hidden"/></li>
+            <li><lightning:inputField fieldName="Weekend_BO__c" onblur="{!c.blurWeekendBO}"/></li>
+            <li><lightning:inputField fieldName="Weekend_Drop__c" /></li>
+            <li><lightning:inputField fieldName="Midweek_BO__c" /></li>
+            <li><lightning:inputField fieldName="Week_Drop__c" /></li>
+            <li><lightning:button disabled="{!v.disabled}" variant="brand" type="submit" name="save" label="Save" /></li>
+            <li><lightning:outputField fieldName="Source__c" variant="label-hidden"/></li>
+            
+    </ul>
+    </lightning:recordEditForm>
+</aura:component>

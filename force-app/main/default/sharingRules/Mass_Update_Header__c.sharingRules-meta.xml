@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingOwnerRules>
+        <fullName>Mass_Update_MD_to_MD_Sharing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>This rule shares Mass Update Headers created by Master Data/Planning User to all Master Data/Planning Users</description>
+        <label>Mass Update MD to MD Sharing</label>
+        <sharedTo>
+            <role>UPHE_Domestic_Operations</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>UPHE_Domestic_Operations</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Mass_Update_MD_to_TP_Sharing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>This rule shares Mass Update Headers created by Master Data/Planning User to all Third Party Users.</description>
+        <label>Mass Update MD to TP Sharing</label>
+        <sharedTo>
+            <role>Paramount</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>UPHE_Domestic_Operations</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Mass_Update_TP_to_MD_Sharing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>This rule shares Mass Update Headers created by Third Party User to all Master Data/Planning Users</description>
+        <label>Mass Update TP to MD Sharing</label>
+        <sharedTo>
+            <role>UPHE_Domestic_Operations</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>Paramount</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Mass_Update_TP_to_TP_Sharing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>This rule shares Mass Update Headers created by Third Party User to all Third Party Users</description>
+        <label>Mass Update TP to TP Sharing</label>
+        <sharedTo>
+            <role>Paramount</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>Paramount</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

@@ -1,0 +1,18 @@
+<aura:component implements="lightning:appHomeTemplate" description="Template built for the Release Scheduling Tool.">
+    <aura:attribute name="header" type="Aura.Component[]" />
+    <aura:attribute name="main" type="Aura.Component[]" />
+
+    <div>
+        <lightning:layout>
+            <lightning:layoutItem class="slds-col slds-size_1-of-1">
+            	{!v.header}
+            </lightning:layoutItem>
+            <lightning:layoutItem flexibility="grow"
+                                  class="slds-col slds-size_1-of-1">
+                {!v.main}
+            </lightning:layoutItem>
+            
+        </lightning:layout>
+    </div>
+    
+</aura:component>

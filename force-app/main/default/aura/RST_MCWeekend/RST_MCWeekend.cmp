@@ -1,0 +1,22 @@
+<aura:component implements="flexipage:availableForAllPageTypes" description="Market Capacity Weekend" access="global">
+   
+    <div>
+        <h2>Market Capacity Reports</h2>
+        
+        <h3>Market Capacity - All</h3>
+        <a class="slds-button nbcu-btn dark margin" 
+           target="_blank" 
+           href="{!$Label.c.RST_MCAllURL}">View</a>
+        
+        <h3>Market Capacity by Weekend</h3>
+        <a class="slds-button nbcu-btn dark margin" 
+           target="_blank" 
+           href="{!$Label.c.RST_MCWeekendReportURL}">View</a>
+        
+        <a class="slds-button nbcu-btn dark margin" 
+           target="_blank" 
+           href="{!$Label.c.RST_MCWeekendExport}">Export</a>
+        
+    </div>
+    
+</aura:component>

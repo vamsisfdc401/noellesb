@@ -1,0 +1,215 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" controller="GBSProduct_IPSelectionController" access="global">
+    <!-- Added for GBS-733 -->
+    <lightning:workspaceAPI aura:id="workspace" />
+    
+    <aura:attribute name="products" type="List"/>
+    <aura:attribute name="selectedProducts" type="List"/>
+    <aura:attribute name="intellectualProperties" type="List"/>
+    <aura:attribute name="selectedIntellectualProperties" type="List"/>
+    <aura:attribute name="LMS" type="LMS__c" default="{'sObjectType':'LMS__c'}"/>
+    <aura:attribute name="LMSId" type="String" access="global"/>
+    <aura:attribute name="searchKeyword" type="String"/>
+    <aura:attribute name="searchIPKey" type="String"/>
+    <aura:attribute name="currentStep" type="Integer" default="1"/>
+    <aura:attribute name="isIPLoaded" type="Boolean" default="false"/>
+    <aura:attribute name="LMSRecordId" type="String" access="global"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> 
+    <aura:handler event="c:LMSProduct_IPSave" action="{!c.handleEvent}"/>
+    <aura:registerEvent name="appEvent" type="c:LMSProduct_IPSave"/>
+	
+    <div>Licensee : <b><ui:outputText value="{!v.LMS.Licensee__r.Name}"/></b></div>
+    <div>Contract Number : <b><ui:outputText value="{!v.LMS.Contract__r.Name}"/></b></div>
+    <div>Product Rights Group : <b><ui:outputText value="{!v.LMS.Product_Rights_Group__r.Name}"/></b></div>
+    <hr style="margin-top:10px;"/>
+    <aura:if isTrue="{!v.currentStep == 1}">
+        <div class="pageHeader">                
+            <div class="slds-form--inline slds-m-bottom--small">
+                <div class="slds-form-element ">
+                    <label class="slds-form-element__label slds-text-heading--small" for="search">Search Product Rights</label>
+                    <div class="slds-form-element__control">
+                        <ui:inputText aura:id="searchId" class="slds-input" keyup="{!c.onEnterClickSearch}" updateOn="keyup" value="{!v.searchKeyword}" required="true" placeholder="Type here..."/>
+                    </div>
+                </div>
+                <div class="slds-form-element">
+                    <button aura:id="btnSearchId" type="button" onclick="{!c.searchProducts}" class="slds-button slds-button--brand">Search</button>
+                </div>
+            </div> 
+        </div>
+        <fieldset style="width: 49%; border: 1px solid grey; float: left; padding: 5px;">
+            <legend class="divHeaderRight">Search Results</legend>
+        	<div id="divScroll1" style="height:400px;width: 100%; overflow:auto;">
+                <button class="slds-button slds-button--neutral slds-m-bottom--xx-small" style="margin-left: 1%;" onclick="{!c.selectAllProducts}">Select All</button>  
+                <table id="fixTable1" class="slds-table slds-table--bordered slds-table--cell-buffer">
+                    
+                    <thead id="theadScroll1" >
+                        <tr  class="slds-text-title--caps" >
+                            <th scope="col" style="z-index: 3;padding-left: 7px;">
+                                <div class="slds-truncate" title="Select">Select</div>
+                            </th>
+                            <th scope="col" style="z-index: 3;">
+                                <div class="slds-truncate" title="Product">Product</div>
+                            </th>
+                            <th scope="col" style="z-index: 3;">
+                                <div class="slds-truncate" title="Product Hierarchy">Product Hierarchy</div>
+                            </th>
+                        </tr>
+                    </thead>  
+                    
+                    <tbody id="tbodyScroll1">
+                        
+                        <!--### display all records of searchResult attribute by aura:iteration ###-->
+                       
+                        <aura:iteration items="{!v.products}" var="prod" indexVar="resultIndex">
+                            <tr>
+                                <td style="z-index:2;padding-left: 7px;">
+                                    <div>
+                                        <button class="slds-button slds-text-link" data-index="{!resultIndex}" onclick="{!c.addSelectedProduct}">Select</button> 
+                                    </div>
+                                </td>
+                                <td style="z-index:2; max-width: 150px;">
+                                    <div class="slds-truncate" title="{!prod.prodName}"><ui:outputText value="{!prod.prodName}" /></div>
+                                </td>
+                                <td style="z-index:2; max-width: 150px;">
+                                    <div class="slds-truncate" title="{!prod.prodHierarchy }"><ui:outputText value="{!prod.prodHierarchy }" /></div>
+                                </td>
+                            </tr>
+                        </aura:iteration>
+                        <aura:if isTrue="{!v.Message}">
+                            <div class="slds-text-color--error"> No Result Found...</div>
+                        </aura:if>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>    
+        <fieldset style="width: 49%; border: 1px solid grey; float: right; padding: 5px;">
+            <legend class="divHeaderRight">Selected</legend>
+        	<div style="height:400px;width: 100%; overflow:auto;">  
+        
+                <button class="slds-button slds-button--neutral slds-m-bottom--xx-small" style="margin-left: 1%;" onclick="{!c.removeAllProducts}">Remove All</button>                  
+                <table id="fixTable2" class="slds-table slds-table--bordered slds-table--cell-buffer">
+                    <thead>
+                        <tr class="slds-text-title--caps">
+                            <th scope="col" style="z-index:3;padding-left: 7px;">
+                                <div class="slds-truncate" title="Select">Remove</div>
+                            </th>
+                            <th scope="col" style="z-index:3;">
+                                <div class="slds-truncate" title="Product">Product</div>
+                            </th>
+                            <th scope="col" style="z-index:3;">
+                                <div class="slds-truncate" title="Product Hierarchy">Product Hierarchy</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>                       
+                        <!--### display all records of searchResult attribute by aura:iteration ###-->
+                        <aura:iteration items="{!v.selectedProducts}" var="prod" indexVar="selectedIndex">
+                            <tr>
+                                <td style="z-index:2;padding-left: 7px;">
+                                    <div>
+                                        <button class="slds-button slds-text-link" data-index="{!selectedIndex}" onclick="{!c.removeSelectedProduct}">Remove</button>                                    
+                                    </div>
+                                </td>
+                                <td style="z-index:2;max-width: 150px;">
+                                    <div class="slds-truncate" title="{!prod.prodName}"><ui:outputText value="{!prod.prodName}" /></div>
+                                </td>
+                                <td style="z-index:2;max-width: 150px;">
+                                    <div class="slds-truncate" title="{!prod.prodHierarchy}"><ui:outputText value="{!prod.prodHierarchy}" /></div> 
+                                </td>
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table>                
+            </div> 	
+        </fieldset>
+    </aura:if>
+    <aura:if isTrue="{!v.currentStep == 2}">
+    	<div class="pageHeader">                
+            <div class="slds-form--inline slds-m-bottom--small">
+                <div class="slds-form-element ">
+                    <label class="slds-form-element__label slds-text-heading--small" for="search">Search Intellectual Property Rights</label>
+                    <div class="slds-form-element__control">
+                        <ui:inputText aura:id="searchId" class="slds-input" keyup="{!c.onEnterClickSearch_IP}" updateOn="keyup" value="{!v.searchIPKey}" required="true" placeholder="Type here..."/>
+                    </div>
+                </div>
+                <div class="slds-form-element">
+                    <button aura:id="btnSearchId" type="button" onclick="{!c.searchIPRights}" class="slds-button slds-button--brand">Search</button>
+                </div>
+            </div> 
+        </div>
+        <fieldset style="width: 49%; border: 1px solid grey; float: left; padding: 5px;">
+            <legend class="divHeaderRight">Search Results</legend>
+            <div id="divScroll1" style="height:400px;width: 100%; overflow:auto;">
+                <button class="slds-button slds-button--neutral slds-m-bottom--xx-small" style="margin-left: 1%;" onclick="{!c.selectAllIPs}">Select All</button>  
+                <table id="fixTable1" class="slds-table slds-table--bordered slds-table--cell-buffer">
+                    
+                    <thead id="theadScroll1" >
+                        <tr  class="slds-text-title--caps" >
+                            <th scope="col" style="z-index: 3;padding-left: 7px; width: 45px;">
+                                <div class="slds-truncate" title="Select">Select</div>
+                            </th>
+                            <th scope="col" style="z-index: 3;">
+                                <div class="slds-truncate" title="IP">IP</div>
+                            </th>
+                        </tr>
+                    </thead>  
+                    
+                    <tbody id="tbodyScroll1">
+                        
+                        <!--### display all records of searchResult attribute by aura:iteration ###-->
+                        
+                        <aura:iteration items="{!v.intellectualProperties}" var="IP" indexVar="resultIndex">
+                            <tr>
+                                <td style="z-index:2;padding-left: 7px;width: 45px;">
+                                    <div>
+                                        <button class="slds-button slds-text-link" data-index="{!resultIndex}" onclick="{!c.addSelectedIP}">Select</button> 
+                                    </div>
+                                </td>
+                                <td style="z-index:2;max-width: 300px;">
+                                    <div class="slds-truncate" title="{!IP.IPName}"><ui:outputText value="{!IP.IPName}" /></div>
+                                </td>
+                            </tr>
+                        </aura:iteration>    
+                        <aura:if isTrue="{!v.Message}">
+                            <div class="slds-text-color--error"> No Result Found...</div>
+                        </aura:if>
+                    </tbody>
+                    
+                </table>
+            </div>
+        </fieldset>
+        <fieldset style="width: 49%; border: 1px solid grey; float: right; padding: 5px;">
+            <legend class="divHeaderRight">Selected</legend>    
+        	<div  style="height:400px;width: 100%; overflow:auto;">  
+                <button class="slds-button slds-button--neutral slds-m-bottom--xx-small" style="margin-left: 1%;" onclick="{!c.removeAllIPs}">Remove All</button>                  
+                <table id="fixTable2" class="slds-table slds-table--bordered slds-table--cell-buffer">
+                    <thead>
+                        <tr class="slds-text-title--caps">
+                            <th scope="col" style="z-index:3;padding-left: 7px; width: 45px;">
+                                <div class="slds-truncate" title="Select">Remove</div>
+                            </th>
+                            <th scope="col" style="z-index:3;">
+                                <div class="slds-truncate" title="Intellectual Property">IP</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>                       
+                        <!--### display all records of searchResult attribute by aura:iteration ###-->
+                        <aura:iteration items="{!v.selectedIntellectualProperties}" var="IP" indexVar="selectedIndex">
+                            <tr>
+                                <td style="z-index:2;width: 45px;padding-left: 7px;">
+                                    <div>
+                                        <button class="slds-button slds-text-link" data-index="{!selectedIndex}" onclick="{!c.removeSelectedIP}">Remove</button>                                    
+                                    </div>
+                                </td>
+                                <td style="z-index:2;">
+                                    <div class="slds-truncate" title="{!IP.IPName}"><ui:outputText value="{!IP.IPName}" /></div>
+                                </td>
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table>                
+            </div> 
+        </fieldset>
+    </aura:if>
+</aura:component>

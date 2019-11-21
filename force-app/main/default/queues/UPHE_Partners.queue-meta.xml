@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>UPHE Partners</name>
+    <queueMembers>
+        <users>
+            <user>frances.firmalino@nbcuni.com</user>
+            <user>jamilia.dunbar@nbcuni.com</user>
+            <user>liz.lee@nbcuni.com</user>
+            <user>nacera.taleb@nbcuni.com</user>
+            <user>samanta.argueta@nbcuni.com</user>
+            <user>stephanie.wong@nbcuni.com</user>
+            <user>toni.metoyer@nbcuni.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Material__c</sobjectType>
+    </queueSobject>
+</Queue>

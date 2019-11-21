@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Material</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Materials</value>
+    </caseValues>
+    <layouts>
+        <layout>Brand Layout</layout>
+        <sections>
+            <label><!-- BOM Header --></label>
+            <section>BOM Header</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- General Data --></label>
+            <section>General Data</section>
+        </sections>
+        <sections>
+            <label><!-- Pricing Information --></label>
+            <section>Pricing Information</section>
+        </sections>
+        <sections>
+            <label><!-- Request Information --></label>
+            <section>Request Information</section>
+        </sections>
+        <sections>
+            <label><!-- SAP Validation --></label>
+            <section>SAP Validation</section>
+        </sections>
+        <sections>
+            <label><!-- Title Information --></label>
+            <section>Title Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Default Value Layout</layout>
+        <sections>
+            <label><!-- Alternative Unit Of Measure --></label>
+            <section>Alternative Unit Of Measure</section>
+        </sections>
+        <sections>
+            <label><!-- Basic Data --></label>
+            <section>Basic Data</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- GTM Information --></label>
+            <section>GTM Information</section>
+        </sections>
+        <sections>
+            <label><!-- Pricing Information --></label>
+            <section>Pricing Information</section>
+        </sections>
+        <sections>
+            <label><!-- Questionable Fields --></label>
+            <section>Questionable Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Request Information --></label>
+            <section>Request Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Material Layout</layout>
+        <sections>
+            <label><!-- BOM Components with Text --></label>
+            <section>BOM Components with Text</section>
+        </sections>
+        <sections>
+            <label><!-- BOM Header --></label>
+            <section>BOM Header</section>
+        </sections>
+        <sections>
+            <label><!-- BOM Long Text --></label>
+            <section>BOM Long Text</section>
+        </sections>
+        <sections>
+            <label><!-- Basic Data --></label>
+            <section>Basic Data</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dimensions/EANs --></label>
+            <section>Dimensions/EANs</section>
+        </sections>
+        <sections>
+            <label><!-- General Data --></label>
+            <section>General Data</section>
+        </sections>
+        <sections>
+            <label><!-- Master Data --></label>
+            <section>Master Data</section>
+        </sections>
+        <sections>
+            <label><!-- Material Tree --></label>
+            <section>Material Tree</section>
+        </sections>
+        <sections>
+            <label><!-- PIR Information --></label>
+            <section>PIR Information</section>
+        </sections>
+        <sections>
+            <label><!-- Pricing Information --></label>
+            <section>Pricing Information</section>
+        </sections>
+        <sections>
+            <label><!-- Request Information --></label>
+            <section>Request Information</section>
+        </sections>
+        <sections>
+            <label><!-- Title Information --></label>
+            <section>Title Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Material Locked Layout</layout>
+        <sections>
+            <label><!-- BOM Components with Text --></label>
+            <section>BOM Components with Text</section>
+        </sections>
+        <sections>
+            <label><!-- BOM Header --></label>
+            <section>BOM Header</section>
+        </sections>
+        <sections>
+            <label><!-- BOM Long Text --></label>
+            <section>BOM Long Text</section>
+        </sections>
+        <sections>
+            <label><!-- Basic Data --></label>
+            <section>Basic Data</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Section --></label>
+            <section>Contact Section</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dimensions/EANs --></label>
+            <section>Dimensions/EANs</section>
+        </sections>
+        <sections>
+            <label><!-- General Data --></label>
+            <section>General Data</section>
+        </sections>
+        <sections>
+            <label><!-- Master Data --></label>
+            <section>Master Data</section>
+        </sections>
+        <sections>
+            <label><!-- Material Tree --></label>
+            <section>Material Tree</section>
+        </sections>
+        <sections>
+            <label><!-- PIR Information --></label>
+            <section>PIR Information</section>
+        </sections>
+        <sections>
+            <label><!-- Pricing Information --></label>
+            <section>Pricing Information</section>
+        </sections>
+        <sections>
+            <label><!-- Request Information --></label>
+            <section>Request Information</section>
+        </sections>
+        <sections>
+            <label><!-- Title Information --></label>
+            <section>Title Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Request Layout</layout>
+        <sections>
+            <label><!-- Approval History --></label>
+            <section>Approval History</section>
+        </sections>
+        <sections>
+            <label><!-- BOM Header --></label>
+            <section>BOM Header</section>
+        </sections>
+        <sections>
+            <label><!-- Basic Data --></label>
+            <section>Basic Data</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Section --></label>
+            <section>Contact Section</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dimensions/EANs --></label>
+            <section>Dimensions/EANs</section>
+        </sections>
+        <sections>
+            <label><!-- General Data --></label>
+            <section>General Data</section>
+        </sections>
+        <sections>
+            <label><!-- Master Data --></label>
+            <section>Master Data</section>
+        </sections>
+        <sections>
+            <label><!-- Material Tree --></label>
+            <section>Material Tree</section>
+        </sections>
+        <sections>
+            <label><!-- PIR Information --></label>
+            <section>PIR Information</section>
+        </sections>
+        <sections>
+            <label><!-- Pricing Information --></label>
+            <section>Pricing Information</section>
+        </sections>
+        <sections>
+            <label><!-- Request Information --></label>
+            <section>Request Information</section>
+        </sections>
+        <sections>
+            <label><!-- Required Information --></label>
+            <section>Required Information</section>
+        </sections>
+        <sections>
+            <label><!-- Title Information --></label>
+            <section>Title Information</section>
+        </sections>
+        <sections>
+            <label><!-- Validate SAP Fields --></label>
+            <section>Validate SAP Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>ThirdParty Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- GTM Information --></label>
+            <section>GTM Information</section>
+        </sections>
+        <sections>
+            <label><!-- Pricing Information --></label>
+            <section>Pricing Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Update Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Master Data --></label>
+            <section>Master Data</section>
+        </sections>
+        <sections>
+            <label><!-- Request Information --></label>
+            <section>Request Information</section>
+        </sections>
+        <sections>
+            <label><!-- Title Information --></label>
+            <section>Title Information</section>
+        </sections>
+        <sections>
+            <label><!-- Validate SAP Fields --></label>
+            <section>Validate SAP Fields</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

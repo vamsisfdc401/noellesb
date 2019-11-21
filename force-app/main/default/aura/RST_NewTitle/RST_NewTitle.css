@@ -1,0 +1,44 @@
+.THIS .nbcu-btn[disabled=true] {
+    background: #ddd !important;
+}
+.THIS .stepTwo {
+    padding: 30px;
+    background: #F3F2F2;
+    margin: 0 30px;
+    min-height: 320px;
+}
+.THIS .stepTwo .slds-form-element__label {
+    display: none;
+}
+.THIS .slds-radio_button [type=radio]:checked+.slds-radio_button__label,
+.THIS .slds-dueling-list__options [aria-selected=true],
+.THIS .slds-picklist__options [aria-selected=true]{
+    background-color: #400095;
+}
+.THIS .slds-radio_button-group,
+.THIS .slds-radio_button .slds-radio_button__label{
+    border-radius: 0;
+}
+.THIS .required,
+.THIS abbr.slds-required {
+    color: rgb(194,57,52);
+    font-size: 85%;
+    float: none	 !important;
+    font-weight: normal;
+    margin-left: 2px;
+}
+.THIS lightning-helptext {
+    position: absolute;
+    top: -24px;
+    left: 144px;
+}
+.THIS .stepThree {
+    text-align: center;
+    background: #400095;
+    padding: 30px;
+    color: white;
+}
+.THIS .stepThree h2,
+.THIS .stepThree p {
+    color: white;
+}

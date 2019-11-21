@@ -1,0 +1,53 @@
+<!--*****************************************************************************************
+Page Name: CreateBOMItemPage
+Purpose: This page is responsible to add multiple BOM Item in Material in one go.
+******************************************************************************************
+Version         DateModified         ModifiedBy               Change
+1.0             19/07/2016           Suman Kundu              Initial Development
+******************************************************************************************-->
+<apex:page title="New BOM Item" standardController="Material__c" extensions="MaterialBOMHandler" tabStyle="Material__c" sidebar="false">
+  
+ 
+    <apex:sectionHeader title="BOM Item" subtitle="New BOM Item"/>
+    <apex:pageMessages id="pgMsg"></apex:pageMessages>
+    
+    <apex:form >
+    
+      <apex:outputPanel rendered="{!if((Material__c.Material_Type__c  ='Episode (HEEP)'),true,false)}">
+        <apex:outputText ><font style="Color:red;font-size:16px;"> Important Notes :&nbsp; You can not add Direct Parent Material for Episode (HEEP) Material Type </font></apex:outputText>
+      </apex:outputPanel>
+     <apex:outputPanel rendered="{!if((Material__c.Material_Type__c  !='Episode (HEEP)'),true,false)}">
+        <apex:pageBlock mode="edit" title="Choose Material(s)">
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton value="Save" action="{!save}" />
+                <apex:commandButton value="Cancel" onclick="window.top.close()"/>
+            </apex:pageBlockButtons>
+            
+            <apex:variable var="i" value="{!0}"/>
+            <apex:pageBlockSection title="New Parent BOM Item" collapsible="false" columns="1" id="BOMSection">
+                <apex:pageBlockTable value="{!BOMItemList}" var="bi">
+                    <apex:column headerValue="Material">
+                        <apex:inputField value="{!bi.Material__c}"/>
+                    </apex:column>
+                    <apex:column headerValue="Territory">
+                        <apex:inputField value="{!bi.Territory__c}"/>
+                    </apex:column>
+                    <apex:column headerValue="Action">
+                        <apex:commandLink action="{!addBOMItem}" rendered="{!(BOMItemList.size == (i + 1))}">
+                            <apex:image id="AddImage" value="{!$Resource.Add}"/>
+                            <apex:param id="addBOMIndex" name="addBOMIndex" assignTo="{!itemIndex}" value="{!i}"/>
+                        </apex:commandLink>
+                        &nbsp;&nbsp;
+                        <apex:commandLink action="{!removeBOMItem}" immediate="true" rendered="{!(BOMItemList.size > 1)}">
+                            <apex:image id="RemoveImage" value="{!$Resource.Remove}" />
+                            <apex:param id="removeBOMIndex" name="removeBOMIndex" assignTo="{!itemIndex}" value="{!i}"/>
+                        </apex:commandLink>
+                        
+                        <apex:variable var="i" value="{!i+1}"/>
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+       </apex:outputPanel> 
+    </apex:form>
+</apex:page>

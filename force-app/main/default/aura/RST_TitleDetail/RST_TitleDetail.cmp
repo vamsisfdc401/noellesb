@@ -1,0 +1,263 @@
+<aura:component controller="RST_ViewController">
+    <aura:attribute name="titles" type="Object" /> <!--  FILTERED TITLES FOR PAGE  -->
+    <aura:attribute name="titles_all" type="Object" /> <!--  ALL TITLES FOR PAGE  -->
+    <aura:attribute name="selectedTitle" type="Object" /> <!--  SELECTED TITLE  -->
+    <aura:attribute name="selectedTitlePW" type="Object" /> <!--  SELECTED TITLES FIRST PLAYWEEK DATA-->
+    <aura:attribute name="selectedTitleLoaded" type="Boolean" default="false" /> <!--  SELECTED TITLES FIRST PLAYWEEK DATA-->
+
+    <!-- Application settings for Title PlayWeek Report URL
+		 and number of weeks to subtract from Today's date for Start Date -->
+    <aura:attribute name="appSettings" type="RST_Application_Setting__mdt" />
+    
+    <!-- Used for date range to filter Titles -->
+    <aura:attribute name="startDate" type="Object" />
+    <aura:attribute name="endDate" type="Object" />
+    
+    <aura:attribute name="showFilter" type="String" default="false" /> <!--  FIELD BEING SORTED  -->
+    <aura:attribute name="sortField" type="String" default="Name" /> <!--  FIELD BEING SORTED  -->
+    <aura:attribute name="sortAsc" type="Boolean" default="true" /> <!--  SORT DIRECTION  -->
+    
+    <aura:attribute name="pageOptions" type="Object" /> <!--  SELECTED TITLE  -->
+    
+    <aura:attribute name="showSpinner" type="boolean" default="true"/> <!--  SPINNER  -->
+    
+    <aura:attribute name="titleHeader" type="String" default=""/> <!-- either "Release Summary View" or "Title Detail Summary" -->
+    <aura:attribute name="isEditable" type="boolean" default="true" /> <!-- NON EDITABLE == RELEASE SUMMARY VIEW -->
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    
+    <lightning:card title="">
+        
+        <div class="slds-grid slds-wrap headline">
+            <div class="slds-col slds-size_1-of-2">
+        		<h2>{!v.titleHeader}</h2>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+                <lightning:button class="nbcu-btn minimal clear" variant="base" label="Clear All Filters" onclick="{! c.clearFilters }" value="clear-filters"/>
+            </div>
+        </div>
+        
+        <aura:if isTrue="{!v.showSpinner }">
+            <lightning:spinner alternativeText="Loading" size="large" />
+        </aura:if>
+        
+        <!-- DATE FILTERS -->
+        <div class="slds-grid slds-gutters slds-wrap dateFilter">
+            <div class="slds-col slds-size_2-of-12">
+                <p>From Date:</p>
+                <ui:inputDate aura:id="startDateInput" value="{!v.startDate}" displayDatePicker="true" format="MM/dd/yyyy" change="{!c.filterTitles}"/>
+            </div>
+            
+            <div class="slds-col slds-size_2-of-12">
+                <p>To Date:</p>
+                <ui:inputDate aura:id="endDateInput" value="{!v.endDate}" displayDatePicker="true" format="MM/dd/yyyy" change="{!c.filterTitles}"/>
+            </div>
+            <div class="slds-col slds-size_6-of-12"></div>
+            <div class="slds-col slds-size_2-of-12">
+            	<ui:button class="nbcu-btn dark download" label="Download Titles CSV" press="{!c.downloadTitlesCSV}" />
+            </div>
+            
+        </div>
+        
+        <!-- FILTER ACCORDION -->
+        <div class="filterAccordion">
+            <lightning:button class="nbcu-btn gray" label="+ More Filters" onclick="{! c.toggleFilter }" />
+            <div class="slds-grid slds-gutters slds-wrap">
+                <aura:if isTrue="{!and(v.titles, v.showFilter) }">
+                    <div class="slds-col slds-size_2-of-12">
+                        <p>Search Titles:</p>
+                        <div onkeyup="{! c.enterKeyCheck }">
+                            <lightning:input aura:id="title-search" label="title search hidden" type="search" variant="label-hidden" />
+                        </div>
+                    </div>
+                    
+                    <div class="slds-col slds-size_2-of-12">
+                        <p>Wide Release Date:</p>
+                        <lightning:select aura:id="weeks-select" label="pick a week" variant="label-hidden" onchange="{!c.filterTitles}">
+                            <option></option>
+                            <aura:iteration items="{!v.pageOptions.weeks}" var="week">
+                                <option text="{!week}"></option>
+                            </aura:iteration>
+                        </lightning:select>
+                    </div>
+                    
+                    <div class="slds-col slds-size_2-of-12">
+                        <p>Distributor:</p>
+                        <lightning:select aura:id="dists-select" label="pick a dist" variant="label-hidden" onchange="{!c.filterTitles}">
+                            <option></option>
+                            <aura:iteration items="{!v.pageOptions.dists}" var="dists">
+                                <option text="{!dists}"></option>
+                            </aura:iteration>
+                        </lightning:select>
+                    </div>
+                    
+                    <div class="slds-col slds-size_2-of-12">
+                        <p>FS&amp;O Genre:</p>
+                        <lightning:select aura:id="fso-genre-select" label="pick an fso genre" variant="label-hidden" onchange="{!c.filterTitles}"> 
+                            <option></option>
+                            <aura:iteration items="{!v.pageOptions.fso_genres}" var="fso_genre">
+                                <option text="{!fso_genre}"></option>
+                            </aura:iteration>
+                        </lightning:select>
+                    </div>
+                    
+                    <div class="slds-col slds-size_2-of-12">
+                        <p>Rentrak Genre:</p>
+                        <lightning:select aura:id="ren-genre-select" label="pick a ren genre" variant="label-hidden" onchange="{!c.filterTitles}"> 
+                            <option></option>
+                            <aura:iteration items="{!v.pageOptions.ren_genres}" var="ren_genre">
+                                <option text="{!ren_genre}"></option>
+                            </aura:iteration>
+                        </lightning:select>
+                    </div>
+                    <div class="slds-col slds-size_2-of-12">
+                    
+                    </div>
+                    
+                    
+                </aura:if>
+            </div>
+        </div>
+        <!-- END FILTER ACCORDION -->
+        
+        
+        <div class="tableWrapper">
+        <p>All figures in $USD Millions</p>
+        <table class="titles">
+            <tr>
+                <th></th>
+                <th><p>Wide Release Date</p>
+                    <lightning:button label="{!and(not(v.sortAsc), v.sortField == 'Wide_Release_Date__c') ? '&#8743;' : '&#8744;'}" 
+                                      onclick="{! c.sortClick }" value="Wide_Release_Date__c"  class="sort_button"/>
+                </th>
+                <th>
+                    <p>Title</p>
+                    <lightning:button label="{!and(not(v.sortAsc), v.sortField == 'Name') ? '&#8743;' : '&#8744;'}" 
+                                      onclick="{! c.sortClick }" value="Name" class="sort_button"/>
+                </th>
+                
+                <th><p>Distributor</p>
+                    <lightning:button label="{!and(not(v.sortAsc), v.sortField == 'Distributor__c') ? '&#8743;' : '&#8744;'}" 
+                                      onclick="{! c.sortClick }" value="Distributor__c"  class="sort_button"/>
+                </th>
+                <th><p>RenTrak Genre</p>
+                    <lightning:button label="{!and(not(v.sortAsc), v.sortField == 'RenTrak_Genre__c') ? '&#8743;' : '&#8744;'}" 
+                                      onclick="{! c.sortClick }" value="RenTrak_Genre__c"  class="sort_button"/>
+                </th>
+                <th><p>FS&amp;O Genre</p>
+                    <lightning:button label="{!and(not(v.sortAsc), v.sortField == 'FS_O_Genre__c') ? '&#8743;' : '&#8744;'}" 
+                                      onclick="{! c.sortClick }" value="FS_O_Genre__c"  class="sort_button"/>
+                </th>
+                <th>
+                    <p>Wide O/W</p>
+                    <lightning:button label="{!and(not(v.sortAsc), v.sortField == 'Wide_Opening_Weekend__c') ? '&#8743;' : '&#8744;'}" 
+                                      onclick="{! c.sortClick }" value="Wide_Opening_Weekend__c"  class="sort_button"/>
+                </th>
+                <th><p>Total DBO</p>
+                    <lightning:button label="{!and(not(v.sortAsc), v.sortField == 'Total_Cumulative_BO__c') ? '&#8743;' : '&#8744;'}" 
+                                      onclick="{! c.sortClick }" value="Total_Cumulative_BO__c"  class="sort_button"/>
+                </th>
+                
+                <th><p>Multiple</p>
+                    <lightning:button label="{!and(not(v.sortAsc), v.sortField == 'Multiple__c') ? '&#8743;' : '&#8744;'}" 
+                                      onclick="{! c.sortClick }" value="Multiple__c"  class="sort_button"/>
+                </th>
+                <th><p>Locked/Unlocked</p>
+                    <lightning:button label="{!and(not(v.sortAsc), v.sortField == 'Lock_Title__c') ? '&#8743;' : '&#8744;'}" 
+                                      onclick="{! c.sortClick }" value="Lock_Title__c"  class="sort_button"/>
+                </th>
+                <th><p>Last Edited By</p>
+                    <lightning:button label="{!and(not(v.sortAsc), v.sortField == 'LastModifiedBy.Name') ? '&#8743;' : '&#8744;'}" 
+                                      onclick="{! c.sortClick }" value="LastModifiedBy.Name"  class="sort_button"/>
+                </th>
+            </tr>
+            
+            <!-- Title Iteration -->
+            <aura:iteration items="{!v.titles}" var="title">
+                <tr class="{!if(v.selectedTitle.Id == title.Id, 'selected', '')}">
+                    <td class="expandPlayWeek">
+                        <aura:if isTrue="{!v.isEditable}">
+                            <lightning:button label="{!if(v.selectedTitle.Id == title.Id, '-', '+')}" title="{!title.Name}"
+                                              onclick="{! c.titleClick }" value="{!title.Id}" />
+                        </aura:if>
+                    </td>
+                    <td><lightning:formattedDateTime value="{!title.Wide_Release_Date__c}" month="2-digit" day="2-digit" year="numeric" timeZone="UTC"/></td>
+                    <td>{!title.Name}</td>
+                    
+                    <td>{!title.Distributor__c}</td>
+                    <td>{!title.RenTrak_Genre__c}</td>
+                    <td>{!title.FS_O_Genre__c}</td>
+                    <td>
+                        <lightning:formattedNumber value="{!title.Wide_Opening_Weekend__c}" style="currency"
+                                                   currencyCode="USD" minimumFractionDigits="2" />
+                    </td>
+                    
+                    <td>
+                        <lightning:formattedNumber value="{!title.Total_Cumulative_BO__c}" style="currency"
+                                                   currencyCode="USD" minimumFractionDigits="2" />
+                    </td>
+                    <td>
+                        {!title.Multiple__c}
+                    </td>
+                    <td>
+                        <aura:if isTrue="{!title.Lock_Title__c}">
+                            Locked
+                            <aura:set attribute="else">
+                                Unlocked
+                            </aura:set>
+                        </aura:if>
+                    </td>
+                    <td>
+                        <ui:outputText value="{!title.LastModifiedBy.Name}" /> <br/>
+                    </td>
+                </tr>
+                <aura:if isTrue="{!and(v.selectedTitle, v.selectedTitle.Id == title.Id)}">
+                    <tr class="selected">
+                        <td colspan="11">
+                            <lightning:layout class="title_detail">
+                                <lightning:layoutItem padding="around-small" class="title_info">
+                                    <lightning:input class="lockPlayWeek" 
+													 type="checkbox"
+                                                     label="Lock Changes" 
+                                                     checked="{!v.selectedTitle.Lock_Title__c}" 
+                                                     onchange="{!c.titleLockClick}"/>
+                                    
+                                    <lightning:button class="dark margin nbcu-btn" 
+                                                      label="Save" 
+                                                      title="Save Button"
+                                                      onclick="{! c.saveTitleClicked }" />
+                                    <br />
+                                    <ui:button class="nbcu-btn dark margin" 
+                                               label="Download PlayWeeks CSV" 
+                                               press="{!c.downloadTitlePlayWeeksCSV}" />
+                                    
+                                    <lightning:formattedUrl 
+											label="Check Play Week Report" 
+                                            target="_blank"
+											value="{!'/lightning/r/Report/' + v.appSettings.Title_Report_URL__c + '/view?fv0=' + v.selectedTitle.Id }"
+                                            />
+                                </lightning:layoutItem>
+                                
+                                <lightning:layoutItem padding="around-small" class="playweek_info">
+                                    <aura:if isTrue="{!and(v.selectedTitleLoaded, v.selectedTitle.Total_Cumulative_BO__c > 0)}">
+	                                    <c:RST_PlayWeek_Detail lockTitle="{!v.selectedTitle.Lock_Title__c}" 
+                                                           PlayWeek="{!v.selectedTitlePW}"
+                                                           runningTotal="0" 
+                                                           showHeader="true" 
+                                                           start_WKND_BO="{!v.selectedTitlePW.pw.Weekend_BO__c}"
+                                                           start_WEEK_BO="{!v.selectedTitlePW.pw.Midweek_BO__c}" />
+                                        <aura:set attribute="else">
+                                            There does not seem to be a forecast for this title. Please click on Forecast New Title to add Forecasted Playweeks.
+                                        </aura:set>
+                                    </aura:if>
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                        </td>
+                    </tr>
+                </aura:if>
+            </aura:iteration>
+        </table>
+        </div>
+    </lightning:card>
+</aura:component>

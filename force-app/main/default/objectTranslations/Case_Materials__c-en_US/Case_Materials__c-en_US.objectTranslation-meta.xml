@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Case Material</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Case Materials</value>
+    </caseValues>
+    <layouts>
+        <layout>Price Protection Material Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Material Information --></label>
+            <section>Material Information</section>
+        </sections>
+        <sections>
+            <label><!-- Pricing Information --></label>
+            <section>Pricing Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Shipping Issues Material Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Material Information --></label>
+            <section>Material Information</section>
+        </sections>
+        <sections>
+            <label><!-- Shortage Information --></label>
+            <section>Shortage Information</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

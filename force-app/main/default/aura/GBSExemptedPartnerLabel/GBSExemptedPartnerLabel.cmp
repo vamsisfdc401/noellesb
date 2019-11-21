@@ -1,0 +1,8 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute type="String" name="msg" default="Exempted Partner"/>	
+    
+    <p class="slds-p-horizontal_small" style="background-color:green; padding:15px; border-radius:3px; font-size:19px;">
+        <h1><b>{!v.msg}</b></h1>
+    </p>
+    
+</aura:component>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>DGF_Update_Unique_text_field</fullName>
+        <field>Unique_Text__c</field>
+        <formula>IF(TEXT(Product_Type__c)!=NULL,TEXT(Product_Type__c),&quot;&quot;)&amp;IF(TEXT(Platform__c)!=NULL,&quot;-&quot;&amp;TEXT(Platform__c),&quot;&quot;)&amp; 
+IF(TEXT(Category__c)!=NULL,&quot;-&quot;&amp;TEXT(Category__c),&quot;&quot;)&amp;IF(TEXT(Resolution__c)!=NULL,&quot;-&quot;&amp;TEXT(Resolution__c),&quot;&quot;)&amp;IF(TEXT(Territory__c)!=NULL,&quot;-&quot;&amp;TEXT(Territory__c),&quot;&quot;)&amp;IF(TEXT(Customer_Specific__c)!=NULL,&quot;-&quot;&amp;TEXT(Customer_Specific__c),&quot;&quot;)&amp;IF(TEXT(iTunes_Tier__c)!=NULL,&quot;-&quot;&amp;TEXT(iTunes_Tier__c),&quot;&quot;)&amp;IF(TEXT(Sub_Category__c)!=NULL,&quot;-&quot;&amp;TEXT(Sub_Category__c),&quot;&quot;)&amp;IF(TEXT(No_of_Titles__c)!=NULL,&quot;-&quot;&amp;TEXT(No_of_Titles__c),&quot;&quot;)</formula>
+        <name>DGF Update Unique text field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>DGF Unique check on Pricing Tier</fullName>
+        <actions>
+            <name>DGF_Update_Unique_text_field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 OR 2 OR 3  OR 4  OR 5 OR 6 OR 7</booleanFilter>
+        <criteriaItems>
+            <field>Pricing_Tier__c.Product_Type__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Pricing_Tier__c.Platform__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Pricing_Tier__c.Category__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Pricing_Tier__c.Resolution__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Pricing_Tier__c.Territory__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Pricing_Tier__c.Customer_Specific__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Pricing_Tier__c.iTunes_Tier__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>DFOR-45</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

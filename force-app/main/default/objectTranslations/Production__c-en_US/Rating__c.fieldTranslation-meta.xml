@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Rating --></label>
+    <name>Rating__c</name>
+    <picklistValues>
+        <masterLabel>G</masterLabel>
+        <translation><!-- G --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>NC-17</masterLabel>
+        <translation><!-- NC-17 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PG</masterLabel>
+        <translation><!-- PG --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PG-13</masterLabel>
+        <translation><!-- PG-13 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>R</masterLabel>
+        <translation><!-- R --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unrated</masterLabel>
+        <translation><!-- Unrated --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

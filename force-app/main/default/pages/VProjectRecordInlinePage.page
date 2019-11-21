@@ -1,0 +1,43 @@
+<apex:page standardController="v_Project_Request__c" extensions="VProjectRecordInlinePageHandler"> 
+    <apex:form >
+        <apex:outputPanel id="refresh" rendered="true">
+            <apex:outputPanel id="refresh1" rendered="{!refreshPage}">
+                <script>
+                window.top.location='/{!v_Project_Request__c.id}';
+                </script>
+            </apex:outputPanel>
+        </apex:outputPanel>
+        
+        <apex:variable value="{!0.00}" var="total"/>
+        <apex:pageBlock id="pb" mode="edit">
+            <apex:pageMessages ></apex:pageMessages>  
+            
+            <apex:pageBlockTable value="{!MatReleases}" var="mr" width="100%">
+                <apex:column headerValue="Allocation" >
+                    <apex:inputField value="{!mr.Allocation_Percentage__c}"/> <apex:outputText >%</apex:outputText>
+                    <apex:variable value="{!total+ mr.Allocation_Percentage__c}" var="total" rendered="{!mr.Allocation_Percentage__c!=null}"/>
+                </apex:column>
+                <apex:facet name="footer"><span class="t1"></span> &nbsp;<b><i>%Total Allocated</i></b> </apex:facet>
+                <apex:column headerValue="Material Number">
+                    <apex:outputField value="{!mr.Material__r.Material_Number__c}"/>
+                </apex:column>
+                <apex:column headerValue="Material Description">
+                    <apex:outputLink style="color:blue;" target="_blank" value="/{!mr.Material__c}">{!mr.Material__r.Name}</apex:outputLink>
+                </apex:column>
+                <apex:column headerValue="Material Type">
+                    <apex:outputField value="{!mr.Material__r.Material_Type__c}"/>
+                </apex:column>
+            </apex:pageBlockTable> 
+            
+            <center>
+                <apex:commandButton style="width:70px" value="Save" action="{!updaVprojectandRelMat}" />&nbsp;&nbsp;
+                <apex:commandButton style="width:70px" value="Cancel" action="{!cancel}"/>
+            </center>
+        </apex:pageBlock>  
+        
+        
+        <script>
+        document.getElementsByClassName('t1')[0].innerHTML = '{!total}'; 
+        </script>      
+    </apex:form> 
+</apex:page>

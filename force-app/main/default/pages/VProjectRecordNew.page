@@ -1,0 +1,72 @@
+<!--*****************************************************************************************
+Page Name: VProjectRecordNew
+Purpose: for creating v project
+******************************************************************************************
+Version         DateModified         ModifiedBy               Change
+1.0             25/08/2016           Durgesh                  Initial Development
+******************************************************************************************-->
+<apex:page standardController="Release__c" extensions="VProjectRecordHandler" tabStyle="Release_Material__c" id="page">
+    
+    <apex:form >
+        <apex:variable value="{!0.00}" var="total"/>
+        <apex:pageBlock id="pb" mode="edit">
+            <apex:pageMessages ></apex:pageMessages>
+            
+            <apex:pageBlockSection title="V Project Request Form" collapsible="false">                
+                <apex:outputField value="{!Release__c.Name}" />                
+                <apex:outputField value=" {!Release__c.V_Project_Number__c}"/> 
+                <apex:inputfield style="width:50%;" value="{!newVp.SAP_Project_Description__c}"/>                
+            </apex:pageBlockSection>   
+            
+            <apex:pageBlockSection title="V Project Details" collapsible="false">                
+                <apex:inputfield value="{!newVp.Project_Category__c}"/> 
+                <apex:inputfield value="{!newVp.Project_Class__c}"/>                 
+                <apex:outputText />  
+                <apex:inputfield value="{!newVp.Project_Sub_Class__c}"/>
+                <apex:inputfield value="{!newVp.Project_Studio__c}"/>
+                <apex:inputfield value="{!newVp.Sales_Org__c }"/>
+                <apex:inputField value="{!Release__c.First_Theatrical_Date__c}"/>
+                <apex:inputfield value="{!newVp.POS_Order_End_Date__c}"/> 
+                <apex:inputField value="{!Release__c.Street_Date__c}"/>
+                <apex:inputfield value="{!newVp.Project_Finish_Date__c }"/> 
+                <apex:inputField value="{!Release__c.Pre_Order_Close_Date__c}"/>
+                <apex:inputfield value="{!newVp.Return_End_Date__c}"/>                
+            </apex:pageBlockSection>
+            
+            <center>
+                <apex:commandButton style="width:70px" value="Save" action="{!saveVproject}" />&nbsp;&nbsp;                
+                <apex:commandButton style="width:70px" value="Cancel" action="{!cancel}"  />
+            </center>  
+            
+            <hr align="left" width="100%"/>
+            
+            <apex:pageBlockSection >                
+                <apex:outputPanel id="pln" layout="block" style="overflow:auto;width:1100px;height:100px">                    
+                    <apex:pageBlockTable value="{!MatReleases}" var="mr" width="100%">
+                        <apex:column headerValue="Allocation">
+                            <apex:inputField value="{!mr.Allocation_Percentage__c}"/> <apex:outputText >%</apex:outputText>
+                            <apex:variable value="{!total+ mr.Allocation_Percentage__c}" var="total" rendered="{!mr.Allocation_Percentage__c!=null}"/>
+                        </apex:column>
+                        <apex:facet name="footer"><span class="t1"></span> &nbsp;<b><i>%Total Allocated</i></b> </apex:facet>
+                        <apex:column headerValue="Material Number">
+                            <apex:outputField value="{!mr.Material__r.Material_Number__c}"/>
+                        </apex:column>
+                        <apex:column headerValue="Material Description">
+                            <apex:outputField value="{!mr.Material__r.Name}"/>
+                        </apex:column>
+                        
+                    </apex:pageBlockTable> 
+                </apex:outputPanel>  
+            </apex:pageBlockSection> 
+            
+            <center>
+                <!--<apex:commandButton style="width:150px" value="Submit For Approval" />&nbsp;&nbsp; -->
+                <apex:commandButton style="width:70px" value="Save" action="{!updaVprojectandRelMat}" />&nbsp;&nbsp;
+                <apex:commandButton style="width:70px" value="Cancel" action="{!cancel}"/>
+            </center>            
+        </apex:pageBlock>  
+        <script>
+        document.getElementsByClassName('t1')[0].innerHTML = '{!total}'; 
+        </script>
+    </apex:form>  
+</apex:page>

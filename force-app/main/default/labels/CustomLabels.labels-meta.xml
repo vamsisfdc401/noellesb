@@ -1,2 +1,1926 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata"/>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>API_USER_ID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>API USER ID</shortDescription>
+        <value>00536000003t37Y</value>
+    </labels>
+    <labels>
+        <fullName>Account_UPHE_Retailer_Record_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Account UPHE Retailer Record Id</shortDescription>
+        <value>0120d000000ghwq</value>
+    </labels>
+    <labels>
+        <fullName>Application_URL</fullName>
+        <categories>Application</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Application URL</shortDescription>
+        <value>https://uphe.lightning.force.com/</value>
+    </labels>
+    <labels>
+        <fullName>BrandUserProfileId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BrandUserProfileId</shortDescription>
+        <value>00e36000001bRpYAAU</value>
+    </labels>
+    <labels>
+        <fullName>BrandUser_RoleId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BrandUser RoleId</shortDescription>
+        <value>00E3600000173rp</value>
+    </labels>
+    <labels>
+        <fullName>CAR_Vendor_Portal_Community_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CAR Vendor Portal Community URL</shortDescription>
+        <value>https://nbcu-community.force.com/carVendor</value>
+    </labels>
+    <labels>
+        <fullName>CIRF_Account_RecordType</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIRF Account RecordType</shortDescription>
+        <value>UPHE Retailer</value>
+    </labels>
+    <labels>
+        <fullName>CIRF_Approval_Queue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIRF Approval Queue</shortDescription>
+        <value>CIRF_Approval</value>
+    </labels>
+    <labels>
+        <fullName>CIRF_Child_Corrugate_Export_Report</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIRF Child Corrugate Export Report</shortDescription>
+        <value>00O0d0000058ZSmEAM</value>
+    </labels>
+    <labels>
+        <fullName>CIRF_Corrugate_Export_Report</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIRF Corrugate Export Report</shortDescription>
+        <value>00O0d0000058ZSkEAM</value>
+    </labels>
+    <labels>
+        <fullName>CIRF_Corrugate_Material_Export_Report</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIRF Corrugate Material Export Report1</shortDescription>
+        <value>00O0d0000058ZSoEAM</value>
+    </labels>
+    <labels>
+        <fullName>CIRF_Corrugate_Material_Export_Report2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIRF_Corrugate_Material_Export_Report2</shortDescription>
+        <value>00O0d0000058ZSpEAM</value>
+    </labels>
+    <labels>
+        <fullName>CIRF_Default_Public_Group</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIRF Default Public Group</shortDescription>
+        <value>Universal_New_Release_Planning</value>
+    </labels>
+    <labels>
+        <fullName>CIRF_Edit_Create_Delete</fullName>
+        <categories>CIRF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIRF Edit Create Delete</shortDescription>
+        <value>00e36000001QmPsAAK</value>
+    </labels>
+    <labels>
+        <fullName>CIRF_Edit_Only</fullName>
+        <categories>CIRF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIRF Edit Only</shortDescription>
+        <value>00e36000001bRpZAAU</value>
+    </labels>
+    <labels>
+        <fullName>CIRF_Environment_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIRF Environment URL</shortDescription>
+        <value>https://uphe.lightning.force.com/lightning/r</value>
+    </labels>
+    <labels>
+        <fullName>CIRF_Header_Cancel_Email_Template</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIRF Header Cancel Email Template</shortDescription>
+        <value>CIRF Header Cancelled</value>
+    </labels>
+    <labels>
+        <fullName>CIRF_Header_RIM_Approval_ET</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIRF Header RIM Approval ET</shortDescription>
+        <value>CIRF Header RIM Approval Needed</value>
+    </labels>
+    <labels>
+        <fullName>CIRF_Header_Revise_Email_Template</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIRF Header Revise Email Template</shortDescription>
+        <value>CIRF Header Moved Back to Draft</value>
+    </labels>
+    <labels>
+        <fullName>CIRF_Header_Submitted_Email_Template</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIRF Header Submitted Email Template</shortDescription>
+        <value>CIRF Header Created and Submitted</value>
+    </labels>
+    <labels>
+        <fullName>CIRF_Locked_Status</fullName>
+        <categories>CIRF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIRF Locked Status</shortDescription>
+        <value>Complete,Cancelled,Merged,Loaded</value>
+    </labels>
+    <labels>
+        <fullName>CIRF_Material_Export_Report</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIRF Material Export Report</shortDescription>
+        <value>00O0d0000058ZSlEAM</value>
+    </labels>
+    <labels>
+        <fullName>CIRF_Material_Upload_Template</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIRF Material Upload Template</shortDescription>
+        <value>Material Number,SRP,DRC,Account Retail Price,Promo Cost,Funding Notes,Discount Type,Single Units,Replen Units,French Units Required,Sticker Price,Sticker Item Number,Genre/Location/Other Info</value>
+    </labels>
+    <labels>
+        <fullName>CIRF_National_Retailer_ID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIRF National Retailer ID</shortDescription>
+        <value>001M0000013FVDrIAO</value>
+    </labels>
+    <labels>
+        <fullName>CIRF_Pricing_Report</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIRF Pricing Report</shortDescription>
+        <value>00O0d0000058ZSnEAM</value>
+    </labels>
+    <labels>
+        <fullName>CIRF_Related_Forecasts_Report</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIRF Related Forecasts Report</shortDescription>
+        <value>00O0d0000058ZSqEAM</value>
+    </labels>
+    <labels>
+        <fullName>CIRF_Status_Validation_ON_OFF</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIRF Status Validation ON OFF</shortDescription>
+        <value>ON</value>
+    </labels>
+    <labels>
+        <fullName>CIRF_Task_RecordType_Ids</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIRF Task RecordType Ids</shortDescription>
+        <value>0120d000000ghxyAAA,0120d000000ghy3AAA,0120d000000ghy8AAA,0120d000000ghyDAAQ,0120d000000ghyIAAQ</value>
+    </labels>
+    <labels>
+        <fullName>CIRF_Triggers_ON_OFF</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIRF Triggers ON OFF</shortDescription>
+        <value>ON</value>
+    </labels>
+    <labels>
+        <fullName>CIRF_Val_Util_SysAdmin_Ids</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIRF_Val_Util_SysAdmin_Ids</shortDescription>
+        <value>00e0d000001NtJtAAK,00e36000001QmPsAAK</value>
+    </labels>
+    <labels>
+        <fullName>CIRF_Validation_GroupIds</fullName>
+        <categories>CIRF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIRF_Validation_GroupIds</shortDescription>
+        <value>00G0d000003VyiTEAS,00G0d000003VyiUEAS</value>
+    </labels>
+    <labels>
+        <fullName>Case_PODEmailId</fullName>
+        <categories>Case Management Setup</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Case_PODEmailId</shortDescription>
+        <value>cm@1p9dt9geo94z57whsqb39raq3zy7wlcva79mwm92g87jnac39g.36-1eivoea4.na61.apex.salesforce.com</value>
+    </labels>
+    <labels>
+        <fullName>Case_PPEmailId</fullName>
+        <categories>Case Management Setup</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Case_PPEmailId</shortDescription>
+        <value>pp@a-23u4ziuyjlgo406vj6eiyge0dn7h5m504x5hgdb2ch8ss57oti.36-1eivoea4.na61.apex.salesforce.com</value>
+    </labels>
+    <labels>
+        <fullName>DGF_BulkRepricingHeaderColumns</fullName>
+        <categories>Lightning Components</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DGF BulkRepricing Header Columns</shortDescription>
+        <value>prodName,USESTTier,US_SD_WSP,US_HD_WSP,US_UHD_WSP,CAESTTier,CA_SD_WSP,CA_HD_WSP,CA_UHD_WSP</value>
+    </labels>
+    <labels>
+        <fullName>DGF_BulkTPRHeaderColumns</fullName>
+        <categories>Lightning Components</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DGF BulkTPR Header Columns</shortDescription>
+        <value>productName,usESTSDWSP,usESTHDWSP,usESTUHDWSP,caESTSDWSP,caESTHDWSP,caESTUHDWSP</value>
+    </labels>
+    <labels>
+        <fullName>DGF_CA_Film_Product_Platform_Default</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DGF CA Film Product Platform Default</shortDescription>
+        <value>EST;iVOD;cVOD</value>
+    </labels>
+    <labels>
+        <fullName>DGF_DateColumns</fullName>
+        <categories>Lightning Components</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DGF Date Columns</shortDescription>
+        <value>startDate,endDate</value>
+    </labels>
+    <labels>
+        <fullName>DGF_PricingColumns</fullName>
+        <categories>Lightning Component</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DGF Pricing Columns</shortDescription>
+        <value>US_SD_WSP,US_HD_WSP,US_UHD_WSP,CA_SD_WSP,CA_HD_WSP,CA_UHD_WSP,usESTSDWSP,usESTHDWSP,usESTUHDWSP,caESTSDWSP,caESTHDWSP,caESTUHDWSP</value>
+    </labels>
+    <labels>
+        <fullName>DGF_StringColumns</fullName>
+        <categories>Lightning Component</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DGF String Columns</shortDescription>
+        <value>productName</value>
+    </labels>
+    <labels>
+        <fullName>DGF_US_Film_Product_Platform_Default</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DGF US Film Product Platform Default</shortDescription>
+        <value>EST;iVOD;cVOD</value>
+    </labels>
+    <labels>
+        <fullName>DISC_BOM_MASTER</fullName>
+        <categories>Org Specific Setting</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DISC BOM MASTER</shortDescription>
+        <value>a1336000004PG2q</value>
+    </labels>
+    <labels>
+        <fullName>DISC_BOM_Mat_Number</fullName>
+        <categories>Org Specific Setting</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DISC BOM Mat Number</shortDescription>
+        <value>2001267</value>
+    </labels>
+    <labels>
+        <fullName>ET_CIRF_Header_RIM_Approval_Needed</fullName>
+        <categories>EmailTemplate</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ET_CIRF_Header_RIM_Approval_Needed</shortDescription>
+        <value>00XM0000000N32X</value>
+    </labels>
+    <labels>
+        <fullName>ErrorSpecialShippingInstructions</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ErrorSpecialShippingInstructions</shortDescription>
+        <value>You have entered an invalid character in the Special Shipping Instructions Text field (e.g., #, *, or |). Please correct and re-save</value>
+    </labels>
+    <labels>
+        <fullName>Export_Corrugate_Report_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DNU CIRF Corrugate Export Report</shortDescription>
+        <value>00OM0000000mORQMA2</value>
+    </labels>
+    <labels>
+        <fullName>FlowAcquisitionDealNewBoardPackSuccess</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FlowAcquisitionDealNewBoardPackSuccess</shortDescription>
+        <value>New Board Pack (version: {!inputAcquisitionDeal.Board_Pack_Version__c}) was created successfully.</value>
+    </labels>
+    <labels>
+        <fullName>FlowErrorMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FlowErrorMessage</shortDescription>
+        <value>Something went wrong!
+Your Admin should receive email about this.</value>
+    </labels>
+    <labels>
+        <fullName>Flow_Acquisition_Deal_Confirmation_Screen_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Flow Acquisition Deal Confirmation Screen Message Top</shortDescription>
+        <value>You are going to mark the Acquisition Deal as &quot;Signed&quot;. This operation cannot be undone. Please review the following information and if you want to proceed, select the desired &quot;Signed&quot; status and press the &quot;Next&quot; button.
+
+&lt;strong&gt;Deal Stage: &lt;/strong&gt;{!inputAcquisitionDeal.Acquisition_Deal_Stage__c}
+&lt;strong&gt;Approval Status:&lt;/strong&gt; {!inputAcquisitionDeal.Acquisition_Deal_Status__c}
+&lt;strong&gt;Re-Approval Fields: &lt;/strong&gt;{!inputAcquisitionDeal.Re_Approval_fields_formula__c}</value>
+    </labels>
+    <labels>
+        <fullName>Flow_Acquisition_Deal_Confirmation_Screen_Message_Bottom</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Flow Acquisition Deal Confirmation Screen Message Bottom</shortDescription>
+        <value>Press the &quot;Next&quot; button to continue with the above settings.</value>
+    </labels>
+    <labels>
+        <fullName>Flow_Acquisition_Deal_Could_Not_Create_New_Board_Pack</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Flow Acquisition Deal Could Not Create New Board Pack</shortDescription>
+        <value>Could not create a new Board Pack, as a working Board Pack already exists. 
+
+If you want to create a new Board Pack, please clear the following fields in the section Supporting Details:
+
+- Title Context
+- Primary Term
+- Financials
+- Comps
+- Risk &amp; Compliance</value>
+    </labels>
+    <labels>
+        <fullName>Flow_Acquisition_Deal_Create_Now_Board_Pack_Choice_Clone</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Flow Acquisition Deal Create Now Board Pack Choice Clone</shortDescription>
+        <value>based on the Approved Board Pack</value>
+    </labels>
+    <labels>
+        <fullName>Flow_Acquisition_Deal_Create_Now_Board_Pack_Choice_New</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Flow Acquisition Deal Create Now Board Pack Choice New</shortDescription>
+        <value>as a New Board Pack</value>
+    </labels>
+    <labels>
+        <fullName>Flow_Acquisition_Deal_Create_Now_Board_Pack_Choose_Method_Top</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Flow Acquisition Deal Create Now Board Pack Choose Method Top</shortDescription>
+        <value>A new Board Pack will be created.</value>
+    </labels>
+    <labels>
+        <fullName>Flow_Acquisition_Deal_Create_Now_Board_Pack_Enter_Title_Info</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Flow Acquisition Deal Create Now Board Pack Enter Title Info</shortDescription>
+        <value>A new Board Pack will be created. To create the Board Pack, Title has to be defined. Other information can be entered later.
+
+Please enter below the Title name.</value>
+    </labels>
+    <labels>
+        <fullName>Flow_Acquisition_Deal_Create_Now_Board_Pack_Screen_Success_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Flow Acquisition Deal Create Now Board Pack Screen Success Message</shortDescription>
+        <value>&lt;strong&gt;Success!&lt;/strong&gt;
+
+New Board Pack was created successfully (version: {!inputAcquisitionDeal.Board_Pack_Version__c})</value>
+    </labels>
+    <labels>
+        <fullName>Flow_Acquisition_Deal_Label_Create_New_Board_Pack</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Flow Acquisition Deal Label Create New Board Pack</shortDescription>
+        <value>Create New Board Pack</value>
+    </labels>
+    <labels>
+        <fullName>Flow_Acquisition_Deal_Label_Select_Signed_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Flow Acquisition Deal Label Select &quot;Signed&quot; Status</shortDescription>
+        <value>Select &quot;Signed&quot; Status</value>
+    </labels>
+    <labels>
+        <fullName>Flow_Acquisition_Deal_Label_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Flow Acquisition Deal Label Title</shortDescription>
+        <value>Title</value>
+    </labels>
+    <labels>
+        <fullName>Flow_Acquisition_Deal_Signed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Flow Acquisition Deal Signed</shortDescription>
+        <value>Acquisition Deal was signed on {!inputAcquisitionDeal.Signature_Date__c}  - the {!versionSigned} version.</value>
+    </labels>
+    <labels>
+        <fullName>Flow_Acquisition_Deal_Tried_to_Sign_Unsuccessfull</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Flow Acquisition Deal Tried to Sign - Unsuccessfull</shortDescription>
+        <value>Could not mark Acquisition Deal Signed - approved version is missing</value>
+    </labels>
+    <labels>
+        <fullName>Flow_Acquisition_Deal_Unrecognised_Entry_Copy_From</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Flow Acquisition Deal Unrecognised Entry Copy From</shortDescription>
+        <value>Request for cloning objects was made, but could not be completed due to unrecognised source indicator: {!inputVersionToCopyFrom}</value>
+    </labels>
+    <labels>
+        <fullName>G1200_SGENNO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>G1200_SGENNO</shortDescription>
+        <value>666533</value>
+    </labels>
+    <labels>
+        <fullName>GBS_10_Months</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS 10 Months</shortDescription>
+        <value>10</value>
+    </labels>
+    <labels>
+        <fullName>GBS_12_Months</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS 12 Months</shortDescription>
+        <value>12</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Contact_Deletion_Error_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Contact Deletion Error Message</shortDescription>
+        <value>Please delete associated Contract Agent Contact records before deleting this Contact</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Distribution_Only</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Distribution Only</shortDescription>
+        <value>If a distribution only deal,enter the relevant Licensee.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Factory_Licensee_Required</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Factory Licensee Required</shortDescription>
+        <value>Factory/Distribution Company is Required</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Licensee_Onboarding_User</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Licensee Onboarding User</shortDescription>
+        <value>jo.trostle@nbcuni.com</value>
+    </labels>
+    <labels>
+        <fullName>GBS_New_LMS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS New LMS</shortDescription>
+        <value>Create New LMS</value>
+    </labels>
+    <labels>
+        <fullName>GBS_No_PRG</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS No PRG</shortDescription>
+        <value>Contract has no ProductRightsGroup.Please create a new one.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_PRG_Filter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS PRG Filter</shortDescription>
+        <value>Selected ProductRightsGroup ContractId doesn&#39;t match with the current ContractId</value>
+    </labels>
+    <labels>
+        <fullName>GBS_PRG_Required</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS PRG Required</shortDescription>
+        <value>ProductRightsGroup is a required Field.Please create or select from existing.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_ProductDetails_Length</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS_ProductDetails_Length</shortDescription>
+        <value>3000</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Product_Rights_Group</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS_Product_Rights_Group</shortDescription>
+        <value>Product Rights Group</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Status_Note_NBCU_Audit_Approved_Re_Audit_90_Days</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Status Note-NBCU Audit - Approved Re-Audit (90 Days)</shortDescription>
+        <value>Approved to produce on the condition that all red flagged audit findings are closed or downgraded to yellow within 90 days of the re-audit date of {!FormatedAuditDt} . If the red flags are not closed after 90 days, all production must stop until they are addressed.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Status_Note_NBCU_Audit_Conditional_Approval_Expired</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Status Note-NBCU Audit - Conditional Approval Expired</shortDescription>
+        <value>Not eligible to apply for a waiver review and must be re-audited by NBCU and re-approved before production is allowed. Please ensure that the factory completes and returns the NBCU Audit Application.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Status_Note_NBCU_Audit_Conditionally_Approved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Status Note-NBCU Audit - Conditionally Approved</shortDescription>
+        <value>Approved to produce on the condition that all yellow flagged audit findings are corrected by {!FormatAprovalExpirtationDate} , and regular progress updates are provided to our auditors.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Status_Note_NBCU_Audit_Conditionally_Approved_Pending_Rejection</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Status Note-NBCU Audit - Conditionally Approved (Pending Rejection)</shortDescription>
+        <value>Factory is facing rejection and must provide evidence of correction and a progress update to our auditors this week.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Status_Note_NBCU_Audit_Correction_Required</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Status Note-NBCU Audit - Correction Required</shortDescription>
+        <value>An NBCU audit has been conducted and the factory must close or downgrade all open red flagged findings before we can conditionally approve the factory. No production is allowed until the red flag findings have been closed and an approval letter is received.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Status_Note_NBCU_Audit_Lapsed_Re_Audit_Required</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Status Note-NBCU Audit - Lapsed - Re-Audit Required</shortDescription>
+        <value>It has been over one year since the NBCU audit was conducted and approval was not obtained. The audit is expired and an NBCU re-audit is required. Factory is not eligible to apply for a waiver review.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Status_Note_NBCU_Audit_Official_Approval_Expired</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Status Note-NBCU Audit - Official Approval - Expired</shortDescription>
+        <value>The NBCU audit has expired and the factory is required to re-obtain approval before production is allowed. Please apply for a waiver review or NBCU re-audit.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Status_Note_NBCU_Audit_Officially_Approved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Status Note-NBCU Audit - Officially Approved</shortDescription>
+        <value>Approved to produce until {!FormatAprovalExpirtationDate}, when a waiver review or NBCU re-audit is required to obtain re-approval.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Status_Note_NBCU_Audit_On_Hold</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Status Note-NBCU Audit - On Hold</shortDescription>
+        <value>The factory had accepted the NBCU audit but the audit was placed on hold due to {!HoldReason} .</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Status_Note_NBCU_Audit_Pending_Rejection</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Status Note-NBCU Audit - Pending Rejection</shortDescription>
+        <value>Factory is pending rejection. Please push the factory to provide evidence of correction for the open audit findings or source from another factory that is willing to cooperate.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Status_Note_NBCU_Audit_Rejected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Status Note-NBCU Audit - Rejected</shortDescription>
+        <value>This factory was audited by NBCU and rejected due to {!RejectionReason}. If you would like to use this factory, an NBCU re-audit is required and all red flagged audit findings must be either closed or downgraded in order to obtain at least conditional approval. In to proceed with an NBCU re-audit, 100% committment is required from the factory to closing out all audit findings. Please inform us if you would like to proceed with an NBCU re-audit.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Status_Note_NBCU_Audit_Rejected_Child_Labor</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Status Note-NBCU Audit - Rejected Child Labor</shortDescription>
+        <value>No production allowed.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Status_Note_NBCU_Audit_Required</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Status Note-NBCU Audit Required</shortDescription>
+        <value>Not eligible to apply for a waiver review and must be audited by NBCU and approved before production is allowed. Please ensure that the factory completes and returns the NBCU Audit Application.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Status_Note_NBCU_Audit_Under_Scheduling</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Status Note-NBCU Audit - Under Scheduling</shortDescription>
+        <value>The factory has accepted the NBCU audit and our auditors are working to schedule an audit date with the factory.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Status_Note_No_Audit_Required</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Status Note-No Audit Required</shortDescription>
+        <value>An audit will not be requested at this time as long as all production/branding is done in {!Factorycountry}.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Status_Note_Production_Not_Authorized</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Status Note-Production Not Authorized</shortDescription>
+        <value>Not eligible to apply for a waiver review and must be audited by NBCU and approved before production is allowed. Please ensure that the factory completes and returns the NBCU Audit Application.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Status_Note_Restricted_Country</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Status Note-Restricted Country</shortDescription>
+        <value>Production is not authorized in this country.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Status_Note_Waiver_Review_Approved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Status Note-Waiver Review - Approved</shortDescription>
+        <value>Approved to produce until {!FormatAprovalExpirtationDate}, when re-approval is required. Factory is subject to an NBCU spot check audit.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Status_Note_Waiver_Review_Approved_Spot_Check_Passed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Status Note-Waiver Review - Approved (Spot Check Passed)</shortDescription>
+        <value>Approved to produce until {!FormatAprovalExpirtationDate}, when a re-approval is required.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Status_Note_Waiver_Review_Approved_Spot_Check_Required</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Status Note-Waiver Review - Approved (Spot Check Required)</shortDescription>
+        <value>Approved to produce until {!FormatAprovalExpirtationDate}, when re-approval is required. Factory is required to undergo an NBCU spot check audit.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Status_Note_Waiver_Review_Disapproved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Status Note-Waiver Review - Disapproved</shortDescription>
+        <value>Waiver was disapproved and the factory is required to undergo an NBCU audit. Please ensure that the factory completes and returns the NBCU Audit Application.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Status_Note_Waiver_Review_Expired</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Status Note-Waiver Review - Expired</shortDescription>
+        <value>The waiver approval has expired and the factory is required to obtain approval before production is allowed. Please apply for a waiver review or NBCU audit.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Status_Note_Waiver_Review_Pending_Documentation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Status Note-Waiver Review - Pending Documentation</shortDescription>
+        <value>Pending documentation. A waiver application, current audit report (within 10 months), and evidence of correction is required in order to apply for a waiver review.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Status_Note_Waiver_Review_Pending_Review</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Status Note-Waiver Review - Pending Review</shortDescription>
+        <value>Pending review of documents. Documentation was received and is under review. Please allow two weeks for processing.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Status_Note_Waiver_Review_Spot_Check_Failed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Status Note-Waiver Review - Spot Check Failed</shortDescription>
+        <value>Factory has failed the NBCU spot check and all production must stop.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Status_Note_Waiver_Review_or_NBCU_Audit_Required</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Status Note-Waiver Review or NBCU Audit Required</shortDescription>
+        <value>Factory must be approved by NBCUniversal Global Brand Standards team before production is allowed, either by a waiver review or NBCU audit. Pending applicable documentation.</value>
+    </labels>
+    <labels>
+        <fullName>GBS_Subcontracted_Factory</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBS Subcontracted Factory</shortDescription>
+        <value>If submitting a Subcontracted Factory,input the Primary Factory.</value>
+    </labels>
+    <labels>
+        <fullName>Image_Bronze_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Image Bronze Id</shortDescription>
+        <value>015360000021A8T</value>
+    </labels>
+    <labels>
+        <fullName>Image_Gold_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Image Gold Id</shortDescription>
+        <value>015360000021A8U</value>
+    </labels>
+    <labels>
+        <fullName>Image_Platinum_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Image Platinum Id</shortDescription>
+        <value>015360000021A8V</value>
+    </labels>
+    <labels>
+        <fullName>Image_Silver_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Image Silver Id</shortDescription>
+        <value>015360000021A8W</value>
+    </labels>
+    <labels>
+        <fullName>Image_Speculative_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Image Speculative Id</shortDescription>
+        <value>015360000021A8X</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_AddQuestion</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Add Question</shortDescription>
+        <value>Add Question</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Anonymous</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Anonymous</shortDescription>
+        <value>Anonymous</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Answer_as</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Answer as</shortDescription>
+        <value>Answer as</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Cancel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Chatter</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Chatter</shortDescription>
+        <value>Chatter</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Chatter_Link</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Chatter Link</shortDescription>
+        <value>Chatter Link</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Community</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Community</shortDescription>
+        <value>Community</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_ContactWithCase</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Contact with Case</shortDescription>
+        <value>Contact with Case:</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_CurrentSurveys</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Current Surveys</shortDescription>
+        <value>Current Surveys</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Delete</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Delete</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Delete_Confirm</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Are you sure you want to delete this survey?</shortDescription>
+        <value>Are you sure you want to delete this survey?</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Edit</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Edit</shortDescription>
+        <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Email_Link_Anonymous</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Email Link, Anonymous</shortDescription>
+        <value>Email Link, Anonymous</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Email_Link_w_Contact_Case_Merge</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Email Link w/ Contact &amp; Case Merge</shortDescription>
+        <value>Email Link w/ Contact &amp; Case Merge</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Email_Link_w_Contact_Merge</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Email Link w/ Contact Merge</shortDescription>
+        <value>Email Link w/ Contact Merge</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_EnterSurveyName</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Enter Survey Name</shortDescription>
+        <value>Enter Survey Name</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_External_Please_Create_Site</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>For external facing surveys, please create a site first.  You may still create i</shortDescription>
+        <value>For external facing surveys, please create a site first.  You may still create internal surveys without creating a site.</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_For_community_assistance_with_Survey_Force</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>For community assistance with Survey Force</shortDescription>
+        <value>For community assistance with Survey Force</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Getting_Help</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Getting Help</shortDescription>
+        <value>Getting Help</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_HeaderAndThankYou</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Header and Thank You</shortDescription>
+        <value>Header, Thank You &amp; CSS</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Installation_Guide</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Installation Guide</shortDescription>
+        <value>Installation Guide</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Internal</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Internal</shortDescription>
+        <value>Internal</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_JustContact</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Just Contact</shortDescription>
+        <value>Just Contact</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Learn_More</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Learn More</shortDescription>
+        <value>Learn More</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_MakeANewSurvey</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Make A New Survey</shortDescription>
+        <value>Make A New Survey</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_MakeNewSurvey</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Make New Survey</shortDescription>
+        <value>Make New Survey</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Make_a_Sample_Survey</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Make a Sample Survey</shortDescription>
+        <value>Make a Sample Survey</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Next_Steps</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Next Steps</shortDescription>
+        <value>Next Steps</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_PleaseEnterTheList</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Please enter the list</shortDescription>
+        <value>Please enter the list of answers/responses in the field below. Each value should be separated by a new line.</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Question</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Question</shortDescription>
+        <value>Question</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Required</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Required</shortDescription>
+        <value>required</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_RequiredQuestion</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Required Question</shortDescription>
+        <value>Required Question</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Resources</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Resources</shortDescription>
+        <value>Resources</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Results</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Results</shortDescription>
+        <value>Results</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_SELECTSITE</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>SELECT SITE</shortDescription>
+        <value>--SELECT SITE--</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_SELECTTYPE</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>--SELECT--</shortDescription>
+        <value>--SELECT--</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Salesforce_Answers</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Salesforce Answers</shortDescription>
+        <value>Salesforce Answers</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Save</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_SaveOrder</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Save Order</shortDescription>
+        <value>Save Order</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_SelectQuestionType</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Select Question Type</shortDescription>
+        <value>Select Question Type</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_SelectSitetodisplaySurvey</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Select Site to display Survey</shortDescription>
+        <value>Select Site to display Survey</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Share</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Share</shortDescription>
+        <value>Share</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Share_My_Survey</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Share My Survey</shortDescription>
+        <value>Share My Survey</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Sharing_Options</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Sharing Options</shortDescription>
+        <value>Sharing Options</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_SubmitSurvey</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Submit Survey</shortDescription>
+        <value>Submit Survey</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_SurveyForceIsOpenSource</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>SurveyForceIsOpenSource</shortDescription>
+        <value>Survey Force is Open Source software.  We welcome your issue reports, ideas, documentation, code tweaks and all other participation.</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_SurveyURLLink</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Survey URL Link</shortDescription>
+        <value>Survey URL Link</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Survey_Force_is_unsupported</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Survey Force is unsupported</shortDescription>
+        <value>Survey Force is unsupported.</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Survey_Force_on_Github</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Survey Force on Github</shortDescription>
+        <value>Survey Force on Github</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Survey_Name_Is_Required</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Survey Name Is Required</shortDescription>
+        <value>Survey Name is Required</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Survey_Site_Is_Required</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Survey Site Is Required</shortDescription>
+        <value>Survey Site Is Required</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Survey_Submitted_Thank_you</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Your survey has been submitted. Thank you for taking our survey.</shortDescription>
+        <value>Your survey has been submitted. Thank you for taking our survey.</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_To_submit_ideas_or_issues</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>To submit ideas or issues</shortDescription>
+        <value>To submit ideas or issues</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_User_Guide</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>User Guide</shortDescription>
+        <value>User Guide</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_View_Results_In_New_Window</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>View Results In New Window</shortDescription>
+        <value>View Results In New Window</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_View_Sample_Survey</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>View Sample Survey</shortDescription>
+        <value>View Sample Survey</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Welcome_to_Survey_Force</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Welcome to Survey Force</shortDescription>
+        <value>Welcome to Survey Force</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_X1_Create_a_sample_survey</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>1. Create a sample survey by clicking the button below.</shortDescription>
+        <value>1. Create a sample survey by clicking the button below.</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_X2_External_Setup_Site</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>2. Set up a site if you would like to have external-facing surveys.</shortDescription>
+        <value>2. Set up a site if you would like to have external-facing surveys.</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_X3_Start_creating_your_first_survey</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>3. Start creating your first survey.</shortDescription>
+        <value>3. Start creating your first survey.</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_You_have_already_taken_this_survey</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>You have already taken this survey!</shortDescription>
+        <value>You have already taken this survey!</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Your_next_few_steps_are_easy</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Your next few steps are easy.</shortDescription>
+        <value>Your next few steps are easy.</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_please_visit</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>please visit</shortDescription>
+        <value>please visit</value>
+    </labels>
+    <labels>
+        <fullName>MasterDataAdminProfileId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MasterDataAdminProfileId</shortDescription>
+        <value>00e36000001bRpZ</value>
+    </labels>
+    <labels>
+        <fullName>Master_Data_Admin</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Master Data Admin</shortDescription>
+        <value>00e36000001bRpZ</value>
+    </labels>
+    <labels>
+        <fullName>PlatformApiProfileId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PlatformApiProfileId</shortDescription>
+        <value>00e36000001bRpaAAE</value>
+    </labels>
+    <labels>
+        <fullName>ProfileId_Platform_API</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ProfileId Platform API</shortDescription>
+        <value>00eq0000000M6Ks</value>
+    </labels>
+    <labels>
+        <fullName>ProfileId_System_Administrator</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ProfileId_System_Administrator</shortDescription>
+        <value>00e36000001QmPs</value>
+    </labels>
+    <labels>
+        <fullName>Profile_System_Admins</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Profile_System_Admins</shortDescription>
+        <value>00e36000001QmPsAAK</value>
+    </labels>
+    <labels>
+        <fullName>RST_MCAllURL</fullName>
+        <categories>RST</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RST_MCAllURL</shortDescription>
+        <value>/lightning/r/Report/00O2F000000GFDQUA4/view?queryScope=userFolders</value>
+    </labels>
+    <labels>
+        <fullName>RST_MCWeekendExport</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RST_MCWeekendExport</shortDescription>
+        <value>https://uphe--newqa.cs69.my.salesforce.com/00O2D000000FNx3</value>
+    </labels>
+    <labels>
+        <fullName>RST_MCWeekendReportURL</fullName>
+        <categories>RST</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RST_MCWeekendReportURL</shortDescription>
+        <value>/lightning/cmp/reports%3AreportBuilder?reports__recordId=00O2F000000GFDeUAO&amp;reports__newReportBuilder=true&amp;reports__isView=true</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Bronze_Acquisition_Deal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId_Bronze_Acquisition_Deal</shortDescription>
+        <value>012360000019582</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Bronze_Comps</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Bronze Comps</shortDescription>
+        <value>012360000019588</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Bronze_Financials</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Bronze Financials</shortDescription>
+        <value>01236000001958E</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Bronze_New_Acquisition_Deal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId_Bronze_New_Acquisition_Deal</shortDescription>
+        <value>0120d0000001HPj</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Bronze_New_Comps</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Bronze New Comps</shortDescription>
+        <value>0120d0000001HPo</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Bronze_New_Financials</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Bronze New Financials</shortDescription>
+        <value>0120d0000001HPs</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Bronze_New_Primary_Terms</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Bronze New Primary Terms</shortDescription>
+        <value>0120d0000001HPx</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Bronze_New_Risk_Compliance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Bronze New Risk&amp;Compliance</shortDescription>
+        <value>0120d0000001HQ2</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Bronze_New_Summary</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId_Bronze_New_Summary</shortDescription>
+        <value>0120d0000001HQ6</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Bronze_New_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Bronze New Title</shortDescription>
+        <value>0120d0000001HQA</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Bronze_Primary_Terms</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Bronze Primary Terms</shortDescription>
+        <value>01236000001958K</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Bronze_Risk_Compliance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Bronze Risk&amp;Compliance</shortDescription>
+        <value>01236000001958Q</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Bronze_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Bronze Title</shortDescription>
+        <value>01236000001958W</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Formula_Comps</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Formula Comps</shortDescription>
+        <value>IF ( OR ( Signed__c , ISPICKVAL ( Comps_Approval_Status__c , &quot;Approved&quot;) , ISPICKVAL ( Comps_Approval_Status__c , &quot;Approved - Historical&quot;)),
+
+              $Label.RecordTypeId_Read_Only_Comps , 
+
+CASE (Acquisition_Deal__r.Acq_Deal_Level_Formula__c,
+
+&quot;Bronze&quot;,     $Label.RecordTypeId_Bronze_Comps ,
+&quot;Silver&quot;,     $Label.RecordTypeId_Silver_Comps ,
+&quot;Gold&quot;,       $Label.RecordTypeId_Gold_Comps ,
+&quot;Platinum&quot;,   $Label.RecordTypeId_Platinum_Comps ,
+
+              $Label.RecordTypeId_Master_Comps )
+)</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Gold_Acquisition_Deal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId_Gold_Acquisition_Deal</shortDescription>
+        <value>012360000019583</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Gold_Comps</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Gold Comps</shortDescription>
+        <value>012360000019589</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Gold_Financials</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Gold Financials</shortDescription>
+        <value>01236000001958H</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Gold_New_Acquisition_Deal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId_Gold_New_Acquisition_Deal</shortDescription>
+        <value>0120d0000001HPk</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Gold_New_Comps</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Gold New Comps</shortDescription>
+        <value>0120d0000001HPp</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Gold_New_Financials</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Gold New Financials</shortDescription>
+        <value>0120d0000001HPt</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Gold_New_Primary_Terms</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Gold New Primary Terms</shortDescription>
+        <value>0120d0000001HPy</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Gold_New_Risk_Compliance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Gold New Risk&amp;Compliance</shortDescription>
+        <value>0120d0000001HQ3</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Gold_New_Summary</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId_Gold_New_Summary</shortDescription>
+        <value>0120d0000001HQ7</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Gold_New_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Gold New Title</shortDescription>
+        <value>0120d0000001HQB</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Gold_Primary_Terms</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Gold Primary Terms</shortDescription>
+        <value>01236000001958L</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Gold_Risk_Compliance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Gold Risk&amp;Compliance</shortDescription>
+        <value>01236000001958R</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Gold_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Gold Title</shortDescription>
+        <value>01236000001958X</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_July2018_Acquisition_Deal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId July2018 Deal</shortDescription>
+        <value>0120d0000001HPl</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Master_Acquisition_Deal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Master Acquisition Deal</shortDescription>
+        <value>012550000008qF4</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Master_Comps</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Master Comps</shortDescription>
+        <value>01236000001958A</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Master_Financials</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Master Financials</shortDescription>
+        <value>01236000001958F</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Master_Primary_Terms</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Master Primary Terms</shortDescription>
+        <value>01236000001958M</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Master_Risk_Compliance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Master Risk&amp;Compliance</shortDescription>
+        <value>01236000001958U</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Master_Summary</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId_Master_Summary</shortDescription>
+        <value>0120d0000005Pqd</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Master_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Master Title</shortDescription>
+        <value>01236000001958a</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Platinum_Acquisition_Deal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId_Platinum_Acquisition_Deal</shortDescription>
+        <value>012360000019584</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Platinum_Comps</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Platinum Comps</shortDescription>
+        <value>01236000001958B</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Platinum_Financials</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Platinum Financials</shortDescription>
+        <value>01236000001958I</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Platinum_New_Acquisition_Deal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId_Platinum_New_Acquisition_Deal</shortDescription>
+        <value>0120d0000001HPm</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Platinum_New_Comps</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Platinum New Comps</shortDescription>
+        <value>0120d0000001HPq</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Platinum_New_Financials</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Platinum New Financials</shortDescription>
+        <value>0120d0000001HPu</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Platinum_New_Primary_Terms</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Platinum New Primary Terms</shortDescription>
+        <value>0120d0000001HPz</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Platinum_New_Risk_Compliance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Platinum New Risk&amp;Compliance</shortDescription>
+        <value>0120d0000001HQ4</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Platinum_New_Summary</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId_Platinum_New_Summary</shortDescription>
+        <value>0120d0000001HQ8</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Platinum_New_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Platinum New Title</shortDescription>
+        <value>0120d0000001HQC</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Platinum_Primary_Terms</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Platinum Primary Terms</shortDescription>
+        <value>01236000001958N</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Platinum_Risk_Compliance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Platinum Risk&amp;Compliance</shortDescription>
+        <value>01236000001958S</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Platinum_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Platinum Title</shortDescription>
+        <value>01236000001958Y</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Read_Only_Comps</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Read Only Comps</shortDescription>
+        <value>01236000001958C</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Read_Only_Financials</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Read Only Financials</shortDescription>
+        <value>01236000001958G</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Read_Only_New_Financials</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Read Only New Financials</shortDescription>
+        <value>0120d0000001HPv</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Read_Only_New_Primary_Terms</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Read Only New Primary Terms</shortDescription>
+        <value>0120d0000001HQ0</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Read_Only_Primary_Terms</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Read Only Primary Terms</shortDescription>
+        <value>01236000001958O</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Read_Only_Risk</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Read Only Risk</shortDescription>
+        <value>01236000001958T</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Read_Only_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Read Only Title</shortDescription>
+        <value>01236000001958b</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Signed_Acquisition_Deal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Signed Acquisition Deal</shortDescription>
+        <value>012360000019585</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Silver_Acquisition_Deal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId_Silver_Acquisition_Deal</shortDescription>
+        <value>012360000019586</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Silver_Comps</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Silver Comps</shortDescription>
+        <value>01236000001958D</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Silver_Financials</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Silver Financials</shortDescription>
+        <value>01236000001958J</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Silver_New_Acquisition_Deal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId_Silver_New_Acquisition_Deal</shortDescription>
+        <value>0120d0000001HPn</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Silver_New_Comps</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Silver New Comps</shortDescription>
+        <value>0120d0000001HPr</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Silver_New_Financials</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Silver New Financials</shortDescription>
+        <value>0120d0000001HPw</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Silver_New_Primary_Terms</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Silver New Primary Terms</shortDescription>
+        <value>0120d0000001HQ1</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Silver_New_Risk_Compliance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Silver New Risk&amp;Compliance</shortDescription>
+        <value>0120d0000001HQ5</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Silver_New_Summary</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId_Silver_New_Summary</shortDescription>
+        <value>0120d0000001HQ9</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Silver_New_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Silver New Title</shortDescription>
+        <value>0120d0000001HQD</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Silver_Primary_Terms</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Silver Primary Terms</shortDescription>
+        <value>01236000001958P</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Silver_Risk_Compliance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Silver Risk&amp;Compliance</shortDescription>
+        <value>01236000001958V</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Silver_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Silver Title</shortDescription>
+        <value>01236000001958Z</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeId_Speculative_Acquisition_Deal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordTypeId Speculative Acquisition Deal</shortDescription>
+        <value>012360000019587</value>
+    </labels>
+    <labels>
+        <fullName>RoleId_FPA_Team_Read_Only_Member</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RoleId_FPA_Team_Read_Only_Member</shortDescription>
+        <value>00E360000016r1K</value>
+    </labels>
+    <labels>
+        <fullName>RoleId_Legal_Team_Member</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RoleId_Legal_Team_Member</shortDescription>
+        <value>00E360000016pQQ</value>
+    </labels>
+    <labels>
+        <fullName>RoleId_SVP_Legal_and_Business_Affairs</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RoleId_SVP_Legal_and_Business_Affairs</shortDescription>
+        <value>00E360000016pQX</value>
+    </labels>
+    <labels>
+        <fullName>SpecialCharacters_Regex</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SpecialCharacters_Regex</shortDescription>
+        <value>[#%^*@#\\|\\&lt;&gt;?_+=~`\\{\\}\\[\\]\&#39;]</value>
+    </labels>
+    <labels>
+        <fullName>ThirdpartyUserProfileId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ThirdpartyUserProfileId</shortDescription>
+        <value>00e36000001bRpc</value>
+    </labels>
+    <labels>
+        <fullName>Thresholds_ANZ</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Thresholds_ANZ</shortDescription>
+        <value>The office is ANZ. Threshold is checked if ROI is less than 60% or Cash-on-Cash is less than 1.15 or if the net OCF is less than US $ 150K.</value>
+    </labels>
+    <labels>
+        <fullName>Thresholds_Central</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Thresholds_Central</shortDescription>
+        <value>The office is Central. Threshold is checked if ROI is less than 60% or Cash-on-Cash is less than 1.15 or if the net OCF is less than US $ 400 K.</value>
+    </labels>
+    <labels>
+        <fullName>Thresholds_France</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Thresholds_France</shortDescription>
+        <value>The office is France. Threshold is checked if ROI is less than 60% or Cash-on-Cash is less than 1.15 or if the net OCF is less than US $ 150 K.</value>
+    </labels>
+    <labels>
+        <fullName>Thresholds_GAS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Thresholds_GAS</shortDescription>
+        <value>The office is GAS. Threshold is checked if ROI is less than 80% or Cash-on-Cash is less than 1.15 or if the net OCF is less than US $ 400 K.</value>
+    </labels>
+    <labels>
+        <fullName>Thresholds_Japan</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Thresholds_Japan</shortDescription>
+        <value>The office is Japan. Threshold is checked if ROI is less than 60% or Cash-on-Cash is less than 1.15 or if the net OCF is less than US $ 250K.</value>
+    </labels>
+    <labels>
+        <fullName>Thresholds_Other</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Thresholds_Other</shortDescription>
+        <value>The office is Other. Threshold is checked if ROI is less than 60% or Cash-on-Cash is less than 1.15 or if the net OCF is less than US $ 400 K.</value>
+    </labels>
+    <labels>
+        <fullName>Thresholds_UK</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Thresholds_UK</shortDescription>
+        <value>The office is UK. Threshold is checked if ROI is less than 60% or Cash-on-Cash is less than 1.15 or if the net OCF is less than US $ 200 K.</value>
+    </labels>
+    <labels>
+        <fullName>Thresholds_USA</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Thresholds_USA</shortDescription>
+        <value>The office is US and Canada. Threshold is checked if ROI is less than 60% or Cash-on-Cash is less than 1.15 or if the net OCF is less than US $ 400 K.</value>
+    </labels>
+    <labels>
+        <fullName>UPHE_CG_Approver</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UPHE CG Approver</shortDescription>
+        <value>00e36000001bNFW</value>
+    </labels>
+    <labels>
+        <fullName>UPHE_CG_Full_User</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UPHE CG Full User</shortDescription>
+        <value>00e36000001bNFX</value>
+    </labels>
+    <labels>
+        <fullName>UPHE_CG_Read_All_User</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UPHE CG Read All User</shortDescription>
+        <value>00e36000001bO38</value>
+    </labels>
+    <labels>
+        <fullName>UPHE_CG_Standard_User</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UPHE CG Standard User</shortDescription>
+        <value>00e36000001bNFY</value>
+    </labels>
+    <labels>
+        <fullName>UPHE_CG_System_Administrator</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UPHE CG System Administrator</shortDescription>
+        <value>00e36000001QmPs</value>
+    </labels>
+    <labels>
+        <fullName>UPHE_LA_Approver</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UPHE LA Approver</shortDescription>
+        <value>00e36000001bPMT</value>
+    </labels>
+    <labels>
+        <fullName>User_Corrugate_Modification_Check_Error</fullName>
+        <categories>error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>User Corrugate Modification Check Error</shortDescription>
+        <value>You can only edit the Corrugate Material field when in Loaded Status.</value>
+    </labels>
+</CustomLabels>

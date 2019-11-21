@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>DGF_Pricing_Name_Update</fullName>
+        <field>Name</field>
+        <formula>IF(TEXT(Price_Type__c)!=NULL, TEXT(Price_Type__c) ,&quot;&quot;)&amp;IF( TEXT(Territory__c) !=NULL,&quot; &quot;&amp; TEXT(Territory__c) ,&quot;&quot;)&amp;IF( TEXT(Platform__c) !=NULL,&quot; &quot;&amp;TEXT(Platform__c),&quot;&quot;)&amp;IF( TEXT(Resolution__c) !=NULL,&quot; &quot;&amp;TEXT(Resolution__c),&quot;&quot;)</formula>
+        <name>DGF Pricing Name Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>DGF_Update_Valid_From_Date</fullName>
+        <field>Valid_From__c</field>
+        <formula>Product__r.Digital_Release__r.US_EST_Launch_Date__c</formula>
+        <name>DGF Update Valid From Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>DGF Update Pricing Name</fullName>
+        <actions>
+            <name>DGF_Pricing_Name_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
+        <criteriaItems>
+            <field>Pricing__c.Price_Type__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Pricing__c.Territory__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Pricing__c.Platform__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Pricing__c.Resolution__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>DFOR-41</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>DGF Valid From Date for TV US EST Pricing</fullName>
+        <actions>
+            <name>DGF_Update_Valid_From_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>(Valid_From__c ==null || ISBLANK(Valid_From__c)) &amp;&amp; Product__r.RecordType.DeveloperName ==&#39;TV&#39; &amp;&amp; Product__r.Digital_Release__r.RecordType.DeveloperName ==&#39;TV&#39; &amp;&amp; TEXT(Territory__c) ==&#39;US&#39; &amp;&amp; TEXT(Price_Type__c) ==&#39;Original&#39; &amp;&amp; TEXT(Platform__c) ==&#39;EST&#39;</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>

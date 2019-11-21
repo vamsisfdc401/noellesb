@@ -1,0 +1,9 @@
+.THIS .slds-list_horizontal>li {
+    padding:4px;
+    text-align: center;
+    vertical-align: middle;
+}
+.THIS .week_info{
+    width:100px;
+    text-align: center;
+}

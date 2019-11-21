@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>AD_ANZ_Non_SF_User</fullName>
+        <ccEmails>anzacquisitions-nsu@nbcuni.com</ccEmails>
+        <description>AD ANZ Non SF User</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>Dealforce_Email_Templates/AD_Office_Wise_Non_SF_User</template>
+    </alerts>
+    <alerts>
+        <fullName>AD_ANZ_SF_User</fullName>
+        <ccEmails>anzacquisitions@nbcuni.com</ccEmails>
+        <description>AD ANZ SF User</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>Dealforce_Email_Templates/AD_Office_Wise_SF_User</template>
+    </alerts>
+    <alerts>
+        <fullName>AD_Central_Non_SF_User</fullName>
+        <ccEmails>laqcentral-nsu@nbcuni.com</ccEmails>
+        <description>AD Central Non SF User</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>Dealforce_Email_Templates/AD_Office_Wise_Non_SF_User</template>
+    </alerts>
+    <alerts>
+        <fullName>AD_Central_SF_User</fullName>
+        <ccEmails>laqcentral@nbcuni.com</ccEmails>
+        <description>AD Central SF User</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>Dealforce_Email_Templates/AD_Office_Wise_SF_User</template>
+    </alerts>
+    <alerts>
+        <fullName>AD_France_Non_SF_User</fullName>
+        <ccEmails>franceacquisitions-nsa@nbcuni.com</ccEmails>
+        <description>AD France Non SF User</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>Dealforce_Email_Templates/AD_Office_Wise_Non_SF_User</template>
+    </alerts>
+    <alerts>
+        <fullName>AD_France_SF_User</fullName>
+        <ccEmails>franceacquisitions@nbcuni.com</ccEmails>
+        <description>AD France SF User</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>Dealforce_Email_Templates/AD_Office_Wise_SF_User</template>
+    </alerts>
+    <alerts>
+        <fullName>AD_Japan_Non_SF_User</fullName>
+        <ccEmails>dealforce_test_lu@nbcuni.com</ccEmails>
+        <description>AD Japan Non SF User</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>Dealforce_Email_Templates/AD_Office_Wise_Non_SF_User</template>
+    </alerts>
+    <alerts>
+        <fullName>AD_Japan_SF_User</fullName>
+        <ccEmails>dealforce_test_lu@nbcuni.com</ccEmails>
+        <description>AD Japan SF User</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>Dealforce_Email_Templates/AD_Office_Wise_SF_User</template>
+    </alerts>
+    <alerts>
+        <fullName>AD_Other_Non_SF_User</fullName>
+        <ccEmails>dealforce_test_lu@nbcuni.com</ccEmails>
+        <description>AD Other Non SF User</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>Dealforce_Email_Templates/AD_Office_Wise_Non_SF_User</template>
+    </alerts>
+    <alerts>
+        <fullName>AD_Other_SF_User</fullName>
+        <ccEmails>dealforce_test_lu@nbcuni.com</ccEmails>
+        <description>AD Other SF User</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>Dealforce_Email_Templates/AD_Office_Wise_SF_User</template>
+    </alerts>
+    <alerts>
+        <fullName>AD_UK_Non_SF_User</fullName>
+        <ccEmails>ukacquisitions-nsa@nbcuni.com</ccEmails>
+        <description>AD UK Non SF User</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>Dealforce_Email_Templates/AD_Office_Wise_Non_SF_User</template>
+    </alerts>
+    <alerts>
+        <fullName>AD_UK_SF_User</fullName>
+        <ccEmails>ukacquisitions@nbcuni.com</ccEmails>
+        <description>AD UK SF User</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>Dealforce_Email_Templates/AD_Office_Wise_SF_User</template>
+    </alerts>
+    <alerts>
+        <fullName>AD_US_And_Canada_Non_SF_User</fullName>
+        <ccEmails>uscacquisitions-nsu@nbcuni.com</ccEmails>
+        <description>AD US And Canada Non SF User</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>Dealforce_Email_Templates/AD_Office_Wise_Non_SF_User</template>
+    </alerts>
+    <alerts>
+        <fullName>AD_US_And_Canada_SF_User</fullName>
+        <ccEmails>uscacquisitions@nbcuni.com</ccEmails>
+        <description>AD US And Canada SF User</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>Dealforce_Email_Templates/AD_Office_Wise_SF_User</template>
+    </alerts>
+    <alerts>
+        <fullName>Deal_Has_Been_Approved</fullName>
+        <description>Deal Has Been Approved</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Approved_Deal_Distribution_List</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <recipient>alec.skelton@nbcuni.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>callum.barnett@nbcuni.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>david.stroud1@nbcuni.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>eddie.cunningham@nbcuni.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>georgina.perrett@nbcuni.com.prod</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>helen.parker@nbcuni.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>james.bishop@nbcuni.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jasper.vanhecke@nbcuni.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>johnny.fewings@nbcuni.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>lewis.meade@nbcuni.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>mark.ruffell@nbcuni.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>ngahuro.mutuota@nbcuni.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <field>Acquirer__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Legal_Contact__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Dealforce_Email_Templates/AD_Deal_Has_Been_Approved</template>
+    </alerts>
+    <alerts>
+        <fullName>Deal_Has_Been_Rejected</fullName>
+        <description>Deal Has Been Rejected</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <recipient>austin.dustow@nbcuni.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>georgina.perrett@nbcuni.com.prod</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>james.bishop@nbcuni.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>mark.ruffell@nbcuni.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <field>Acquirer__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Legal_Contact__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Dealforce_Email_Templates/AD_Deal_Has_Been_Rejected</template>
+    </alerts>
+    <alerts>
+        <fullName>Deal_Progressed_in_the_Approval_Process</fullName>
+        <description>Deal Progressed in the Approval Process</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <field>Acquirer__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Dealforce_Email_Templates/AD_Deal_Progressed_in_the_Approval_Process</template>
+    </alerts>
+    <alerts>
+        <fullName>Deal_Progression_Notify_CFO_and_Worldwide_HE_for_0_499k</fullName>
+        <description>Deal Progression Notify CFO and Worldwide HE for 0-499k</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>david.stroud1@nbcuni.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>eddie.cunningham@nbcuni.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>georgina.perrett@nbcuni.com.prod</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>james.bishop@nbcuni.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>ken.brookin@nbcuni.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>mark.ruffell@nbcuni.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>sophie.owen@nbcuni.com.prod</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Dealforce_Email_Templates/AD_Deal_Progression_Notify_CFO_and_Worldwide_HE_for_0_499k</template>
+    </alerts>
+    <alerts>
+        <fullName>Deal_Rejected_Due_To_Incomplete_data</fullName>
+        <description>Deal Rejected Due To Incomplete data</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Dealforce_Email_Templates/AD_Deal_Rejected_Incomplete_Data</template>
+    </alerts>
+    <alerts>
+        <fullName>Deal_Submitted_for_Approval</fullName>
+        <description>Deal Submitted for Approval</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <recipient>anna.obst@nbcuni.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>chenelle.olaiya@nbcuni.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>georgina.perrett@nbcuni.com.prod</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>maggie.liubrown@nbcuni.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <field>Acquirer__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Legal_Contact__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Dealforce_Email_Templates/AD_Deal_Submitted_for_Approval</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_Acquisition_Deal_is_Signed</fullName>
+        <description>Notify Acquisition Deal is Signed</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Approved_Deal_Distribution_List</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <recipient>austin.dustow@nbcuni.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>georgina.perrett@nbcuni.com.prod</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>james.bishop@nbcuni.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>mark.ruffell@nbcuni.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <field>Acquirer__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Legal_Contact__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Dealforce_Email_Templates/AD_Deal_has_been_Signed</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_the_Legal_Contact</fullName>
+        <description>Notify the Legal Contact</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Legal_Contact__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Dealforce_Email_Templates/AD_Deal_has_been_assigned</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_the_Marketing_Contact</fullName>
+        <description>Notify the Marketing Contact</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Marketing_Contact__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Dealforce_Email_Templates/AD_Deal_has_been_assigned</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_the_Ops_Contact</fullName>
+        <description>Notify the Ops Contact</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Ops_Contact__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Dealforce_Email_Templates/AD_Deal_has_been_assigned</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>AD_Approval_Status_Update</fullName>
+        <description>Updates Acquisition Deal Approval Status to Board Pack Prep</description>
+        <field>Acquisition_Deal_Status__c</field>
+        <literalValue>Board Pack</literalValue>
+        <name>AD Approval Status Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Approval_Status_to_Rejected</fullName>
+        <field>Acquisition_Deal_Status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>Approval Status to Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Clear_Approval_Comments</fullName>
+        <field>Approval_Notes_txt__c</field>
+        <name>Clear Approval Comments</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Deal_Appr_Status_to_in_Board_Review</fullName>
+        <field>Acquisition_Deal_Status__c</field>
+        <literalValue>in Board Review</literalValue>
+        <name>Deal Appr Status to &quot;in Board Review&quot;</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Deal_Appr_Status_to_in_Board_Review_I</fullName>
+        <field>Acquisition_Deal_Status__c</field>
+        <literalValue>in Board Review I</literalValue>
+        <name>Deal Appr Status to &quot;in Board Review I&quot;</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Deal_Appr_Status_to_in_Board_Review_II</fullName>
+        <field>Acquisition_Deal_Status__c</field>
+        <literalValue>in Board Review II</literalValue>
+        <name>Deal Appr Status to &quot;in Board Review II&quot;</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Deal_Appr_Status_to_in_Film_Review</fullName>
+        <field>Acquisition_Deal_Status__c</field>
+        <literalValue>in Film / non-Film Review</literalValue>
+        <name>Deal Appr Status to &quot;in Film Review&quot;</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Deal_Appr_Status_to_in_Finance_Review</fullName>
+        <field>Acquisition_Deal_Status__c</field>
+        <literalValue>in Finance Review</literalValue>
+        <name>Deal Appr Status to &quot;in Finance Review&quot;</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Deal_Approval_Status_Clear</fullName>
+        <field>Acquisition_Deal_Status__c</field>
+        <name>Deal Approval Status Clear</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Deal_Approval_Status_to_Approved</fullName>
+        <field>Acquisition_Deal_Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Deal Approval Status to Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Deal_Stage_to_Board_Pack_Preparation</fullName>
+        <field>Acquisition_Deal_Stage__c</field>
+        <literalValue>Board Pack Preparation</literalValue>
+        <name>Deal Stage to Board Pack Preparation</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Deal_Stage_to_Committed</fullName>
+        <field>Acquisition_Deal_Stage__c</field>
+        <literalValue>Committed</literalValue>
+        <name>Deal Stage to Committed</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Deal_Stage_to_Pending_Board_Aproval</fullName>
+        <field>Acquisition_Deal_Stage__c</field>
+        <literalValue>Pending Board Approval</literalValue>
+        <name>Deal Stage to Pending Board Aproval</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Lock_related_object_records</fullName>
+        <field>Lock_related_object_records__c</field>
+        <literalValue>1</literalValue>
+        <name>Lock related object records</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Next_Iteration_will_be_Re_approval</fullName>
+        <field>Approval_or_Re_approval__c</field>
+        <formula>&quot;Re-approval&quot;</formula>
+        <name>Next Iteration will be Re-approval</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Rejection_Comments_Not_All_Fields_Set</fullName>
+        <description>Update rejection comments</description>
+        <field>Approval_Notes_txt__c</field>
+        <formula>&quot;The submission was rejected,&quot; &amp;  BR()  &amp;
+&quot;because not all mandatory fields(Deal Level/Genre/MG) have been set&quot;</formula>
+        <name>Rejection Comments - Not All Fields Set</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Unlock_related_object_records_postreject</fullName>
+        <field>Lock_related_object_records__c</field>
+        <literalValue>0</literalValue>
+        <name>Unlock related object records</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Rejection_Comments</fullName>
+        <field>Approval_Notes_txt__c</field>
+        <formula>&quot;Deal was rejected at &quot; &amp;  Approval_or_Re_approval__c  &amp; &quot; stage: &quot; &amp; 
+TEXT( Acquisition_Deal_Status__c )</formula>
+        <name>Update Rejection Comments</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_the_Approval_Notes</fullName>
+        <field>Approval_Notes_txt__c</field>
+        <formula>&quot;Approval submission failed as there is no working board pack, please create a new board pack and resubmit&quot;</formula>
+        <name>Update the Approval Notes</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>AD Board Pack Prep</fullName>
+        <actions>
+            <name>AD_Approval_Status_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Acquisition_Deal__c.Acquisition_Deal_Stage__c</field>
+            <operation>equals</operation>
+            <value>Board Pack Preparation</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Acquisition_Deal__c.Approval_Notes__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <description>Workflow rule update the Acquisition Deal Approval Status when the Acquisition deal Stage equals Board Pack preparation.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Notify Legal Contact when assigned</fullName>
+        <actions>
+            <name>Notify_the_Legal_Contact</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>IF(ISNEW(),NOT(ISNULL(  Legal_Contact__c )),(NOT(ISNULL( Legal_Contact__c )) &amp;&amp; ISCHANGED(Legal_Contact__c )))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Notify Marketing Contact when assigned</fullName>
+        <actions>
+            <name>Notify_the_Marketing_Contact</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>IF(ISNEW(),NOT(ISNULL( Marketing_Contact__c )),(NOT(ISNULL( Marketing_Contact__c )) &amp;&amp; ISCHANGED(Marketing_Contact__c )))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Notify Ops Contact when assigned</fullName>
+        <actions>
+            <name>Notify_the_Ops_Contact</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>IF(ISNEW(),NOT(ISNULL( Ops_Contact__c )),(NOT(ISNULL( Ops_Contact__c )) &amp;&amp; ISCHANGED(Ops_Contact__c )))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Notify when deal is signed</fullName>
+        <actions>
+            <name>Notify_Acquisition_Deal_is_Signed</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Acquisition_Deal__c.Acquisition_Deal_Stage__c</field>
+            <operation>equals</operation>
+            <value>Signed</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

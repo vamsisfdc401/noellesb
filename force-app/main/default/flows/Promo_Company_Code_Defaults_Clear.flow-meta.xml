@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <formulas>
+        <name>LoggedInUser</name>
+        <dataType>String</dataType>
+        <expression>{!$User.Id}</expression>
+    </formulas>
+    <interviewLabel>Promo Company Code - Defaults Clear {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Promo Company Code - Defaults Clear</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Existing_Company_Codes</name>
+        <label>Update Existing Company Codes</label>
+        <locationX>227</locationX>
+        <locationY>81</locationY>
+        <filters>
+            <field>Default__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>OwnerId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>RecordOwner</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Default__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>Promo_Company_Code__c</object>
+    </recordUpdates>
+    <startElementReference>Update_Existing_Company_Codes</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>RecordOwner</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

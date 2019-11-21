@@ -1,0 +1,39 @@
+<!--*****************************************************************************************
+Page Name: MassUpdateHeaderView
+Purpose: This page is responsible to handle the view of Mass Update Header Object.
+******************************************************************************************
+Version         DateModified         ModifiedBy               Change
+1.0             09/13/2017           Suman Kundu              Initial Development
+******************************************************************************************-->
+<apex:page standardController="Mass_Update_Header__c"> 
+    <style>
+        select {
+            width: 100px;
+        }
+    </style>
+    <chatter:feedWithFollowers entityId="{!Mass_Update_Header__c.Id}"/>
+    
+    <apex:outputPanel id="opMatDetail">
+        <apex:detail inlineEdit="true"/>
+    </apex:outputPanel>
+    
+    <GBLite:EmbedComponent baseGridUrl="{!$Page.GBLite__Grid}" />
+    
+    <apex:pageBlock rendered="{!AND(CONTAINS(Mass_Update_Header__c.Content_Material_Type__c, 'FERT'), Mass_Update_Header__c.Status__c=='Open')}">
+        <iframe id="gridFrame" scrolling="auto" height="450" width="100%" frameborder="0" src="{!gridPage}gname={!IF(NOT(ISPICKVAL($User.Label_Code__c, '59 - Paramount')), 'FERT Update Request', 'FERT Update Request Paramount')}&fpf=Mass_Update_Header__c&fpv={!Mass_Update_Header__c.Id}"></iframe>
+    </apex:pageBlock>
+    
+    <apex:pageBlock rendered="{!AND(CONTAINS(Mass_Update_Header__c.Content_Material_Type__c, 'COMP'), Mass_Update_Header__c.Status__c=='Open')}">
+        <iframe id="gridFrame" scrolling="auto" height="450" width="100%" frameborder="0" src="{!gridPage}gname={!IF(NOT(ISPICKVAL($User.Label_Code__c, '59 - Paramount')), 'Component Update Request', 'Component Update Request Paramount')}&fpf=Mass_Update_Header__c&fpv={!Mass_Update_Header__c.Id}"></iframe>
+    </apex:pageBlock>
+    
+    <apex:pageBlock rendered="{!AND(CONTAINS(Mass_Update_Header__c.Content_Material_Type__c, 'FERT'), Mass_Update_Header__c.Status__c!='Open')}">
+        <iframe id="gridFrame" scrolling="auto" height="450" width="100%" frameborder="0" src="{!gridPage}gname={!IF(NOT(ISPICKVAL($User.Label_Code__c, '59 - Paramount')), 'FERT Update Request RO', 'FERT Update Request Paramount RO')}&fpf=Mass_Update_Header__c&fpv={!Mass_Update_Header__c.Id}"></iframe>
+    </apex:pageBlock>
+    
+    <apex:pageBlock rendered="{!AND(CONTAINS(Mass_Update_Header__c.Content_Material_Type__c, 'COMP'), Mass_Update_Header__c.Status__c!='Open')}">
+        <iframe id="gridFrame" scrolling="auto" height="450" width="100%" frameborder="0" src="{!gridPage}gname={!IF(NOT(ISPICKVAL($User.Label_Code__c, '59 - Paramount')), 'Component Update Request RO', 'Component Update Request Para RO')}&fpf=Mass_Update_Header__c&fpv={!Mass_Update_Header__c.Id}"></iframe>
+    </apex:pageBlock>
+    
+    <apex:relatedList list="CombinedAttachments"/>
+</apex:page>

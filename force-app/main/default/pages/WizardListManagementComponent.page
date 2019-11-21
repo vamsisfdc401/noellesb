@@ -1,0 +1,378 @@
+<!--*****************************************************************************************
+Page Name: ListManagementComponent
+Purpose: list view manager to add exisitng materials
+******************************************************************************************
+Version         DateModified         ModifiedBy               Change
+1.0             25/08/2016           Mohit                    Initial Development
+******************************************************************************************-->
+<apex:page controller="wizardListManagementComponentController" showHeader="false" sidebar="false" action="{!autoPopulateVersionedMaterials}">
+    <!--<apex:form >-->
+    <apex:pageMessages id="pgMsg"></apex:pageMessages>
+    <apex:form >
+        <apex:actionFunction name="accept" action="{!accept}" id="acceptFunction"/>
+        <apex:actionFunction name="submit" action="{!submit}" id="submitFunction"/>
+    </apex:form>
+    <apex:pageBlock id="pgMainDetail" mode="edit" rendered="{!showPageBlock }">
+        <apex:pageBlockSection title="Parent Material Details" rendered="($currentPage.Parameters.source != 'wizard')">
+            <apex:outputField value="{!parentMaterialDetails.Name}"/>
+            <apex:outputField value="{!parentMaterialDetails.Material_Type__c}"/>
+            <apex:outputField value="{!parentMaterialDetails.Item_Type__c}"/>
+            <apex:outputField value="{!parentMaterialDetails.Item_Code__c}"/>
+            <apex:outputField value="{!parentMaterialDetails.Material_Number__c}"/>            
+        </apex:pageBlockSection>
+        
+        <apex:form >
+            <apex:pageBlockSection title="Select Search Object" collapsible="FALSE">                
+                <apex:selectRadio value="{!rdActivityType}"  >
+                    
+                    <apex:selectOption itemLabel="Search Material" itemValue="1">
+                        
+                    </apex:selectOption>  
+                    <apex:selectOption itemLabel="Search Title" itemValue="2" rendered="{!isClone=='false'}">  <!-- REL-10 Title radio won't be available for clonning -->
+                        
+                    </apex:selectOption>  
+                    <apex:actionSupport event="onclick" reRender="pgMainDetail" />                               
+                </apex:selectRadio>
+            </apex:pageBlockSection>
+        </apex:form>
+        
+        <apex:pageBlockSection title="Type of Operation" columns="1" collapsible="FALSE">        
+            <apex:form >
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:50%;">
+                            <apex:outputText ><b>Search Criteria</b> (enter complete or part of the value to be searched)</apex:outputText>
+                        </td>
+                        
+                        <td style="width:30%;">
+                            <apex:inputText value="{!searchCriteria}"/>
+                        </td>
+                        
+                        <td style="width:20%;">
+                            <apex:commandButton value="Search" action="{!btnSearch}" tabindex="0">
+                            </apex:commandbutton>
+                        </td>
+                        
+                    </tr>                
+                </table> 
+            </apex:form>     
+            
+            <apex:form >
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:50%;">
+                            <apex:outputText ><b>Material Numbers</b> (multiple values separated by comma can be entered.)</apex:outputText>
+                        </td>
+                        
+                        <td style="width:30%;">
+                            <apex:inputText value="{!manualAddCriterial}"/>
+                        </td>
+                        
+                        <td style="width:20%;">
+                            <apex:commandButton value="Manual Add" action="{!btnManualAdd}">
+                            </apex:commandbutton>
+                        </td>
+                        
+                    </tr>                
+                </table> 
+            </apex:form>     
+            
+            <apex:form >
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:50%;">
+                            <apex:outputText ><b>Select File</b> (only CSV file is allowed)</apex:outputText>
+                        </td>
+                        
+                        <td style="width:30%;">
+                            <apex:inputFile accept=".csv" value="{!csvFileBody}" filename="{!csvAsString}" contentType="{!csvContentType}"></apex:inputFile>
+                        </td>
+                        
+                        <td style="width:20%;">
+                            <apex:commandButton value="Import CSV" action="{!btnUploadCSV}">
+                            </apex:commandbutton> 
+                        </td>
+                        
+                    </tr>                
+                </table> 
+            </apex:form>                
+            
+        </apex:pageBlockSection>            
+    </apex:pageBlock>
+    
+    
+    <apex:form >
+        <apex:pageBlock id="pgListView" mode="edit" rendered="{!AND(showPageBlock,showMaterialSection)}">  
+            <!--Page block section for material-->          
+            <apex:pageBlockSection title="Material List Views" columns="2">
+                <apex:outputPanel title="Available Materials" >
+                    <apex:outputText ><b>{!resultSize} records found matching the search criteria</b></apex:outputText> <br/>
+                    <apex:outputText rendered="{!IF(resultSize > 0, TRUE, FALSE)}"><b>Showing page {!pageNumber} of {!CEILING(resultSize/pageSize)}</b></apex:outputText>
+                    <apex:variable value="{!0}" var="recordRow"/>
+                    <apex:pageBlockTable value="{!lstMaterialDetails}" var="mt">
+                        <apex:column >
+                            <apex:actionRegion >
+                                <apex:commandLink action="{!setSelectedMaterial}" rerender="pgListView" >                            
+                                    <span style="padding-right:8px;"><apex:image id="AddImage" value="{!$Resource.Add}" width="10" /></span>
+                                    <apex:param value="{!recordRow}" name="mtRowNumber" assignTo="{!mtRowNumber}"/>
+                                    <apex:param value="{!mt.ID}" name="paramID" assignTo="{!paramID}"/>
+                                </apex:commandLink>
+                            </apex:actionRegion>  
+                            <apex:variable var="recordRow" value="{!recordRow + 1}"/>
+                        </apex:column>
+                        <apex:column headerValue="Material Description">
+                            <apex:outputField value="{!mt.Name}"/>
+                        </apex:column>                        
+                        <apex:column headerValue="Material Number">
+                            <apex:outputField value="{!mt.Material_Number__c }"/>
+                        </apex:column>
+                        <!-- REL-10 Selection ID ,Material Status and Territory would be available only while Cloning BOM -->
+                        <apex:column headerValue="Selection ID" rendered="{!isClone=='true'}">
+                            <apex:outputField value="{!mt.Selection_ID__c}"/>
+                        </apex:column>
+                        <apex:column headerValue="Material Status" rendered="{!isClone=='false'}">
+                            <apex:outputField value="{!mt.Material_Status__c}"/>
+                        </apex:column>
+                        <apex:column headerValue="BOM Status" rendered="{!isClone=='true'}">
+                            <apex:outputField value="{!mt.BOM_Status__c}"/>
+                        </apex:column>
+                        <apex:column headerValue="Territory" rendered="{!isClone=='true'}">
+                            <apex:outputField value="{!mt.Territory__c}"/>
+                        </apex:column>
+                        
+                        <apex:column headerValue="Material Type" rendered="{!isClone=='false'}">
+                            <apex:outputField value="{!mt.Material_Type__c }"/>
+                        </apex:column>  
+                        <apex:column headerValue="SGENNO" rendered="{!isClone=='false'}">
+                            <apex:outputField value="{!mt.SGENNO__c}"/>
+                        </apex:column>                      
+                    </apex:pageBlockTable>
+                    
+                    <apex:outputPanel rendered="{!paginationAvailable}" >
+                        <center>
+                            <apex:panelGrid columns="4" id="pnlGrid">
+                                <apex:commandLink action="{!first}" style="color:blue">First</apex:commandlink>
+                                <apex:commandLink action="{!previous}" rendered="{!hasPrevious}" style="color:blue">Previous</apex:commandlink>
+                                <apex:commandLink action="{!next}" rendered="{!hasNext}" style="color:blue">Next</apex:commandlink>
+                                <apex:commandLink action="{!last}" style="color:blue">Last</apex:commandlink>
+                            </apex:panelGrid>            
+                        </center>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+                
+                <apex:outputPanel title="Selected Materials" >
+                    <apex:outputText ><b>{!selectedResultSize} records selected</b></apex:outputText> <br/>
+                    <apex:outputText rendered="{!IF(selectedResultSize > 0, TRUE, FALSE)}"><b>Showing page {!selectedPageNumber} of {!CEILING(selectedResultSize/pageSize)}</b></apex:outputText>
+                    <apex:variable value="{!0}" var="selectedRecordRow"/>
+                    <apex:pageBlockTable value="{!lstSelectedMaterial}" var="mat">                        
+                        <apex:column >
+                            <apex:actionRegion >
+                                <apex:commandLink action="{!removeSelectedMaterial}" rerender="pgListView" >
+                                    <span style="padding-right:8px;"><apex:image id="RemoveImage" value="{!$Resource.Remove}" width="10"/></span>
+                                    <apex:param value="{!selectedRecordRow}" name="selectedRowNumber" assignTo="{!selectedRowNumber}"/>   
+                                    <apex:param value="{!mat.ID}" name="paramID" assignTo="{!paramID}"/>                                 
+                                </apex:commandLink>
+                                <apex:variable var="selectedRecordRow" value="{!selectedRecordRow + 1}"/>
+                            </apex:actionRegion>    
+                        </apex:column>                        
+                        <apex:column headerValue="Material Description">
+                            <apex:outputField value="{!mat.Name}"/>
+                        </apex:column>                        
+                        <apex:column headerValue="Material Number">
+                            <apex:outputField value="{!mat.Material_Number__c }"/>
+                        </apex:column>
+                        <apex:column headerValue="Selection ID" rendered="{!isClone=='true'}">
+                            <apex:outputField value="{!mat.Selection_ID__c}"/>
+                        </apex:column>
+                        <apex:column headerValue="Material Status" rendered="{!isClone=='false'}">
+                            <apex:outputField value="{!mat.Material_Status__c}"/>
+                        </apex:column>
+                        <apex:column headerValue="BOM Status" rendered="{!isClone=='true'}">
+                            <apex:outputField value="{!mat.BOM_Status__c}"/>
+                        </apex:column>
+                        <apex:column headerValue="Territory" rendered="{!isClone=='true'}">
+                            <apex:outputField value="{!mat.Territory__c}"/>
+                        </apex:column>
+                        <apex:column headerValue="Material Type" rendered="{!isClone=='false'}">
+                            <apex:outputField value="{!mat.Material_Type__c }"/>
+                        </apex:column>
+                        <apex:column headerValue="SGENNO" rendered="{!isClone=='false'}">
+                            <apex:outputField value="{!mat.SGENNO__c}"/>
+                        </apex:column>
+                    </apex:pageBlockTable>    
+                    <apex:outputPanel rendered="{!selectedPaginationAvailable}">
+                        <center>
+                            <apex:panelGrid columns="4" id="pnlGridSelected">
+                                <apex:commandLink action="{!selectedfirst}" style="color:blue">First</apex:commandlink>
+                                <apex:commandLink action="{!selectedprevious}" rendered="{!selectedhasPrevious}" style="color:blue">Previous</apex:commandlink>
+                                <apex:commandLink action="{!selectednext}" rendered="{!selectedhasNext}" style="color:blue">Next</apex:commandlink>
+                                <apex:commandLink action="{!selectedlast}" style="color:blue">Last</apex:commandlink>
+                            </apex:panelGrid>            
+                        </center>
+                    </apex:outputPanel>                
+                    <br/>
+                    <div align="right">
+                        <apex:commandButton value="Remove All"  rendered="{!IF(selectedResultSize > 0, TRUE, FALSE)}" action="{!removeAll}"/>
+                        <!--<apex:commandButton value="Accept" rendered="{!showAccept}" action="{!submit}"/>-->
+                        <!-- REL-10 Accept button won't be available while cloning . Instead would show Clone button -->
+                        <apex:commandButton value="Accept" rendered="{!AND(showAccept, ($currentPage.Parameters.source != 'wizard')) }" action="{!submit}"/>
+                        <!--<apex:commandButton value="Accept" rendered="{!AND(showAccept, ($currentPage.Parameters.source == 'wizard')) }" action="{!submit}"/>-->
+                        <apex:outputPanel styleClass="btn" rendered="{!AND(showAccept, ($currentPage.Parameters.source == 'wizard'),isClone=='false') }" onclick="submitMaterial();">
+                            <apex:outputLabel >Accept</apex:outputLabel>
+                            <!--<apex:actionSupport action="{!accept}" event="onclick"/>-->
+                        </apex:outputPanel>
+                        <apex:commandButton value="Clone" rendered="{!isClone=='true' }" action="{!cloneBOM}"/>
+                        
+                    </div>
+                </apex:outputPanel>
+                
+            </apex:pageBlockSection>           
+            
+        </apex:pageBlock>
+        
+        <apex:pageBlock id="pgListViewTitle" mode="edit" rendered="{!AND(showPageBlock,showTitleSection)}">
+            <!--Page block section for title search-->
+            <apex:pageBlockSection title="Title List View" columns="2" >
+                <apex:outputPanel title="Available Title" >
+                    <apex:outputText ><b>{!resultSize} records found matching the search criteria</b></apex:outputText> <br/>
+                    <apex:outputText rendered="{!IF(resultSize > 0, TRUE, FALSE)}"><b>Showing page {!pageNumber} of {!CEILING(resultSize/pageSize)}</b></apex:outputText>
+                    <apex:variable value="{!0}" var="recordRow"/>
+                    <apex:pageBlockTable value="{!lstTitleDetails}" var="title" >
+                        <apex:column >
+                            <apex:actionRegion >
+                                <apex:commandLink action="{!setSelectedTitle}" rerender="pgListViewTitle" >                            
+                                    <span style="padding-right:8px;"><apex:image id="imdAdd" value="{!$Resource.Add}" width="10" /></span>
+                                    <apex:param value="{!recordRow}" name="mtRowNumber" assignTo="{!mtRowNumber}"/>
+                                    <apex:param value="{!title.ID}" name="paramID" assignTo="{!paramID}"/>
+                                </apex:commandLink>
+                            </apex:actionRegion>  
+                            <apex:variable var="recordRow" value="{!recordRow + 1}"/>
+                        </apex:column> 
+                        <apex:column headerValue="Title Name" >
+                            <apex:outputField value="{!title.Name}"/>
+                        </apex:column>
+                        <apex:column headerValue="SGENNO">
+                            <apex:outputField value="{!title.SGENNO__c}"/>
+                        </apex:column>
+                        <apex:column headerValue="Initial Release Air Year">
+                            <apex:outputField value="{!title.Initial_Release_Air_Year__c}"/>
+                        </apex:column>
+                        <apex:column headerValue="Type Code">
+                            <apex:outputField value="{!title.Type_Code__c}"/>
+                        </apex:column>
+                        <apex:column headerValue="Level Code">
+                            <apex:outputField value="{!title.Level_Code__c}"/>
+                        </apex:column>
+                    </apex:pageBlockTable>
+                    
+                    <apex:outputPanel rendered="{!paginationAvailable}" >
+                        <center>
+                            <apex:panelGrid columns="4" id="pnlGrid">
+                                <apex:commandLink action="{!first}" style="color:blue">First</apex:commandlink>
+                                <apex:commandLink action="{!previous}" rendered="{!hasPrevious}" style="color:blue">Previous</apex:commandlink>
+                                <apex:commandLink action="{!next}" rendered="{!hasNext}" style="color:blue">Next</apex:commandlink>
+                                <apex:commandLink action="{!last}" style="color:blue">Last</apex:commandlink>
+                            </apex:panelGrid>            
+                        </center>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+                
+                <apex:outputPanel title="Selected Title" >
+                    <apex:outputText ><b>{!selectedResultSize} records selected</b></apex:outputText> <br/>
+                    <apex:outputText rendered="{!IF(selectedResultSize > 0, TRUE, FALSE)}"><b>Showing page {!selectedPageNumber} of {!CEILING(selectedResultSize/pageSize)}</b></apex:outputText>
+                    <apex:variable value="{!0}" var="selectedRecordRow"/>
+                    <apex:pageBlockTable value="{!lstSelectedTitle}" var="titl" >                        
+                        <apex:column >
+                            <apex:actionRegion >
+                                <apex:commandLink action="{!removeSelectedTitle}" rerender="pgListViewTitle" >
+                                    <span style="padding-right:8px;"><apex:image id="imgRmv" value="{!$Resource.Remove}" width="10"/></span>
+                                    <apex:param value="{!selectedRecordRow}" name="selectedRowNumber" assignTo="{!selectedRowNumber}"/>   
+                                    <apex:param value="{!titl.ID}" name="paramID" assignTo="{!paramID}"/>                                 
+                                </apex:commandLink>
+                                <apex:variable var="selectedRecordRow" value="{!selectedRecordRow + 1}"/>
+                            </apex:actionRegion>    
+                        </apex:column>                        
+                        <apex:column headerValue="Title Name">
+                            <apex:outputField value="{!titl.Name}"/>
+                        </apex:column>
+                        <apex:column headerValue="SGENNO">
+                            <apex:outputField value="{!titl.SGENNO__c}"/>
+                        </apex:column>
+                        
+                        <!--<apex:column headerValue="SGENNO">
+<apex:outputField value="{!titl.ID}"/>
+</apex:column>           -->            
+                    </apex:pageBlockTable>    
+                    <apex:outputPanel rendered="{!selectedPaginationAvailable}">
+                        <center>
+                            <apex:panelGrid columns="4" id="pnlGridSelected">
+                                <apex:commandLink action="{!selectedfirst}" style="color:blue">First</apex:commandlink>
+                                <apex:commandLink action="{!selectedprevious}" rendered="{!selectedhasPrevious}" style="color:blue">Previous</apex:commandlink>
+                                <apex:commandLink action="{!selectednext}" rendered="{!selectedhasNext}" style="color:blue">Next</apex:commandlink>
+                                <apex:commandLink action="{!selectedlast}" style="color:blue">Last</apex:commandlink>
+                            </apex:panelGrid>            
+                        </center>
+                    </apex:outputPanel>                
+                    <br/>
+                    <div align="right">
+                        <apex:commandButton value="Remove All"  rendered="{!IF(selectedResultSize > 0, TRUE, FALSE)}" action="{!removeAll}"/>
+                        <!--<apex:commandButton value="Accept" rendered="{!showAccept}" action="{!submit}" onclick="ClosePopup();"/>-->
+                        <apex:outputPanel styleClass="btn" rendered="{!AND(showAccept, ($currentPage.Parameters.source == 'wizard')) }" onclick="submitTitle();">
+                            <apex:outputLabel >Accept</apex:outputLabel>
+                            <!--<apex:actionSupport action="{!accept}" event="onclick"/>-->
+                        </apex:outputPanel>
+                    </div>
+                </apex:outputPanel>
+                
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        
+    </apex:form>
+    
+    <apex:outputPanel rendered="{!closeWindow}">
+        <script>
+        window.top.close();
+        </script>
+    </apex:outputPanel>
+    
+    <script language="JavaScript" type="text/javascript">
+    function ClosePopup()
+    {
+        setTimeout('window.top.close()',300);  
+    }
+    </script>
+    <script>
+    function submitMaterial()
+    {
+        try
+        {
+            accept();
+            //ClosePopup();
+            
+            
+        }
+        catch(e)
+        {
+            alert(e);
+        }
+        return false;
+    }
+    </script>
+    <script>
+    function submitTitle()
+    {
+        try
+        {
+            submit();
+            //ClosePopup();
+            
+            
+        }
+        catch(e)
+        {
+            alert(e);
+        }
+        return false;
+    }
+    </script>
+</apex:page>

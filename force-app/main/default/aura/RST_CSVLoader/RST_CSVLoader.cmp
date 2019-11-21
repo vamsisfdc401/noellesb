@@ -1,0 +1,69 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="RST_Controller">
+
+    <aura:attribute name="upload_record_id" type="Object" access="global" />
+    <aura:attribute name="accept" type="List" default="['.csv']" />
+    <aura:attribute name="processing" type="Boolean" default="false" />
+    <aura:attribute name="processingMagic" type="Boolean" default="false" />
+    <aura:attribute name="Result" type="Object" />
+    <aura:attribute name="curStep" type="Integer" />
+
+    <aura:attribute name="steps" type="Object[]" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:handler event="c:RST_Event" action="{!c.eventReceived}" />
+
+	<h2>Release Scheduling CSV Uploader</h2>
+
+
+                <lightning:layout>
+                    
+
+                    <lightning:layoutItem padding="around-small">
+                        <div class="header-column">
+
+                            <aura:if isTrue="{!and(v.Result , v.Result.result != 'Success')}">
+                                Errors:
+                                <ul>
+                                    <aura:iteration items="{!v.Result.issues}" var="issue">
+                                        <li>{!issue}</li>
+                                    </aura:iteration>
+                                </ul>
+                                <hr />
+                            </aura:if>
+
+
+
+                            <aura:if isTrue="{!and(!v.upload_record_id, v.curStep==1 )}">
+                                <lightning:recordEditForm objectApiName="RST_Forecast_Upload__c" onsuccess="{!c.handleNewUploadRecord}">
+                                    <lightning:messages />
+                                    Press the button below to upload your CSV.
+                                    <lightning:inputField fieldName="Name" class="slds-hidden" />
+                                    <lightning:button variant="brand" type="submit" name="save" label="Upload File" />
+                                </lightning:recordEditForm>
+                            </aura:if>
+
+                            <aura:if isTrue="{!and(v.upload_record_id, not(v.processing))}">
+                                <lightning:fileUpload name="fileUploader" label="Choose your CSV file" accept="{!v.accept}"
+                                    recordId="{!v.upload_record_id}" onuploadfinished="{! c.handleUploadFinished }" />
+                            </aura:if>
+
+
+
+                            <aura:if isTrue="{!v.curStep==2}">
+                                Reading CSV
+                                <c:RST_ProcessCSV use_recordId="{!v.upload_record_id}" />
+                            </aura:if>
+
+                            <aura:if isTrue="{!v.curStep==3}">
+                                Batch file running...
+
+
+                            </aura:if>
+                        </div>
+                    </lightning:layoutItem>
+                </lightning:layout>
+
+
+
+</aura:component>

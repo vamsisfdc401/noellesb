@@ -1,2 +1,145 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata"/>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>GBS_Criteria_Share</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <description>GBS-239 Security:  Shares record to GBS role if recordtype contains GBS and Inactive Flag is False</description>
+        <label>GBS Criteria Share</label>
+        <sharedTo>
+            <role>Global_Brand_Standards</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>GBS Agent,GBS Licensee,GBS Default</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Inactive_in_RSG__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Share_Creative_Vendors</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Share Creative Vendors</label>
+        <sharedTo>
+            <roleAndSubordinates>UPHE_Domestic_Operations</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>CAR Vendor</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UBD_Legal_Account_sharing_rule</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <description>Share Licensees to Legal team for contract drafting.</description>
+        <label>UBD Legal Account sharing rule</label>
+        <sharedTo>
+            <role>UBD_Legal_Team</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>GBS Licensee</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingOwnerRules>
+        <fullName>DGF_Role_Share</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>DGF Role Share</label>
+        <sharedTo>
+            <role>UPHE_Digital</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>UPHE_Digital</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Dealforce_EVP_Acquisitions_Accounts</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Dealforce EVP Acquisitions Accounts</label>
+        <sharedTo>
+            <roleAndSubordinates>EVP_Acquisitions</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>EVP_Acquisitions</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Dealforce_Upper_Management_Team_Accounts</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Dealforce Upper Management Team Accounts</label>
+        <sharedTo>
+            <roleAndSubordinates>Upper_Management_Team</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>Upper_Management_Team</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Dealforce_Upper_and_Acquisitions</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <description>Shares accounts created by EVP Acquisitions Team with Upper Management</description>
+        <label>Dealforce Upper Management Team and Acquisitions</label>
+        <sharedTo>
+            <roleAndSubordinates>Upper_Management_Team</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>EVP_Acquisitions</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Film_Strategy_and_Technology_Accounts</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Film Strategy and Technology Accounts</label>
+        <sharedTo>
+            <roleAndSubordinates>Film_Technology_and_Strategy</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>Film_Technology_and_Strategy</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

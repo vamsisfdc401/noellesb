@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Email_Alert_when_Online_Consumer_Solicitation_Date_is_changed</fullName>
+        <description>Email Alert when Online Consumer Solicitation Date is updated</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>UPHE_Biz_Comm</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Releaseforce_Email_Templates_Folder/Chatter_Notification_Email_On_Date_Change_html</template>
+    </alerts>
+    <alerts>
+        <fullName>Email_Alert_when_street_date_update_is_requested_on_release</fullName>
+        <description>Email Alert when street date update is requested on release</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>UPHE_Biz_Comm</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>UPHE_Tech_Ops</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>Universal_Catalog_Planning_group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>Universal_New_Release_Planning</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <field>Creative_Contact__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Marketing_Contact__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Releaseforce_Email_Templates_Folder/Chatter_Notification_Email</template>
+    </alerts>
+    <alerts>
+        <fullName>Email_for_Finance_Default_Deal_is_Required_for_the_Title</fullName>
+        <description>Email for Finance Default Deal is Required for the Title</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Deal_Approver_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Releaseforce_Email_Templates_Folder/Finance_Default_Deal_is_Required_for_the_Title</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Distributor_Short_Name</fullName>
+        <field>Distributor_Short_Name__c</field>
+        <formula>CASE( Distributor__c , &#39;FOCUS&#39;, &#39;F&#39;, 
+&#39;PARAMOUNT&#39;, &#39;P&#39;, 
+&#39;OPEN ROAD&#39;,&#39;OR&#39;, 
+&#39;SONY&#39;,&#39;S&#39;, 
+&#39;LIONSGATE&#39;,&#39;LG&#39;, Distributor_Short_Name__c 
+)</formula>
+        <name>Distributor Short Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Distributor_Short_Name</fullName>
+        <field>Distributor_Short_Name__c</field>
+        <formula>&#39;UNIV&#39;</formula>
+        <name>Set Distributor Short Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Distributor_to_Universal</fullName>
+        <field>Distributor__c</field>
+        <formula>&#39;UNIVERSAL&#39;</formula>
+        <name>Set Distributor to Universal</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_V_Project_Indicator</fullName>
+        <field>v_Project_Required__c</field>
+        <literalValue>1</literalValue>
+        <name>Set V-Project Indicator</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Deal_Id_on_Release</fullName>
+        <field>Deal_ID__c</field>
+        <formula>Deal__r.Deal_ID__c</formula>
+        <name>Update Deal Id on Release</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Default_RMF_Field_Value</fullName>
+        <field>RMF__c</field>
+        <formula>IF(ISPICKVAL(Brand_Group__c , &#39;Universal Pictures&#39;) &amp;&amp; ISPICKVAL(Project_Type__c , &#39;New Release&#39;), 0.12,
+IF(ISPICKVAL(Brand_Group__c , &#39;Universal Pictures&#39;) &amp;&amp; ISPICKVAL(Project_Type__c , &#39;Catalog&#39;), 0.20, 
+IF(ISPICKVAL(Brand_Group__c , &#39;TV&#39;) &amp;&amp; ISPICKVAL(Project_Type__c , &#39;New Release&#39;), 0.07, 
+IF(ISPICKVAL(Brand_Group__c , &#39;TV&#39;) &amp;&amp; ISPICKVAL(Project_Type__c , &#39;Catalog&#39;), 0.20, 
+IF(ISPICKVAL(Brand_Group__c , &#39;Family&#39;) &amp;&amp; ISPICKVAL(Project_Type__c , &#39;New Release&#39;), 0.085,
+IF(ISPICKVAL(Brand_Group__c , &#39;Family&#39;) &amp;&amp; ISPICKVAL(Project_Type__c , &#39;Catalog&#39;), 0.20, 
+IF(ISPICKVAL(Brand_Group__c , &#39;Partners&#39;) &amp;&amp; ISPICKVAL(Project_Type__c , &#39;New Release&#39;), 0.12, 
+IF(ISPICKVAL(Brand_Group__c , &#39;Partners&#39;) &amp;&amp; ISPICKVAL(Project_Type__c , &#39;Catalog&#39;), 0.20, 
+IF(ISPICKVAL(Brand_Group__c , &#39;Catalog&#39;) &amp;&amp; ISPICKVAL(Project_Type__c , &#39;New Release&#39;), 0.05,
+IF(ISPICKVAL(Brand_Group__c , &#39;Catalog&#39;) &amp;&amp; ISPICKVAL(Project_Type__c , &#39;Catalog&#39;), 0.20, 
+IF(ISPICKVAL(Brand_Group__c , &#39;1440&#39;) &amp;&amp; ISPICKVAL(Project_Type__c , &#39;New Release&#39;), 0.07, 
+IF(ISPICKVAL(Brand_Group__c , &#39;1440&#39;) &amp;&amp; ISPICKVAL(Project_Type__c , &#39;Catalog&#39;), 0.07, 
+IF(ISPICKVAL(Brand_Group__c , &#39;None&#39;) &amp;&amp; ISPICKVAL(Project_Type__c , &#39;New Release&#39;), 0.12, 
+IF(ISPICKVAL(Brand_Group__c , &#39;None&#39;) &amp;&amp; ISPICKVAL(Project_Type__c , &#39;Catalog&#39;), 0.20, 
+IF(ISPICKVAL(Brand_Group__c , &#39;Content Group&#39;) &amp;&amp; ISPICKVAL(Project_Type__c , &#39;New Release&#39;), 0.07, 
+IF(ISPICKVAL(Brand_Group__c , &#39;Content Group&#39;) &amp;&amp; ISPICKVAL(Project_Type__c , &#39;Catalog&#39;), 0.20, 
+IF(ISPICKVAL(Brand_Group__c , &#39;Catalog&#39;) &amp;&amp; ISPICKVAL(Project_Type__c , &#39; Third Party&#39;), null,null)))))))))))))))))</formula>
+        <name>Update Default RMF Field Value</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_EST_Date</fullName>
+        <field>EST_Date__c</field>
+        <formula>Street_Date__c  - 14</formula>
+        <name>Update EST Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Expiration_Date</fullName>
+        <field>Expiration_Date__c</field>
+        <formula>Promotion_End_Date__c + 7</formula>
+        <name>Update Expiration Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_In_Plant_Date</fullName>
+        <field>In_Plant_Date__c</field>
+        <formula>Street_Date__c -63</formula>
+        <name>Update In-Plant Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Internal_Announce_Date</fullName>
+        <field>Internal_Announce_Date__c</field>
+        <formula>Street_Date__c - 91</formula>
+        <name>Update Internal Announce Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Online_Consumer_Solicitation_Date</fullName>
+        <field>Online_Consumer_Solicitation_Date__c</field>
+        <formula>IF( OR(ISPICKVAL(Brand_Group__c,&#39;Universal Pictures&#39;),ISPICKVAL(Brand_Group__c,&#39;Partners&#39;)),Street_Date__c - 63,
+IF(OR(ISPICKVAL(Brand_Group__c,&#39;1440&#39;),ISPICKVAL(Brand_Group__c,&#39;Family&#39;),ISPICKVAL(Brand_Group__c,&#39;TV&#39;),ISPICKVAL(Brand_Group__c,&#39;Catalog&#39;)),Street_Date__c - 84,null) )</formula>
+        <name>Update Online/Consumer Solicitation Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Pre_Order_Close_Date</fullName>
+        <field>Pre_Order_Close_Date__c</field>
+        <formula>Street_Date__c - 42</formula>
+        <name>Update Pre Order Close Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Promotion_End_Date</fullName>
+        <field>Promotion_End_Date__c</field>
+        <formula>Street_Date__c + 56</formula>
+        <name>Update Promotion End Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Record_type_as_Catalog</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>Catalog_Record_Type</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>Update Record type as Catalog</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Record_type_as_Theatrical</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>Theatrical</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>Update Record type as Theatrical</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Release_Label_Code</fullName>
+        <field>Label_Code__c</field>
+        <literalValue>59 - Paramount</literalValue>
+        <name>Update Release Label Code</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_SGENNO_in_Release</fullName>
+        <field>SGENNO__c</field>
+        <formula>SGENNO_ReadOnly__c</formula>
+        <name>Update SGENNO in Release</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Schedule_Indicator</fullName>
+        <field>Master_Schedule_Indicator__c</field>
+        <literalValue>Include</literalValue>
+        <name>Update Schedule Indicator</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Trade_Solicitation_Date</fullName>
+        <field>Trade_Solicitation_Date__c</field>
+        <formula>Street_Date__c -  84</formula>
+        <name>Update Trade Solicitation Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_VOD_Date</fullName>
+        <field>VOD_Street_Date__c</field>
+        <formula>Street_Date__c</formula>
+        <name>Update VOD Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_VOD_Street_Date</fullName>
+        <field>VOD_Street_Date__c</field>
+        <formula>Street_Date__c  - 123</formula>
+        <name>Update VOD Street Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Windowed_Rental_Pre_Order_Close</fullName>
+        <field>Windowed_Rental_Pre_Order_Close_Date__c</field>
+        <formula>(Street_Date__c - 14)</formula>
+        <name>Update Windowed Rental Pre-Order Close</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Windowed_Rental_Street_Date</fullName>
+        <field>Windowed_Rental_Street_Date__c</field>
+        <formula>Street_Date__c + 28</formula>
+        <name>Update Windowed Rental Street Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_record_type</fullName>
+        <description>Update record Type as TV</description>
+        <field>RecordTypeId</field>
+        <lookupValue>TV_Record_Type</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>Update record type</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_record_type_as_TV</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>TV_Record_Type</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>Update record type as TV</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_to_Expiration_End_Date</fullName>
+        <field>Expiration_Date__c</field>
+        <formula>Street_Date__c + 63</formula>
+        <name>Update to Expiration End Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>Calculate Expiration Date</fullName>
+        <actions>
+            <name>Update_Expiration_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>ISNEW() || ISCHANGED( Promotion_End_Date__c )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Calculate Key Dates on Release</fullName>
+        <actions>
+            <name>Update_In_Plant_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Internal_Announce_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Online_Consumer_Solicitation_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Pre_Order_Close_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Trade_Solicitation_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_VOD_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Windowed_Rental_Pre_Order_Close</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Windowed_Rental_Street_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <formula>IF( ISNEW() , NOT(ISNULL( Street_Date__c )), (NOT(ISNULL( Street_Date__c )) &amp;&amp; ISCHANGED(Street_Date__c)))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Distributor Short Name</fullName>
+        <actions>
+            <name>Distributor_Short_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Release__c.Distributor__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email Alert when street date is updated</fullName>
+        <actions>
+            <name>Email_Alert_when_street_date_update_is_requested_on_release</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <formula>AND(ISCHANGED( Street_Date__c ),OR( ISPICKVAL(Label_Code__c ,&#39;24 - PURE FLIX&#39;),ISPICKVAL(Label_Code__c ,&#39;34 - Film Arcade&#39;),ISPICKVAL(Label_Code__c ,&#39;44 - GKIDS&#39;),ISPICKVAL(Label_Code__c ,&#39;45 - PICTUREHOUSE&#39;),ISPICKVAL(Label_Code__c ,&#39;46 - DREAMWORKS ANIMATION&#39;),ISPICKVAL(Label_Code__c ,&#39;55 - Open Road Films&#39;),ISPICKVAL(Label_Code__c ,&#39;57 - BLEECKER STREET&#39;),ISPICKVAL(Label_Code__c ,&#39;58 - HiT Entertainment&#39;),ISPICKVAL(Label_Code__c ,&#39;61 - Universal Pictures&#39;),ISPICKVAL(Label_Code__c ,&#39;62 - Focus&#39;),ISPICKVAL(Label_Code__c ,&#39;63 - Family Home Entertainment&#39;),ISPICKVAL(Label_Code__c ,&#39;64 - STX FINANCING LLC&#39;),ISPICKVAL(Label_Code__c ,&#39;91 - AVIRON PICTURES&#39;),ISPICKVAL(Label_Code__c ,&#39;36 - NEON RATED LLC&#39;)))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email for Finance Default Deal is Required for the Title</fullName>
+        <actions>
+            <name>Email_for_Finance_Default_Deal_is_Required_for_the_Title</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Email for Finance Default Deal is Required for the Title</description>
+        <formula>Deal__c  = NULL  &amp;&amp;  Title__c  &lt;&gt; NULL</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Notify Before Promotion End Date</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>Release__c.Name</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>It sends an email alert to notify 10 days prior to Promotion End Date to update the Release Material.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <offsetFromField>Release__c.Promotion_End_Date__c</offsetFromField>
+            <timeLength>-10</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Release Street Date Change</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>Release__c.Street_Date__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.ProfileId</field>
+            <operation>notContain</operation>
+            <value>API</value>
+        </criteriaItems>
+        <description>WF to send updates when Street Date on the Release has changed</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Set Release Distributor</fullName>
+        <actions>
+            <name>Set_Distributor_Short_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Set_Distributor_to_Universal</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(OR( ISPICKVAL(Brand_Group__c, &#39;Universal Pictures&#39;), ISPICKVAL(Brand_Group__c, &#39;1440&#39;), ISPICKVAL(Brand_Group__c, &#39;Family&#39;), ISPICKVAL(Brand_Group__c, &#39;TV&#39;), ISPICKVAL(Brand_Group__c, &#39;Catalog&#39;)), RecordType.DeveloperName &lt;&gt; &#39;Competitive&#39; )</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Set Release Distributor and V-Project Values</fullName>
+        <actions>
+            <name>Set_V_Project_Indicator</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>OR(    ISPICKVAL(Brand_Group__c, &#39;Universal Pictures&#39;), ISPICKVAL(Brand_Group__c, &#39;Partners&#39;), ISPICKVAL(Brand_Group__c, &#39;1440&#39;),    ISPICKVAL(Brand_Group__c, &#39;Family&#39;),    ISPICKVAL(Brand_Group__c, &#39;TV&#39;),    ISPICKVAL(Brand_Group__c, &#39;Catalog&#39;),  ISPICKVAL(Brand_Group__c, &#39;Content Group&#39;)    )</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Deal ID on Release</fullName>
+        <actions>
+            <name>Update_Deal_Id_on_Release</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>Deal__c  &lt;&gt; Null</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Default RMF value</fullName>
+        <actions>
+            <name>Update_Default_RMF_Field_Value</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Update Default RMF value based on Brand Group</description>
+        <formula>OR( ISNEW() ,ISCHANGED( Brand_Group__c),ISCHANGED( Project_Type__c))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Promotion End Date</fullName>
+        <actions>
+            <name>Update_Promotion_End_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_to_Expiration_End_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Release__c.Brand_Group__c</field>
+            <operation>equals</operation>
+            <value>Catalog</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Release__c.Street_Date__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Release__c.Promotion_End_Date__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Release__c.Promotion_Type__c</field>
+            <operation>equals</operation>
+            <value>Movie Cash</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Record type Brand as Catalog</fullName>
+        <actions>
+            <name>Update_Record_type_as_Catalog</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Release__c.Brand_Group__c</field>
+            <operation>equals</operation>
+            <value>Catalog</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Record type Brand as Tv</fullName>
+        <actions>
+            <name>Update_record_type</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_record_type_as_TV</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Release__c.Brand_Group__c</field>
+            <operation>equals</operation>
+            <value>TV</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Record type as Theatrical</fullName>
+        <actions>
+            <name>Update_Record_type_as_Theatrical</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Release__c.Brand_Group__c</field>
+            <operation>equals</operation>
+            <value>Theatrical</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Release Label code</fullName>
+        <actions>
+            <name>Update_Release_Label_Code</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>User.ProfileId</field>
+            <operation>equals</operation>
+            <value>PHE</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update SGENNO in Release</fullName>
+        <actions>
+            <name>Update_SGENNO_in_Release</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>Title__c  &lt;&gt; null</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

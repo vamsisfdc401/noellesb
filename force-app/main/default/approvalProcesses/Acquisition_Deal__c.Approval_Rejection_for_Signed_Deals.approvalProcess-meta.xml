@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>false</allowRecall>
+    <allowedSubmitters>
+        <type>allInternalUsers</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>Owner</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Finance_Review_Team</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Acquisition_Deal__c.Acquisition_Deal_Stage__c</field>
+                <operation>notEqual</operation>
+                <value>Signed,Amended</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>RejectRecord</ifCriteriaNotMet>
+        <label>Reject Signed Deal</label>
+        <name>Reject_Signed_Deal</name>
+    </approvalStep>
+    <description>This process is here to handle mistakenly made requests for Approving signed deals and to avoid frightening users with system default error message. It is assumed that user won&#39;t see the &quot;Submit for approval&quot; button for Signed deal, but in case he does - the submission gets automatically rejected.</description>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <criteriaItems>
+            <field>Acquisition_Deal__c.Acquisition_Deal_Stage__c</field>
+            <operation>equals</operation>
+            <value>Signed,Amended</value>
+        </criteriaItems>
+    </entryCriteria>
+    <finalApprovalRecordLock>true</finalApprovalRecordLock>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <label>Approval Rejection for Signed Deals</label>
+    <recordEditability>AdminOnly</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

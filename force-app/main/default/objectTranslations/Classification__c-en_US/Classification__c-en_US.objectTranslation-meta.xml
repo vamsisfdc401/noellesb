@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Classification</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Classifications</value>
+    </caseValues>
+    <layouts>
+        <layout>General</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- General --></label>
+            <section>General</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Universal Components</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Universal Component --></label>
+            <section>Universal Component</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Universal Finished Good</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Universal Finished Good --></label>
+            <section>Universal Finished Good</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

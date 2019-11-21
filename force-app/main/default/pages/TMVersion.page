@@ -1,0 +1,49 @@
+<!--*****************************************************************************************
+Page Name: TM Version
+Purpose: Inline VF for Selecting TM version on Material Page
+******************************************************************************************
+Version         DateModified         ModifiedBy               Change
+1.0             14/10/2016           Asha Namboodiri          Initial Development
+******************************************************************************************-->
+
+<apex:page standardStylesheets="true" extensions="TMVersionExt" standardController="Material__c" sidebar="false" showHeader="false">
+    <apex:form >
+        <apex:outputPanel id="displayPannel">
+            <!-- Trigger/Open The Modal -->
+            <apex:outputPanel id="link" rendered="{!isBlank(material.TM_Version_Lookup__c)}">
+                <a href="/apex/Tversion?id={!Id}"
+                   onclick="window.open(this.href,'_self',
+                            'toolbar=no,
+                            location=no,
+                            status=no,
+                            menubar=no,
+                            scrollbars=yes,
+                            resizable=yes,
+                            width=400,
+                            height=400');
+                            return false;"
+                style="display:{!IF(OR(AND(material.Material_Status__c=='Submitted', $Profile.Name != 'System Administrator', $Profile.Name != 'Platform API', $Profile.Name != 'Master Data Admin'), 
+                                          AND(material.Material_Status__c=='Approved', $Profile.Name != 'System Administrator', $Profile.Name != 'Platform API')), 'none', 'inline')};">Add TM version</a>
+            </apex:outputPanel>
+            
+            <apex:outputPanel id="namedisp" rendered="{!NOT(isBlank(material.TM_Version_Lookup__c))}">
+                {!material.TM_Version_Lookup__r.name} <a href="/apex/Tversion?id={!Id}"
+                   onclick="window.open(this.href,'_self',
+                           'toolbar=no,
+                            location=no,
+                            status=no,
+                            menubar=no,
+                            scrollbars=yes,
+                            resizable=yes,
+                            width=400,
+                            height=400');
+                            return false;"
+                   style="display:{!IF(OR(AND(material.Material_Status__c=='Submitted', $Profile.Name != 'System Administrator', $Profile.Name != 'Platform API', $Profile.Name != 'Master Data Admin'), 
+                                          AND(material.Material_Status__c=='Approved', $Profile.Name != 'System Administrator', $Profile.Name != 'Platform API')), 'none', 'inline')};">Change TM version</a>
+                
+            </apex:outputPanel>
+            
+        </apex:outputPanel>
+    </apex:form>
+    
+</apex:page>

@@ -1,0 +1,3 @@
+<aura:component implements="flexipage:availableForAllPageTypes" description="RST Action Buttons">
+	<button class="slds-button nbcu-btn refresh">Refresh MAGIC</button>
+</aura:component>

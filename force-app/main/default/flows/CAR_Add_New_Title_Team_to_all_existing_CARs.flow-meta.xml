@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>Assign_Current_CAR</name>
+        <label>Assign Current CAR</label>
+        <locationX>357</locationX>
+        <locationY>309</locationY>
+        <assignmentItems>
+            <assignToReference>CurrentCARRef</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>CurrentCAR.CAR__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>CAR_Team_Check</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Testing_Title</name>
+        <label>Testing Title</label>
+        <locationX>118</locationX>
+        <locationY>126</locationY>
+        <assignmentItems>
+            <assignToReference>CheckVariable</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>TitleID</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>For_All_CARs_Which_Exist</targetReference>
+        </connector>
+    </assignments>
+    <description>When a new user is added to a title group, add then to all exisitng CARs</description>
+    <interviewLabel>CAR - Add New Title Team to all existing CARs {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>CAR - Add New Title Team to all existing CARs</label>
+    <loops>
+        <name>For_All_CARs_Which_Exist</name>
+        <label>For All CARs Which Exist</label>
+        <locationX>117</locationX>
+        <locationY>233</locationY>
+        <assignNextValueToReference>CurrentCAR</assignNextValueToReference>
+        <collectionReference>CARsWithTitle</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Current_CAR</targetReference>
+        </nextValueConnector>
+    </loops>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Find all CARs which match the title passed</description>
+        <name>Find_All_CARs_with_Title</name>
+        <label>Find All CARs with Title</label>
+        <locationX>128</locationX>
+        <locationY>19</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Testing_Title</targetReference>
+        </connector>
+        <filters>
+            <field>Title__c</field>
+            <operator>Contains</operator>
+            <value>
+                <elementReference>TitleID</elementReference>
+            </value>
+        </filters>
+        <object>CAR_Release__c</object>
+        <outputReference>CARsWithTitle</outputReference>
+        <queriedFields>CAR__c</queriedFields>
+        <queriedFields>Title__c</queriedFields>
+    </recordLookups>
+    <startElementReference>Find_All_CARs_with_Title</startElementReference>
+    <status>Active</status>
+    <subflows>
+        <name>CAR_Team_Check</name>
+        <label>CAR Team Check</label>
+        <locationX>387</locationX>
+        <locationY>185</locationY>
+        <connector>
+            <targetReference>For_All_CARs_Which_Exist</targetReference>
+        </connector>
+        <flowName>CAR_Check_For_Duplicates</flowName>
+        <inputAssignments>
+            <name>CARIDFromPB</name>
+            <value>
+                <elementReference>CurrentCAR.CAR__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>UserIDFromPB</name>
+            <value>
+                <elementReference>UserID</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <variables>
+        <description>CARS which match the Title Given</description>
+        <name>CARsWithTitle</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>CAR_Release__c</objectType>
+    </variables>
+    <variables>
+        <description>Checking to see what title is actually passed...because WTF</description>
+        <name>CheckVariable</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>CurrentCAR</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>CAR_Release__c</objectType>
+    </variables>
+    <variables>
+        <description>Reference to the current CAR</description>
+        <name>CurrentCARRef</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Title from Title Group</description>
+        <name>TitleID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>User from Title Group</description>
+        <name>UserID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

@@ -1,0 +1,24 @@
+<apex:page standardController="CIRF_Header__c">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $( document ).ready(function() {
+          
+            //var cirfHeader= '{!LEFT(CIRF_Header__c.Id,18)}';
+           var cirfHeader = getSearchParams("Id");
+           var rptId = getSearchParams("RptId");
+                
+           window.open('/lightning/r/Report/' + rptId + '/view?fv0=' + cirfHeader);               
+           window.open('/' + rptId + '?pv0=' + cirfHeader + '&csv=1&exp=1&enc=UTF-8&isdtp=p1');
+           window.open('/lightning/r/CIRF_Header__c/'+cirfHeader+'/view','_self');
+
+        });
+
+    function getSearchParams(k){
+        var p={};
+        location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(s,k,v){p[k]=v})
+        return k?p[k]:p;
+    }
+
+    </script>
+    
+</apex:page>

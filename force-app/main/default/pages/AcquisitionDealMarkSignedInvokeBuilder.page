@@ -1,0 +1,6 @@
+<apex:page standardController="Acquisition_Deal__c" extensions="AcquisitionDealMarkSignedInvokeCont" action="{!checkCanDealBeSigned}">
+<apex:form >
+<apex:pageMessages ></apex:pageMessages>
+<apex:commandButton value="Return to Deal" action="{!returnToDeal}" style="margin-left: 20px;"/>
+</apex:form>
+</apex:page>

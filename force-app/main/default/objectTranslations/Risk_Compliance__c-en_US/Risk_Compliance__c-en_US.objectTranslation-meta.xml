@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Risk &amp; Compliance</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Risk &amp; Compliance</value>
+    </caseValues>
+    <layouts>
+        <layout>Risk &amp; Compliance - Read Only</layout>
+        <sections>
+            <label><!-- Bridger &amp; Credit Check --></label>
+            <section>Bridger &amp; Credit Check</section>
+        </sections>
+        <sections>
+            <label><!-- Compliance --></label>
+            <section>Compliance</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dropbox --></label>
+            <section>Dropbox</section>
+        </sections>
+        <sections>
+            <label><!-- Piracy --></label>
+            <section>Piracy</section>
+        </sections>
+        <sections>
+            <label><!-- Risk Assesment --></label>
+            <section>Risk Assesment</section>
+        </sections>
+        <sections>
+            <label><!-- Risk Assessment --></label>
+            <section>Risk Assessment</section>
+        </sections>
+        <sections>
+            <label><!-- Steps To Mitigate --></label>
+            <section>Steps To Mitigate</section>
+        </sections>
+        <sections>
+            <label><!-- Unsecure Payment Risk --></label>
+            <section>Unsecure Payment Risk</section>
+        </sections>
+        <sections>
+            <label><!-- Unsecure Payment Risk Detail --></label>
+            <section>Unsecure Payment Risk Detail</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Risk &amp; Compliance Admin Layout</layout>
+        <sections>
+            <label><!-- Bridger &amp; Credit Check --></label>
+            <section>Bridger &amp; Credit Check</section>
+        </sections>
+        <sections>
+            <label><!-- Compliance --></label>
+            <section>Compliance</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dropbox --></label>
+            <section>Dropbox</section>
+        </sections>
+        <sections>
+            <label><!-- Piracy --></label>
+            <section>Piracy</section>
+        </sections>
+        <sections>
+            <label><!-- Risk Assesment --></label>
+            <section>Risk Assesment</section>
+        </sections>
+        <sections>
+            <label><!-- Risk Assessment --></label>
+            <section>Risk Assessment</section>
+        </sections>
+        <sections>
+            <label><!-- Steps To Mitigate --></label>
+            <section>Steps To Mitigate</section>
+        </sections>
+        <sections>
+            <label><!-- Unsecure Payment Risk --></label>
+            <section>Unsecure Payment Risk</section>
+        </sections>
+        <sections>
+            <label><!-- Unsecure Payment Risk Detail --></label>
+            <section>Unsecure Payment Risk Detail</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Risk &amp; Compliance Layout</layout>
+        <sections>
+            <label><!-- Bridger &amp; Credit Check --></label>
+            <section>Bridger &amp; Credit Check</section>
+        </sections>
+        <sections>
+            <label><!-- Compliance --></label>
+            <section>Compliance</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dropbox --></label>
+            <section>Dropbox</section>
+        </sections>
+        <sections>
+            <label><!-- Piracy --></label>
+            <section>Piracy</section>
+        </sections>
+        <sections>
+            <label><!-- Risk Assesment --></label>
+            <section>Risk Assesment</section>
+        </sections>
+        <sections>
+            <label><!-- Risk Assessment --></label>
+            <section>Risk Assessment</section>
+        </sections>
+        <sections>
+            <label><!-- Steps To Mitigate --></label>
+            <section>Steps To Mitigate</section>
+        </sections>
+        <sections>
+            <label><!-- Unsecure Payment Risk --></label>
+            <section>Unsecure Payment Risk</section>
+        </sections>
+        <sections>
+            <label><!-- Unsecure Payment Risk Detail --></label>
+            <section>Unsecure Payment Risk Detail</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

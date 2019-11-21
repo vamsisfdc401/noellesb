@@ -1,0 +1,343 @@
+<!--*****************************************************************************************
+Component Name: DGF_NewProductComponent
+Purpose: Component for adding new materials
+******************************************************************************************
+Version         DateModified         ModifiedBy               Change
+1.0             05/02/2017           Mohit                    Initial Development
+******************************************************************************************-->
+<aura:component controller="DGF_NewProductComponentController" >
+    
+    <ltng:require scripts="{!join(',',$Resource.jQuery_Plugin,$Resource.jQuery_StickyHeader)}" afterScriptsLoaded="{!c.scriptLoaded}"/>
+    <aura:attribute name="releaseRecordId" type="Id" description="record id of release"/>
+    <aura:attribute name="searchResultMaster" type="List" description="use for store and display list return from server"/>    
+    <aura:attribute name="searchResult" type="List" description="use for store and display list return from server"/> 
+    <aura:attribute name="pageSize" type="integer" default="25" description="default number of records to be displayed on a page"/>
+    <aura:attribute name="selectedResultList" type="List" description="use for displaying selected records."/>
+    <aura:attribute name="searchKeyword" type="String" description="use for store user search input"/>    
+    <aura:attribute name="Message" type="boolean" default="false" description="use for display no record found message"/>
+    <aura:attribute name="numberOfRecord" type="integer" default="0" description="use for display Number of records"/>
+    <aura:attribute name="totalNumberOfRecord" type="integer" default="0" description="use for display Number of records"/>
+    <aura:attribute name="selectedRecordCount" type="integer" default="0" description="use for display Number of records"/>
+    <aura:attribute name="showSpinner" type="boolean" default="false" description="use for displaying or hiding spinner"/>  
+    <aura:attribute name="estTier" type="String[]" description="US EST Tier Picklist Values"/>
+    <aura:attribute name="renderESTTier" type="boolean" default="false" description="to render est tier"/>
+    <aura:attribute name="selectESTTierVal" type="String" description="for storing EST Tier Value"/>
+    <aura:attribute name="CodeError" type="string"  description="use for display no record found message"/>
+    <aura:attribute name="isCodeError" type="boolean" default="false" description="use for display no record found message"/>
+    <aura:attribute name="isNotTVRecordType" type="boolean" default="false" description="if release record Type is TV or not"/>  
+    <aura:attribute name="isNotProductUser" type="boolean" default="true" description="to check if user is product user or not"/>
+    <aura:attribute name="isBtnDisable" type="boolean" default="false" description="for disabling save button"/>
+    <aura:attribute name="isBundleProduct" type="boolean" default="false" description="to check if user is trying to create bundle product"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="isjQueryLoaded" type="Boolean" default="false"/>
+    <aura:attribute name="isScrollLoaded" type="Boolean" default="false"/>
+    <aura:attribute name="versions" type="String[]" default="None,Unrated,Extended,Extended Director's Cut,Director's Cut,Special Edition" description="version types"/>
+    <aura:attribute name="selectVersionVal" type="String" description="for storing version Value"/>
+    <aura:attribute name="renderVersion" type="boolean" default="false" description="to render version"/>
+    <aura:attribute name="noVersionClicked" type="Boolean" default="false"/>
+    <!--<aura:handler event="aura:systemError" action="{!c.showSystemError}"/>-->
+    
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}" />
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}" />    
+    
+    <aura:if isTrue="{!v.isCodeError}">
+        <ui:message title="Error" severity="error" closable="false">        
+            {!v.CodeError}   
+        </ui:message>
+    </aura:if>
+    
+    <aura:if isTrue="{!v.isNotProductUser}">
+        <ui:message title="Info" severity="info" closable="true">        
+            Only product user can create new products.  
+        </ui:message>
+        
+        <aura:set attribute="else">
+            
+            <div class="slds-page-header">
+                <aura:if isTrue="{!v.noVersionClicked}">
+                    <div role="dialog" tabindex="-1" aria-labelledby="header99" class="slds-modal slds-fade-in-open " >
+                        <div class="slds-modal__container">
+                            <div class="slds-modal__header">
+                                <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close" onclick="{!c.closeModal}">
+                                    X
+                                    <span class="slds-assistive-text">Close</span>
+                                </button>
+                                <h2 id="header99" class="slds-text-heading--medium">No Version Selected</h2>
+
+                            </div>
+                            <div class="slds-modal__content slds-p-around--medium">
+                                <p><b>Are you sure you want to create a Product without tying to a GTM Version?
+                                    </b>
+                                </p>
+                            </div>
+                            <div class="slds-modal__footer">
+                                <button class="slds-button slds-button--neutral" onclick="{!c.closeModal}" >Cancel</button>
+                                <button class="slds-button slds-button--brand" onclick="{!c.createProd}">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-backdrop slds-backdrop--open"></div>
+                </aura:if>
+                <div class="slds-text-heading--medium slds-m-bottom--small" style="font-weight:bold;">Search and select title version(s) for a product
+                </div>
+                <div class="slds-form--inline slds-m-bottom--small">
+                    <div class="slds-form-element ">
+                        <label class="slds-form-element__label slds-text-heading--small" for="search">Search for titles</label>
+                        <div class="slds-form-element__control">
+                            <ui:inputText aura:id="searchId" class="slds-input" keyup="{!c.onEnterClickSearch}" updateOn="keyup" value="{!v.searchKeyword}" required="true" placeholder="Type here..."/>
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <button aura:id="btnSearchId" type="button" onclick="{!c.Search}" class="slds-button slds-button--brand">Search</button>
+                    </div>
+                    <!-- No Version Button added as part of DFOR-853-->
+                    <div class="slds-form-element">
+                        <button  aura:id="noVersionBtnId" type="button" onclick="{!c.noVersionSelected}" class="{!v.selectedRecordCount == 0 ? 'slds-button slds-button_destructive' : 'slds-hide' }">No Version</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slds-m-around--small">
+                <div class="{!v.showSpinner ? 'slds-spinner_container slds-show' : 'slds-spinner_container slds-hide'}" style="z-index:5">
+                    <div class="slds-spinner--brand slds-spinner slds-spinner--large"  role="status">
+                        <span class="slds-assistive-text">Loading</span>
+                        <div class="slds-spinner__dot-a" ></div>
+                        <div class="slds-spinner__dot-b" ></div>
+                    </div>
+                </div>  
+                
+                <div class="slds-grid slds-wrap table-wrap">
+                    <div class="slds-large-size--6-of-12 table-selected" style="border-right: 1px solid rgb(221, 219, 218);line-height: 2.7;">
+                        <div class="slds-is-relative" style="clear:both;overflow:hidden;">
+                            <div class="slds-float_left">
+                                <label class="slds-form-element__label slds-text-heading--small slds-m-top--small" for="search">Results</label>                
+                                
+                                <button class="{!v.numberOfRecord > 0 ? 'slds-button slds-button--neutral slds-m-bottom--xx-small' : 'slds-hide' }" onclick="{!c.selectAll}">Select All</button>  
+                                <button class="{!v.numberOfRecord > 0 ? 'slds-button slds-button--neutral slds-m-bottom--xx-small' : 'slds-hide' }" onclick="{!c.showMore}">Show More</button>               
+                            </div>
+                            <div class="slds-float_left">
+                                <span class="slds-badge slds-float--right slds-m-top--small count-badge">{!v.numberOfRecord}/{!v.totalNumberOfRecord} records are available meeting the search criteria</span> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-large-size--6-of-12 table-selected" style="line-height: 2.7;">
+                        <div class="slds-is-relative" style="clear:both;overflow:hidden;">
+                            <div class="slds-float_left">
+                                <label class="slds-form-element__label slds-text-heading--small slds-m-top--small" for="search">Selected</label>  
+                                <button class="{!v.selectedRecordCount > 0 ? 'slds-button slds-button--neutral slds-m-bottom--xx-small' : 'slds-hide' }" onclick="{!c.removeAll}">Remove All</button>                 
+                            </div>
+                            <div class="slds-float_left">
+                                <span class="slds-badge slds-float--right slds-m-top--small count-badge">{!v.selectedRecordCount} records selected</span>          
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slds-grid slds-wrap slds-grid--pull-padded">
+                    
+                    <div id="divScroll1" style="height:20rem;" class="slds-theme_default slds-scrollable slds-large-size--6-of-12 slds-border--left slds-border--right slds-border--top slds-border--bottom ">
+                        
+                        <table id="fixTable1" class="slds-table slds-table--bordered slds-table--cell-buffer">
+                            
+                            <thead id="theadScroll1" >
+                                <tr  class="slds-text-title--caps" >
+                                    <th scope="col" style="z-index: 4;">
+                                        <div class="slds-truncate" title="Select">Select</div>
+                                    </th>
+                                    <th scope="col" style="z-index: 3;">
+                                        <div class="slds-truncate" title="Title">Title</div>
+                                    </th>
+                                    <th scope="col" style="z-index: 3;">
+                                        <div class="slds-truncate" title="Version">Version</div>
+                                    </th>
+                                    <th scope="col" style="z-index: 3;">
+                                        <div class="slds-truncate" title="Product Id">Product Id</div>
+                                    </th>
+                                    <th scope="col" style="z-index: 3;">
+                                        <div class="slds-truncate" title="US EST Rights">US EST Rights</div>
+                                    </th>
+                                    <th scope="col" style="z-index: 3;">
+                                        <div class="slds-truncate" title="US VOD Rights">US VOD Rights</div>
+                                    </th> 
+                                    <th scope="col" style="z-index: 3;">
+                                        <div class="slds-truncate" title="CA EST Rights">CA EST Rights</div>
+                                    </th>
+                                    <th scope="col" style="z-index: 3;">
+                                        <div class="slds-truncate" title="CA VOD Rights">CA VOD Rights</div>
+                                    </th> 
+                                </tr>
+                            </thead>  
+                            
+                            <tbody id="tbodyScroll1">
+                                
+                                <!--### display all records of searchResult attribute by aura:iteration ###-->
+                                
+                                <aura:iteration items="{!v.searchResult}" var="tv" indexVar="resultIndex">
+                                    <tr>
+                                        <td style="z-index:2;">
+                                            <div>
+                                                <button class="slds-button slds-text-link" data-index="{!resultIndex}" onclick="{!c.addSelectedTitleVersion}">Add</button> 
+                                            </div>
+                                        </td>
+                                        <td style="z-index:2;">
+                                            <div class="slds-truncate" style="width:160px;" title="{!tv.titleName}"><ui:outputText value="{!tv.titleName}" /></div>
+                                        </td>
+                                        <td style="z-index:1;">
+                                            <div class="slds-truncate" style="width:160px;" title="{!tv.versionName}"><ui:outputText value="{!tv.versionName}" /></div>
+                                        </td>
+                                        <td style="z-index:1;">
+                                            <div class="slds-truncate" style="width:160px;" title="{!tv.productID}"><ui:outputText value="{!tv.productID}" /></div>
+                                        </td>
+                                        <td >
+                                            <div class="slds-truncate"><ui:outputCheckbox value="{!tv.isUSESTRights}"/></div>
+                                        </td>
+                                        <td style="z-index:1;">
+                                            <div class="slds-truncate"><ui:outputCheckbox value="{!tv.isUSVODRights}"/></div>
+                                        </td>
+                                        <td style="z-index:1;">
+                                            <div class="slds-truncate"><ui:outputCheckbox value="{!tv.isCAESTRights}"/></div>
+                                        </td>
+                                        <td style="z-index:1;">
+                                            <div class="slds-truncate"><ui:outputCheckbox value="{!tv.isCAVODRights}"/></div>
+                                        </td>
+                                    </tr>
+                                </aura:iteration>    
+                                <aura:if isTrue="{!v.Message}">
+                                    <div class="slds-text-color--error"> No Result Found...</div>
+                                </aura:if>
+                            </tbody>
+                            
+                        </table>
+                    </div>
+                    
+                    <div  style="height:20rem;" class="slds-theme_default slds-scrollable slds-large-size--6-of-12 slds-border--right slds-border--top slds-border--bottom">  
+                        
+                        <table id="fixTable2" class="slds-table slds-table--bordered slds-table--cell-buffer">
+                            <thead>       
+                                <tr class="slds-text-title--caps">
+                                    <th scope="col" style="z-index:4;">
+                                        <div class="slds-truncate" title="Select">Select</div>
+                                    </th>
+                                    <th scope="col" style="z-index:3;">
+                                        <div class="{!v.isBundleProduct ? 'slds-show slds-truncate' : 'slds-hide'}" title="Lead Title">Lead Title</div>
+                                    </th> 
+                                    <th scope="col" style="z-index:3;">
+                                        <div class="slds-truncate" title="Title">Title</div>
+                                    </th>
+                                    <th scope="col" style="z-index:3;">
+                                        <div class="slds-truncate" title="Version">Version</div>
+                                    </th>
+                                    <th scope="col" style="z-index:3;">
+                                        <div class="slds-truncate" title="Product Id">Product ID</div>
+                                    </th>
+                                    <th scope="col" style="z-index:3;">
+                                        <div class="slds-truncate" title="US EST Rights">US EST Rights</div>
+                                    </th>
+                                    <th scope="col" style="z-index:3;">
+                                        <div class="slds-truncate" title="US VOD Rights">US VOD Rights</div>
+                                    </th>  
+                                    <th scope="col" style="z-index:3;">
+                                        <div class="slds-truncate" title="CA EST Rights">CA EST Rights</div>
+                                    </th>
+                                    <th scope="col" style="z-index:3;">
+                                        <div class="slds-truncate" title="CA VOD Rights">CA VOD Rights</div>
+                                    </th>                                    
+                                </tr>
+                            </thead>
+                            <tbody>                       
+                                <!--### display all records of searchResult attribute by aura:iteration ###-->
+                                <aura:iteration items="{!v.selectedResultList}" var="tv" indexVar="selectedIndex">
+                                    <tr>
+                                        <td style="z-index:2;">
+                                            <div>
+                                                <button class="slds-button slds-text-link" data-index="{!selectedIndex}" onclick="{!c.removeSelectedTitleVersion}">Remove</button>                                    
+                                            </div>
+                                        </td>
+                                        <td style="z-index:2;">
+                                            <div class="{!v.isBundleProduct ? 'slds-show slds-truncate' : 'slds-hide'}" >                                                
+                                                <!--<input id="checkbox" type="checkbox" data-index="{!selectedIndex}" onchange="{!c.onLeadTitleClick}"  />    -->
+                                                <ui:inputCheckbox aura:id="checkbox" value="{!tv.isLeadTitle}" change="{!c.onLeadTitleClick}" updateOn="change"/>                                               
+                                            </div>
+                                        </td>
+                                        <td style="z-index:1;">
+                                            <div class="slds-truncate" style="width:160px;" title="{!tv.titleName}"><ui:outputText value="{!tv.titleName}" /></div>
+                                            
+                                        </td>
+                                        <td style="z-index:1;">
+                                            <div class="slds-truncate" style="width:160px;" title="{!tv.versionName}"><ui:outputText value="{!tv.versionName}" /></div>
+                                        </td>
+                                        <td style="z-index:1;">
+                                            <div class="slds-truncate" style="width:160px;" title="{!tv.productID}"><ui:outputText value="{!tv.productID}" /></div>
+                                        </td>
+                                        <td style="z-index:1;">
+                                            <div class="slds-truncate" ><ui:outputCheckbox value="{!tv.isUSESTRights}"/></div>
+                                        </td >
+                                        <td style="z-index:1;">
+                                            <div class="slds-truncate"><ui:outputCheckbox value="{!tv.isUSVODRights}"/></div>
+                                        </td>
+                                        <td style="z-index:1;">
+                                            <div class="slds-truncate"><ui:outputCheckbox value="{!tv.isCAESTRights}"/></div>
+                                        </td>
+                                        <td style="z-index:1;">
+                                            <div class="slds-truncate"><ui:outputCheckbox value="{!tv.isCAVODRights}"/></div>
+                                        </td>
+                                        
+                                    </tr>
+                                </aura:iteration>
+                            </tbody>
+                        </table>                
+                    </div>   
+                </div>
+                
+                <div id="divBlank" style="height:100px;" class="slds-large-size--12-of-12">
+                </div>
+                
+                <div class="slds-docked-form-footer">
+                    <div class="slds-large-size--6-of-12 slds-p-top_x-small slds-p-bottom_x-small slds-p-left_small">
+                    </div>
+                    <div class="slds-large-size--2-of-12 slds-p-top_x-small slds-p-bottom_x-small slds-p-left_small">
+                        <aura:if isTrue="{!v.renderESTTier}">
+                            <div class="slds-form--inline slds-clearfix">
+                                <div class="slds-form-element slds-float_none">
+                                    <label class="slds-form-element__label slds-text-heading--small" for="selectESTTier">EST Tier</label>
+                                    <div class="slds-form-element__control">
+                                        <ui:inputSelect aura:id="selectESTTier" change="{!c.onESTSelectChange}" class="slds-form-element__control" multiple="FALSE">
+                                            <aura:iteration items="{!v.estTier}" var="est">
+                                                <ui:inputSelectOption text="{!est}" label="{!est}"/>                    
+                                            </aura:iteration>
+                                        </ui:inputSelect>
+                                    </div>                           
+                                </div>            
+                            </div>                    
+                        </aura:if>
+                    </div>
+                    
+                    <div class="slds-large-size--2-of-12 slds-p-top_x-small slds-p-bottom_x-small slds-p-left_small">
+                        <aura:if isTrue="{!v.renderVersion}">
+                            <div class="slds-form--inline  slds-clearfix">
+                                <div class="slds-form-element slds-float_none">
+                                    <label class="slds-form-element__label slds-text-heading--small" for="selectVersion">Version</label>
+                                    <div class="slds-form-element__control">
+                                        <ui:inputSelect aura:id="selectVersion" change="{!c.onVersionSelectChange}" class="slds-form-element__control" multiple="FALSE">
+                                            <aura:iteration items="{!v.versions}" var="ver">
+                                                <ui:inputSelectOption text="{!ver}" label="{!ver}"/>                    
+                                            </aura:iteration>
+                                        </ui:inputSelect>
+                                    </div>                           
+                                </div>            
+                            </div>                    
+                        </aura:if>
+                    </div>
+                    
+                    <div class="slds-large-size--2-of-12 slds-p-right_small slds-p-top_x-small slds-p-bottom_x-small">
+                        <div class="slds-float--right  slds-show slds-clearfix " >
+                            <button type="button" class="slds-button slds-button--neutral" onclick="{!c.gotoURL}">Cancel</button>                    
+                            <button type="button" class="{!v.selectedRecordCount > 0 ? 'slds-button slds-button--brand' : 'slds-hide' }" onclick="{!c.saveRecordDetails}">Save</button>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            
+        </aura:set>
+    </aura:if>
+</aura:component>

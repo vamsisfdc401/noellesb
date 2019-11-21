@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Promotion</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Promotions</value>
+    </caseValues>
+    <layouts>
+        <layout>Account Promotion</layout>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Promotion Accounts --></label>
+            <section>Promotion Accounts</section>
+        </sections>
+        <sections>
+            <label><!-- Promotion Dates --></label>
+            <section>Promotion Dates</section>
+        </sections>
+        <sections>
+            <label><!-- Promotion Type --></label>
+            <section>Promotion Type</section>
+        </sections>
+        <sections>
+            <label><!-- Summary --></label>
+            <section>Summary</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Free Episode</layout>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Promotion Accounts --></label>
+            <section>Promotion Accounts</section>
+        </sections>
+        <sections>
+            <label><!-- Promotion Dates --></label>
+            <section>Promotion Dates</section>
+        </sections>
+        <sections>
+            <label><!-- Summary --></label>
+            <section>Summary</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>National Promotion</layout>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Promotion Dates --></label>
+            <section>Promotion Dates</section>
+        </sections>
+        <sections>
+            <label><!-- Promotion Type --></label>
+            <section>Promotion Type</section>
+        </sections>
+        <sections>
+            <label><!-- Summary --></label>
+            <section>Summary</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Add Account Promotion --></label>
+        <name>Add_Account_Promotion</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Add/Remove Products --></label>
+        <name>Add_Product</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Bulk TPR Pricing --></label>
+        <name>Bulk_TPR_Pricing</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Clone Promotion --></label>
+        <name>Clone_Promotion</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Update Promotion --></label>
+        <name>DGF_Promotion_Detail_Badge</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- TPR Bundle Price Validation --></label>
+        <name>TPR_Bundle_Price_Validation</name>
+    </quickActions>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

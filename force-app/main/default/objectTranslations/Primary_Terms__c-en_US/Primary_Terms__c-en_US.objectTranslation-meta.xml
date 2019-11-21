@@ -1,0 +1,1055 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Primary Terms</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Primary Terms</value>
+    </caseValues>
+    <layouts>
+        <layout>Primary Term Admin Layout</layout>
+        <sections>
+            <label><!-- + Payment Terms (enter percentage or leave blank) --></label>
+            <section>+ Payment Terms (enter percentage or leave blank)</section>
+        </sections>
+        <sections>
+            <label><!-- + Principal Licensed Rights --></label>
+            <section>+ Principal Licensed Rights</section>
+        </sections>
+        <sections>
+            <label><!-- + Secondary Licensed Rights --></label>
+            <section>+ Secondary Licensed Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Airlines Rights --></label>
+            <section>Airlines Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Approval Rights &amp; Other Conditions --></label>
+            <section>Approval Rights &amp; Other Conditions</section>
+        </sections>
+        <sections>
+            <label><!-- Audio Only Rights --></label>
+            <section>Audio Only Rights</section>
+        </sections>
+        <sections>
+            <label><!-- CatchUp TV Rights --></label>
+            <section>CatchUp TV Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Clip Rights --></label>
+            <section>Clip Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Commercial Video Rights --></label>
+            <section>Commercial Video Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Cross-Collateralization --></label>
+            <section>Cross-Collateralization</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Distribution Fee Deal --></label>
+            <section>Distribution Fee Deal</section>
+        </sections>
+        <sections>
+            <label><!-- Dropbox --></label>
+            <section>Dropbox</section>
+        </sections>
+        <sections>
+            <label><!-- EST Rights --></label>
+            <section>EST Rights</section>
+        </sections>
+        <sections>
+            <label><!-- FVOD AVOD Rights --></label>
+            <section>FVOD AVOD Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Free TV Rights --></label>
+            <section>Free TV Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Further Information on Licensed Rights --></label>
+            <section>Further Information on Licensed Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Holdbacks --></label>
+            <section>Holdbacks</section>
+        </sections>
+        <sections>
+            <label><!-- Home Video Rights --></label>
+            <section>Home Video Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Hotel/Motel Rights --></label>
+            <section>Hotel/Motel Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Interactive Rights --></label>
+            <section>Interactive Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Literary Publishing Rights --></label>
+            <section>Literary Publishing Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Merchandising Rights --></label>
+            <section>Merchandising Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Mobile Rights --></label>
+            <section>Mobile Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Non Theatrical Rights --></label>
+            <section>Non Theatrical Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Options --></label>
+            <section>Options</section>
+        </sections>
+        <sections>
+            <label><!-- Options cont --></label>
+            <section>Options cont</section>
+        </sections>
+        <sections>
+            <label><!-- Other --></label>
+            <section>Other</section>
+        </sections>
+        <sections>
+            <label><!-- Other Deal Structure --></label>
+            <section>Other Deal Structure</section>
+        </sections>
+        <sections>
+            <label><!-- Other Financial Terms --></label>
+            <section>Other Financial Terms</section>
+        </sections>
+        <sections>
+            <label><!-- Other Rights --></label>
+            <section>Other Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Other obligations --></label>
+            <section>Other obligations</section>
+        </sections>
+        <sections>
+            <label><!-- PPV Rights --></label>
+            <section>PPV Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Pay TV Rights --></label>
+            <section>Pay TV Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Primary Terms --></label>
+            <section>Primary Terms</section>
+        </sections>
+        <sections>
+            <label><!-- Primary terms --></label>
+            <section>Primary terms</section>
+        </sections>
+        <sections>
+            <label><!-- Principal Licensed Rights --></label>
+            <section>Principal Licensed Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Radio Rights --></label>
+            <section>Radio Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Release Conditions --></label>
+            <section>Release Conditions</section>
+        </sections>
+        <sections>
+            <label><!-- SVOD Rights --></label>
+            <section>SVOD Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Ship Rights --></label>
+            <section>Ship Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Soundtrack Rights --></label>
+            <section>Soundtrack Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Spoken Word Rights --></label>
+            <section>Spoken Word Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Sponsorship Rights --></label>
+            <section>Sponsorship Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Stage Play Rights --></label>
+            <section>Stage Play Rights</section>
+        </sections>
+        <sections>
+            <label><!-- TVOD Rights --></label>
+            <section>TVOD Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Term --></label>
+            <section>Term</section>
+        </sections>
+        <sections>
+            <label><!-- Theatrical Rights --></label>
+            <section>Theatrical Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Theme Park Rights --></label>
+            <section>Theme Park Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Universal Recoupable Costs --></label>
+            <section>Universal Recoupable Costs</section>
+        </sections>
+        <sections>
+            <label><!-- Universal Recoupable Costs cont. --></label>
+            <section>Universal Recoupable Costs cont.</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Primary Term Layout</layout>
+        <sections>
+            <label><!-- + Payment Terms (enter percentage or leave blank) --></label>
+            <section>+ Payment Terms (enter percentage or leave blank)</section>
+        </sections>
+        <sections>
+            <label><!-- + Principal Licensed Rights --></label>
+            <section>+ Principal Licensed Rights</section>
+        </sections>
+        <sections>
+            <label><!-- + Secondary Licensed Rights --></label>
+            <section>+ Secondary Licensed Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Airlines Rights --></label>
+            <section>Airlines Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Approval Rights &amp; Other Conditions --></label>
+            <section>Approval Rights &amp; Other Conditions</section>
+        </sections>
+        <sections>
+            <label><!-- Audio Only Rights --></label>
+            <section>Audio Only Rights</section>
+        </sections>
+        <sections>
+            <label><!-- CatchUp TV Rights --></label>
+            <section>CatchUp TV Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Clip Rights --></label>
+            <section>Clip Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Commercial Video Rights --></label>
+            <section>Commercial Video Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Cross-Collateralization --></label>
+            <section>Cross-Collateralization</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Distribution Fee Deal --></label>
+            <section>Distribution Fee Deal</section>
+        </sections>
+        <sections>
+            <label><!-- Dropbox --></label>
+            <section>Dropbox</section>
+        </sections>
+        <sections>
+            <label><!-- EST Rights --></label>
+            <section>EST Rights</section>
+        </sections>
+        <sections>
+            <label><!-- FVOD AVOD Rights --></label>
+            <section>FVOD AVOD Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Free TV Rights --></label>
+            <section>Free TV Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Further Information on Licensed Rights --></label>
+            <section>Further Information on Licensed Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Holdbacks --></label>
+            <section>Holdbacks</section>
+        </sections>
+        <sections>
+            <label><!-- Home Video Rights --></label>
+            <section>Home Video Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Hotel/Motel Rights --></label>
+            <section>Hotel/Motel Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Interactive Rights --></label>
+            <section>Interactive Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Literary Publishing Rights --></label>
+            <section>Literary Publishing Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Merchandising Rights --></label>
+            <section>Merchandising Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Mobile Rights --></label>
+            <section>Mobile Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Non Theatrical Rights --></label>
+            <section>Non Theatrical Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Options --></label>
+            <section>Options</section>
+        </sections>
+        <sections>
+            <label><!-- Options cont --></label>
+            <section>Options cont</section>
+        </sections>
+        <sections>
+            <label><!-- Other --></label>
+            <section>Other</section>
+        </sections>
+        <sections>
+            <label><!-- Other Deal Structure --></label>
+            <section>Other Deal Structure</section>
+        </sections>
+        <sections>
+            <label><!-- Other Financial Terms --></label>
+            <section>Other Financial Terms</section>
+        </sections>
+        <sections>
+            <label><!-- Other Rights --></label>
+            <section>Other Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Other obligations --></label>
+            <section>Other obligations</section>
+        </sections>
+        <sections>
+            <label><!-- PPV Rights --></label>
+            <section>PPV Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Pay TV Rights --></label>
+            <section>Pay TV Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Primary Terms --></label>
+            <section>Primary Terms</section>
+        </sections>
+        <sections>
+            <label><!-- Primary terms --></label>
+            <section>Primary terms</section>
+        </sections>
+        <sections>
+            <label><!-- Principal Licensed Rights --></label>
+            <section>Principal Licensed Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Radio Rights --></label>
+            <section>Radio Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Release Conditions --></label>
+            <section>Release Conditions</section>
+        </sections>
+        <sections>
+            <label><!-- SVOD Rights --></label>
+            <section>SVOD Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Ship Rights --></label>
+            <section>Ship Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Soundtrack Rights --></label>
+            <section>Soundtrack Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Spoken Word Rights --></label>
+            <section>Spoken Word Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Sponsorship Rights --></label>
+            <section>Sponsorship Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Stage Play Rights --></label>
+            <section>Stage Play Rights</section>
+        </sections>
+        <sections>
+            <label><!-- TVOD Rights --></label>
+            <section>TVOD Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Term --></label>
+            <section>Term</section>
+        </sections>
+        <sections>
+            <label><!-- Theatrical Rights --></label>
+            <section>Theatrical Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Theme Park Rights --></label>
+            <section>Theme Park Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Universal Recoupable Costs --></label>
+            <section>Universal Recoupable Costs</section>
+        </sections>
+        <sections>
+            <label><!-- Universal Recoupable Costs cont. --></label>
+            <section>Universal Recoupable Costs cont.</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Primary Term Layout - Read Only</layout>
+        <sections>
+            <label><!-- + Payment Terms (enter percentage or leave blank) --></label>
+            <section>+ Payment Terms (enter percentage or leave blank)</section>
+        </sections>
+        <sections>
+            <label><!-- + Principal Licensed Rights --></label>
+            <section>+ Principal Licensed Rights</section>
+        </sections>
+        <sections>
+            <label><!-- + Secondary Licensed Rights --></label>
+            <section>+ Secondary Licensed Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Airlines Rights --></label>
+            <section>Airlines Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Approval Rights &amp; Other Conditions --></label>
+            <section>Approval Rights &amp; Other Conditions</section>
+        </sections>
+        <sections>
+            <label><!-- Audio Only Rights --></label>
+            <section>Audio Only Rights</section>
+        </sections>
+        <sections>
+            <label><!-- CatchUp TV Rights --></label>
+            <section>CatchUp TV Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Clip Rights --></label>
+            <section>Clip Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Commercial Video Rights --></label>
+            <section>Commercial Video Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Cross-Collateralization --></label>
+            <section>Cross-Collateralization</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Distribution Fee Deal --></label>
+            <section>Distribution Fee Deal</section>
+        </sections>
+        <sections>
+            <label><!-- Dropbox --></label>
+            <section>Dropbox</section>
+        </sections>
+        <sections>
+            <label><!-- EST Rights --></label>
+            <section>EST Rights</section>
+        </sections>
+        <sections>
+            <label><!-- FVOD AVOD Rights --></label>
+            <section>FVOD AVOD Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Free TV Rights --></label>
+            <section>Free TV Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Further Information on Licensed Rights --></label>
+            <section>Further Information on Licensed Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Holdbacks --></label>
+            <section>Holdbacks</section>
+        </sections>
+        <sections>
+            <label><!-- Home Video Rights --></label>
+            <section>Home Video Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Hotel/Motel Rights --></label>
+            <section>Hotel/Motel Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Interactive Rights --></label>
+            <section>Interactive Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Literary Publishing Rights --></label>
+            <section>Literary Publishing Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Merchandising Rights --></label>
+            <section>Merchandising Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Mobile Rights --></label>
+            <section>Mobile Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Non Theatrical Rights --></label>
+            <section>Non Theatrical Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Options --></label>
+            <section>Options</section>
+        </sections>
+        <sections>
+            <label><!-- Options cont --></label>
+            <section>Options cont</section>
+        </sections>
+        <sections>
+            <label><!-- Other --></label>
+            <section>Other</section>
+        </sections>
+        <sections>
+            <label><!-- Other Deal Structure --></label>
+            <section>Other Deal Structure</section>
+        </sections>
+        <sections>
+            <label><!-- Other Financial Terms --></label>
+            <section>Other Financial Terms</section>
+        </sections>
+        <sections>
+            <label><!-- Other Rights --></label>
+            <section>Other Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Other obligations --></label>
+            <section>Other obligations</section>
+        </sections>
+        <sections>
+            <label><!-- PPV Rights --></label>
+            <section>PPV Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Pay TV Rights --></label>
+            <section>Pay TV Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Primary Terms --></label>
+            <section>Primary Terms</section>
+        </sections>
+        <sections>
+            <label><!-- Primary terms --></label>
+            <section>Primary terms</section>
+        </sections>
+        <sections>
+            <label><!-- Principal Licensed Rights --></label>
+            <section>Principal Licensed Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Radio Rights --></label>
+            <section>Radio Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Release Conditions --></label>
+            <section>Release Conditions</section>
+        </sections>
+        <sections>
+            <label><!-- SVOD Rights --></label>
+            <section>SVOD Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Ship Rights --></label>
+            <section>Ship Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Soundtrack Rights --></label>
+            <section>Soundtrack Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Spoken Word Rights --></label>
+            <section>Spoken Word Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Sponsorship Rights --></label>
+            <section>Sponsorship Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Stage Play Rights --></label>
+            <section>Stage Play Rights</section>
+        </sections>
+        <sections>
+            <label><!-- TVOD Rights --></label>
+            <section>TVOD Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Term --></label>
+            <section>Term</section>
+        </sections>
+        <sections>
+            <label><!-- Theatrical Rights --></label>
+            <section>Theatrical Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Theme Park Rights --></label>
+            <section>Theme Park Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Universal Recoupable Costs --></label>
+            <section>Universal Recoupable Costs</section>
+        </sections>
+        <sections>
+            <label><!-- Universal Recoupable Costs cont. --></label>
+            <section>Universal Recoupable Costs cont.</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Primary Term New Layout</layout>
+        <sections>
+            <label><!-- + Payment Terms (enter percentage or leave blank) --></label>
+            <section>+ Payment Terms (enter percentage or leave blank)</section>
+        </sections>
+        <sections>
+            <label><!-- + Principal Licensed Rights --></label>
+            <section>+ Principal Licensed Rights</section>
+        </sections>
+        <sections>
+            <label><!-- + Secondary Licensed Rights --></label>
+            <section>+ Secondary Licensed Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Airlines Rights --></label>
+            <section>Airlines Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Approval Rights &amp; Other Conditions --></label>
+            <section>Approval Rights &amp; Other Conditions</section>
+        </sections>
+        <sections>
+            <label><!-- Audio Only Rights --></label>
+            <section>Audio Only Rights</section>
+        </sections>
+        <sections>
+            <label><!-- CatchUp TV Rights --></label>
+            <section>CatchUp TV Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Clip Rights --></label>
+            <section>Clip Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Commercial Video Rights --></label>
+            <section>Commercial Video Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Cross-Collateralization --></label>
+            <section>Cross-Collateralization</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Distribution Fee Deal --></label>
+            <section>Distribution Fee Deal</section>
+        </sections>
+        <sections>
+            <label><!-- Dropbox --></label>
+            <section>Dropbox</section>
+        </sections>
+        <sections>
+            <label><!-- EST Rights --></label>
+            <section>EST Rights</section>
+        </sections>
+        <sections>
+            <label><!-- FVOD AVOD Rights --></label>
+            <section>FVOD AVOD Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Free TV Rights --></label>
+            <section>Free TV Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Further Information on Licensed Rights --></label>
+            <section>Further Information on Licensed Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Holdbacks --></label>
+            <section>Holdbacks</section>
+        </sections>
+        <sections>
+            <label><!-- Home Video Rights --></label>
+            <section>Home Video Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Hotel/Motel Rights --></label>
+            <section>Hotel/Motel Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Interactive Rights --></label>
+            <section>Interactive Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Literary Publishing Rights --></label>
+            <section>Literary Publishing Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Merchandising Rights --></label>
+            <section>Merchandising Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Mobile Rights --></label>
+            <section>Mobile Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Non Theatrical Rights --></label>
+            <section>Non Theatrical Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Options --></label>
+            <section>Options</section>
+        </sections>
+        <sections>
+            <label><!-- Options cont --></label>
+            <section>Options cont</section>
+        </sections>
+        <sections>
+            <label><!-- Other --></label>
+            <section>Other</section>
+        </sections>
+        <sections>
+            <label><!-- Other Conditions --></label>
+            <section>Other Conditions</section>
+        </sections>
+        <sections>
+            <label><!-- Other Deal Structure --></label>
+            <section>Other Deal Structure</section>
+        </sections>
+        <sections>
+            <label><!-- Other Financial Terms --></label>
+            <section>Other Financial Terms</section>
+        </sections>
+        <sections>
+            <label><!-- Other Rights --></label>
+            <section>Other Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Other obligations --></label>
+            <section>Other obligations</section>
+        </sections>
+        <sections>
+            <label><!-- PPV Rights --></label>
+            <section>PPV Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Pay TV Rights --></label>
+            <section>Pay TV Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Primary Terms --></label>
+            <section>Primary Terms</section>
+        </sections>
+        <sections>
+            <label><!-- Primary terms --></label>
+            <section>Primary terms</section>
+        </sections>
+        <sections>
+            <label><!-- Principal Licensed Rights --></label>
+            <section>Principal Licensed Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Radio Rights --></label>
+            <section>Radio Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Release Conditions --></label>
+            <section>Release Conditions</section>
+        </sections>
+        <sections>
+            <label><!-- SVOD Rights --></label>
+            <section>SVOD Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Ship Rights --></label>
+            <section>Ship Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Soundtrack Rights --></label>
+            <section>Soundtrack Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Spoken Word Rights --></label>
+            <section>Spoken Word Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Sponsorship Rights --></label>
+            <section>Sponsorship Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Stage Play Rights --></label>
+            <section>Stage Play Rights</section>
+        </sections>
+        <sections>
+            <label><!-- TVOD Rights --></label>
+            <section>TVOD Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Term --></label>
+            <section>Term</section>
+        </sections>
+        <sections>
+            <label><!-- Theatrical Rights --></label>
+            <section>Theatrical Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Theme Park Rights --></label>
+            <section>Theme Park Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Universal Recoupable Costs --></label>
+            <section>Universal Recoupable Costs</section>
+        </sections>
+        <sections>
+            <label><!-- Universal Recoupable Costs cont. --></label>
+            <section>Universal Recoupable Costs cont.</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Primary Term New ReadOnly</layout>
+        <sections>
+            <label><!-- + Payment Terms (enter percentage or leave blank) --></label>
+            <section>+ Payment Terms (enter percentage or leave blank)</section>
+        </sections>
+        <sections>
+            <label><!-- + Principal Licensed Rights --></label>
+            <section>+ Principal Licensed Rights</section>
+        </sections>
+        <sections>
+            <label><!-- + Secondary Licensed Rights --></label>
+            <section>+ Secondary Licensed Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Airlines Rights --></label>
+            <section>Airlines Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Approval Rights &amp; Other Conditions --></label>
+            <section>Approval Rights &amp; Other Conditions</section>
+        </sections>
+        <sections>
+            <label><!-- Audio Only Rights --></label>
+            <section>Audio Only Rights</section>
+        </sections>
+        <sections>
+            <label><!-- CatchUp TV Rights --></label>
+            <section>CatchUp TV Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Clip Rights --></label>
+            <section>Clip Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Commercial Video Rights --></label>
+            <section>Commercial Video Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Cross-Collateralization --></label>
+            <section>Cross-Collateralization</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Distribution Fee Deal --></label>
+            <section>Distribution Fee Deal</section>
+        </sections>
+        <sections>
+            <label><!-- Dropbox --></label>
+            <section>Dropbox</section>
+        </sections>
+        <sections>
+            <label><!-- EST Rights --></label>
+            <section>EST Rights</section>
+        </sections>
+        <sections>
+            <label><!-- FVOD AVOD Rights --></label>
+            <section>FVOD AVOD Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Free TV Rights --></label>
+            <section>Free TV Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Further Information on Licensed Rights --></label>
+            <section>Further Information on Licensed Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Holdbacks --></label>
+            <section>Holdbacks</section>
+        </sections>
+        <sections>
+            <label><!-- Home Video Rights --></label>
+            <section>Home Video Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Hotel/Motel Rights --></label>
+            <section>Hotel/Motel Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Interactive Rights --></label>
+            <section>Interactive Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Literary Publishing Rights --></label>
+            <section>Literary Publishing Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Merchandising Rights --></label>
+            <section>Merchandising Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Mobile Rights --></label>
+            <section>Mobile Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Non Theatrical Rights --></label>
+            <section>Non Theatrical Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Options --></label>
+            <section>Options</section>
+        </sections>
+        <sections>
+            <label><!-- Options cont --></label>
+            <section>Options cont</section>
+        </sections>
+        <sections>
+            <label><!-- Other --></label>
+            <section>Other</section>
+        </sections>
+        <sections>
+            <label><!-- Other Conditions --></label>
+            <section>Other Conditions</section>
+        </sections>
+        <sections>
+            <label><!-- Other Deal Structure --></label>
+            <section>Other Deal Structure</section>
+        </sections>
+        <sections>
+            <label><!-- Other Financial Terms --></label>
+            <section>Other Financial Terms</section>
+        </sections>
+        <sections>
+            <label><!-- Other Rights --></label>
+            <section>Other Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Other obligations --></label>
+            <section>Other obligations</section>
+        </sections>
+        <sections>
+            <label><!-- PPV Rights --></label>
+            <section>PPV Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Pay TV Rights --></label>
+            <section>Pay TV Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Primary Terms --></label>
+            <section>Primary Terms</section>
+        </sections>
+        <sections>
+            <label><!-- Primary terms --></label>
+            <section>Primary terms</section>
+        </sections>
+        <sections>
+            <label><!-- Principal Licensed Rights --></label>
+            <section>Principal Licensed Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Radio Rights --></label>
+            <section>Radio Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Release Conditions --></label>
+            <section>Release Conditions</section>
+        </sections>
+        <sections>
+            <label><!-- SVOD Rights --></label>
+            <section>SVOD Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Ship Rights --></label>
+            <section>Ship Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Soundtrack Rights --></label>
+            <section>Soundtrack Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Spoken Word Rights --></label>
+            <section>Spoken Word Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Sponsorship Rights --></label>
+            <section>Sponsorship Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Stage Play Rights --></label>
+            <section>Stage Play Rights</section>
+        </sections>
+        <sections>
+            <label><!-- TVOD Rights --></label>
+            <section>TVOD Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Term --></label>
+            <section>Term</section>
+        </sections>
+        <sections>
+            <label><!-- Theatrical Rights --></label>
+            <section>Theatrical Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Theme Park Rights --></label>
+            <section>Theme Park Rights</section>
+        </sections>
+        <sections>
+            <label><!-- Universal Recoupable Costs --></label>
+            <section>Universal Recoupable Costs</section>
+        </sections>
+        <sections>
+            <label><!-- Universal Recoupable Costs cont. --></label>
+            <section>Universal Recoupable Costs cont.</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

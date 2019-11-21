@@ -1,0 +1,144 @@
+<!--*****************************************************************************************
+Page Name: TemplateReview
+Purpose: This is the third page of Material Template wizard. It helps to review the materials in the template.
+******************************************************************************************
+Version         DateModified         ModifiedBy               Change
+1.0             10/04/2017           Suman                    Initial Development
+******************************************************************************************-->
+<apex:page standardController="Material_Template__c" extensions="TemplateWizardController" title="Template Review" tabStyle="Material_Template__c">
+    <style type="text/css">
+        .popupBackground{
+            background-color:black;
+            opacity: 0.20;
+            filter: alpha(opacity = 20);
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 2;
+        }
+        
+    </style>
+    
+    <!-- Action Status: Processing Overlay -->
+    <apex:actionStatus id="wait" >
+        <apex:facet name="start" >
+            <div class="popupBackground" style="z-index:1001;" layout="block">&nbsp;</div>
+            <div style="position:fixed;top:40%;left:50%;z-index:1002">
+                <div style="padding:14px 10px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;border:1px solid #1288FF;background-color:#F5F5F5;margin-left:-100px;vertical-align:top;">
+                    <table>
+                        <tr valign="bottom"><td><img src="/img/loading.gif" width="25" height ="25" /> &nbsp;</td>
+                        <td><span style="font-weight:bold;font-color:#1288FF;font-size:14px;">Processing...</span></td></tr>
+                    </table>
+                </div> 
+            </div>                   
+        </apex:facet>
+    </apex:actionStatus>
+    
+    <apex:sectionHeader title="Template Review" subtitle="{!template.Template_Name__c}" />
+    <apex:pageMessages id="pgMsg" />
+    
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Done" action="{!completeTask}"/>
+                <apex:commandButton value="Cancel" action="{!cancel}" rendered="{!($Profile.Name!='Master Data Admin')}"/>
+            </apex:pageBlockButtons>
+            
+            <!-- Template Information -->
+            <apex:pageBlockSection collapsible="false">
+                <apex:facet name="header">
+                    <apex:outputPanel >
+                        <span style="font-weight:bold; font-size:1.1em;">Review template</span>
+                        <apex:outputPanel style="padding-left:30px;" rendered="{!hasEditAccess}">
+                            <apex:commandLink value="Edit" action="{!redirectThirdToFirstPage}" styleClass="btn" style="text-decoration:none;margin-top:5px;margin-right:25px;" />
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:facet>
+                <apex:outputField value="{!template.Template_Name__c}"/>
+                <apex:outputField value="{!template.Is_Active__c}"/>
+                <apex:outputField value="{!template.Brand_Group__c}"/>
+                <apex:outputField value="{!template.OwnerId}"/>
+            </apex:pageBlockSection>
+            <br clear="all"/>
+            <!-- Materials Details -->
+            <apex:pageBlock title="Template Materials" mode="edit" id="materialBlock">
+                <apex:pageBlockButtons location="top">
+                    <apex:commandButton value="Add Material" action="{!addMaterial}" rendered="{!hasEditAccess}"/>
+                </apex:pageBlockButtons>
+                
+                <apex:outputText rendered="{!totalMaterials == 0}">No Material Found.</apex:outputText>
+                
+                <apex:variable var="matIndex" value="{!1}"/>
+                <apex:repeat value="{!templatePagination.data}" var="mat" rendered="{!totalMaterials > 0}">
+                    <!-- Displaying the material details information -->
+                    <apex:pageBlockSection >
+                        <apex:facet name="header">
+                            <apex:outputPanel >
+                                <span style="font-weight:bold; color:#333; font-size:1.1em;">Material Serial: {!(((templatePagination.currentPageNumber - 1) * templatePagination.pageSize) + matIndex)}</span>
+                                <apex:outputPanel style="padding-left:30px;" rendered="{!hasEditAccess}">
+                                    <apex:commandLink value="Edit" action="{!editMaterial}" styleClass="btn" style="text-decoration:none;">
+                                        <apex:param id="editingMatId" name="editingMatId" assignTo="{!selectedMatId}" value="{!mat.instance.Id}"/>
+                                    </apex:commandLink>
+                                    <apex:commandLink value="Delete" onclick="if(confirm('Are you sure?')){deleteMaterial('{!mat.instance.Id}');return false;}else {return false;}" styleClass="btn" style="text-decoration:none;"></apex:commandLink>
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                        </apex:facet>
+                        <apex:outputField value="{!mat.instance.Item_Type__c}"/>
+                        <apex:outputField value="{!mat.instance.Item_Code__c}"/>
+                        <apex:outputField value="{!mat.instance.Format__c}"/>
+                        <apex:outputField value="{!mat.instance.Retailer_Rental__c}"/>
+                        <apex:outputField value="{!mat.instance.Quantity__c}"/>
+                        <apex:outputField value="{!mat.instance.Subformat__c}" rendered="{!isParamountUser}" /> <!-- USST-2783 -->
+                        <apex:outputField value="{!mat.instance.Sales_Planning_Group__c}" rendered="{!isParamountUser}" /> <!-- USST-2783 -->
+                    </apex:pageBlockSection>
+                    
+                    <!-- Displaying the associated component details information -->
+                    <apex:pageBlockSection columns="1" rendered="{!mat.totalChildCount > 0}">
+                        <apex:pageBlockTable value="{!mat.sortedComponentList}" var="comp">
+                            <apex:column headerValue="Component Type">
+                                <apex:outputField value="{!comp.instance.Component_Type__c}" rendered="{!NOT(comp.isExisting)}"/>
+                            </apex:column>
+                            <apex:column headerValue="Existing Component">
+                                <apex:outputField value="{!comp.instance.Existing_Component__c}" rendered="{!comp.isExisting}"/>
+                            </apex:column>
+                            <apex:column headerValue="Material Number" value="{!comp.matNumber}" rendered="{!NOT(isPHEUser)}" />
+                            <apex:column headerValue="Is Existing">
+                                <apex:inputCheckbox value="{!comp.isExisting}" disabled="true"/>
+                            </apex:column>
+                        </apex:pageBlockTable>
+                    </apex:pageBlockSection>
+                    <apex:variable var="matIndex" value="{!(matIndex + 1)}"/>
+                </apex:repeat>
+            </apex:pageBlock>
+            
+            <!-- Pagination controller section -->
+            <apex:outputPanel id="paginationPanel">
+                <div style="color:#0066FF;float:left;width:45%;">
+                    <span><b>Page #: {!templatePagination.currentPageNumber} of {!templatePagination.numberOfPages} &nbsp;&nbsp;  Record Count: {!templatePagination.numberofRecords}</b></span>
+                </div>
+                <div style="float:left;margin-top: -4px;">
+                    <apex:panelGrid columns="4" id="pnlGrid">
+                        <apex:commandLink action="{!templatePagination.firstPage}" rendered="{!templatePagination.DisablePrevious}" reRender="materialBlock, paginationPanel" style="color:#0066FF;font-weight:bold;">First</apex:commandlink>
+                        <apex:outputText value="First" rendered="{!NOT(templatePagination.DisablePrevious)}" style="color:#0066FF;"></apex:outputText>
+                        
+                        <apex:commandLink action="{!templatePagination.previousPage}" rendered="{!templatePagination.DisablePrevious}" reRender="materialBlock, paginationPanel" style="color:#0066FF;font-weight:bold;">Previous</apex:commandlink>
+                        <apex:outputText value="Previous" rendered="{!NOT(templatePagination.DisablePrevious)}" style="color:#0066FF;"></apex:outputText>
+                        
+                        <apex:commandLink action="{!templatePagination.nextPage}" rendered="{!templatePagination.DisableNext}" reRender="materialBlock, paginationPanel" style="color:#0066FF;font-weight:bold;">Next</apex:commandlink>
+                        <apex:outputText value="Next" rendered="{!NOT(templatePagination.DisableNext)}" style="color:#0066FF;"></apex:outputText>
+                        
+                        <apex:commandLink action="{!templatePagination.lastPage}" rendered="{!templatePagination.DisableNext}" reRender="materialBlock, paginationPanel" style="color:#0066FF;font-weight:bold;">Last</apex:commandlink>
+                        <apex:outputText value="Last" rendered="{!NOT(templatePagination.DisableNext)}" style="color:#0066FF;"></apex:outputText>
+                    </apex:panelGrid>            
+                </div>
+            </apex:outputPanel>
+            <br clear="all"/>
+        </apex:pageBlock>
+        
+        <apex:actionFunction name="deleteMaterial" action="{!deleteMaterial}" status="wait" reRender="materialBlock, paginationPanel, pgMsg">
+            <apex:param id="deletingMatId" name="deletingMatId" assignTo="{!selectedMatId}" value=""/>
+        </apex:actionFunction>
+    </apex:form>
+</apex:page>

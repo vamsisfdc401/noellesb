@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessMappings>
+        <accessLevel>Edit</accessLevel>
+        <object>CAR__c</object>
+        <objectField>Vendor_Account__c</objectField>
+        <userField>Contact.Account</userField>
+    </accessMappings>
+    <name>CAR Vendor Sharing</name>
+    <profiles>CAR Vendor Community User</profiles>
+</SharingSet>

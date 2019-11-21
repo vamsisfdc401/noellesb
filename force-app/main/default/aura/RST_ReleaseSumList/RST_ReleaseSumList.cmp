@@ -1,0 +1,185 @@
+<aura:component implements="flexipage:availableForAllPageTypes" controller="RST_ViewController" description="Release Summary List View" access="global">
+   <aura:attribute name="titles" type="Object" /> <!--  FILTERED TITLES FOR PAGE  -->
+    <aura:attribute name="titles_all" type="Object" /> <!--  ALL TITLES FOR PAGE  -->
+    <aura:attribute name="selectedTitle" type="Object" /> <!--  SELECTED TITLE  -->
+    <aura:attribute name="selectedTitlePW" type="Object" /> <!--  SELECTED TITLES FIRST PLAYWEEK DATA  -->
+    
+    <aura:attribute name="showFilter" type="String" default="false" /> <!--  FIELD BEING SORTED  -->
+    <aura:attribute name="sortField" type="String" default="Name" /> <!--  FIELD BEING SORTED  -->
+    <aura:attribute name="sortAsc" type="Boolean" default="true" /> <!--  SORT DIRECTION  -->
+    
+    <aura:attribute name="pageOptions" type="Object" /> <!--  SELECTED TITLE  -->
+    
+    <aura:attribute name="showSpinner" type="boolean" default="true"/> <!--  SPINNER  -->
+    
+    <aura:attribute name="isEditable" type="boolean" default="true" /> <!-- NON EDITABLE == RELEASE SUMMARY VIEW -->
+    <aura:attribute name="editOptions" type="List" default="[
+                                                            {'label': 'Yes', 'value': 'true'},
+                                                            {'label': 'No', 'value': 'false'}]"/>
+    
+    
+    <!--<aura:handler name="change" value="{!v.selectedTitlePW}" action="{!c.itemsChange}" />-->
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <div>
+		<h2>Release Summary View</h2>
+        <!--lightning:listView aura:id="listViewReleaseSummary"
+                            objectApiName="RST_Title__c"
+                            listName="Release_Summary"
+                            rows="20"
+                            showSearchBar="true"
+                            showActionBar="true"
+                            enableInlineEdit="false"
+                            showRowLevelActions="false"
+                            /-->
+    
+    
+    
+    <lightning:card title="">
+        <aura:set attribute="actions">
+            <ui:button class="nbcu-btn dark download" label="Download CSV" press="{!c.downloadTitlesCSV}" />
+        </aura:set>
+        
+        <aura:if isTrue="{!v.showSpinner }">
+            <lightning:spinner alternativeText="Loading" size="large" />
+        </aura:if>
+        
+        <!-- FILTER ACCORDION -->
+        <div class="filterAccordion">
+            <lightning:button class="nbcu-btn dark" label="Filters" onclick="{! c.toggleFilter }" />
+            <div class="slds-grid slds-gutters">
+                <aura:if isTrue="{!and(v.titles, v.showFilter) }">
+                    <div class="slds-col">
+                        <p>Search Titles:</p>
+                        <!-- <div onkeyup="{! c.handleKeyUp }"> -->
+                        <div onkeyup="{! c.enterKeyCheck }">
+                            <lightning:input aura:id="title-search" label="title search hidden" type="search" variant="label-hidden" />
+                        </div>
+                    </div>
+                </aura:if>
+                
+                
+                <aura:if isTrue="{!and(v.titles, v.showFilter) }">
+                    <div class="slds-col">
+                        <p>Play Week:</p>
+                        <!-- <lightning:select aura:id="weeks-select" label="pick a week" variant="label-hidden" onchange="{!c.weeksChange}"> -->
+                        <lightning:select aura:id="weeks-select" label="pick a week" variant="label-hidden" onchange="{!c.filterTitles}">
+                            <option></option>
+                            <aura:iteration items="{!v.pageOptions.weeks}" var="week">
+                                <option text="{!week}"></option>
+                            </aura:iteration>
+                        </lightning:select>
+                    </div>
+                </aura:if>
+                
+                
+                <aura:if isTrue="{!and(v.titles, v.showFilter) }">
+                    <div class="slds-col">
+                        <p>Distributor:</p>
+                        <!--<lightning:select aura:id="dists-select" label="pick a dist" variant="label-hidden" onchange="{!c.distsChange}">-->
+                        <lightning:select aura:id="dists-select" label="pick a dist" variant="label-hidden" onchange="{!c.filterTitles}">
+                            <option></option>
+                            <aura:iteration items="{!v.pageOptions.dists}" var="dists">
+                                <option text="{!dists}"></option>
+                            </aura:iteration>
+                        </lightning:select>
+                    </div>
+                </aura:if>
+                
+                <aura:if isTrue="{!and(v.titles, v.showFilter) }">
+                    <div class="slds-col">
+                        <p>FS&amp;O Genre:</p>
+                        <!--<lightning:select aura:id="fso-genre-select" label="pick an fso genre" variant="label-hidden" onchange="{!c.fsoGenreChange}"> -->
+                        <lightning:select aura:id="fso-genre-select" label="pick an fso genre" variant="label-hidden" onchange="{!c.filterTitles}">
+                            <option></option>
+                            <aura:iteration items="{!v.pageOptions.fso_genres}" var="fso_genre">
+                                <option text="{!fso_genre}"></option>
+                            </aura:iteration>
+                        </lightning:select>
+                    </div>
+                </aura:if>
+                
+                <aura:if isTrue="{!and(v.titles, v.showFilter) }">
+                    <div class="slds-col">
+                        <p>Rentrak Genre:</p>
+                        <!-- <lightning:select aura:id="ren-genre-select" label="pick a ren genre" variant="label-hidden" onchange="{!c.renGenreChange}"> -->
+                        <lightning:select aura:id="ren-genre-select" label="pick a ren genre" variant="label-hidden" onchange="{!c.filterTitles}">
+                            <option></option>
+                            <aura:iteration items="{!v.pageOptions.ren_genres}" var="ren_genre">
+                                <option text="{!ren_genre}"></option>
+                            </aura:iteration>
+                        </lightning:select>
+                    </div>
+                </aura:if>
+            </div>
+        </div>
+        <!-- END FILTER ACCORDION -->
+        
+        <table class="titles">
+            <tr>
+                <th>
+                    <span>Title</span>
+                     <lightning:button label="&#8744;" onclick="{! c.sortClick }" value="Name" class="sort_button"/>
+                </th>
+                <th>Wide Release
+                    <lightning:button label="&#8744;" onclick="{! c.sortClick }" value="Wide_Release_Date__c"  class="sort_button"/>
+                </th>
+                <th>Distributor
+                    <lightning:button label="&#8744;" onclick="{! c.sortClick }" value="Distributor__c"  class="sort_button"/>
+                </th>
+                <th>FS&amp;O Genre
+                    <lightning:button label="&#8744;" onclick="{! c.sortClick }" value="FS_O_Genre__c"  class="sort_button"/>
+                </th>
+                <th>RenTrak Genre
+                    <lightning:button label="&#8744;" onclick="{! c.sortClick }" value="RenTrak_Genre__c"  class="sort_button"/>
+                </th>
+                <th>Total
+                    <lightning:button label="&#8744;" onclick="{! c.sortClick }" value="Total_Cumulative_BO__c"  class="sort_button"/>
+                </th>
+                <th>
+                    Opening Weekend
+                    <lightning:button label="&#8744;" onclick="{! c.sortClick }" value="Wide_Opening_Weekend__c"  class="sort_button"/>
+                </th>
+                <th>Cumulative
+                    <lightning:button label="&#8744;" onclick="{! c.sortClick }" value="Total_Cumulative_BO__c"  class="sort_button"/>
+                </th>
+                <th>Multiple
+                    <lightning:button label="&#8744;" onclick="{! c.sortClick }" value="Multiple__c"  class="sort_button"/>
+                </th>
+                <th>Locked
+                    <lightning:button label="&#8744;" onclick="{! c.sortClick }" value="Lock_Title__c"  class="sort_button"/>
+                </th>
+            </tr>
+            
+            <!-- Title Iteration -->
+            <aura:iteration items="{!v.titles}" var="title">
+                <tr class="{!if(v.selectedTitle.Id == title.Id, 'selected', '')}">
+                    <td>{!title.Name}</td>
+                    <td><lightning:formattedDateTime value="{!title.Wide_Release_Date__c}" month="2-digit" day="2-digit" year="numeric"/></td>
+                    <td>{!title.Distributor__c}</td>
+                    <td>{!title.FS_O_Genre__c}</td>
+                    <td>{!title.RenTrak_Genre__c}</td>
+                    <td>
+                        <lightning:formattedNumber value="{!title.Total_Cumulative_BO__c}" style="currency"
+                                                   currencyCode="USD" minimumFractionDigits="2" />
+                    </td>
+                    <td>
+                        <lightning:formattedNumber value="{!title.Wide_Opening_Weekend__c}" style="currency"
+                                                   currencyCode="USD" minimumFractionDigits="2" />
+                    </td>
+                    <td>
+                        <lightning:formattedNumber value="{!title.Total_Cumulative_BO__c}" style="currency"
+                                                   currencyCode="USD" minimumFractionDigits="2" />
+                    </td>
+                    <td>
+                        {!title.Multiple__c}
+                    </td>
+                    <td>{!title.Lock_Title__c}</td>
+                </tr>
+                
+            </aura:iteration>
+        </table>
+    </lightning:card>
+    </div>
+</aura:component>
